@@ -1,6 +1,6 @@
 <?
 //Константы
-define("FULL_PATH_DOCUMENT_ROOT", "/home/d/daotel/MEGATV/public_html"); //изменить на сервере
+define("FULL_PATH_DOCUMENT_ROOT", "Z:/home/megatv.ru/www"); //изменить на сервере
 define("LOG_FILENAME", "/logs/import.txt");
 define("CHANNEL_IB", 6);    //ид каналов
 define("PROG_IB", 7);   //ид программ
@@ -71,13 +71,13 @@ class CMyEpilogHooks
         foreach (array('og_title', 'og_image', 'og_url', 'og_site_name', 'og_type', 'og_description') as $prop_name)
         {
             $value = $APPLICATION->GetDirProperty($prop_name);
-            
+
             if ($prop_name == 'og_url' && empty($value))
                 $value = $APPLICATION->GetCurPage(false);
-            
+
             if (in_array($prop_name, array('og_image', 'og_url')) && !empty($value))
                 $value = "http://".$_SERVER["SERVER_NAME"].$value;
-            
+
             $prop_code = str_replace('og_', 'og:', $prop_name);
             if (!empty($value))
                 $APPLICATION->AddHeadString("<meta property=\"$prop_code\" content=\"$value\" />");
@@ -110,9 +110,9 @@ class MyCIBlockElement
             CModule::IncludeModule("iblock");
             $res = CIBlockElement::GetByID($arFields["ID"]);
             $arChannel = $res->GetNext();
-            
+
             $price = intval($arFields["PROPERTY_VALUES"][41]["n0"]["VALUE"]);
-            
+
             if($arFields["ACTIVE"]=="Y" && $arChannel["ACTIVE"]=="N" && $price==0)
             {
                 //Найдем пользователей, для кого эта подписка была включена
@@ -126,7 +126,7 @@ class MyCIBlockElement
                         $userIds[$arSub["UF_USER"]] = $arSub["ID"];
                     }
                 }
-                
+
                 $dbUsers = CUser::GetList(($by="EMAIL"), ($order="desc"), Array("ACTIVE" =>"Y"));
                 while($arUser = $dbUsers->Fetch())
                 {
@@ -138,13 +138,13 @@ class MyCIBlockElement
                         $CSubscribeEx->updateUserSubscribe($sub_id, array("UF_ACTIVE"=>"Y"));
                     }
                 }
-                
+
                 //Обновим кэш каналов
                 CChannel::updateCache();
             }
         }
     }
-    
+
     function OnAfterIBlockElementUpdateHandler(&$arFields)
     {
         //Обновление кэша

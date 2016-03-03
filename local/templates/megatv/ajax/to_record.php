@@ -45,7 +45,7 @@ if($USER->IsAuthorized() && $prog_time>0)
     }else{
         if(in_array($arProgTime["PROPERTY_CHANNEL_VALUE"], $selectedChannels))
         {
-            $log_file = "/logs/sotal/sotal_".date("d_m_Y").".txt";
+            $log_file = "/logs/sotal/sotal_".date("d_m_Y_H").".txt";
             CDev::log(array(
                 "ACTION"  => "PUT_TO_RECORD",
                 "DATA"    => array(

@@ -304,7 +304,7 @@ class CSotal
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data) );	
 		}
         
-        $log_file = "/logs/sotal/sotal_".date("d_m_Y").".txt";
+        $log_file = "/logs/sotal/sotal_".date("d_m_Y_H").".txt";
         
         CDev::log(array(
             "DATETIME" => date("d.m.Y H:i:s"),
