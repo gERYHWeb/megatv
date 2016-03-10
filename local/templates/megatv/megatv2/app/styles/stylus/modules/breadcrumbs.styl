@@ -1,0 +1,37 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding 0
+  margin-bottom 8px
+  list-style none
+  font-size 1.4rem
+  line-height 2.5rem
+  font-weight 300
+  text-align center
+  display none
+
+  @media (min-width: screen-md-min) {
+    display block
+  }
+
+  > li {
+    display: inline-block;
+
+    + li:before {
+      content ''
+      display inline-block
+      vertical-align middle
+      background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAHCAYAAAAvZezQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA61pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcFJpZ2h0czpNYXJrZWQ9IkZhbHNlIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6MUNDMzk5RTJEOUNDRTQxMTg4NERBODkwQkVGNDE0NTgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjQyNDFBRTBGQ0VFMTFFNEJDODVBNkQ2RjlEQ0IwOTMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Nzc5QkU4MDJGQzQyMTFFNEJDODVBNkQ2RjlEQ0IwOTMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTMyBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InV1aWQ6MDNGQkQyOEM5RkZGRTQxMThCM0JGOTgxQzdCQzlDQ0MiIHN0UmVmOmRvY3VtZW50SUQ9InV1aWQ6MDJGQkQyOEM5RkZGRTQxMThCM0JGOTgxQzdCQzlDQ0MiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6O/LwlAAAAPElEQVR42mJJTEz8n52dzcgABUwgztSpU//DBUAEsiDjmTNnYJIMIEEmZA5IJRMyB8Rm/v37N4otAAEGALm0Hcm6IcaEAAAAAElFTkSuQmCC") no-repeat center
+      width 4px
+      height 7px
+      padding 0 9px
+    }
+  }
+
+  > .active {
+    color: #a7a7a7;
+  }
+}

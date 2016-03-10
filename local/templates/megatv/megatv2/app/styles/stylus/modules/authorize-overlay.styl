@@ -1,0 +1,235 @@
+//
+// Authorize overlay
+// --------------------------------------------------
+
+.authorize-overlay {
+  display none
+  position absolute
+  top 72px
+  z-index 1200
+  opacity 0
+  padding-top 14px
+  overflow hidden
+  will-change opacity, transform
+  user-select none
+  transform-origin right top
+
+  &.is-visible {
+    display block
+    animation showAuthorizeOverlay .3s cubic-bezier(.39,1.31,.28,1)
+    animation-fill-mode forwards
+  }
+
+  .overlay-title {
+    text-transform uppercase
+    font-size 1.8rem
+    color #383838
+    font-weight 800
+    margin 0 0 30px
+  }
+  .divider {
+    display block
+    position relative
+    margin 0 0 24px
+    height 36px
+    width 100%
+
+    > span {
+      position absolute
+      left 50%
+      margin-left -18px
+      top 0
+      display block
+      width 36px
+      border 2px solid brand-primary
+      border-radius 50%
+      text-align center
+      line-height 1
+      padding 10px 0
+      text-indent 1px
+      color brand-primary
+      font-size 1.2rem
+      font-weight 500
+    }
+    &:before,
+    &:after {
+      content ''
+      position absolute
+      left 0
+      top 17px
+      width calc(50% - 18px)
+      height 2px
+      background-color brand-primary
+    }
+    &:after {
+      left auto
+      right 0
+    }
+  }
+  .overlay-content {
+    width 400px
+    position relative
+    background-color #f4f4f4
+    border 2px solid brand-primary
+    padding 20px 34px
+    //transform translate3d(0,-20px,0)
+    //transition transform .4s cubic-bezier(.7,0,.3,1)
+
+    &:before,
+    &:after {
+      position absolute
+      bottom 100%
+      content ''
+      border solid transparent
+      pointer-events none
+      width 0
+      height 0
+    }
+    &:after {
+      right 24px
+      border-color rgba(244, 244, 244, 0)
+      border-bottom-color #f4f4f4
+      border-width 12px
+      margin-left -12px
+    }
+    &:before {
+      border-color rgba(30, 110, 220, 0)
+      border-bottom-color #1e6edc
+      border-width 15px
+      right 21px
+      margin-left -15px
+    }
+  }
+  .form-group {
+    margin-bottom 5px
+
+    .form-control {
+      border-color #bcbcbc
+
+      &:focus {
+        border-color brand-primary
+      }
+    }
+  }
+  .form-actions {
+    padding-top 5px
+    text-align center
+
+    .btn {
+      margin-bottom 17px
+    }
+    a:not(.btn) {
+      color #4f4f4f
+
+      &:hover {
+        color lighten(#4f4f4f, 10%)
+      }
+    }
+  }
+  .steps {
+    > .step {
+      display none
+    }
+    > .active {
+      display block
+    }
+  }
+  .inline-divider {
+    padding 0 7px
+  }
+
+  &.is-signin-overlay,
+  &.is-reset-overlay {
+    right 165px
+
+    [data-type="password-visibility-toggle"] {
+      display inline-block
+      width 50px
+      height 50px
+      color #717171
+      pointer-events auto
+
+      &.active .icon,
+      &.active [data-icon] {
+        fill brand-primary
+      }
+    }
+    [data-type="password-field"] {
+      position relative
+      z-index 2
+    }
+    [data-type="password-field-group"] {
+      position relative
+
+      .form-control[type="password"] + .form-control[type="text"] {
+        position absolute
+        top 0
+        left 0
+        opacity 0
+        transition opacity .3s ease-in-out
+        will-change opacity
+        z-index 1
+
+        &.is-visible {
+          opacity 1
+          z-index 3
+        }
+      }
+      .form-control-feedback {
+        z-index 4
+      }
+    }
+  }
+  &.is-reset-overlay {
+    right 15px
+  }
+  &.is-signup-overlay {
+    right 15px
+  }
+  &.is-success-signup-overlay,
+  &.is-success-reset-overlay {
+    right 15px
+
+    .overlay-content {
+      padding 37px 34px
+      text-align center
+
+      p {
+        margin-bottom 20px
+      }
+    }
+    .overlay-title {
+      font-size 3rem
+      text-transform none
+      font-weight 400
+      margin-bottom 12px
+    }
+  }
+}
+
+.social-authorize-list {
+  list-style none
+  padding 0
+  margin 0 0 22px
+  display flex
+  flex-direction row
+  flex-wrap nowrap
+  justify-content space-between
+
+  li {
+    display inline-block
+    flex-shrink 0
+  }
+  a {
+    display inline-block
+    color brand-primary
+
+    &:hover {
+      color brand-secondary
+    }
+  }
+  .icon {
+    width 22px
+    height 22px
+  }
+}

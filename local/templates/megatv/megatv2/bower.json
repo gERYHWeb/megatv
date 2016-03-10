@@ -1,0 +1,35 @@
+{
+  "name": "megatv",
+  "dependencies": {
+    "blueimp-file-upload": "9.11.2",
+    "bootstrap": "~3.3.5",
+    "flickity": "~1.1.0",
+    "jquery.kinetic": "~2.1.0",
+    "jquery.maskedinput": "~1.4.1",
+    "jqueryui": "~1.11.4",
+    "js-cookie": "2.0.4",
+    "malihu-custom-scrollbar-plugin": "~3.0.9",
+    "moment": "~2.10.5",
+    "normalize.css": "~3.0.3",
+    "progressbar.js": "~0.9.0",
+    "select2-dist": "~4.0.0",
+    "typeahead.js": "~0.11.1",
+    "bLazy": "blazy#~1.5.0",
+    "lazyloadxt": "~1.0.5",
+    "sticky-kit": "~1.1.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js",
+        "dist/fonts/*"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "~3.2.0",
+    "mocha": "~2.2.5"
+  }
+}

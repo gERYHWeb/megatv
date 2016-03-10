@@ -1,0 +1,34 @@
+//
+// Layouts
+// -------------------------------------------------- //
+
+.site-wrapper {
+  position relative
+  display flex
+  flex-direction column
+  min-height 100%
+}
+.site-content {
+  position relative
+  flex-shrink 1
+  flex-grow 1
+
+  .flex-row {
+    display flex
+    flex-direction row
+    flex-wrap nowrap
+  }
+  .user-services-top-row {
+    @media (max-width: 1790px) {
+      flex-direction column
+    }
+  }
+  .user-profile-top-row {
+    @media (max-width: 1680px) {
+      flex-wrap wrap
+    }
+  }
+}
+
+@import "layouts/site-header"
+@import "layouts/site-footer"

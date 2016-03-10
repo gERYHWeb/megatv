@@ -1,0 +1,221 @@
+//
+// Buttons
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+
+.btn {
+  display inline-block
+  margin-bottom 0 // For input.btn
+  font-weight btn-font-weight
+  text-align center
+  vertical-align middle
+  touch-action manipulation
+  cursor pointer
+  background-image none // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border none
+  white-space nowrap
+  button-size(15px, 20px, 1.4rem, 1.45)
+  user-select none
+  text-decoration none
+  background-clip padding-box
+  transition border-color .15s ease-in-out, background-color .15s ease-in-out, color .15s ease-in-out
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      outline 0
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &.focus {
+    color btn-default-color
+    text-decoration none
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image none
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor cursor-disabled
+    pointer-events none // Future-proof disabling of clicks
+    opacity .65
+  }
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-default {
+  button-variant(btn-default-color, btn-default-bg, btn-default-border);
+}
+.btn-primary {
+  button-variant(btn-primary-color, btn-primary-bg, btn-primary-border);
+}
+
+// // Success appears as green
+// .btn-success {
+//   .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+// }
+// // Info appears as blue-green
+// .btn-info {
+//   .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+// }
+// // Warning appears as orange
+// .btn-warning {
+//   .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+// }
+// // Danger and error appear as red
+// .btn-danger {
+//   .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+// }
+
+
+// Link buttons
+// -------------------------
+
+// Make a button look and behave like a link
+// .btn-link {
+//   color: @link-color;
+//   font-weight: normal;
+//   border-radius: 0;
+//
+//   &,
+//   &:active,
+//   &.active,
+//   &[disabled],
+//   fieldset[disabled] & {
+//     background-color: transparent;
+//     .box-shadow(none);
+//   }
+//   &,
+//   &:hover,
+//   &:focus,
+//   &:active {
+//     border-color: transparent;
+//   }
+//   &:hover,
+//   &:focus {
+//     color: @link-hover-color;
+//     text-decoration: @link-hover-decoration;
+//     background-color: transparent;
+//   }
+//   &[disabled],
+//   fieldset[disabled] & {
+//     &:hover,
+//     &:focus {
+//       color: @btn-link-disabled-color;
+//       text-decoration: none;
+//     }
+//   }
+// }
+
+
+// Button Sizes
+// --------------------------------------------------
+
+// .btn-lg {
+//   button-size(15px, 20px, 1.4rem, 1.4)
+// }
+// .btn-hg {
+//   button-size(15px, 22px, 1.8rem, 1.6)
+// }
+
+
+// Block button
+// --------------------------------------------------
+
+.btn-block {
+  display block
+  width 100%
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top 5px
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width 100%
+  }
+}
+
+// Multistates button
+// --------------------------------------------------
+
+.btn-multistate {
+  padding 0
+  min-height 50px
+  position relative
+  overflow hidden
+
+  &:before {
+    content ''
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    opacity 0
+    transition opacity .3s linear, background-color .3s linear
+  }
+
+  [class*="state"] {
+    position absolute
+    top 0
+    left 0
+    width 100%
+    padding 15px 20px
+    z-index 2
+
+    &.active {
+      animation .3s showActiveButtonState cubic-bezier(.63,.15,.45,.9) !important
+      animation-fill-mode forwards !important
+    }
+    &.init-state {
+      animation none !important
+
+      ~ [class*="state"] {
+        opacity 0
+        transform translateY(-100%)
+      }
+    }
+  }
+  &[class*="is-inited"] {
+    [class*="state"] {
+      animation .3s hideButtonState cubic-bezier(.63,.15,.45,.9)
+      animation-fill-mode forwards
+    }
+  }
+  &.is-done-state {
+    background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAAG1BMVEUhhOInjOUkiOQiheIni+Umi+UihOIkiOMlieRO1IJvAAADKklEQVR4AezYN17DYBBE8SHWxAs4tQ4VJZnavgAZWiqfgIODZC28JfXzY9Xpe9Xf2aMXNdfsZPfjOui3R89eRVc3zdHG4PPodNKcbA+8ig6WwAF9d+JVtHsaOKKbe6+iUAYOt16FzIw2KxlnfPM31Kc0kMPvL715k71Kc7YIXDCHzalZSbiM9ioJl9Fe5YQ4og/MyoA4ok+9imbEEd33KtogjuiJV5GII9qsvFtegQParEg6Ag5os6IvuI1BoM1K4AKKn5ZeBbjTSUKbFeJG0h2YXkV88d1sA21WxP9ZS6LNSsYRbVZqaaylsZbGWhpraaylsZbGWhpraayl8R8tjXe/rHmHI6+i7V/WvMWNV5Hu5sABbVak7SFwQJsVZRzRXkXEYZy/kVkJHNe8QFsV4E4nGe1ViIs1L9BWZYXjZge0U+lwec0LtFPJuDA2Z2allsa/y1u7diACAAAAAMjfepE17tJYGktjaSyNpbE0lsbS+DQ+jU/j0/g0Po1P49P4ND6NT2NpLI2lsTSWxtJYGktjaSyNT+PT+DQ+jU/j0/g0Po1P49NYGktjaSyNpbE0lsbSWBpL49P4ND6NT+PT+DQ+jU/j0/g0lsbSWBpLY2ksjaWxNJbG0vg0Po1P49P4ND6NT+PT+DQ+jaWxNJbG0lgaS2NpLI2lsTQ+jU/j0/g0Po1P49P4ND6NT+PTWBpLY2ksjaWxNJbG0lgaS+PT+DQ+jU/j0/g0Po1P49P4NJbG0lgaS2NpLI2lsTSWxtL4ND6NT+PT+DQ+jU/j0/g0Po2lsTSWxtJYGktjaSyNpbE0Po1P49P4ND6NT+PT+DQ+jU9jaSyNpbE0lsbSWBpLY2ksjU/j0/g0Po1P49P4ND6NT+PT+DSWxtJYGktjaSyNpbE0lsbS+DQ+jU/j0/g0Po1P49P4ND6NpbE0lsbSWBpLY2ksjaWxND6NT+PT+DQ+jU/j0/g0Po1PY2ksjaWxNJbG0lgaS2NpLI1P49P4ND6NT+PT+DQ+jU/j01gaS2NpLI2lsTSWxtJYGkvj0/g0Po1P49P4ND6NT+PT+DQ+jaWxNJbG0lgaS2NpBPtDi6P2IJofAAAAAElFTkSuQmCC") repeat 0 -25px #1675f8
+    animation .3s showAltButtonStateBefore cubic-bezier(.63,.15,.45,.9)
+    animation-fill-mode forwards
+    opacity 1
+  }
+  &.is-fail-data-state,
+  &.is-fail-network-state  {
+    background url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAAG1BMVEXydnDwcWnwcWrxc2zydm/xdG3xc23wcGnydW+yJWdfAAADUUlEQVR4AezYNV7DQRBH8UH72UVanDLa4zXaI+ECOQMHR2Yj779cgB+fjWde9Y1nbOA/h2PD4S1GWaysxSjdYbIfo75WMSu4k+VgGINDpcKn5KWLTn2xEkrggNYqYNZorWJm6wsn0OcmVn4ur35Dx2ZipcYRLVWIe6nRSoW4kxqtVLo4osVKF/dGtFaxO+KI3tAqdkwc0Q9axRJxRO9rFXPggF5/cK1iDhzQN/suVioc0GLFPT3NcUCfuouVHxx+TgItVnzK11vqF3Q4tQq2EYPFz/tAixVsI9bcC3oj0GKlg8tEi5UOrkIrlf+8adzENk+ntE1j2zS2TWPbNP7F0jaNbdPYNo1t0zgmjugrrWL5HDig1wdaxbzgPoJFtGsV8x3igHatYu5cEBEtVty3iQNarPgucUSLlQoHtFjh623qqb9Ea5WA7JxjZwe0VInZO3Z2QEuVGOUZLhMtVspsXHAVWqp8tWsHQwAAAADC/K0ziGDvDLoxjUyj0+g0Oo1Oo9PoNDqNTiPTyDQyjUwj08g0Mo1bmEamkWlkGplGp9FpdBqdRqfRaXQanUamkWlkGplGppFpZBqZRqaRaWQamUan0Wl0Gp1Gp9FpdBqdRqaRaWQamUamkWlkGplGppFpZBqZRqbRaXQanUan0Wl0Gp1GppFpZBqZRqaRaWQamUamkWlkGplGptFpdBqdRqfRaXQanUankWlkGplGppFpZBqZRqaRaWQamUam0Wl0Gp1Gp9FpdBqdRqeRaWQamUamkWlkGplGppFpZBqZRqbRaXQanUan0Wl0Gp1Gp5FpZBqZRqaRaWQamUamkWlkGplGppFpdBqdRqfRaXQanUankWlkGplGppFpZBqZRqaRaWQamUamkWl0Gp1Gp9FpdBqdRqfRaWQamUamkWlkGplGppFpZBqZRqaRaXQanUan0Wl0Gp1Gp9FpZBqZRqaRaWQamUamkWlkGplGppFpdBqdRqfRaXQanUan0WlkGplGppFpZBqZRqaRaWQamUamkWlkGp1Gp9FpdBqdRqfRaWQamUamkWlkGplGppFpZBqZRqaRaWQanUan0Wl0Gp1Gp9FpdBqZRqaRaWQamUamkWlkGplGppFpZBqdRqfRaXQanUanMSnky0onBWtzAAAAAElFTkSuQmCC") repeat 0 -25px #ee5e59
+    animation .3s showAltButtonStateBefore cubic-bezier(.63,.15,.45,.9)
+    animation-fill-mode forwards
+    opacity 1
+  }
+}

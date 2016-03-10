@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="favicon.png">
+		<title>МЕГА ТВ</title>
+
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="site-wrapper" data-module="page">
+			<script type="text/x-config">
+				{
+					"bannersHideTime": 1,
+					"pathToSVGSprite": "",
+					"playerLastPositionURL": "/server/",
+					"playerURL": "modals/player.html",
+					"shareURL": "/server/",
+					"authentication": false
+				}
+			</script>
+			<header class="site-header">
+				<div class="fullsize-banner adv-styling-01">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-01.jpg" alt="" width="755" height="80"></a>
+					</div>
+					<a href="#" class="close-link js-hide-header-banner">Скрыть</a>
+				</div>
+				<div class="top-panel">
+					<a href="index.html" class="logo"></a>
+					<div class="city-select" data-module="city-select">
+						<script type="text/x-config">
+							{
+								"url": "/server/",
+								"cities": [
+									{ "id": 0, "text": "Москва" },
+									{ "id": 1, "text": "Санкт-Петербург" },
+									{ "id": 2, "text": "Томск"} ,
+									{ "id": 3, "text": "Омск" },
+									{ "id": 4, "text": "Ноябрьск" }
+								],
+								"showCityRequestPopover": true
+							}
+						</script>
+						<select name="city-select" id="_id-city-select">
+							<option value="1" selected>Санкт-Петербург</option>
+						</select>
+					</div>
+					<nav class="header-nav" data-module="user-navigation">
+						<div class="user-card">
+							<a href="#" class="user-avatar" data-type="avatar-holder">
+								<img src="img/temp/user-avatar-01.jpg" alt="Александр Пушкин" width="50" height="50">
+							</a>
+							<div class="info-panel">
+								<a class="username" href="#">Александр Пушкин</a>
+								<a href="#" class="signout-link">Выйти</a>
+							</div>
+						</div>
+						<ul class="top-menu">
+							<li><a href="#"><span data-icon="icon-film-collection"></span> Мои записи</a></li>
+							<li><a href="#"><span data-icon="icon-recording-small"></span> В записи <span class="badge"  data-type="recording-count">12</span></a></li>
+							<li><a href="#"><span data-icon="icon-recorded-small"></span> Записанных <span class="badge">92</span></a></li>
+							<li><a href="#"><span data-icon="icon-balance" data-size="small"></span> На счету: 1 200 Р</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="bottom-panel">
+					<div class="fill-disk-space" data-type="fill-disk-space">
+						<div class="progress-holder" data-progress="0.7916"></div>
+						<span class="label">Занято <strong>19 ГБ</strong></span>
+					</div>
+					<a class="channels-menu-item" href="#"><span>Каналов</span> <span class="badge">12</span></a>
+					<form action="#" class="search-form is-cabinet-search-form" data-module="search-form">
+						<script type="text/x-config">
+							{
+								"url": "../data/films/queries/%QUERY.json"
+							}
+						</script>
+						<div class="form-group has-feedback">
+							<label for="" class="sr-only">Название программы или сериала</label>
+							<input type="text" data-type="search-field" name="" id="" class="form-control" placeholder="Название программы или сериала">
+							<span class="form-control-feedback"><span data-icon="icon-search"></span></span>
+						</div>
+					</form>
+					<ul class="sections-menu">
+						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li>
+						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
+					</ul>
+				</div>
+			</header>
+			<main class="site-content">
+				<section class="user-recorded-broadcasts" data-module="user-recorded-broadcasts">
+					<script type="text/x-config">
+						{
+							"url": "/server/"
+						}
+					</script>
+					<div class="block-header">
+						<h3 class="block-title">Мои записи <small>| 128 передач</small></h3>
+					</div>
+					<div class="block-body">
+						<div class="broadcasts-list">
+							<div class="row-wrap">
+								<div class="items-row">
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-68.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<div class="view-progress" data-progress="0"></div>
+											<a href="#">Пусть говорят</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-16.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<div class="view-progress" data-progress="1"></div>
+											<a href="#">Вечерний ургант</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-44.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<div class="view-progress" data-progress="2"></div>
+											<a href="#">Унесенные ветром</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-45.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<div class="view-progress" data-progress="3"></div>
+											<a href="#">В диких условиях</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-46.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<div class="view-progress" data-progress="0"></div>
+											<a href="#">Реальная любовь</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-47.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Игра</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-48.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Куда приводят мечтым</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-68.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Пусть говорят</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-16.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Вечерний ургант</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-68.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Унесенные ветром</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-45.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">В диких условиях</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-46.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Реальная любовь</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-47.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Игра</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-48.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Куда приводят мечтым</a>
+										</div>
+									</div>
+								</div><!-- /.items-row -->
+								<div class="items-row">
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-17.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Наедине со всеми</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-18.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Познер</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-49.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Невероятная жизнь Уолтера Митти</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-50.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Зеленая миля</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-51.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Клуб «Завтрак»</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-52.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Побег из Шоушенка</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-53.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Тонкая красная линия</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-17.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Наедине со всеми</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-18.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Познер</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-49.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Невероятная жизнь Уолтера Митти</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-50.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Зеленая миля</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-51.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Клуб «Завтрак»</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-52.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Побег из Шоушенка</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-53.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Тонкая красная линия</a>
+										</div>
+									</div>
+								</div><!-- /.items-row -->
+							</div>
+						</div><!-- /.broadcasts-list -->
+					</div>
+				</section>
+				<div class="fullsize-banner adv-styling-03">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-04.jpg" alt="" width="728" height="90"></a>
+					</div>
+				</div>
+				<section class="recomended-broadcasts is-single-items" data-module="recomended-broadcasts">
+					<script type="text/x-config">
+						{
+							"recordingUrl": "/server/"
+						}
+					</script>
+					<div class="block-header">
+						<h3 class="block-title">Рекомендованные Передачи</h3>
+					</div>
+					<div class="block-body">
+						<div class="broadcasts-list">
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-34.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Властелин колец: <br>Возвращение Короля</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-35.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Рим</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-36.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Гладиатор</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-37.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Тюдоры</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-38.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Борджиа</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-39.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Демоны Да Винчи.<br>2 серия 4 сезона.</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-34.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Властелин колец: <br>Возвращение Короля</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-35.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Рим</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-36.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Гладиатор</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-37.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Тюдоры</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-38.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Борджиа</a>
+								</div>
+							</div>
+							<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+								<div class="item-image-holder" style="background-image: url(img/temp/image-39.jpg)"></div>
+								<span class="item-status-icon">
+									<span data-icon="icon-recordit"></span>
+									<span class="status-desc">Записать</span>
+								</span>
+								<div class="recording-notify">
+									<div class="recording-notify-text-wrap">
+										<span data-icon="icon-recording-progress"></span>
+										<p>Ваша любимая передача<br> поставлена на запись</p>
+									</div>
+								</div>
+								<div class="item-header">
+									<time>12:00 <span class="date">| 12.12.2015</span></time>
+									<a href="#">Демоны Да Винчи.<br>2 серия 4 сезона.</a>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.block-body -->
+				</section><!-- /.recomended-broadcasts -->
+				<div class="fullsize-banner holder-banner">
+					<a href="#">Смотрите подборки сериалов</a>
+				</div>
+				<section class="user-viewed-broadcasts" data-module="user-viewed-broadcasts">
+					<script type="text/x-config">
+						{
+							"url": "/server/"
+						}
+					</script>
+					<div class="block-header">
+						<h3 class="block-title">Просмотренные <small>| 1 234 передачи</small></h3>
+					</div>
+					<div class="block-body">
+						<div class="broadcasts-list">
+							<div class="row-wrap">
+								<div class="items-row">
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-54.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Древо жизни. Театр Теней.<br>2 сезон 26 серия</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-55.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Остров</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-56.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Крупная рыба</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-57.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Древо жизни. Театр Теней.<br>2 сезон 26 серия</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-58.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Красота по-американски</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-59.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Октябрьское небо</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-60.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Старшая дочь</a>
+										</div>
+									</div>
+								</div><!-- /.items-row -->
+								<div class="items-row">
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-61.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Реквием по мечте</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-62.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Двухсотлетний человек</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-63.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Рестлер</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-64.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Пролетая над гнездом кукушки</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-65.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Шоу Трумана</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-66.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">2001 год: Космическая одиссея</a>
+										</div>
+									</div>
+									<div class="item" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-67.jpg)"></div>
+										<div class="actions-panel">
+											<ul class="actions-list">
+												<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
+												<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
+												<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+											</ul>
+											<div class="delete-dialog">
+												<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
+												<ul>
+													<li><a href="#" data-type="delete-broadcast">Да, хочу</a></li>
+													<li><a href="#" data-type="cancel-delete-state">Отменить</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="item-header">
+											<a href="#">Наедине со всеми</a>
+										</div>
+									</div>
+								</div><!-- /.items-row -->
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+			<footer class="site-footer">
+				<div class="fullsize-banner adv-styling-01">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-01.jpg" alt="" width="755" height="80"></a>
+					</div>
+					<a href="#" class="close-link js-hide-header-banner">Скрыть</a>
+				</div>
+				<div class="footer-content">
+					<a href="index.html" class="footer-logo"></a>
+					<p class="copyrights"><a href="#">Условия использования сервиса</a> © 2014—2015</p>
+				</div>
+			</footer>
+		</div><!-- /.site-wrapper -->
+
+		<script src="js/vendor.js"></script>
+
+		<script src="js/plugins.js"></script>
+
+		<script src="js/user-records.js"></script>
+	</body>
+</html>

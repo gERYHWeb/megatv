@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="favicon.png">
+		<title>МЕГА ТВ</title>
+
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="site-wrapper" data-module="page">
+			<script type="text/x-config">
+				{
+					"bannersHideTime": 1,
+					"pathToSVGSprite": "",
+					"playerLastPositionURL": "/server/",
+					"playerURL": "modals/player.html",
+					"shareURL": "/server/",
+					"authentication": false
+				}
+			</script>
+			<header class="site-header">
+				<div class="fullsize-banner adv-styling-01">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-01.jpg" alt="" width="755" height="80"></a>
+					</div>
+					<a href="#" class="close-link js-hide-header-banner">Скрыть</a>
+				</div>
+				<div class="top-panel">
+					<a href="index.html" class="logo"></a>
+					<div class="city-select" data-module="city-select">
+						<script type="text/x-config">
+							{
+								"url": "/server/",
+								"cities": [
+									{ "id": 0, "text": "Москва" },
+									{ "id": 1, "text": "Санкт-Петербург" },
+									{ "id": 2, "text": "Томск"} ,
+									{ "id": 3, "text": "Омск" },
+									{ "id": 4, "text": "Ноябрьск" }
+								],
+								"showCityRequestPopover": true
+							}
+						</script>
+						<select name="city-select" id="_id-city-select">
+							<option value="1" selected>Санкт-Петербург</option>
+						</select>
+					</div>
+					<nav class="header-nav">
+						<ul class="user-actions">
+							<li><a href="#" class="signin-link" data-type="signin-overlay-toggle">Войти</a></li>
+							<li><a href="#" class="signup-link" data-type="signup-overlay-toggle">Зарегистрироваться</a></li>
+						</ul>
+					</nav>
+<div class="authorize-overlay is-signin-overlay" data-module="signin-overlay">
+						<div class="overlay-content">
+							<h4 class="overlay-title">Войти</h4>
+							<ul class="social-authorize-list">
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+							</ul>
+							<span class="divider"><span>или</span></span>
+							<form action="/?login=yes" data-redirect="/">
+								<div class="form-group">
+									<label for="" class="sr-only">Телефон или эл. почта</label>
+									<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+								</div>
+								<div class="form-group has-feedback" data-type="password-field-group">
+									<label for="" class="sr-only">Пароль</label>
+									<input type="password" name="" id="" class="form-control" placeholder="Пароль" data-type="password-field">
+									<input type="text" class="form-control" data-type="password-visualizer" placeholder="Пароль">
+									<span class="form-control-feedback">
+										<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+									</span>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+										<span class="default-state init-state">Войти</span>
+										<span class="done-state">Авторизую вас...</span>
+										<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+										<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+									</button>
+									<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="authorize-overlay is-signup-overlay" data-module="signup-overlay">
+						<div class="overlay-content">
+							<h4 class="overlay-title">Регистрация</h4>
+							<ul class="social-authorize-list">
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+							</ul>
+							<span class="divider"><span>или</span></span>
+							<div class="steps">
+								<div class="step fade in active">
+									<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php">
+										<div class="form-group">
+											<label for="" class="sr-only">Телефон или эл. почта</label>
+											<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+										</div>
+										<div class="checkbox">
+											<label for="_id-singup--chackbox"><input type="checkbox" name="singup--chackbox" id="_id-singup--chackbox"><span>Я принимаю условия <a href="#">договора оферты</a></span></label>
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+												<span class="default-state init-state">Зарегистрироваться</span>
+												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+											</button>
+											<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+										</div>
+									</form>
+								</div>
+								<div class="step fade">
+									<p>Зайдите на почту и перейдите по ссылке<br> или введите код активации здесь:</p>
+									<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php" data-type="signup-code-form">
+										<input type="hidden" name="USER_EMAIL" value="" data-type="adaptive-field-hidden" />
+										<div class="form-group">
+											<label for="" class="sr-only">Код активации</label>
+											<input type="text" name="" id="" class="form-control" placeholder="Код активации" data-type="code-field">
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+												<span class="default-state init-state">Активировать</span>
+												<span class="done-state">Активирую ваш аккаунт...</span>
+												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+											</button>
+											<a href="#" class="form-subaction-link" data-type="signin-handler-link">У меня есть аккаунт</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="authorize-overlay is-reset-overlay" data-module="reset-overlay">
+						<div class="overlay-content">
+							<h4 class="overlay-title">Восстановить пароль</h4>
+							<div class="steps">
+								<div class="step fade in active">
+									<p>Напишите свой телефон или адрес эл. почты, и через 30 сек. мы вышлем код для смены пароля.</p>
+									<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php">
+										<div class="form-group">
+											<label for="" class="sr-only">Телефон или эл. почта</label>
+											<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+												<span class="default-state init-state">Выслать пароль</span>
+												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+											</button>
+											<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-code-handler-link">У меня уже есть код</a>
+										</div>
+									</form>
+								</div>
+								<div class="step fade">
+									<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php" data-type="reset-code-form">
+										<div class="form-group">
+											<label for="" class="sr-only">Код для смены пароля</label>
+											<input type="text" name="" id="" class="form-control" placeholder="Код для смены пароля" data-type="code-field">
+										</div>
+										<div class="form-group has-feedback" data-type="password-field-group">
+											<label for="" class="sr-only">Новый пароль</label>
+											<input type="password" name="" id="" class="form-control" placeholder="Новый пароль" data-type="password-field">
+											<input type="text" class="form-control" data-type="password-visualizer" placeholder="Новый пароль">
+											<span class="form-control-feedback">
+												<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+											</span>
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+												<span class="default-state init-state">Изменить пароль</span>
+												<span class="done-state">Запрос отправлен</span>
+												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+											</button>
+											<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-handler-link">Запросить код ещё раз</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="authorize-overlay is-success-signup-overlay" data-module="success-signup-overlay">
+						<div class="overlay-content">
+							<h4 class="overlay-title">Поздравляем вас</h4>
+							<p>Вы успешно зарегистрировались на МЕГАТВ.</p>
+							<a href="/" class="btn btn-primary btn-block">Начать пользоваться сервисом</a>
+						</div>
+					</div>
+					<div class="authorize-overlay is-success-reset-overlay" data-module="success-reset-overlay">
+						<div class="overlay-content">
+							<h4 class="overlay-title">Пароль изменён</h4>
+							<p>Вы успешно изменили пароль для входа в свой аккаунт на МЕГАТВ.</p>
+							<a href="#" class="btn btn-primary btn-block" data-type="signin-handler-link">Авторизоваться</a>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-panel">
+					<div class="calendar-carousel" data-module="calendar-carousel">
+						<script type="text/x-config">
+							{
+								"currentDate": "09.09.2015",
+								"minDate": 1,
+								"maxDate": 8
+							}
+						</script>
+						<a href="#" class="prev-trigger disabled" data-type="prev-trigger"><span data-icon="icon-left-arrow-days"></span></a>
+						<div class="dates-holder" data-type="dates-carousel"></div>
+						<a href="#" class="next-trigger" data-type="next-trigger"><span data-icon="icon-right-arrow-days"></span></a>
+					</div>
+					<ul class="sections-menu">
+						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li>
+						<li class="active"><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
+					</ul>
+					<form action="#" class="search-form" data-module="search-form">
+						<script type="text/x-config">
+							{
+								"url": "../data/films/queries/%QUERY.json"
+							}
+						</script>
+						<div class="form-group has-feedback">
+							<label for="" class="sr-only">Название программы или сериала</label>
+							<input type="text" data-type="search-field" name="" id="" class="form-control" placeholder="Название программы или сериала">
+							<span class="form-control-feedback"><span data-icon="icon-search"></span></span>
+						</div>
+					</form>
+				</div>
+			</header>
+			<main class="site-content">
+				<section class="broadcast-results" data-module="broadcast-results">
+					<script type="text/x-config">
+						{
+							"recordingURL": "/server/"
+						}
+					</script>
+					<div class="categories-logos">
+						<span class="category-logo">
+							<span data-icon="icon-megatv-recommendations"></span>
+							<span class="category-title">Мега ТВ рекомендует</span>
+						</span>
+						<span class="category-logo">
+							<span data-icon="icon-popular-among-users-recommendations"></span>
+							<span class="category-title">Популярное <br>у пользователей</span>
+						</span>
+						<span class="category-logo">
+							<span data-icon="icon-best-sport-recommendations"></span>
+							<span class="category-title">Лучшие спортивные<br>программы</span>
+						</span>
+						<span class="category-logo">
+							<span data-icon="icon-best-cartoons-recommendations"></span>
+							<span class="category-title">Популярные<br>мультики</span>
+						</span>
+						<span class="category-logo">
+							<span data-icon="icon-premieres-recommendations"></span>
+							<span class="category-title">Премьеры</span>
+						</span>
+					</div>
+					<div class="categories-items">
+						<div class="row-wrap">
+							<div class="category-row">
+								<div class="item double-item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-01.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</span>
+									<div class="item-header">
+										<time>07:40</time>
+										<a href="#">Доброе утро</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-02.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</span>
+									<div class="item-header">
+										<time>08:40</time>
+										<a href="#">Новости</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-03.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>10:40</time>
+											<a href="#">Контрольная закупка</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-04.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Жить здорово!</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-05.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>13:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>14:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>15:00</time>
+											<a href="#">Новости <br>(с субтитрами)</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-06.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>16:00</time>
+											<a href="#">Сегодня вечером</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-07.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>17:40</time>
+										<a href="#">Время покажет</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-01.jpg)"></div>
+									<div class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</div>
+									<div class="item-header">
+										<time>07:40</time>
+										<a href="#">Доброе утро</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-02.jpg)"></div>
+									<div class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</div>
+									<div class="item-header">
+										<time>08:40</time>
+										<a href="#">Новости</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-03.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>10:40</time>
+											<a href="#">Контрольная закупка</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-04.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Жить здорово!</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-05.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>13:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>14:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>15:00</time>
+											<a href="#">Новости <br>(с субтитрами)</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-06.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>16:00</time>
+											<a href="#">Сегодня вечером</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-07.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="item-header">
+										<time>17:40</time>
+										<a href="#">Время покажет</a>
+									</div>
+								</div>
+							</div><!-- /.category-row -->
+							<div class="category-row">
+								<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-08.jpg)"></div>
+									<span class="item-status-icon" href="#">
+										<span data-icon="icon-recorded"></span>
+										<span class="status-desc">Смотреть</span>
+									</span>
+									<div class="item-header">
+										<time>07:00</time>
+										<a href="#">Утро России</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon" href="#">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-09.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-viewed"></span>
+										</span>
+										<div class="item-header">
+											<time>08:00</time>
+											<a href="#">О самом главном</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-10.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="#">Тайны следствия-10</a>
+										</div>
+									</div>
+									<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-11.jpg)"></div>
+										<div class="item-status-icon">
+											<span data-icon="icon-recording"></span>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Особый случай</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-12.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>11:40</time>
+										<a href="#">Последний янычар</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-13.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:30</time>
+											<a href="#">Прямой эфир</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-14.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>13:00</time>
+										<a href="#">Спокойной ночи</a>
+									</div>
+								</div>
+								<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-08.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recorded"></span>
+										<span class="status-desc">Смотреть</span>
+									</span>
+									<div class="item-header">
+										<time>07:00</time>
+										<a href="#">Утро России</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-09.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-viewed"></span>
+										</span>
+										<div class="item-header">
+											<time>08:00</time>
+											<a href="#">О самом главном</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-10.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="#">Тайны следствия-10</a>
+										</div>
+									</div>
+									<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-11.jpg)"></div>
+										<div class="item-status-icon">
+											<span data-icon="icon-recording"></span>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Особый случай</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-12.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>11:40</time>
+										<a href="#">Последний янычар</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-13.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="item-header">
+											<time>12:30</time>
+											<a href="#">Прямой эфир</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-14.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="item-header">
+										<time>13:00</time>
+										<a href="#">Спокойной ночи</a>
+									</div>
+								</div>
+							</div><!-- /.category-row -->
+							<div class="category-row">
+								<div class="item double-item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-01.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</span>
+									<div class="item-header">
+										<time>07:40</time>
+										<a href="#">Доброе утро</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-02.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</span>
+									<div class="item-header">
+										<time>08:40</time>
+										<a href="#">Новости</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-03.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>10:40</time>
+											<a href="#">Контрольная закупка</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-04.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Жить здорово!</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-05.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>13:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>14:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>15:00</time>
+											<a href="#">Новости <br>(с субтитрами)</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-06.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>16:00</time>
+											<a href="#">Сегодня вечером</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-07.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>17:40</time>
+										<a href="#">Время покажет</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-01.jpg)"></div>
+									<div class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</div>
+									<div class="item-header">
+										<time>07:40</time>
+										<a href="#">Доброе утро</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-02.jpg)"></div>
+									<div class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</div>
+									<div class="item-header">
+										<time>08:40</time>
+										<a href="#">Новости</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-03.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>10:40</time>
+											<a href="#">Контрольная закупка</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-04.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Жить здорово!</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-05.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>13:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>14:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>15:00</time>
+											<a href="#">Новости <br>(с субтитрами)</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-06.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>16:00</time>
+											<a href="#">Сегодня вечером</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-07.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="item-header">
+										<time>17:40</time>
+										<a href="#">Время покажет</a>
+									</div>
+								</div>
+							</div><!-- /.category-row -->
+							<div class="category-row">
+								<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-08.jpg)"></div>
+									<span class="item-status-icon" href="#">
+										<span data-icon="icon-recorded"></span>
+										<span class="status-desc">Смотреть</span>
+									</span>
+									<div class="item-header">
+										<time>07:00</time>
+										<a href="#">Утро России</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon" href="#">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-09.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-viewed"></span>
+										</span>
+										<div class="item-header">
+											<time>08:00</time>
+											<a href="#">О самом главном</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-10.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="#">Тайны следствия-10</a>
+										</div>
+									</div>
+									<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-11.jpg)"></div>
+										<div class="item-status-icon">
+											<span data-icon="icon-recording"></span>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Особый случай</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-12.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>11:40</time>
+										<a href="#">Последний янычар</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-13.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:30</time>
+											<a href="#">Прямой эфир</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-14.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>13:00</time>
+										<a href="#">Спокойной ночи</a>
+									</div>
+								</div>
+								<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-08.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recorded"></span>
+										<span class="status-desc">Смотреть</span>
+									</span>
+									<div class="item-header">
+										<time>07:00</time>
+										<a href="#">Утро России</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-09.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-viewed"></span>
+										</span>
+										<div class="item-header">
+											<time>08:00</time>
+											<a href="#">О самом главном</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-10.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="#">Тайны следствия-10</a>
+										</div>
+									</div>
+									<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-11.jpg)"></div>
+										<div class="item-status-icon">
+											<span data-icon="icon-recording"></span>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Особый случай</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-12.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>11:40</time>
+										<a href="#">Последний янычар</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Вести</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-13.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="item-header">
+											<time>12:30</time>
+											<a href="#">Прямой эфир</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-14.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="item-header">
+										<time>13:00</time>
+										<a href="#">Спокойной ночи</a>
+									</div>
+								</div>
+							</div><!-- /.category-row -->
+							<div class="category-row">
+								<div class="item double-item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-01.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</span>
+									<div class="item-header">
+										<time>07:40</time>
+										<a href="#">Доброе утро</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-02.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</span>
+									<div class="item-header">
+										<time>08:40</time>
+										<a href="#">Новости</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-03.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>10:40</time>
+											<a href="#">Контрольная закупка</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-04.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Жить здорово!</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-05.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>13:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>14:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>15:00</time>
+											<a href="#">Новости <br>(с субтитрами)</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-06.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>16:00</time>
+											<a href="#">Сегодня вечером</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-07.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="recording-notify">
+										<div class="recording-notify-text-wrap">
+											<span data-icon="icon-recording-progress"></span>
+											<p>Ваша любимая передача<br> поставлена на запись</p>
+										</div>
+									</div>
+									<div class="item-header">
+										<time>17:40</time>
+										<a href="#">Время покажет</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-01.jpg)"></div>
+									<div class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</div>
+									<div class="item-header">
+										<time>07:40</time>
+										<a href="#">Доброе утро</a>
+									</div>
+								</div>
+								<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-02.jpg)"></div>
+									<div class="item-status-icon">
+										<span data-icon="icon-viewed"></span>
+										<span class="status-desc">Просмотрено</span>
+									</div>
+									<div class="item-header">
+										<time>08:40</time>
+										<a href="#">Новости</a>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-03.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>10:40</time>
+											<a href="#">Контрольная закупка</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-04.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>12:00</time>
+											<a href="#">Жить здорово!</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-05.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>13:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>14:00</time>
+											<a href="#">Модный приговор</a>
+										</div>
+									</div>
+								</div>
+								<div class="pair-container">
+									<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>15:00</time>
+											<a href="#">Новости <br>(с субтитрами)</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+										<div class="item-image-holder" style="background-image: url(img/temp/image-06.jpg)"></div>
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+										</span>
+										<div class="recording-notify">
+											<div class="recording-notify-text-wrap">
+												<span data-icon="icon-recording-progress"></span>
+												<p>Ваша любимая передача<br> поставлена на запись</p>
+											</div>
+										</div>
+										<div class="extend-drive-notify">
+											<div class="extend-drive-notify-text-wrap">
+												<span data-icon="icon-storage"></span>
+												<p>У Вас закончилось свободное место на облачном хранилище МЕГА.ДИСК</p>
+												<p><a href="#">Заказать дополнительную емкость</a></p>
+											</div>
+										</div>
+										<div class="item-header">
+											<time>16:00</time>
+											<a href="#">Сегодня вечером</a>
+										</div>
+									</div>
+								</div>
+								<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
+									<div class="item-image-holder" style="background-image: url(img/temp/image-07.jpg)"></div>
+									<span class="item-status-icon">
+										<span data-icon="icon-recordit"></span>
+										<span class="status-desc">Записать</span>
+									</span>
+									<div class="item-header">
+										<time>17:40</time>
+										<a href="#">Время покажет</a>
+									</div>
+								</div>
+							</div><!-- /.category-row -->
+						</div><!-- /.row-wrap -->
+					</div><!-- /.categories-items -->
+					<a href="#" class="more-link" data-type="fetch-results-link">Показать еще рекомендации <span data-icon="icon-show-more-arrow"></span></a>
+				</section><!-- /.broadcast-results -->
+			</main>
+			<footer class="site-footer">
+				<div class="fullsize-banner adv-styling-01">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-01.jpg" alt="" width="755" height="80"></a>
+					</div>
+					<a href="#" class="close-link js-hide-header-banner">Скрыть</a>
+				</div>
+				<div class="footer-content">
+					<a href="index.html" class="footer-logo"></a>
+					<p class="copyrights"><a href="#">Условия использования сервиса</a> © 2014—2015</p>
+				</div>
+			</footer>
+		</div><!-- /.site-wrapper -->
+
+		<script src="js/vendor.js"></script>
+
+		<script src="js/plugins.js"></script>
+
+		<script src="js/main.js"></script>
+	</body>
+</html>

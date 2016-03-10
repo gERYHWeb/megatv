@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="favicon.png">
+		<title>МЕГА ТВ</title>
+
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="site-wrapper" data-module="page">
+			<script type="text/x-config">
+				{
+					"bannersHideTime": 1,
+					"pathToSVGSprite": "",
+					"playerLastPositionURL": "/server/",
+					"playerURL": "modals/player.html",
+					"shareURL": "/server/",
+					"authentication": false
+				}
+			</script>
+			<header class="site-header">
+				<div class="fullsize-banner adv-styling-01">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-01.jpg" alt="" width="755" height="80"></a>
+					</div>
+					<a href="#" class="close-link js-hide-header-banner">Скрыть</a>
+				</div>
+				<div class="top-panel">
+					<a href="index.html" class="logo"></a>
+					<div class="city-select" data-module="city-select">
+						<script type="text/x-config">
+							{
+								"url": "/server/",
+								"cities": [
+									{ "id": 0, "text": "Москва" },
+									{ "id": 1, "text": "Санкт-Петербург" },
+									{ "id": 2, "text": "Томск"} ,
+									{ "id": 3, "text": "Омск" },
+									{ "id": 4, "text": "Ноябрьск" }
+								],
+								"showCityRequestPopover": true
+							}
+						</script>
+						<select name="city-select" id="_id-city-select">
+							<option value="1" selected>Санкт-Петербург</option>
+						</select>
+					</div>
+					<nav class="header-nav" data-module="user-navigation">
+						<div class="user-card">
+							<a href="#" class="user-avatar" data-type="avatar-holder">
+								<img src="img/temp/user-avatar-01.jpg" alt="Александр Пушкин" width="50" height="50">
+							</a>
+							<div class="info-panel">
+								<a class="username" href="#">Александр Пушкин</a>
+								<a href="#" class="signout-link">Выйти</a>
+							</div>
+						</div>
+						<ul class="top-menu">
+							<li><a href="#"><span data-icon="icon-film-collection"></span> Мои записи</a></li>
+							<li><a href="#"><span data-icon="icon-recording-small"></span> В записи <span class="badge"  data-type="recording-count">12</span></a></li>
+							<li><a href="#"><span data-icon="icon-recorded-small"></span> Записанных <span class="badge">92</span></a></li>
+							<li><a href="#"><span data-icon="icon-balance" data-size="small"></span> На счету: 1 200 Р</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="bottom-panel">
+					<a href="#" class="back-link"><span data-icon="icon-backlink-arrow"></span><span>Вернуться к передаче: Как я встретил вашу маму</span></a>
+					<form action="#" class="search-form is-cabinet-search-form" data-module="search-form">
+						<script type="text/x-config">
+							{
+								"url": "../data/films/queries/%QUERY.json"
+							}
+						</script>
+						<div class="form-group has-feedback">
+							<label for="" class="sr-only">Название программы или сериала</label>
+							<input type="text" data-type="search-field" name="" id="" class="form-control" placeholder="Название программы или сериала">
+							<span class="form-control-feedback"><span data-icon="icon-search"></span></span>
+						</div>
+					</form>
+					<ul class="sections-menu pull-right">
+						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li>
+						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
+					</ul>
+				</div>
+			</header>
+			<main class="site-content">
+				<div class="flex-row user-services-top-row">
+					<section class="subscription-services" data-module="subscription-services">
+						<script type="text/x-config">
+							{
+								"filledDiskSpace" : "0.7916",
+								"url": "/server/"
+							}
+						</script>
+						<div class="block-header">
+							<h3 class="block-title">Ваши услуги</h3>
+						</div>
+						<div class="block-body">
+							<div class="storage-statistic">
+								<span class="total-space">Всего <strong>24 ГБ</strong></span>
+								<span class="used-space">Занято <strong>19 ГБ</strong></span>
+								<div class="progressbar-holder"></div>
+							</div>
+							<ul class="available-subscriptions">
+								<li class="item" data-service-id="01" data-type="service-item">
+									<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+									<div class="subscription-text-logo">+5 ГБ</div>
+									<div class="item-header">
+										<span class="price">1 Р <small>сутки</small></span>
+										<span class="item-title">Добавить<br> + 5 ГБ памяти</span>
+									</div>
+								</li>
+								<li class="item" data-service-id="02" data-type="service-item">
+									<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+									<div class="subscription-text-logo">+10 ГБ</div>
+									<div class="item-header">
+										<span class="price">2 Р <small>сутки</small></span>
+										<span class="item-title">Добавить<br> + 10 ГБ памяти</span>
+									</div>
+								</li>
+								<li class="item" data-service-id="03" data-type="service-item">
+									<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+									<div class="subscription-logo">
+										<span data-icon="icon-gdisk-service"></span>
+									</div>
+									<div class="item-header">
+										<span class="price">1 Р <small>сутки</small></span>
+										<span class="item-title">Сохранение <br>на Гугл.Драйв</span>
+									</div>
+								</li>
+								<li class="item status-active" data-service-id="04" data-type="service-item">
+									<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+									<a href="#" class="handler-link"></a>
+									<div class="subscription-logo">
+										<span data-icon="icon-yadisk-service"></span>
+									</div>
+									<div class="item-header">
+										<span class="price">1 Р <small>сутки</small></span>
+										<span class="item-title">Сохранение <br>на Яндекс.Диск</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section class="user-balance" data-module="user-balance">
+						<script type="text/x-config">
+							{
+								"showSuccessModal": false
+							}
+						</script>
+						<div class="modal fade paymethod-modal" id="paymethod-modal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3 class="modal-title">Пополнение баланса</h3>
+										<div class="paymethod-modal-balance"><span data-icon="icon-balance" data-size="small"></span> На счету: 1200 <span data-icon="icon-ruble"></span></div>
+									</div>
+									<a href="#" class="close-link" data-dismiss="modal"><span data-icon="icon-times"></span></a>
+									<form action="#">
+										<div class="form-group has-feedback">
+											<label for="_id-paymethod--summ">Введите сумму для зачисления: </label>
+											<input type="text" name="paymethod--summ" id="_id-paymethod--summ" class="form-control" data-type="paymethod-field">
+											<span class="form-control-feedback"><span data-icon="icon-ruble"></span></span>
+										</div>
+										<div class="radio-group">
+											<label for="">Выберите способ платежа:</label>
+											<div class="radio">
+												<label for="_id-paymethod--radio-01">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-01" checked>
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-cards-paymethod"></span>
+													<span class="radio-text">Банковские карты</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-02">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-02">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-megafon-paymethod"></span>
+													<span class="radio-text">МегаФон</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-03">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-03">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-mts-paymethod"></span>
+													<span class="radio-text">МТС</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-04">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-04">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-beeline-paymethod"></span>
+													<span class="radio-text">Билайн</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-05">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-05">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-yandexmoney-paymethod"></span>
+													<span class="radio-text">Яндекс.Деньги</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-06">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-06">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-webmoney-paymethod"></span>
+													<span class="radio-text">WebMoney</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-07">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-07">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-sberbankonline-paymethod"></span>
+													<span class="radio-text">Сбербанк Онлайн</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-08">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-08">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-alfaclick-paymethod"></span>
+													<span class="radio-text">Альфа-Клик</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-09">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-09">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-masterpass-paymethod"></span>
+													<span class="radio-text">MasterPass</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label for="_id-paymethod--radio-10">
+													<input type="radio" name="paymethod--radios" id="_id-paymethod--radio-10">
+													<span class="overlap-bg"></span>
+													<span class="decor">
+														<span data-icon="icon-round-checkbox-mark"></span>
+													</span>
+													<span data-icon="icon-promsvasbank-paymethod"></span>
+													<span class="radio-text">Промсвязьбанк</span>
+												</label>
+											</div>
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary btn-block" data-type="paymethod-submit" disabled>Пополнить счет</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade paysuccess-modal" id="paysuccess-modal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<a href="#" class="close-link" data-dismiss="modal"><span data-icon="icon-times"></span></a>
+									<span data-icon="icon-round-checkbox-mark" data-size="large"></span>
+									<h2>Сумма зачислена<strong>1 450 <span data-icon="icon-ruble"></span></strong></h2>
+									<a href="#" data-dismiss="modal">Вернуться в панель управления</a>
+								</div>
+							</div>
+						</div>
+						<div class="block-header">
+							<h3 class="block-title">Баланс</h3>
+						</div>
+						<div class="block-body">
+							<div class="account-balance">
+								<span data-icon="icon-balance"></span><small>На счету:</small> 2 312 Р
+								<a href="#" class="btn btn-primary btn-block" data-type="paymethod-modal-handler">Пополнить счет</a>
+							</div>
+							<div class="balance-history">
+								<div class="block-header">
+									<h4 class="block-title">Последние списания / пополнения</h4>
+								</div>
+								<div class="block-body">
+									<ul class="events-list">
+										<li class="event">
+											<span data-icon="icon-incoming-arrow"></span>
+											<span class="event-date">12 сентября 2015</span>
+											<span class="event-title">Пополнение счета</span>
+											<span class="event-cost">+ 1 500 Р</span>
+										</li>
+										<li class="event">
+											<span data-icon="icon-outcoming-arrow"></span>
+											<span class="event-date">12 сентября 2015</span>
+											<span class="event-title">Пополнение счета</span>
+											<span class="event-cost">— 2 250 Р</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<section class="user-subscription-channels" data-module="user-subscription-channels">
+					<script type="text/x-config">
+						{
+							"url": "/server/"
+						}
+					</script>
+					<div class="block-header">
+						<h3 class="block-title">Подписки на каналы</h3>
+					</div>
+					<div class="block-body">
+						<ul class="channels-list">
+							<li class="item status-active" data-channel-id="01" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-1st-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Первый канал</span>
+								</div>
+							</li>
+							<li class="item status-active" data-channel-id="02" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-russia-1-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Россия 1</span>
+								</div>
+							</li>
+							<li class="item status-active" data-channel-id="03" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-russia-2-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Россия 2</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="04" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-ntv-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">НТВ</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="05" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-5th-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Пятый канал</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="06" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-domashnii-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Домашний</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="07" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-zvezda-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Звезда</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="08" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-karusel-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">0 Р <small>сутки</small></span>
+									<span class="item-title">Карусель</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="09" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-mirtv-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">МИР</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="10" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-muz-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">МУЗ ТВ</span>
+								</div>
+							</li>
+							<li class="item status-active" data-channel-id="11" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-otr-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">Общественное телевидение России</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="12" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-ren-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">РЕН ТВ</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="13" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-rtr-kultura-eng-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">Культура</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="14" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-spas-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">СПАС</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="15" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-ntv-plus-sportplus-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">Спорт +</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="16" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-ctc-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">СТС</span>
+								</div>
+							</li>
+							<li class="item status-active" data-channel-id="17" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-tvc-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">ТВ ЦЕНТР</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="18" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-discovery-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">Discovery</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="19" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-discovery-animalplanet-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">Animal Planet</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="20" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-mtv-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">MTV</span>
+								</div>
+							</li>
+							<li class="item" data-channel-id="21" data-type="channel-item">
+								<div class="decor"><span class="decor-title">Добавить</span><span data-icon="icon-round-checkbox-mark"></span></div>
+								<div class="subscription-logo">
+									<span data-icon="icon-peretz-channel"></span>
+								</div>
+								<div class="item-header">
+									<span class="price">1 Р <small>сутки</small></span>
+									<span class="item-title">Перец ТВ</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</main>
+			<footer class="site-footer">
+				<div class="fullsize-banner adv-styling-01">
+					<div class="banner-content">
+						<a href="#"><img src="img/temp/advertizing-01.jpg" alt="" width="755" height="80"></a>
+					</div>
+					<a href="#" class="close-link js-hide-header-banner">Скрыть</a>
+				</div>
+				<div class="footer-content">
+					<a href="index.html" class="footer-logo"></a>
+					<p class="copyrights"><a href="#">Условия использования сервиса</a> © 2014—2015</p>
+				</div>
+			</footer>
+		</div><!-- /.site-wrapper -->
+
+		<script src="js/vendor.js"></script>
+
+		<script src="js/plugins.js"></script>
+
+		<script src="js/user-services.js"></script>
+	</body>
+</html>

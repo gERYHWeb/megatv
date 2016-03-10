@@ -1,0 +1,738 @@
+// Broadcast Results
+
+.broadcast-results {
+  user-select none
+  position relative
+
+  .categories-logos {
+    width 271px
+
+    @media (max-width: 1400px) {
+      width 225px
+    }
+
+    .category-logo {
+      position relative
+      height 288px
+      width 271px
+      background-color #fff
+      text-decoration none
+      display flex
+      justify-content center
+      flex-wrap nowrap
+      flex-direction column
+      align-items center
+      will-change background-color
+      transition background-color .3s ease-in-out
+
+      @media (max-width: 1400px) {
+        width 225px
+        height 225px
+      }
+
+      .icon {
+        fill brand-primary
+        will-change fill
+        transition fill .3s ease-in-out
+      }
+      .category-title {
+        display block
+        padding-top 8px
+        text-transform uppercase
+        font-size 1.4rem
+        font-weight 700
+        text-align center
+        will-change color
+        transition color .3s ease-in-out
+      }
+      &:after {
+        content ''
+        position absolute
+        bottom 17px
+        right 19px
+        width 6px
+        height 11px
+        background-image url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgd2lkdGg9IjYiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCA2IDExIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZmZmOwogICAgICAgIGZpbGwtcnVsZTogZXZlbm9kZDsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHBhdGggZD0iTTUuNzkxLDUuOTgzIEM1Ljc2OSw2LjAwNSA1Ljc0MSw2LjAxNCA1LjcxOCw2LjAzMyBMMS4xMTcsMTAuNzk0IEMwLjg1OSwxMS4wNjAgMC40NDAsMTEuMDYwIDAuMTgyLDEwLjc5NCBDLTAuMDc2LDEwLjUyNyAtMC4wNzYsMTAuMDk1IDAuMTgyLDkuODI5IEw0LjM3OCw1LjQ4OCBMMC4xODIsMS4xNDYgQy0wLjA3NiwwLjg4MCAtMC4wNzYsMC40NDggMC4xODIsMC4xODEgQzAuNDQwLC0wLjA4NSAwLjg1OSwtMC4wODUgMS4xMTcsMC4xODEgTDUuNzE4LDQuOTQzIEM1Ljc0MSw0Ljk2MSA1Ljc2OSw0Ljk3MCA1Ljc5MSw0Ljk5MiBDNS45MjMsNS4xMjkgNS45ODUsNS4zMDkgNS45ODIsNS40ODcgQzUuOTg1LDUuNjY2IDUuOTIzLDUuODQ2IDUuNzkxLDUuOTgzIFoiIGNsYXNzPSJjbHMtMSIvPgo8L3N2Zz4K")
+        background-repeat no-repeat
+        background-position center
+        background-size 6px/11px
+        opacity 0
+        will-change opacity
+        transition opacity .3s ease-in-out
+      }
+      &.hover,
+      &:hover {
+        background-color brand-primary
+
+        .icon {
+          fill #fff
+        }
+        .category-title {
+          color #fff
+        }
+      }
+      ~ .category-logo {
+        height 289px
+        border-top 1px solid #e6ebed
+
+        @media (max-width: 1400px) {
+          height 226px
+        }
+      }
+    }
+    a.category-logo {
+      &.hover,
+      &:hover {
+        &:after {
+          opacity 1
+        }
+      }
+    }
+  }
+  .categories-items {
+    overflow hidden
+    position absolute
+    top 0
+    left 271px
+    right 0
+    bottom 0
+    cursor grab
+    will-change scroll-position
+    touch-action pan-x
+
+    @media (max-width: 1400px) {
+      left 225px
+    }
+    &.kinetic-moving {
+      cursor grabbing
+    }
+  }
+  .canvas-wrap {
+    position absolute
+    top 0
+    left 0
+    display flex
+    flex-direction row
+    flex-wrap nowrap
+    justify-content flex-start
+    align-items flex-start
+  }
+  .day {
+    position relative
+    padding-left 31px
+    padding-right 29px
+
+    &:first-of-type {
+      padding-left 0
+    }
+    &:last-of-type {
+      padding-right 0
+    }
+    & + .day {
+      &:before {
+        content ''
+        position absolute
+        top 0
+        left 0
+        bottom 0
+        width 32px
+        border-left 2px solid brand-secondary
+        background-color brand-primary
+      }
+    }
+  }
+  .day-mark {
+    position absolute
+    top 0
+    bottom 0
+    width 29px
+    background-color brand-primary
+    color #fff
+    z-index 2
+
+    > span {
+      display inline-block
+      transform rotate(-90deg) translateX(-95%) translateY(29px)
+      white-space nowrap
+      top 0
+      position absolute
+      font-size 1.2rem
+      transform-origin bottom left
+
+      > .current-day {
+        padding 7px 0
+        vertical-align middle
+        height 29px
+        display inline-block
+      }
+      > .next-day {
+        transform translateY(30px)
+        display inline-block
+        vertical-align middle
+        padding 7px 0 7px 7px
+        height 29px
+      }
+    }
+    &:first-child {
+      left 0
+    }
+    &:last-child {
+      right 0
+    }
+  }
+  .left-days-placeholder {
+      & + .day {
+        padding-left: 0;
+      }
+  }
+  .prev-button,
+  .next-button {
+    position absolute
+    top 0
+    left 271px
+    bottom 0
+    width 49px
+    background-color alpha(brand-primary, .5)
+    z-index 3
+    text-decoration none
+    overflow hidden
+    color #fff
+    will-change width, background-color
+    transition width .3s ease-in-out, background-color .3s ease-in-out
+
+    @media (max-width: 1400px) {
+      left 225px
+    }
+
+    &:hover {
+      width 60px
+      background-color alpha(brand-primary, .9)
+
+      .prev-date,
+      .next-date {
+        transform rotate(-90deg) translateX(-80%) translateY(54px)
+      }
+    }
+    .sticky-wrapp {
+      display block
+      height 100vh
+
+      // @media (max-width: 1400px) {
+      //   height 665px
+
+      //   .icon,
+      //   [data-icon] {
+      //     top 342px
+      //   }
+      // }
+    }
+    .prev-date,
+    .next-date {
+      display none
+      transform rotate(-90deg) translateX(-80%) translateY(49px)
+      white-space nowrap
+      top 0
+      position absolute
+      font-size 1.2rem
+      line-height 1.25
+      padding 16px 0
+      height 49px
+      transform-origin bottom left
+      will-change line-height, height, padding, transform
+      transition all .3s ease-in-out
+    }
+    .icon,
+    [data-icon] {
+      opacity .9
+      position absolute
+      top 50vh
+      left 50%
+      transform translateX(-50%) translateY(-50%)
+    }
+  }
+  .next-button {
+    right 0
+    left auto !important
+
+    .icon {
+      transform translateX(-50%) translateY(-50%) rotate(180deg)
+    }
+  }
+  .category-row {
+    height 288px
+    position relative
+    display flex
+    flex-wrap nowrap
+    flex-direction row
+
+    @media (max-width: 1400px) {
+      height 225px
+    }
+
+    ~ .category-row {
+      height 289px
+      border-top 1px solid #fff
+
+      @media (max-width: 1400px) {
+        height 226px
+      }
+    }
+
+    > .item,
+    > .pair-container {
+      flex-grow 0
+      flex-shrink 0
+      flex-basis 288px
+
+      @media (max-width: 1400px) {
+        flex-basis 225px
+      }
+
+      &.double-item {
+        flex-basis 576px
+
+        @media (max-width: 1400px) {
+          flex-basis 450px
+        }
+      }
+    }
+  }
+  // Hover states
+  .categories-items:not(.kinetic-moving) {
+    .item {
+      &:hover {
+        .item-header a {
+          text-decoration underline
+
+          &:hover {
+            text-decoration none
+          }
+        }
+      }
+      &.is-noimage {
+        &:hover {
+          &:hover {
+            .item-header {
+              min-height 50px
+            }
+          }
+        }
+      }
+      &.status-recordable {
+        &:hover {
+          .item-status-icon {
+            display block
+
+            &:hover {
+              color brand-secondary
+            }
+          }
+          .item-image-holder {
+            opacity .35
+          }
+          .item-header {
+            background-color transparent
+          }
+        }
+      }
+      &.status-recorded {
+        .item-status-icon:hover {
+          color brand-secondary
+        }
+      }
+    }
+  }
+  .item {
+    position relative
+    overflow hidden
+    width 288px
+    height 288px
+
+    @media (max-width: 1400px) {
+      height 225px
+      width 225px
+    }
+    &.double-item {
+      width 576px
+
+      @media (max-width: 1400px) {
+        width 450px
+      }
+    }
+    &.is-noimage {
+      .item-header {
+        min-height 100%
+      }
+    }
+    &.status-viewed {
+      .item-image-holder {
+        filter grayscale(100%)
+      }
+      .item-header {
+        background-color transparent
+
+        time {
+          color #fff
+        }
+      }
+
+      &.is-noimage {
+        background-color #c8c8c8
+      }
+    }
+    &.status-recordable {
+      background-color #122643
+
+      .item-status-icon {
+        cursor pointer
+        display none
+        animation statusIconAnimation .3s ease-in-out
+      }
+      &.is-noimage {
+        background-color #10458f
+
+        .item-header {
+          justify-content center
+          background-color transparent
+        }
+      }
+    }
+    &.status-recorded {
+      background-color #e03e29
+
+      .item-image-holder {
+          opacity .3
+      }
+      .item-header {
+        background-color transparent
+
+        time {
+          color #fff
+        }
+      }
+      .item-status-icon {
+        cursor pointer
+      }
+      &.is-noimage {
+        background-color #e44424
+      }
+    }
+    &.status-recording {
+      background-color #246cd8
+
+      .item-image-holder {
+        opacity .5
+      }
+      .item-header {
+        background-color transparent
+
+        time {
+          color #fff
+        }
+      }
+      &.is-noimage {
+        background-color #094b99
+
+        time {
+          color rgba(255,255,255,.4)
+        }
+        .item-header {
+          min-height 50px
+        }
+      }
+    }
+    &.recording-in-progress {
+      .item-status-icon {
+        display none
+      }
+      .item-image-holder {
+        opacity .35
+      }
+      .item-header a {
+        text-decoration none
+      }
+      .recording-notify {
+        animation .3s broadcastNotifyAnimation cubic-bezier(.63,.15,.45,.9)
+        animation-fill-mode forwards
+      }
+      .recording-notify-text-wrap {
+        animation .3s broadcastNotifyTextWrapAnimation cubic-bezier(.63,.15,.45,.9)
+      }
+    }
+    &.extend-drive-required {
+      .item-status-icon {
+        display none !important
+      }
+      .item-image-holder {
+        opacity .35
+      }
+      .item-header a {
+        text-decoration none
+      }
+      .extend-drive-notify {
+        animation .3s broadcastNotifyAnimation cubic-bezier(.63,.15,.45,.9)
+        animation-fill-mode forwards
+      }
+      .extend-drive-notify-text-wrap {
+        animation .3s broadcastNotifyTextWrapAnimation cubic-bezier(.63,.15,.45,.9)
+      }
+    }
+  }
+  .item-image-holder {
+    position absolute
+    top 0
+    right 0
+    left 0
+    bottom 0
+    background-position center
+    transition opacity .3s ease-in-out
+    z-index 1
+
+    img {
+      display block
+      width 100%
+      height 100%
+      position absolute
+      top 0
+      left 0
+      right 0
+      bottom 0
+    }
+  }
+  .recording-notify {
+    background-color rgba(33,110,216,0.76)
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    z-index 4
+    color #fff
+    display flex
+    flex-direction row
+    justify-content center
+    align-items center
+    opacity 0
+    animation .3s broadcastNotifyHideAnimation cubic-bezier(.63,.15,.45,.9)
+    animation-fill-mode forwards
+
+    .recording-notify-text-wrap {
+      text-align center
+      font-weight bold
+      animation .3s broadcastNotifyTextWrapHideAnimation cubic-bezier(.63,.15,.45,.9)
+      animation-fill-mode forwards
+
+      p {
+        margin-bottom 0
+      }
+    }
+  }
+  .extend-drive-notify {
+    background-color rgba(11,50,105,.95)
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    z-index 5
+    color #fff
+    display flex
+    flex-direction row
+    justify-content center
+    align-items center
+    opacity 0
+    animation .3s broadcastNotifyHideAnimation cubic-bezier(.63,.15,.45,.9)
+    animation-fill-mode forwards
+
+    .extend-drive-notify-text-wrap {
+      text-align center
+      animation .3s broadcastNotifyTextWrapHideAnimation cubic-bezier(.63,.15,.45,.9)
+      animation-fill-mode forwards
+
+      .icon {
+        color brand-secondary
+        width 74px
+        height 74px
+        margin-bottom 20px
+
+        @media (max-width: 1400px) {
+          width 46px
+          height 46px
+          margin-bottom 6px
+        }
+      }
+      a {
+        color #fff
+
+        &:hover {
+          color brand-secondary
+        }
+      }
+      p:last-child {
+        margin-bottom 0
+      }
+    }
+  }
+  .pair-container {
+    position relative
+    float left
+    overflow hidden
+    width 288px
+    height 288px
+
+    @media (max-width: 1400px) {
+      height 225px
+      width 225px
+    }
+
+    .item {
+      float none
+      height 144px
+
+      @media (max-width: 1400px) {
+        height 113px
+
+        + .item {
+          height 112px
+        }
+      }
+
+      .item-status-icon {
+        top 22px
+
+        @media (max-width: 1400px) {
+          top 19px
+        }
+
+        .status-desc {
+          display none
+        }
+      }
+      .extend-drive-notify-text-wrap .icon {
+        margin-bottom 0
+        width 41px
+        height 41px
+      }
+    }
+  }
+  .item-status-icon {
+    position absolute
+    top 96px
+    left 50%
+    width 70px
+    margin-left -35px
+    color #fff
+    text-align center
+    display block
+    z-index 2
+    transition opacity .3s ease-in-out, color .3s ease-in-out
+
+    @media (max-width: 1400px) {
+      top 70px
+    }
+    .status-desc {
+      font-size 12px
+      text-indent -3px
+      display block
+      color #fff
+    }
+  }
+  .item-header {
+    background-color rgba(33,110,216,.5)
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    display flex
+    flex-wrap nowrap
+    flex-direction row
+    align-items center
+    justify-content flex-start
+    padding 8px 12px
+    min-height 50px
+    z-index 2
+    transition background-color .15s cubic-bezier(.63,.15,.45,.9), min-height .15s cubic-bezier(.63,.15,.45,.9)
+    -webkit-font-smoothing subpixel-antialiased
+    will-change background-color, min-height
+
+    @media (max-width: 1400px) {
+      flex-direction column
+      align-items flex-start
+      justify-content center
+    }
+
+    time {
+      display inline-block
+      padding-right 12px
+      color rgba(255,255,255,.4)
+      border-right 1px solid #fff
+      font-size 24px
+      line-height 24px
+      height 24px
+      flex-shrink 0
+
+      @media (max-width: 1400px) {
+        display block
+        font-size 1.2rem
+        line-height 1.9rem
+        height 1.9rem
+        border-right none
+        color rgba(255,255,255,.5)
+        padding-right 0
+      }
+    }
+    a {
+      display inline-block
+      padding-left 12px
+      line-height 17px
+      text-decoration none
+      color #fff
+      position relative
+      top -1px
+
+      @media (max-width: 1400px) {
+        position static
+        padding-left 0
+      }
+
+      &:hover {
+        color brand-secondary
+      }
+    }
+  }
+  .badge {
+    position absolute
+    top 14px
+    right 15px
+    z-index 2
+    display inline-block
+    height 14px
+    padding 2px 4px
+    font-size .9rem
+    line-height 1.2
+    color #fff
+    text-transform uppercase
+    background-color #1e6edc
+    -webkit-font-smoothing subpixel-antialiased
+  }
+  // .more-link {
+  //   position relative
+  //   clear both
+  //   display block
+  //   font-size 1.8rem
+  //   line-height 1.1
+  //   text-transform uppercase
+  //   padding 40px 30px
+  //   height 100px
+  //   border-top 1px solid #fff
+  //   color #fff
+  //   background-color brand-primary
+  //   text-decoration none
+  //   z-index 4
+  //   -webkit-font-smoothing subpixel-antialiased
+
+  //   &:hover {
+  //     color brand-secondary
+  //   }
+  // }
+}

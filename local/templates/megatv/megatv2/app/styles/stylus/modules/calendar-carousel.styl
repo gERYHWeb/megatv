@@ -1,0 +1,82 @@
+//
+// Calendar Carousel
+// -------------------------------------------------- //
+
+.calendar-carousel {
+  display none // временно скрываем данный блок
+  margin 0 20px
+
+  .prev-trigger,
+  .next-trigger {
+    display block
+    height 64px
+    padding 21px 9px 22px
+    float left
+
+    .icon {
+      fill brand-primary
+    }
+    &.disabled .icon {
+      fill #bbb
+    }
+  }
+  .dates-holder {
+    overflow hidden
+    height 64px
+    width 308px
+    float left
+  }
+  .date-group {
+    list-style none
+    margin 0
+    padding 0
+    width 100%
+
+    li {
+      float left
+
+      &.current {
+        a {
+          background-color brand-primary
+
+          .day-char,
+          .day-number {
+            color #fff
+          }
+        }
+      }
+      &.disabled {
+        a {
+          .day-char,
+          .day-number {
+            color #bbb
+          }
+        }
+      }
+    }
+    a {
+      width 44px
+      height 64px
+      display block
+      text-decoration none
+      padding 13px 0
+      text-align center
+      -webkit-font-smoothing subpixel-antialiased
+      -moz-osx-font-smoothing auto
+
+      .day-char {
+        font-size 1.2rem
+        color #a2a2a2
+        text-transform uppercase
+        margin-bottom 5px
+        display block
+      }
+      .day-number {
+        font-size 1.4rem
+        color #000
+        font-weight 700
+        display block
+      }
+    }
+  }
+}
