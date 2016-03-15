@@ -34,6 +34,7 @@
 				</div>
 				<div class="top-panel">
 					<a href="index.html" class="logo"></a>
+
 					<div class="city-select" data-module="city-select">
 						<script type="text/x-config">
 							{
@@ -52,43 +53,25 @@
 							<option value="1" selected>Санкт-Петербург</option>
 						</select>
 					</div>
-					<nav class="header-nav">
-						<div class="user-card">
-							<a href="#" class="user-avatar">
-								<img src="img/temp/user-avatar-01.jpg" alt="Александр Пушкин" width="50" height="50">
-							</a>
-							<div class="info-panel">
-								<a class="username" href="#">Александр Пушкин</a>
-								<a href="#" class="signout-link">Выйти</a>
-							</div>
-						</div>
-						<ul class="top-menu">
-							<li><a href="#"><span data-icon="icon-film-collection"></span> Мои записи</a></li>
-							<li><a href="#"><span data-icon="icon-recording-small"></span> В записи <span class="badge">12</span></a></li>
-							<li><a href="#"><span data-icon="icon-recorded-small"></span> Записанных <span class="badge">92</span></a></li>
-							<li><a href="#"><span data-icon="icon-balance" data-size="small"></span> На счету: 1 200 Р</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div class="bottom-panel">
-					<div class="calendar-carousel" data-module="calendar-carousel">
+
+					<div class="lang-select" data-module="lang-select">
 						<script type="text/x-config">
 							{
-								"currentDate": "09.09.2015",
-								"minDate": 1,
-								"maxDate": 8
+								"url": "/server/",
+								"languages": [
+									{ "id": 0, "text": "Ru" },
+									{ "id": 1, "text": "En" }
+								]
 							}
 						</script>
-						<a href="#" class="prev-trigger disabled" data-type="prev-trigger"><span data-icon="icon-left-arrow-days"></span></a>
-						<div class="dates-holder" data-type="dates-carousel"></div>
-						<a href="#" class="next-trigger" data-type="next-trigger"><span data-icon="icon-right-arrow-days"></span></a>
+						<form action="" id="lang-select-form">
+							<input type="hidden" name="lang-id" value="" id="lang-select-value">
+							<select name="lang-select" id="lang-select">
+							</select>
+						</form>
 					</div>
-					<ul class="sections-menu">
-						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
-						<li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li>
-						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
-					</ul>
-					<form action="#" class="search-form" data-module="search-form">
+
+					<form action="#" class="search-form is-cabinet-search-form" data-module="search-form">
 						<script type="text/x-config">
 							{
 								"url": "../data/films/queries/%QUERY.json"
@@ -100,7 +83,35 @@
 							<span class="form-control-feedback"><span data-icon="icon-search"></span></span>
 						</div>
 					</form>
+
+					<ul class="sections-menu">
+						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<!-- <li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li> -->
+						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
+						<li class="sections-menu-recordings"><a href="#"><span data-icon="icon-film-collection"></span> <span>Мои записи<span class="count">2 из 20</span></span></a></li>
+					</ul>
+
+					<nav class="header-nav" data-module="user-navigation">
+						<div class="user-card">
+							<a href="#" class="user-avatar" data-type="avatar-holder">
+								<img src="img/temp/user-avatar-01.jpg" alt="Александр Пушкин" width="50" height="50">
+							</a>
+							<div class="info-panel">
+								<a class="username" href="#" title="Константин Цымбалистый-Старший">Константин Цымбалистый-Старший</a>
+								<a href="index.html" class="signout-link">Выйти</a>
+							</div>
+						</div>
+						<!-- <ul class="top-menu">
+							<li><a href="#"><span data-icon="icon-film-collection"></span> Мои записи</a></li>
+							<li><a href="#"><span data-icon="icon-recording-small"></span> В записи <span class="badge"  data-type="recording-count">12</span></a></li>
+							<li><a href="#"><span data-icon="icon-recorded-small"></span> Записанных <span class="badge">92</span></a></li>
+							<li><a href="#"><span data-icon="icon-balance" data-size="small"></span> На счету: 1 200 Р</a></li>
+						</ul> -->
+					</nav>
 				</div>
+				<!-- <div class="bottom-panel">
+					<a href="#" class="back-link"><span data-icon="icon-backlink-arrow"></span><span>Вернуться к передаче: Как я встретил вашу маму</span></a>
+				</div> -->
 			</header>
 			<main class="site-content">
 				<section class="broadcast-card" data-module="broadcast-card">
