@@ -833,9 +833,23 @@ Box.Application.addBehavior('load-broadcast-player', function (context) {
 			iconLoaderService = context.getService('icon-loader');
 
 			$(document).on('hidden.bs.modal', playerModalContainer, function (event) {
-				if ($(event.target).closest('.modal').hasClass('player-modal')) {
+				var modal = $(event.target).closest('.modal');
+
+				if (modal.hasClass('player-modal')) {
+					// remove class 'player-modal-open' with core class 'modal-open'
+					$('body').removeClass('player-modal-open');
 					savePlayerPosition();
 					Box.Application.stopAll(playerModalContainer.get(0));
+				}
+			});
+
+			// When modal show
+			$(document).on('shown.bs.modal', function (event) {
+				var modal = $(event.target).closest('.modal');
+				// and this modal is player-modal
+				if (modal.hasClass('player-modal')) {
+					// add class for body, that remove padding-right for fullscreen player
+					$('body').addClass('player-modal-open');
 				}
 			});
 		},
