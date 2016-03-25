@@ -103,168 +103,170 @@
 						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
 					</ul>
 
-					<nav class="header-nav">
-						<ul class="user-actions">
-							<li><a href="#" class="signin-link" data-type="signin-overlay-toggle">Войти</a></li>
-							<li><a href="#" class="signup-link" data-type="signup-overlay-toggle">Зарегистрироваться</a></li>
-						</ul>
-					</nav>
-					<div class="authorize-overlay is-signin-overlay" data-module="signin-overlay">
-						<div class="overlay-content">
-							<h4 class="overlay-title">Войти</h4>
-							<ul class="social-authorize-list">
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+					<div class="header-user">
+						<nav class="header-nav">
+							<ul class="user-actions">
+								<li><a href="#" class="signin-link" data-type="signin-overlay-toggle">Войти</a></li>
+								<li><a href="#" class="signup-link" data-type="signup-overlay-toggle">Зарегистрироваться</a></li>
 							</ul>
-							<span class="divider"><span>или</span></span>
-							<form action="/?login=yes" data-redirect="/">
-								<div class="form-group">
-									<label for="" class="sr-only">Телефон или эл. почта</label>
-									<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
-								</div>
-								<div class="form-group has-feedback" data-type="password-field-group">
-									<label for="" class="sr-only">Пароль</label>
-									<input type="password" name="" id="" class="form-control" placeholder="Пароль" data-type="password-field">
-									<input type="text" class="form-control" data-type="password-visualizer" placeholder="Пароль">
-									<span class="form-control-feedback">
-										<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
-									</span>
-								</div>
-								<div class="form-actions">
-									<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
-										<span class="default-state init-state">Войти</span>
-										<span class="done-state">Авторизую вас...</span>
-										<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
-										<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
-									</button>
-									<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
-								</div>
-							</form>
+						</nav>
+						<div class="authorize-overlay is-signin-overlay" data-module="signin-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Войти</h4>
+								<ul class="social-authorize-list">
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+								</ul>
+								<span class="divider"><span>или</span></span>
+								<form action="/?login=yes" data-redirect="/">
+									<div class="form-group">
+										<label for="" class="sr-only">Телефон или эл. почта</label>
+										<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+									</div>
+									<div class="form-group has-feedback" data-type="password-field-group">
+										<label for="" class="sr-only">Пароль</label>
+										<input type="password" name="" id="" class="form-control" placeholder="Пароль" data-type="password-field">
+										<input type="text" class="form-control" data-type="password-visualizer" placeholder="Пароль">
+										<span class="form-control-feedback">
+											<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+										</span>
+									</div>
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+											<span class="default-state init-state">Войти</span>
+											<span class="done-state">Авторизую вас...</span>
+											<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+											<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+										</button>
+										<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+									</div>
+								</form>
+							</div>
 						</div>
-					</div>
-					<div class="authorize-overlay is-signup-overlay" data-module="signup-overlay">
-						<div class="overlay-content">
-							<h4 class="overlay-title">Регистрация</h4>
-							<ul class="social-authorize-list">
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
-								<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
-							</ul>
-							<span class="divider"><span>или</span></span>
-							<div class="steps">
-								<div class="step fade in active">
-									<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php">
-										<div class="form-group">
-											<label for="" class="sr-only">Телефон или эл. почта</label>
-											<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
-										</div>
-										<div class="checkbox">
-											<label for="_id-singup--chackbox"><input type="checkbox" name="singup--chackbox" id="_id-singup--chackbox"><span>Я принимаю условия <a href="#">договора оферты</a></span></label>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
-												<span class="default-state init-state">Зарегистрироваться</span>
-												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
-												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
-											</button>
-											<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
-										</div>
-									</form>
-								</div>
-								<div class="step fade">
-									<p>Зайдите на почту и перейдите по ссылке<br> или введите код активации здесь:</p>
-									<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php" data-type="signup-code-form">
-										<input type="hidden" name="USER_EMAIL" value="" data-type="adaptive-field-hidden" />
-										<div class="form-group">
-											<label for="" class="sr-only">Код активации</label>
-											<input type="text" name="" id="" class="form-control" placeholder="Код активации" data-type="code-field">
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
-												<span class="default-state init-state">Активировать</span>
-												<span class="done-state">Активирую ваш аккаунт...</span>
-												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
-												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
-											</button>
-											<a href="#" class="form-subaction-link" data-type="signin-handler-link">У меня есть аккаунт</a>
-										</div>
-									</form>
+						<div class="authorize-overlay is-signup-overlay" data-module="signup-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Регистрация</h4>
+								<ul class="social-authorize-list">
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+								</ul>
+								<span class="divider"><span>или</span></span>
+								<div class="steps">
+									<div class="step fade in active">
+										<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php">
+											<div class="form-group">
+												<label for="" class="sr-only">Телефон или эл. почта</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+											</div>
+											<div class="checkbox">
+												<label for="_id-singup--chackbox"><input type="checkbox" name="singup--chackbox" id="_id-singup--chackbox"><span>Я принимаю условия <a href="#">договора оферты</a></span></label>
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Зарегистрироваться</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+											</div>
+										</form>
+									</div>
+									<div class="step fade">
+										<p>Зайдите на почту и перейдите по ссылке<br> или введите код активации здесь:</p>
+										<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php" data-type="signup-code-form">
+											<input type="hidden" name="USER_EMAIL" value="" data-type="adaptive-field-hidden" />
+											<div class="form-group">
+												<label for="" class="sr-only">Код активации</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Код активации" data-type="code-field">
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Активировать</span>
+													<span class="done-state">Активирую ваш аккаунт...</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">У меня есть аккаунт</a>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="authorize-overlay is-reset-overlay" data-module="reset-overlay">
-						<div class="overlay-content">
-							<h4 class="overlay-title">Восстановить пароль</h4>
-							<div class="steps">
-								<div class="step fade in active">
-									<p>Напишите свой телефон или адрес эл. почты, и через 30 сек. мы вышлем код для смены пароля.</p>
-									<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php">
-										<div class="form-group">
-											<label for="" class="sr-only">Телефон или эл. почта</label>
-											<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
-												<span class="default-state init-state">Выслать пароль</span>
-												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
-												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
-											</button>
-											<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-code-handler-link">У меня уже есть код</a>
-										</div>
-									</form>
-								</div>
-								<div class="step fade">
-									<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php" data-type="reset-code-form">
-										<div class="form-group">
-											<label for="" class="sr-only">Код для смены пароля</label>
-											<input type="text" name="" id="" class="form-control" placeholder="Код для смены пароля" data-type="code-field">
-										</div>
-										<div class="form-group has-feedback" data-type="password-field-group">
-											<label for="" class="sr-only">Новый пароль</label>
-											<input type="password" name="" id="" class="form-control" placeholder="Новый пароль" data-type="password-field">
-											<input type="text" class="form-control" data-type="password-visualizer" placeholder="Новый пароль">
-											<span class="form-control-feedback">
-												<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
-											</span>
-										</div>
-										<div class="form-actions">
-											<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
-												<span class="default-state init-state">Изменить пароль</span>
-												<span class="done-state">Запрос отправлен</span>
-												<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
-												<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
-											</button>
-											<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-handler-link">Запросить код ещё раз</a>
-										</div>
-									</form>
+						<div class="authorize-overlay is-reset-overlay" data-module="reset-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Восстановить пароль</h4>
+								<div class="steps">
+									<div class="step fade in active">
+										<p>Напишите свой телефон или адрес эл. почты, и через 30 сек. мы вышлем код для смены пароля.</p>
+										<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php">
+											<div class="form-group">
+												<label for="" class="sr-only">Телефон или эл. почта</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Выслать пароль</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-code-handler-link">У меня уже есть код</a>
+											</div>
+										</form>
+									</div>
+									<div class="step fade">
+										<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php" data-type="reset-code-form">
+											<div class="form-group">
+												<label for="" class="sr-only">Код для смены пароля</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Код для смены пароля" data-type="code-field">
+											</div>
+											<div class="form-group has-feedback" data-type="password-field-group">
+												<label for="" class="sr-only">Новый пароль</label>
+												<input type="password" name="" id="" class="form-control" placeholder="Новый пароль" data-type="password-field">
+												<input type="text" class="form-control" data-type="password-visualizer" placeholder="Новый пароль">
+												<span class="form-control-feedback">
+													<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+												</span>
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Изменить пароль</span>
+													<span class="done-state">Запрос отправлен</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-handler-link">Запросить код ещё раз</a>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="authorize-overlay is-success-signup-overlay" data-module="success-signup-overlay">
-						<div class="overlay-content">
-							<h4 class="overlay-title">Поздравляем вас</h4>
-							<p>Вы успешно зарегистрировались на МЕГАТВ.</p>
-							<a href="/" class="btn btn-primary btn-block">Начать пользоваться сервисом</a>
+						<div class="authorize-overlay is-success-signup-overlay" data-module="success-signup-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Поздравляем вас</h4>
+								<p>Вы успешно зарегистрировались на МЕГАТВ.</p>
+								<a href="/" class="btn btn-primary btn-block">Начать пользоваться сервисом</a>
+							</div>
 						</div>
-					</div>
-					<div class="authorize-overlay is-success-reset-overlay" data-module="success-reset-overlay">
-						<div class="overlay-content">
-							<h4 class="overlay-title">Пароль изменён</h4>
-							<p>Вы успешно изменили пароль для входа в свой аккаунт на МЕГАТВ.</p>
-							<a href="#" class="btn btn-primary btn-block" data-type="signin-handler-link">Авторизоваться</a>
+						<div class="authorize-overlay is-success-reset-overlay" data-module="success-reset-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Пароль изменён</h4>
+								<p>Вы успешно изменили пароль для входа в свой аккаунт на МЕГАТВ.</p>
+								<a href="#" class="btn btn-primary btn-block" data-type="signin-handler-link">Авторизоваться</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -359,7 +361,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -372,7 +374,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -385,7 +387,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -397,7 +399,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -411,7 +413,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -421,7 +423,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -433,7 +435,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -445,7 +447,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -472,7 +474,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -485,7 +487,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -498,7 +500,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -511,7 +513,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -523,7 +525,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -537,7 +539,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -547,7 +549,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -559,7 +561,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -571,7 +573,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -585,7 +587,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item double-item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -598,7 +600,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -611,7 +613,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -624,7 +626,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -636,7 +638,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -650,7 +652,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -660,7 +662,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -672,7 +674,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -684,7 +686,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -711,7 +713,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -724,7 +726,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -737,7 +739,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -750,7 +752,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -762,7 +764,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -776,7 +778,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -786,7 +788,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -802,7 +804,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -813,7 +815,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -825,7 +827,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -839,7 +841,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
@@ -851,7 +853,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -878,7 +880,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -889,7 +891,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -901,7 +903,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -928,7 +930,7 @@
 										</div>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 									<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
@@ -941,7 +943,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -952,7 +954,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -964,7 +966,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -978,7 +980,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -988,7 +990,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -1015,7 +1017,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1026,7 +1028,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1038,7 +1040,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -1052,7 +1054,7 @@
 										</span>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -1067,7 +1069,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1080,7 +1082,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1093,7 +1095,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1105,7 +1107,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -1119,7 +1121,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -1129,7 +1131,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -1141,7 +1143,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1153,7 +1155,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -1180,7 +1182,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1193,7 +1195,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1206,7 +1208,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1219,7 +1221,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1231,7 +1233,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -1245,7 +1247,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -1255,7 +1257,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -1267,7 +1269,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1279,7 +1281,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -1293,7 +1295,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -1308,7 +1310,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1319,7 +1321,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1331,7 +1333,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -1345,7 +1347,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
@@ -1357,7 +1359,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -1384,7 +1386,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1395,7 +1397,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1407,7 +1409,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -1434,7 +1436,7 @@
 										</div>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 									<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
@@ -1447,7 +1449,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1458,7 +1460,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1470,7 +1472,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -1484,7 +1486,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -1494,7 +1496,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -1521,7 +1523,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1532,7 +1534,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1544,7 +1546,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -1558,7 +1560,7 @@
 										</span>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -1573,7 +1575,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1586,7 +1588,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1599,7 +1601,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1611,7 +1613,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -1625,7 +1627,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -1635,7 +1637,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -1647,7 +1649,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1659,7 +1661,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -1686,7 +1688,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1699,7 +1701,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1712,7 +1714,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1725,7 +1727,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1737,7 +1739,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -1751,7 +1753,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -1761,7 +1763,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -1773,7 +1775,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1785,7 +1787,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -1799,7 +1801,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -1817,7 +1819,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1830,7 +1832,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1843,7 +1845,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1855,7 +1857,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -1869,7 +1871,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -1879,7 +1881,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -1891,7 +1893,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1903,7 +1905,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -1930,7 +1932,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1943,7 +1945,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -1956,7 +1958,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -1969,7 +1971,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -1981,7 +1983,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -1995,7 +1997,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2005,7 +2007,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -2017,7 +2019,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2029,7 +2031,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -2043,7 +2045,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item double-item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2056,7 +2058,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2069,7 +2071,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2082,7 +2084,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2094,7 +2096,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -2108,7 +2110,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2118,7 +2120,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -2130,7 +2132,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2142,7 +2144,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -2169,7 +2171,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2182,7 +2184,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2195,7 +2197,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2208,7 +2210,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2220,7 +2222,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -2234,7 +2236,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2244,7 +2246,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -2260,7 +2262,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2271,7 +2273,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2283,7 +2285,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -2297,7 +2299,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
@@ -2309,7 +2311,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -2336,7 +2338,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2347,7 +2349,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2359,7 +2361,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -2386,7 +2388,7 @@
 										</div>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 									<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
@@ -2399,7 +2401,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2410,7 +2412,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2422,7 +2424,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -2436,7 +2438,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2446,7 +2448,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -2473,7 +2475,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2484,7 +2486,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2496,7 +2498,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -2510,7 +2512,7 @@
 										</span>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -2525,7 +2527,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2538,7 +2540,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2551,7 +2553,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2563,7 +2565,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -2577,7 +2579,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2587,7 +2589,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -2599,7 +2601,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2611,7 +2613,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -2638,7 +2640,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2651,7 +2653,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2664,7 +2666,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2677,7 +2679,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2689,7 +2691,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -2703,7 +2705,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2713,7 +2715,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -2725,7 +2727,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2737,7 +2739,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -2751,7 +2753,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -2766,7 +2768,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2777,7 +2779,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2789,7 +2791,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -2803,7 +2805,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
@@ -2815,7 +2817,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -2842,7 +2844,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2853,7 +2855,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -2865,7 +2867,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -2892,7 +2894,7 @@
 										</div>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 									<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
@@ -2905,7 +2907,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2916,7 +2918,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -2928,7 +2930,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -2942,7 +2944,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -2952,7 +2954,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -2979,7 +2981,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -2990,7 +2992,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3002,7 +3004,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -3016,7 +3018,7 @@
 										</span>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -3031,7 +3033,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3044,7 +3046,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3057,7 +3059,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3069,7 +3071,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -3083,7 +3085,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3093,7 +3095,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -3105,7 +3107,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3117,7 +3119,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -3144,7 +3146,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3157,7 +3159,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3170,7 +3172,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3183,7 +3185,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3195,7 +3197,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -3209,7 +3211,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3219,7 +3221,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -3231,7 +3233,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3243,7 +3245,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -3257,7 +3259,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -3275,7 +3277,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3288,7 +3290,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3301,7 +3303,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3313,7 +3315,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -3327,7 +3329,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3337,7 +3339,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -3349,7 +3351,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3361,7 +3363,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -3388,7 +3390,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3401,7 +3403,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3414,7 +3416,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3427,7 +3429,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3439,7 +3441,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -3453,7 +3455,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3463,7 +3465,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -3475,7 +3477,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3487,7 +3489,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -3501,7 +3503,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item double-item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3514,7 +3516,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3527,7 +3529,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3540,7 +3542,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3552,7 +3554,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -3566,7 +3568,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3576,7 +3578,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -3588,7 +3590,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3600,7 +3602,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -3627,7 +3629,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3640,7 +3642,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3653,7 +3655,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3666,7 +3668,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3678,7 +3680,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -3692,7 +3694,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3702,7 +3704,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -3718,7 +3720,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3729,7 +3731,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3741,7 +3743,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -3755,7 +3757,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
@@ -3767,7 +3769,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -3794,7 +3796,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3805,7 +3807,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3817,7 +3819,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -3844,7 +3846,7 @@
 										</div>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 									<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
@@ -3857,7 +3859,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3868,7 +3870,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3880,7 +3882,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -3894,7 +3896,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -3904,7 +3906,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -3931,7 +3933,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -3942,7 +3944,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -3954,7 +3956,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -3968,7 +3970,7 @@
 										</span>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -3983,7 +3985,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -3996,7 +3998,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4009,7 +4011,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4021,7 +4023,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -4035,7 +4037,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -4045,7 +4047,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -4057,7 +4059,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4069,7 +4071,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -4096,7 +4098,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4109,7 +4111,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4122,7 +4124,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4135,7 +4137,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4147,7 +4149,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -4161,7 +4163,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -4171,7 +4173,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -4183,7 +4185,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4195,7 +4197,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -4209,7 +4211,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -4224,7 +4226,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4235,7 +4237,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4247,7 +4249,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -4261,7 +4263,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording" data-type="broadcast" data-broadcast-id="01">
@@ -4273,7 +4275,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -4300,7 +4302,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4311,7 +4313,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4323,7 +4325,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -4350,7 +4352,7 @@
 										</div>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 									<div class="item status-recorded" data-type="broadcast" data-broadcast-id="01">
@@ -4363,7 +4365,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:00</time>
-											<a href="#">Утро России</a>
+											<a href="broadcast-card.html">Утро России</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4374,7 +4376,7 @@
 											</span>
 											<div class="item-header">
 												<time>07:30</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4386,7 +4388,7 @@
 											</span>
 											<div class="item-header">
 												<time>08:00</time>
-												<a href="#">О самом главном</a>
+												<a href="broadcast-card.html">О самом главном</a>
 											</div>
 										</div>
 									</div>
@@ -4400,7 +4402,7 @@
 											</span>
 											<div class="item-header">
 												<time>11:40</time>
-												<a href="#">Тайны следствия-10</a>
+												<a href="broadcast-card.html">Тайны следствия-10</a>
 											</div>
 										</div>
 										<div class="item status-recording is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -4410,7 +4412,7 @@
 											</div>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Особый случай</a>
+												<a href="broadcast-card.html">Особый случай</a>
 											</div>
 										</div>
 									</div>
@@ -4437,7 +4439,7 @@
 										</div>
 										<div class="item-header">
 											<time>11:40</time>
-											<a href="#">Последний янычар</a>
+											<a href="broadcast-card.html">Последний янычар</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4448,7 +4450,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Вести</a>
+												<a href="broadcast-card.html">Вести</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4460,7 +4462,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:30</time>
-												<a href="#">Прямой эфир</a>
+												<a href="broadcast-card.html">Прямой эфир</a>
 											</div>
 										</div>
 									</div>
@@ -4474,7 +4476,7 @@
 										</span>
 										<div class="item-header">
 											<time>13:00</time>
-											<a href="#">Спокойной ночи</a>
+											<a href="broadcast-card.html">Спокойной ночи</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->
@@ -4489,7 +4491,7 @@
 										</span>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4502,7 +4504,7 @@
 										</span>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4515,7 +4517,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4527,7 +4529,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -4541,7 +4543,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -4551,7 +4553,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -4563,7 +4565,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4575,7 +4577,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -4602,7 +4604,7 @@
 										</div>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4615,7 +4617,7 @@
 										</div>
 										<div class="item-header">
 											<time>07:40</time>
-											<a href="#">Доброе утро</a>
+											<a href="broadcast-card.html">Доброе утро</a>
 										</div>
 									</div>
 									<div class="item status-viewed" data-type="broadcast" data-broadcast-id="01">
@@ -4628,7 +4630,7 @@
 										</div>
 										<div class="item-header">
 											<time>08:40</time>
-											<a href="#">Новости</a>
+											<a href="broadcast-card.html">Новости</a>
 										</div>
 									</div>
 									<div class="pair-container">
@@ -4641,7 +4643,7 @@
 											</span>
 											<div class="item-header">
 												<time>10:40</time>
-												<a href="#">Контрольная закупка</a>
+												<a href="broadcast-card.html">Контрольная закупка</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4653,7 +4655,7 @@
 											</span>
 											<div class="item-header">
 												<time>12:00</time>
-												<a href="#">Жить здорово!</a>
+												<a href="broadcast-card.html">Жить здорово!</a>
 											</div>
 										</div>
 									</div>
@@ -4667,7 +4669,7 @@
 											</span>
 											<div class="item-header">
 												<time>13:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 										<div class="item status-recordable is-noimage" data-type="broadcast" data-broadcast-id="01">
@@ -4677,7 +4679,7 @@
 											</span>
 											<div class="item-header">
 												<time>14:00</time>
-												<a href="#">Модный приговор</a>
+												<a href="broadcast-card.html">Модный приговор</a>
 											</div>
 										</div>
 									</div>
@@ -4689,7 +4691,7 @@
 											</span>
 											<div class="item-header">
 												<time>15:00</time>
-												<a href="#">Новости <br>(с субтитрами)</a>
+												<a href="broadcast-card.html">Новости <br>(с субтитрами)</a>
 											</div>
 										</div>
 										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="01">
@@ -4701,7 +4703,7 @@
 											</span>
 											<div class="item-header">
 												<time>16:00</time>
-												<a href="#">Сегодня вечером</a>
+												<a href="broadcast-card.html">Сегодня вечером</a>
 											</div>
 										</div>
 									</div>
@@ -4715,7 +4717,7 @@
 										</span>
 										<div class="item-header">
 											<time>17:40</time>
-											<a href="#">Время покажет</a>
+											<a href="broadcast-card.html">Время покажет</a>
 										</div>
 									</div>
 								</div><!-- /.category-row -->

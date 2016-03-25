@@ -39,23 +39,23 @@ Box.Application.addModule('user-recorded-broadcasts', function (context) {
 		messages: ['broadcasttimelineupdate'],
 
 		init: function () {
-			kineticService = context.getService('kinetic');
+			// kineticService = context.getService('kinetic');
 			moduleEl = context.getElement();
 			listItems = $(moduleEl).find('.broadcasts-list');
 			items = $(moduleEl).find('.item');
 			remoteUrl = context.getConfig('url');
 
-			kineticService.create(listItems, {
-				y: false,
-				triggerHardware: true,
-				movingClass: {},
-				deceleratingClass: {},
-				filterTarget: function (target) {
-					if ($(target).closest('.item-status-icon').length || $(target).closest('.details-trigger').length) {
-						return false;
-					}
-				}
-			});
+			// kineticService.create(listItems, {
+			// 	y: false,
+			// 	triggerHardware: true,
+			// 	movingClass: {},
+			// 	deceleratingClass: {},
+			// 	filterTarget: function (target) {
+			// 		if ($(target).closest('.item-status-icon').length || $(target).closest('.details-trigger').length) {
+			// 			return false;
+			// 		}
+			// 	}
+			// });
 			$(moduleEl).on('mouseenter', '.item', function () {
 				if (!$(this).hasClass('is-delete-state')) {
 					$(this).addClass('hover');

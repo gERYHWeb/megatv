@@ -3004,6 +3004,62 @@
 }
 
 
+// User recorded broadcasts categories
+
+.user-recorded-broadcasts-categories {
+	background-color #f6f6f6
+	overflow hidden
+	height 60px
+	position relative
+	transition height .2s ease-in-out
+
+	.items {
+		display flex
+		padding-right 80px
+		flex-wrap wrap
+
+		.item {
+			color: text-color
+			line-height 20px
+			text-decoration none
+			padding 20px
+
+			&.active {
+				cursor default
+				color: #fff
+				background-color brand-primary
+			}
+			&:not(.active):hover {
+				background-color rgba( brand-primary, .1 )
+			}
+		}
+	}
+	.more {
+		display flex
+		cursor pointer
+		align-items center
+		position absolute
+		top 0
+		right 0
+		height 60px
+		padding 0 28px
+		text-align center
+		transition background-color .15s ease-in-out
+
+		&:hover {
+			background-color rgba( brand-primary, .1 )
+		}
+
+		div {
+			background-color brand-primary
+			height 4px
+			width 4px
+			border-radius 50%
+			margin 0 2px
+		}
+	}
+}
+
 // User recorded broadcasts
 
 .user-recorded-broadcasts {
@@ -3037,40 +3093,23 @@
 		height 600px
 	}
 	.broadcasts-list {
-		overflow hidden
-		position absolute
-		top 0
-		left 0
-		right 0
-		bottom 0
-	}
-	.row-wrap {
-		position absolute
-		top 0
-		left 0
-	}
-	.items-row {
-		height 300px
-		position relative
 		display flex
-		flex-wrap nowrap
-		flex-direction row
-
-		> .item {
-			flex-grow 0
-			flex-shrink 0
-			flex-basis 300px
-		}
+		flex-wrap wrap
+		// overflow hidden
+		// height 600px
 	}
 	.item {
 		position relative
 		overflow hidden
-		width 300px
-		height 300px
+		width 16.66%
+
+		@media (max-width: 1540px) {
+			width 20%
+		}
 
 		&.hover {
 			.actions-panel {
-				display block
+				display flex
 				animation .3s actionsPanelAnimation cubic-bezier(.63,.15,.45,.9)
 			}
 			.actions-list {
@@ -3082,6 +3121,9 @@
 				}
 			}
 			.view-progress {
+				display block
+				animation .3s actionsPanelAnimation cubic-bezier(.63,.15,.45,.9)
+
 				&:before,
 				&:after {
 					background-color brand-secondary
@@ -3089,6 +3131,25 @@
 				&:after {
 					box-shadow -5px 5px 5px rgba(0,0,0,.15)
 				}
+			}
+		}
+		&.status-viewed {
+			.inner:before {
+				content ''
+				position absolute
+				top 0
+				right 0
+				left 0
+				bottom 0
+				background-color rgba(0,0,0,.5)
+				z-index 2
+			}
+			.item-image-holder {
+				filter grayscale(100%)
+			}
+
+			&.is-noimage {
+				background-color #c8c8c8
 			}
 		}
 		&.is-delete-state {
@@ -3101,194 +3162,258 @@
 				animation .3s deleteDialogAnimation cubic-bezier(.63,.15,.45,.9)
 			}
 		}
-	}
-	.item-image-holder {
-		position absolute
-		top 0
-		right 0
-		left 0
-		bottom 0
-		background-size cover
-		background-position center
-		transition opacity .3s ease
-		z-index 1
 
-		img {
-			display block
+		&.is-hidden {
+			display none
+		}
+
+		.inner {
+			padding-bottom 100%
 			width 100%
-			height 100%
+		}
+
+		.item-image-holder {
+			position absolute
+			top 0
+			right 0
+			left 0
+			bottom 0
+			background-size cover
+			background-position center
+			transition opacity .3s ease
+			z-index 1
+
+			img {
+				display block
+				width 100%
+				height 100%
+				position absolute
+				top 0
+				left 0
+				right 0
+				bottom 0
+			}
+		}
+		.item-status-icon {
 			position absolute
 			top 0
 			left 0
 			right 0
+			margin-top 20px
+			bottom 60px
+			color #fff
+			text-align center
+			display flex
+			flex-direction column
+			justify-content center
+			align-items center
+			z-index 2
+			transition opacity .3s ease-in-out, color .3s ease-in-out
+
+			// @media (max-width: 1400px) {
+
+			// }
+			.status-desc {
+				font-size 12px
+				text-indent -3px
+				line-height 15px
+				margin-top 5px
+				display block
+				color #fff
+			}
+		}
+		.item-header {
+			background-color rgba(33,110,216,.84)
+			position absolute
 			bottom 0
-		}
-	}
-	.item-header {
-		background-color rgba(33,110,216,.84)
-		position absolute
-		bottom 0
-		left 0
-		right 0
-		display flex
-		flex-wrap nowrap
-		flex-direction row
-		align-items center
-		justify-content center
-		padding 8px 12px
-		height 50px
-		z-index 2
-		transition background-color .15s cubic-bezier(.63,.15,.45,.9), min-height .15s cubic-bezier(.63,.15,.45,.9)
-		-webkit-font-smoothing subpixel-antialiased
-
-		a {
-			display inline-block
-			text-align center
-			line-height 17px
-			text-decoration none
-			color #fff
-			position relative
-			top -1px
-
-			&:hover {
-				color brand-secondary
-			}
-		}
-	}
-	.view-progress {
-		position absolute
-		top -19px
-		right 12px
-		left 12px
-		height 5px
-		background-color #fff
-
-		&[data-progress="0"] {
-			display none
-		}
-		&[data-progress="1"] {
-			&:before {
-				width 25%
-			}
-			&:after {
-				left 25%
-			}
-		}
-		&[data-progress="2"] {
-			&:before {
-				width 50%
-			}
-			&:after {
-				left 50%
-			}
-		}
-		&[data-progress="3"] {
-			&:before {
-				width 75%
-			}
-			&:after {
-				left 75%
-			}
-		}
-		&:before {
-			content ''
-			position absolute
-			top 0
 			left 0
-			background-color brand-primary
-			height 5px
-			transition width .3s ease-in-out, background-color .3s ease-in-out
-		}
-		&:after {
-			content ''
-			position absolute
-			top -5px
-			left 0
-			height 15px
-			width 15px
-			margin-left -5px
-			background-color brand-primary
-			border-radius 50%
-			transition left .3s ease-in-out, background-color .3s ease-in-out, box-shadow .3s ease-in-out
-		}
-	}
-	.actions-panel {
-		background-color rgba(33,110,216,.84)
-		position absolute
-		top 0
-		left 0
-		right 0
-		bottom 50px
-		z-index 2
-		color #fff
-		display none
-		opacity 1
-	}
-	.actions-list {
-		list-style none
-		padding 106px 42px 0
-		margin 0
-		display flex
-		flex-wrap nowrap
-		flex-direction row
-		align-items center
-		justify-content space-around
-		transition opacity .3s ease-in-out
+			height 60px
+			display flex
+			flex-wrap wrap
+			right 0
+			align-items center
+			padding 8px 20px
+			z-index 2
+			transition background-color .15s cubic-bezier(.63,.15,.45,.9), min-height .15s cubic-bezier(.63,.15,.45,.9)
+			-webkit-font-smoothing subpixel-antialiased
 
-		li {
-			display inline-block
-		}
-		a {
-			display inline-block
-			width 41px
-			height 41px
-			color #fff
+			.meta {
+				color rgba(255,255,255,.4)
+				display flex
+				line-height 1
+				align-items center
 
-			.icon,
-			[data-icon] {
-				width 41px
-				height 41px
-			}
+				.time,
+				.date {
+					padding-right 5px
+					border-right 1px solid rgba(255,255,255,.4)
+					margin-right 5px
+				}
 
-			&:hover {
-				color brand-secondary
-			}
-		}
-	}
-	.delete-dialog {
-		position absolute
-		top 0
-		left 0
-		right 0
-		bottom 50px
-		padding 92px 42px 0
-		text-align center
-		-webkit-font-smoothing auto
-		display none
-
-		p {
-			margin-bottom 12px
-		}
-		ul {
-			list-style none
-			margin 0
-			padding 0
-			text-align center
-			font-weight 300
-
-			li {
-				display inline-block
-
-				&:first-child:after {
-					content '|\00a0'
-					margin-left 7px
+				a {
+					color: rgba(255,255,255,.4)
+					text-decoration underline
 				}
 			}
+			.title {
+				width 100%
+			}
+
 			a {
+				display inline-block
+				text-align center
+				line-height 17px
+				text-decoration none
 				color #fff
+				position relative
+				top -1px
 
 				&:hover {
 					color brand-secondary
+				}
+			}
+		}
+		.view-progress {
+			display none
+			position absolute
+			top -25px
+			right 12px
+			left 12px
+			height 5px
+			background-color #fff
+
+			&[data-progress="0"] {
+				display none
+			}
+			&[data-progress="1"] {
+				&:before {
+					width 25%
+				}
+				&:after {
+					left 25%
+				}
+			}
+			&[data-progress="2"] {
+				&:before {
+					width 50%
+				}
+				&:after {
+					left 50%
+				}
+			}
+			&[data-progress="3"] {
+				&:before {
+					width 75%
+				}
+				&:after {
+					left 75%
+				}
+			}
+			&:before {
+				content ''
+				position absolute
+				top 0
+				left 0
+				background-color brand-primary
+				height 5px
+				transition width .3s ease-in-out, background-color .3s ease-in-out
+			}
+			&:after {
+				content ''
+				position absolute
+				top -5px
+				left 0
+				height 15px
+				width 15px
+				margin-left -5px
+				background-color brand-primary
+				border-radius 50%
+				transition left .3s ease-in-out, background-color .3s ease-in-out, box-shadow .3s ease-in-out
+			}
+		}
+		.actions-panel {
+			background-color rgba(33,110,216,.84)
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 60px
+			z-index 2
+			color #fff
+			justify-content center
+			display none
+			opacity 1
+
+			.actions-list {
+				list-style none
+				padding 0 45px
+				margin 0
+				width 100%
+				display flex
+				flex-wrap nowrap
+				flex-direction row
+				align-items center
+				justify-content space-around
+				transition opacity .3s ease-in-out
+
+				li {
+					display inline-block
+					width 41px
+					height 41px
+				}
+				a {
+					display inline-block
+					width 41px
+					height 41px
+					color #fff
+
+					.icon,
+					[data-icon] {
+						width 41px
+						height 41px
+					}
+
+					&:hover {
+						color brand-secondary
+					}
+				}
+			}
+		}
+		.delete-dialog {
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 50px
+			padding 92px 42px 0
+			text-align center
+			-webkit-font-smoothing auto
+			display none
+
+			p {
+				margin-bottom 12px
+			}
+			ul {
+				list-style none
+				margin 0
+				padding 0
+				text-align center
+				font-weight 300
+
+				li {
+					display inline-block
+
+					&:first-child:after {
+						content '|\00a0'
+						margin-left 7px
+					}
+				}
+				a {
+					color #fff
+
+					&:hover {
+						color brand-secondary
+					}
 				}
 			}
 		}
