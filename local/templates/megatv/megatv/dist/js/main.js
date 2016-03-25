@@ -58,7 +58,7 @@ Box.Application.addService('icon-loader', function () {
 		},
 		renderSprite: function (path) {
 			var file = (path !== '' && typeof path !== 'undefined') ? path : '/img/sprites/svg_sprite.svg';
-			var revision = 1458893045;
+			var revision = 1458900353;
 			if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {
 				document.createElement('svg');
 				document.createElement('use');
