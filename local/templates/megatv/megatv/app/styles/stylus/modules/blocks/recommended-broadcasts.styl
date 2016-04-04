@@ -1,7 +1,8 @@
 // Broadcast Results
 
+// Устанавливаем минимальную ширину для страницы рекомендуемых записей
 .page-recommendations {
-	min-width 0
+	min-width 320px
 }
 
 .recommended-broadcasts {
@@ -71,19 +72,19 @@
 			overflow hidden
 			width 16.66%
 
-			@media screen and (max-width: 1660px) {
+			@media screen and (max-width: 1660px) and (min-width: 1281px) {
 				height 20%
 				width 20%
 			}
-			@media screen and (max-width: 1280px) {
+			@media screen and (max-width: 1280px) and (min-width: 1025px) {
 				height 25%
 				width 25%
 			}
-			@media screen and (max-width: 1024px) {
+			@media screen and (max-width: 1024px) and (min-width: 769px) {
 				height 33.33%
 				width 33.33%
 			}
-			@media screen and (max-width: 768px) {
+			@media screen and (max-width: 768px) and (min-width: 569px) {
 				height 50%
 				width 50%
 			}

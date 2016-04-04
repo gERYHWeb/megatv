@@ -11,6 +11,11 @@
 		background-color #000
 		clearfix()
 
+		@media screen and (max-width: 440px) {
+			height auto
+			text-align center
+		}
+
 		.footer-logo {
 			display block
 			float left
@@ -20,6 +25,11 @@
 			background-repeat no-repeat
 			background-position center
 			background-size 100%
+
+			@media screen and (max-width: 440px) {
+				margin 0 auto
+				float none
+			}
 		}
 		.copyrights {
 			float right
@@ -30,6 +40,10 @@
 			-webkit-font-smoothing subpixel-antialiased
 			-moz-osx-font-smoothing auto
 
+			@media screen and (max-width: 440px) {
+				float none
+			}
+
 			a {
 				display inline-block
 				text-decoration none
@@ -39,6 +53,29 @@
 				&:hover {
 					border-bottom-color transparent
 				}
+			}
+		}
+	}
+}
+
+
+.page-recommendations .site-footer,
+.page-records .site-footer {
+	.footer-content {
+		@media screen and (max-width: 440px) {
+			height auto
+			text-align center
+		}
+
+		.footer-logo {
+			@media screen and (max-width: 440px) {
+				margin 0 auto
+				float none
+			}
+		}
+		.copyrights {
+			@media screen and (max-width: 440px) {
+				float none
 			}
 		}
 	}

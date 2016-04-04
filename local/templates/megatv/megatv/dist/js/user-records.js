@@ -1415,13 +1415,13 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 			} else {
 				$(moduleEl)
 					.addClass('is-all-categories')
-					.css('height', heightCategories+'px')
+					.css('height', heightCategories+'px');
 			}
 		}
 	}
 
 	function filterBroadcasts(category) {
-		var broadcasts = list.find('.broadcasts-list .item');
+		var broadcasts = $('.broadcasts-list .item');
 
 		broadcasts.removeClass('is-hidden');
 
@@ -1437,17 +1437,23 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	}
 
 	function state() {
-		if (list.outerHeight() <= height) {
-			$(moduleEl)
-				.addClass('is-not-collapsing')
-				.removeClass('is-all-categories')
-				.css('height', height+'px');
-		} else {
-			$(moduleEl).removeClass('is-not-collapsing');
+		var heightCategories = list.outerHeight();
+
+		if ( $(moduleEl).is('.is-all-categories') ) {
+			$(moduleEl).css('height', heightCategories+'px');
+
+			if (list.outerHeight() <= height) {
+				$(moduleEl)
+					.addClass('is-not-collapsing')
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl).removeClass('is-not-collapsing');
+			}
 		}
 	}
 
-	$( window ).resize(function(event) {
+	$(window).resize(function(event) {
 		state();
 	});
 
