@@ -10,7 +10,7 @@
 
 		<link rel="stylesheet" href="css/main.css">
 	</head>
-	<body>
+	<body class="page-records">
 		<div class="site-wrapper" data-module="page">
 			<script type="text/x-config">
 				{
@@ -113,127 +113,150 @@
 			</header>
 
 			<main class="site-content">
-				<div class="user-recorded-broadcasts-categories" data-module="user-recorded-broadcasts-categories">
+				<div class="broadcasts-categories" data-module="broadcasts-categories">
 					<script type="text/x-config">
 						{
 							"url": "/server/"
 						}
 					</script>
 					<div class="items">
+						<!-- Данный пункт отображается всегда -->
 						<a href="#" class="item active" data-type="item" data-category="all">
 							Все
 						</a>
-						<a href="#" class="item" data-type="item" data-category="detective">
-							Детективы
+
+						<!-- Ниже отображаются только те категории, записи которых есть на данной странице -->
+						<a href="#" class="item" data-type="item" data-category="tv-show">
+							ТВ-шоу
 						</a>
-						<a href="#" class="item" data-type="item" data-category="hockey">
-							Хоккей
+						<a href="#" class="item" data-type="item" data-category="tv-series">
+							Сериалы
 						</a>
-						<a href="#" class="item" data-type="item" data-category="football">
-							Футбол
-						</a>
-						<a href="#" class="item" data-type="item" data-category="russian-films">
-							Наше кино
-						</a>
-						<a href="#" class="item" data-type="item" data-category="foreign-films">
-							Зарубежные фильмы
-						</a>
-						<a href="#" class="item" data-type="item" data-category="melodrama">
-							Мелодрамы
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Мультики
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Cartoons
-						</a>
-						<a href="#" class="item" data-type="item" data-category="melodrama">
-							Мелодрамы
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Мультики
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Cartoons
-						</a>
-						<a href="#" class="item" data-type="item" data-category="melodrama">
-							Мелодрамы
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Мультики
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Cartoons
-						</a>
-						<a href="#" class="item" data-type="item" data-category="melodrama">
-							Мелодрамы
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Мультики
-						</a>
-						<a href="#" class="item" data-type="item" data-category="cartoons">
-							Cartoons
+						<a href="#" class="item" data-type="item" data-category="movies">
+							Художественные фильмы
 						</a>
 
-						<a href="#" class="item" data-type="item" data-category="music">
-							Музыка
+						<!-- список существующих категорий с релевантными человеко-читаемыми названиями -->
+						<!--
+						<a href="#" class="item" data-type="item" data-category="movies">
+							Художественные фильмы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="tv-series">
+							Сериалы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="cartoons">
+							Мультфильмы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="cartoons2">
+							Мультсериалы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="documentary-films">
+							Документальные фильмы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="documentary-series">
+							Документальные сериалы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="other">
+							Другое
 						</a>
 						<a href="#" class="item" data-type="item" data-category="news">
 							Новости
 						</a>
-						<a href="#" class="item" data-type="item" data-category="religion">
-							Религия
-						</a>
-						<a href="#" class="item" data-type="item" data-category="nature">
-							Природа
-						</a>
-						<a href="#" class="item" data-type="item" data-category="teleshops">
-							Телемагазины
-						</a>
-						<a href="#" class="item" data-type="item" data-category="fashion">
-							Мода
-						</a>
-						<a href="#" class="item" data-type="item" data-category="auto">
-							Авто
-						</a>
-						<a href="#" class="item" data-type="item" data-category="science-education">
-							Наука и образование
-						</a>
-						<a href="#" class="item" data-type="item" data-category="business">
-							Бизнес
-						</a>
-						<a href="#" class="item" data-type="item" data-category="films">
-							Кино
+						<a href="#" class="item" data-type="item" data-category="sport">
+							Спорт
 						</a>
 						<a href="#" class="item" data-type="item" data-category="music">
 							Музыка
 						</a>
+						<a href="#" class="item" data-type="item" data-category="talk-show">
+							Ток-шоу
+						</a>
+						<a href="#" class="item" data-type="item" data-category="humor">
+							Юмор
+						</a>
+						<a href="#" class="item" data-type="item" data-category="cognitive">
+							Познавательное
+						</a>
+						<a href="#" class="item" data-type="item" data-category="gaming">
+							Игровые
+						</a>
+						<a href="#" class="item" data-type="item" data-category="telemarket">
+							Телемагазин
+						</a>
+						<a href="#" class="item" data-type="item" data-category="ballet">
+							Балет
+						</a>
+						<a href="#" class="item" data-type="item" data-category="reality-show">
+							Реалити-шоу
+						</a>
+						<a href="#" class="item" data-type="item" data-category="performance">
+							Спектакль
+						</a>
+						<a href="#" class="item" data-type="item" data-category="tv-show">
+							ТВ-шоу
+						</a>
+						<a href="#" class="item" data-type="item" data-category="leisure-hobby">
+							Досуг, хобби
+						</a>
+						<a href="#" class="item" data-type="item" data-category="adult">
+							Для взрослых
+						</a>
+						-->
+
+						<!-- TEMP Категории ниже для демонстрации разворачивания категорий -->
+						<a href="#" class="item" data-type="item" data-category="cartoons">
+							Мультфильмы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="cartoons2">
+							Мультсериалы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="documentary-films">
+							Документальные фильмы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="documentary-series">
+							Документальные сериалы
+						</a>
+						<a href="#" class="item" data-type="item" data-category="other">
+							Другое
+						</a>
 						<a href="#" class="item" data-type="item" data-category="news">
 							Новости
 						</a>
-						<a href="#" class="item" data-type="item" data-category="religion">
-							Религия
+						<a href="#" class="item" data-type="item" data-category="sport">
+							Спорт
 						</a>
-						<a href="#" class="item" data-type="item" data-category="nature">
-							Природа
+						<a href="#" class="item" data-type="item" data-category="music">
+							Музыка
 						</a>
-						<a href="#" class="item" data-type="item" data-category="teleshops">
-							Телемагазины
+						<a href="#" class="item" data-type="item" data-category="humor">
+							Юмор
 						</a>
-						<a href="#" class="item" data-type="item" data-category="fashion">
-							Мода
+						<a href="#" class="item" data-type="item" data-category="cognitive">
+							Познавательное
 						</a>
-						<a href="#" class="item" data-type="item" data-category="auto">
-							Авто
+						<a href="#" class="item" data-type="item" data-category="gaming">
+							Игровые
 						</a>
-						<a href="#" class="item" data-type="item" data-category="science-education">
-							Наука и образование
+						<a href="#" class="item" data-type="item" data-category="telemarket">
+							Телемагазин
 						</a>
-						<a href="#" class="item" data-type="item" data-category="business">
-							Бизнес
+						<a href="#" class="item" data-type="item" data-category="ballet">
+							Балет
 						</a>
-						<a href="#" class="item" data-type="item" data-category="films">
-							Кино
+						<a href="#" class="item" data-type="item" data-category="reality-show">
+							Реалити-шоу
+						</a>
+						<a href="#" class="item" data-type="item" data-category="performance">
+							Спектакль
+						</a>
+						<a href="#" class="item" data-type="item" data-category="tv-show">
+							ТВ-шоу
+						</a>
+						<a href="#" class="item" data-type="item" data-category="leisure-hobby">
+							Досуг, хобби
+						</a>
+						<a href="#" class="item" data-type="item" data-category="adult">
+							Для взрослых
 						</a>
 					</div>
 					<div class="more" data-type="more">
@@ -244,14 +267,14 @@
 					</div>
 				</div>
 
-				<section class="user-recorded-broadcasts" data-module="user-recorded-broadcasts">
+				<section class="broadcasts" data-module="user-recorded-broadcasts">
 					<script type="text/x-config">
 						{
 							"url": "/server/"
 						}
 					</script>
 					<div class="broadcasts-list">
-					<div class="item status-viewed" data-broadcast-id="01" data-category="detective">
+						<div class="item status-viewed" data-broadcast-id="01" data-category="tv-show">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-68.jpg)"></div>
 								<span class="item-status-icon">
@@ -260,9 +283,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -277,7 +300,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">детектив</a></div>
+										<div class="category"><a href="#" data-type="category">ТВ-шоу</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Пусть говорят</a>
@@ -294,9 +317,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -311,7 +334,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">тв-шоу</a></div>
+										<div class="category"><a href="#" data-type="category">ТВ-шоу</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Вечерний ургант</a>
@@ -319,7 +342,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="item status-viewed" data-broadcast-id="01" data-category="melodrama">
+						<div class="item status-viewed" data-broadcast-id="01" data-category="tv-series">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-44.jpg)"></div>
 								<span class="item-status-icon">
@@ -328,9 +351,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -345,7 +368,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">сериал</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Унесенные ветром</a>
@@ -362,9 +385,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -379,7 +402,7 @@
 									<div class="meta">
 										<div class="time">15:00</div>
 										<div class="date">16.12.2015</div>
-										<div class="category"><a href="#">сериал</a></div>
+										<div class="category"><a href="#" data-type="category">сериал</a></div>
 									</div>
 									<div class="title">
 										<a href="#">В диких условиях</a>
@@ -387,14 +410,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="melodrama">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-46.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -408,7 +431,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Реальная любовь</a>
@@ -421,9 +444,9 @@
 								<div class="item-image-holder" style="background-image: url(img/temp/image-47.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -437,7 +460,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Игра</a>
@@ -454,9 +477,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -471,7 +494,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">детектив</a></div>
+										<div class="category"><a href="#" data-type="category">детектив</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Куда приводят мечтым</a>
@@ -479,7 +502,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="item status-viewed" data-broadcast-id="01" data-category="detective">
+						<div class="item status-viewed" data-broadcast-id="01" data-category="tv-show">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-68.jpg)"></div>
 								<span class="item-status-icon">
@@ -488,9 +511,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -505,7 +528,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">детектив</a></div>
+										<div class="category"><a href="#" data-type="category">ТВ-шоу</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Пусть говорят</a>
@@ -522,9 +545,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -539,7 +562,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">детектив</a></div>
+										<div class="category"><a href="#" data-type="category">детектив</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Вечерний ургант</a>
@@ -547,14 +570,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="melodrama">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-68.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -568,7 +591,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Унесенные ветром</a>
@@ -581,9 +604,9 @@
 								<div class="item-image-holder" style="background-image: url(img/temp/image-45.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -597,7 +620,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">сериал</a></div>
+										<div class="category"><a href="#" data-type="category">сериал</a></div>
 									</div>
 									<div class="title">
 										<a href="#">В диких условиях</a>
@@ -605,14 +628,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="melodrama">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-46.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -626,7 +649,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Реальная любовь</a>
@@ -643,9 +666,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -660,7 +683,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">детектив</a></div>
+										<div class="category"><a href="#" data-type="category">детектив</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Игра</a>
@@ -677,9 +700,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -694,7 +717,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">детектив</a></div>
+										<div class="category"><a href="#" data-type="category">детектив</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Куда приводят мечтым</a>
@@ -702,7 +725,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="item status-viewed" data-broadcast-id="01" data-category="tv-series">
+						<div class="item status-viewed" data-broadcast-id="01" data-category="tv-show">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-17.jpg)"></div>
 								<span class="item-status-icon">
@@ -711,9 +734,9 @@
 								</span>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -728,7 +751,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">тв-шоу</a></div>
+										<div class="category"><a href="#" data-type="category">ТВ-шоу</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Наедине со всеми</a>
@@ -736,14 +759,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="melodrama">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-18.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -757,7 +780,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Познер</a>
@@ -765,14 +788,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-49.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -786,7 +809,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Невероятная жизнь Уолтера Митти</a>
@@ -794,14 +817,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-50.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -815,7 +838,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Зеленая миля</a>
@@ -823,14 +846,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-51.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -844,7 +867,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Клуб «Завтрак»</a>
@@ -852,14 +875,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-52.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -873,7 +896,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Побег из Шоушенка</a>
@@ -881,14 +904,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-53.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -902,7 +925,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Тонкая красная линия</a>
@@ -910,14 +933,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="tv-series">
+						<div class="item" data-broadcast-id="01" data-category="tv-show">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-17.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -931,7 +954,7 @@
 									<div class="meta">
 										<div class="time">12:00</div>
 										<div class="date">12.12.2015</div>
-										<div class="category"><a href="#">тв-шоу</a></div>
+										<div class="category"><a href="#" data-type="category">ТВ-шоу</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Наедине со всеми</a>
@@ -939,14 +962,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="melodrama">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-18.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -960,7 +983,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">мелодрама</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Познер</a>
@@ -968,14 +991,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-49.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -989,7 +1012,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Невероятная жизнь Уолтера Митти</a>
@@ -997,14 +1020,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-50.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -1018,7 +1041,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Зеленая миля</a>
@@ -1026,14 +1049,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-51.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -1047,7 +1070,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Клуб «Завтрак»</a>
@@ -1055,14 +1078,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-52.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -1076,7 +1099,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Побег из Шоушенка</a>
@@ -1084,14 +1107,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="item" data-broadcast-id="01" data-category="films">
+						<div class="item" data-broadcast-id="01" data-category="movies">
 							<div class="inner">
 								<div class="item-image-holder" style="background-image: url(img/temp/image-53.jpg)"></div>
 								<div class="actions-panel">
 									<ul class="actions-list">
-										<li><a href="#" data-type="delete-trigger"><span data-icon="icon-trash-action"></span></a></li>
-										<li><a href="#" data-type="share-trigger"><span data-icon="icon-network-action"></span></a></li>
-										<li><a href="#" data-type="player-trigger"><span data-icon="icon-play-action"></span></a></li>
+										<li><a href="#" data-type="delete-trigger" title="Удалить"><span data-icon="icon-trash-action"></span></a></li>
+										<li><a href="#" data-type="share-trigger" title="Поделиться"><span data-icon="icon-network-action"></span></a></li>
+										<li><a href="#" data-type="player-trigger" title="Просмотреть"><span data-icon="icon-play-action"></span></a></li>
 									</ul>
 									<div class="delete-dialog">
 										<p>Вы уверены, что хотите удалить данную передачу навсегда?</p>
@@ -1105,7 +1128,7 @@
 									<div class="meta">
 										<div class="time">22:30</div>
 										<div class="date">15.12.2015</div>
-										<div class="category"><a href="#">кино</a></div>
+										<div class="category"><a href="#" data-type="category">х/ф</a></div>
 									</div>
 									<div class="title">
 										<a href="#">Тонкая красная линия</a>

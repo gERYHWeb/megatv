@@ -1,0 +1,97 @@
+//
+// Banners
+// -------------------------------------------------- //
+
+.fullsize-banner {
+  position relative
+  height 80px
+  max-height 80px
+  width 100%
+  display flex
+  flex-wrap nowrap
+  flex-direction row
+  justify-content center
+  overflow hidden
+
+  a:not(.close-link),
+  .banner-content {
+    display inline-block
+  }
+  .close-link {
+    position absolute
+    right 50px
+    top 0
+    display inline-block
+    color #86878b
+    font-size 12px
+    line-height 22px
+    height 23px
+    border-style solid
+    border-color #2f3136
+    border-width 0 1px 1px
+    background-color #090c10
+    border-bottom-radius 4px
+    text-decoration none
+    padding 0 12px
+
+    &:hover {
+      color mix(#86878b, #fff, 50%);
+      border-color mix(#090c10, #fff, 70%)
+    }
+  }
+
+  &.hide {
+    display none
+  }
+
+  &.holder-banner {
+    position relative
+    background-color #000
+    height 181px
+    max-height 181px
+
+    > a {
+      position relative
+      display block
+      width 100%
+      text-align center
+      font-size 3rem
+      color #fff
+      font-weight 900
+      text-decoration none
+      z-index 2
+      text-transform uppercase
+      padding 75px 0
+      line-height 1
+    }
+    &:before {
+      position absolute
+      content ''
+      left 0
+      right 0
+      display block
+      width 100%
+      height 181px
+      z-index 1
+      opacity .3
+      background url(../img/static/holder-banner.jpg) left center repeat-x;
+    }
+  }
+}
+
+.adv-styling-01 {
+  background url(../img/static/fullsize-banner-bg.jpg) center repeat-y #0d1014;
+}
+.adv-styling-02 {
+  background-color #FFF
+  border-top 1px solid #d7d7d7
+  border-bottom 1px solid #d7d7d7
+}
+.adv-styling-03 {
+  height 104px
+  max-height 104px
+
+  .banner-content {
+    padding 7px 0
+  }
+}

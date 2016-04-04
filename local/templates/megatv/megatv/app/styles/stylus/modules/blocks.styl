@@ -2,10 +2,15 @@
 // Blocks
 // -------------------------------------------------- //
 
-
+// Общий список записей. Используется сейчас на главной странице.
 @import "blocks/broadcast-results";
 
-// Recomended Broadcasts
+// Страница "Рекомендации"
+@import "blocks/recommended-broadcasts";
+
+
+
+// Recomended Broadcasts (Old)
 
 .recomended-broadcasts {
 	> .block-header {
@@ -3006,13 +3011,21 @@
 
 // User recorded broadcasts categories
 
-.user-recorded-broadcasts-categories {
+.broadcasts-categories {
 	background-color #f6f6f6
 	overflow hidden
 	height 60px
 	position relative
 	transition height .2s ease-in-out
 
+	&.is-not-collapsing {
+		.items {
+			padding-right 0
+		}
+		.more {
+			display none
+		}
+	}
 	&.is-all-categories {
 		.more {
 			[class~="icon"] {
@@ -3091,7 +3104,7 @@
 
 // User recorded broadcasts
 
-.user-recorded-broadcasts {
+.broadcasts {
 	&.is-single-line {
 		> .block-body {
 			height 300px
@@ -3136,7 +3149,11 @@
 			width 20%
 		}
 
-		&.hover {
+		&.hover,
+		&:hover {
+			.inner:before {
+				background-color rgba(33,110,216,.84)
+			}
 			.actions-panel {
 				display flex
 				animation .3s actionsPanelAnimation cubic-bezier(.63,.15,.45,.9)
@@ -3163,20 +3180,20 @@
 			}
 		}
 		&.status-viewed {
-			.inner:before {
-				content ''
-				position absolute
-				top 0
-				right 0
-				left 0
-				bottom 0
-				background-color rgba(0,0,0,.5)
-				z-index 2
+			.inner {
+				&:before {
+					background-color rgba(0,0,0,.5)
+				}
 			}
 			.item-image-holder {
 				filter grayscale(100%)
 			}
 
+			&:hover {
+				.item-status-icon {
+					opacity 0
+				}
+			}
 			&.is-noimage {
 				background-color #c8c8c8
 			}
@@ -3191,14 +3208,157 @@
 				animation .3s deleteDialogAnimation cubic-bezier(.63,.15,.45,.9)
 			}
 		}
+		&.status-recordable {
+			background-color #122643
 
+			.item-status-icon {
+				cursor pointer
+				display none
+				animation statusIconAnimation .3s cubic-bezier(.39,1.31,.28,1)
+			}
+			&:hover {
+				.item-status-icon {
+					display flex
+
+					&:hover {
+						color brand-secondary
+					}
+				}
+				// .item-image-holder {
+				// 	opacity .35
+				// }
+				// .item-header {
+				// 	background-color transparent
+				// }
+				&.is-noimage {
+					.item-header {
+						transform translateY(0) !important
+					}
+				}
+			}
+			&.is-noimage {
+				background-color #10458f
+
+				.item-header {
+					transform translateY(-119px)
+					justify-content center
+					background-color transparent
+				}
+			}
+		}
+		&.status-recorded {
+			background-color #e03e29
+
+			.item-image-holder {
+					opacity .3
+			}
+			.item-header {
+				background-color transparent
+
+				time {
+					color #fff
+				}
+			}
+			.item-status-icon {
+				cursor pointer
+
+				&:hover {
+					color brand-secondary
+				}
+			}
+			&.is-noimage {
+				background-color #e44424
+			}
+		}
+		&.status-recording {
+			background-color #246cd8
+
+			.item-image-holder {
+				opacity .5
+			}
+			.item-header {
+				background-color transparent
+
+				time {
+					color #fff
+				}
+			}
+			&.is-noimage {
+				background-color #094b99
+
+				time {
+					color rgba(255,255,255,.4)
+				}
+			}
+		}
+		&.recording-in-progress {
+			.item-status-icon {
+				display none
+			}
+			.item-image-holder {
+				opacity .35
+			}
+			.item-header a {
+				text-decoration none
+			}
+			.recording-notify {
+				animation .3s broadcastNotifyAnimation cubic-bezier(.63,.15,.45,.9)
+				animation-fill-mode forwards
+			}
+			.recording-notify-text-wrap {
+				animation .3s broadcastNotifyTextWrapAnimation cubic-bezier(.63,.15,.45,.9)
+			}
+		}
+		&.extend-drive-required {
+			.item-status-icon {
+				display none !important
+			}
+			.item-image-holder {
+				opacity .35
+			}
+			.item-header a {
+				text-decoration none
+			}
+			.extend-drive-notify {
+				animation .3s broadcastNotifyAnimation cubic-bezier(.63,.15,.45,.9)
+				animation-fill-mode forwards
+			}
+			.extend-drive-notify-text-wrap {
+				animation .3s broadcastNotifyTextWrapAnimation cubic-bezier(.63,.15,.45,.9)
+
+				.icon {
+					width 74px
+					height 74px
+					margin-bottom 20px
+
+					@media (max-width: 1400px) {
+						width 46px
+						height 46px
+						margin-bottom 6px
+					}
+				}
+			}
+		}
 		&.is-hidden {
 			display none
 		}
 
 		.inner {
 			padding-bottom 100%
+			position relative
 			width 100%
+
+			&:before {
+				content ''
+				position absolute
+				top 0
+				left 0
+				right 0
+				bottom 60px
+				z-index 2
+
+				transition background-color .15s ease-in-out
+			}
 		}
 
 		.item-image-holder {
@@ -3236,7 +3396,7 @@
 			flex-direction column
 			justify-content center
 			align-items center
-			z-index 2
+			z-index 3
 			transition opacity .3s ease-in-out, color .3s ease-in-out
 
 			// @media (max-width: 1400px) {
@@ -3262,7 +3422,7 @@
 			right 0
 			align-items center
 			padding 8px 20px
-			z-index 2
+			z-index 3
 			transition background-color .15s cubic-bezier(.63,.15,.45,.9), min-height .15s cubic-bezier(.63,.15,.45,.9)
 			-webkit-font-smoothing subpixel-antialiased
 
@@ -3360,14 +3520,89 @@
 				transition left .3s ease-in-out, background-color .3s ease-in-out, box-shadow .3s ease-in-out
 			}
 		}
+		.recording-notify {
+			background-color rgba(33,110,216,0.76)
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+			z-index 4
+			color #fff
+			display flex
+			flex-direction row
+			justify-content center
+			align-items center
+			opacity 0
+			animation .3s broadcastNotifyHideAnimation cubic-bezier(.63,.15,.45,.9)
+			animation-fill-mode forwards
+
+			.recording-notify-text-wrap {
+				text-align center
+				font-weight bold
+				animation .3s broadcastNotifyTextWrapHideAnimation cubic-bezier(.63,.15,.45,.9)
+				animation-fill-mode forwards
+
+				p {
+					margin-bottom 0
+				}
+			}
+		}
+		.extend-drive-notify {
+			background-color rgba(11,50,105,.95)
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+			z-index 5
+			color #fff
+			display flex
+			flex-direction row
+			justify-content center
+			align-items center
+			opacity 0
+			animation .3s broadcastNotifyHideAnimation cubic-bezier(.63,.15,.45,.9)
+			animation-fill-mode forwards
+
+			.extend-drive-notify-text-wrap {
+				text-align center
+				animation .3s broadcastNotifyTextWrapHideAnimation cubic-bezier(.63,.15,.45,.9)
+				animation-fill-mode forwards
+
+				.icon {
+					color brand-secondary
+					width 74px
+					height 74px
+					margin-bottom 20px
+
+					@media (max-width: 1400px) {
+						width 46px
+						height 46px
+						margin-bottom 6px
+					}
+				}
+				a {
+					color #fff
+
+					&:hover {
+						color brand-secondary
+					}
+				}
+				p:last-child {
+					margin-bottom 0
+				}
+			}
+		}
+
 		.actions-panel {
-			background-color rgba(33,110,216,.84)
+			// background-color rgba(33,110,216,.84)
 			position absolute
 			top 0
 			left 0
 			right 0
 			bottom 60px
-			z-index 2
+			z-index 3
 			color #fff
 			justify-content center
 			display none

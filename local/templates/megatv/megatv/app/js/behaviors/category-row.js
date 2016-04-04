@@ -20,7 +20,7 @@ Box.Application.addBehavior('category-row', function (context) {
 			moduleEl = context.getElement();
 			listItems = $(moduleEl).find('.categories-items');
 
-			listItems.on('mouseenter', '.category-row', function () {
+			listItems.on('mouseenter', '.category-row', function (event) {
 				day = $(event.target).closest('.day');
 
 				if ($(this).length) {

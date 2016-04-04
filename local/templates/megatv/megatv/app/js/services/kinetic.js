@@ -15,7 +15,9 @@ Box.Application.addService('kinetic', function () {
 			this.settings.scrollLeft = movingPos;
 			setTimeout(function () {
 				$(window).trigger('scroll'); // hack for jquery.lazyLoadXT
-				$scroller.removeClass('kinetic-moving');
+				setTimeout(function() {
+					$scroller.removeClass('kinetic-moving');
+				}, 100);
 			}, 800);
 		}
 	};

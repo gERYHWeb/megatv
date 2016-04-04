@@ -58,7 +58,7 @@ Box.Application.addService('icon-loader', function () {
 		},
 		renderSprite: function (path) {
 			var file = (path !== '' && typeof path !== 'undefined') ? path : '/img/sprites/svg_sprite.svg';
-			var revision = 1458900353;
+			var revision = 1459513283;
 			if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {
 				document.createElement('svg');
 				document.createElement('use');
@@ -122,7 +122,9 @@ Box.Application.addService('kinetic', function () {
 			this.settings.scrollLeft = movingPos;
 			setTimeout(function () {
 				$(window).trigger('scroll'); // hack for jquery.lazyLoadXT
-				$scroller.removeClass('kinetic-moving');
+				setTimeout(function() {
+					$scroller.removeClass('kinetic-moving');
+				}, 100);
 			}, 800);
 		}
 	};
@@ -838,7 +840,7 @@ Box.Application.addBehavior('category-row', function (context) {
 			moduleEl = context.getElement();
 			listItems = $(moduleEl).find('.categories-items');
 
-			listItems.on('mouseenter', '.category-row', function () {
+			listItems.on('mouseenter', '.category-row', function (event) {
 				day = $(event.target).closest('.day');
 
 				if ($(this).length) {
@@ -1661,6 +1663,101 @@ Box.Application.addModule('search-form', function (context) {
 	};
 });
 
+
+/* global Box, alert */
+Box.Application.addModule('broadcasts-categories', function (context) {
+	'use strict';
+
+	// --------------------------------------------------------------------------
+	// Private
+	// --------------------------------------------------------------------------
+	var $ = context.getGlobal('jQuery');
+	var moduleEl;
+	var list;
+	var items;
+	var height;
+
+	function toggleCategories() {
+		var heightCategories = list.outerHeight();
+
+		if ( !$(moduleEl).is('.is-not-collapsing') ) {
+			if ( $(moduleEl).is('.is-all-categories') ) {
+				$(moduleEl)
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl)
+					.addClass('is-all-categories')
+					.css('height', heightCategories+'px')
+			}
+		}
+	}
+
+	function filterBroadcasts(category) {
+		var broadcasts = list.find('.broadcasts-list .item');
+
+		broadcasts.removeClass('is-hidden');
+
+		if (category != 'all') {
+			broadcasts.each(function(index, el) {
+				var el = $(this);
+
+				if ( el.data('category') != category ) {
+					el.addClass('is-hidden');
+				}
+			});
+		}
+	}
+
+	function state() {
+		if (list.outerHeight() <= height) {
+			$(moduleEl)
+				.addClass('is-not-collapsing')
+				.removeClass('is-all-categories')
+				.css('height', height+'px');
+		} else {
+			$(moduleEl).removeClass('is-not-collapsing');
+		}
+	}
+
+	$( window ).resize(function(event) {
+		state();
+	});
+
+
+	// --------------------------------------------------------------------------
+	// Public
+	// --------------------------------------------------------------------------
+
+	return {
+
+		init: function () {
+			moduleEl = context.getElement();
+			list = $(moduleEl).find('.items');
+			items = $(moduleEl).find('.item');
+			height = 60;
+
+			state();
+		},
+		destroy: function () {
+			moduleEl = null;
+			list = null;
+			items = null;
+		},
+		onclick: function (event, element, elementType) {
+			var $item = $(event.target);
+			var broadcastCategory = $item.data('category');
+
+			if (elementType === 'more') {
+				toggleCategories();
+			} else if (elementType === 'item') {
+				items.removeClass('active');
+				$(element).addClass('active');
+				filterBroadcasts(broadcastCategory);
+			}
+		}
+	};
+});
 
 /* global Box, setTimout */
 Box.Application.addModule('broadcast-results', function (context) {

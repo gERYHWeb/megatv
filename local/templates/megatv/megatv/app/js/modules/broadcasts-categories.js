@@ -1,5 +1,5 @@
 /* global Box, alert */
-Box.Application.addModule('user-recorded-broadcasts-categories', function (context) {
+Box.Application.addModule('broadcasts-categories', function (context) {
 	'use strict';
 
 	// --------------------------------------------------------------------------
@@ -9,28 +9,31 @@ Box.Application.addModule('user-recorded-broadcasts-categories', function (conte
 	var moduleEl;
 	var list;
 	var items;
+	var height;
 
 	function toggleCategories() {
-		var heightCategories = $(list).outerHeight();
+		var heightCategories = list.outerHeight();
 
-		if ( $(moduleEl).hasClass('is-all-categories') ) {
-			$(moduleEl)
-				.removeClass('is-all-categories')
-				.css('height', '60px');
-		} else {
-			$(moduleEl)
-				.addClass('is-all-categories')
-				.css('height', heightCategories+'px')
+		if ( !$(moduleEl).is('.is-not-collapsing') ) {
+			if ( $(moduleEl).is('.is-all-categories') ) {
+				$(moduleEl)
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl)
+					.addClass('is-all-categories')
+					.css('height', heightCategories+'px')
+			}
 		}
 	}
 
 	function filterBroadcasts(category) {
-		var allBroadcasts = $('.user-recorded-broadcasts .item');
+		var broadcasts = list.find('.broadcasts-list .item');
 
-		allBroadcasts.removeClass('is-hidden');
+		broadcasts.removeClass('is-hidden');
 
 		if (category != 'all') {
-			$('.user-recorded-broadcasts .item').each(function(index, el) {
+			broadcasts.each(function(index, el) {
 				var el = $(this);
 
 				if ( el.data('category') != category ) {
@@ -39,6 +42,21 @@ Box.Application.addModule('user-recorded-broadcasts-categories', function (conte
 			});
 		}
 	}
+
+	function state() {
+		if (list.outerHeight() <= height) {
+			$(moduleEl)
+				.addClass('is-not-collapsing')
+				.removeClass('is-all-categories')
+				.css('height', height+'px');
+		} else {
+			$(moduleEl).removeClass('is-not-collapsing');
+		}
+	}
+
+	$( window ).resize(function(event) {
+		state();
+	});
 
 
 	// --------------------------------------------------------------------------
@@ -51,6 +69,9 @@ Box.Application.addModule('user-recorded-broadcasts-categories', function (conte
 			moduleEl = context.getElement();
 			list = $(moduleEl).find('.items');
 			items = $(moduleEl).find('.item');
+			height = 60;
+
+			state();
 		},
 		destroy: function () {
 			moduleEl = null;

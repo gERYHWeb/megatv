@@ -96,7 +96,8 @@
 		left 271px
 		right 0
 		bottom 0
-		cursor grab
+		cursor url(../img/static/icon-arrows.png), grab
+		// cursor grab
 		will-change scroll-position
 		touch-action pan-x
 
@@ -104,7 +105,7 @@
 			left 225px
 		}
 		&.kinetic-moving {
-			cursor grabbing
+			// cursor grabbing
 		}
 	}
 	.canvas-wrap {
@@ -298,7 +299,7 @@
 		}
 	}
 	// Hover states
-	.categories-items:not(.kinetic-moving) {
+	.categories-items { // :not(.kinetic-moving)
 		.item {
 			&:hover {
 				.item-header a {

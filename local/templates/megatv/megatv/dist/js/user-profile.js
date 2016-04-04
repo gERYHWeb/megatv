@@ -58,7 +58,7 @@ Box.Application.addService('icon-loader', function () {
 		},
 		renderSprite: function (path) {
 			var file = (path !== '' && typeof path !== 'undefined') ? path : '/img/sprites/svg_sprite.svg';
-			var revision = 1458900353;
+			var revision = 1459513283;
 			if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {
 				document.createElement('svg');
 				document.createElement('use');
@@ -122,7 +122,9 @@ Box.Application.addService('kinetic', function () {
 			this.settings.scrollLeft = movingPos;
 			setTimeout(function () {
 				$(window).trigger('scroll'); // hack for jquery.lazyLoadXT
-				$scroller.removeClass('kinetic-moving');
+				setTimeout(function() {
+					$scroller.removeClass('kinetic-moving');
+				}, 100);
 			}, 800);
 		}
 	};
