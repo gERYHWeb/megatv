@@ -130,7 +130,7 @@ gulp.task('serve', ['styles', 'fonts'], function () {
 	]).on('change', reload);
 
 	gulp.watch('app/styles/**/*.styl', ['styles']);
-	gulp.watch('app/img/sprites/svg/*.svg', ['make-svg-sprite']);
+	gulp.watch('app/img/sprites/svg/**/*.svg', ['make-svg-sprite']);
 	gulp.watch('app/fonts/**/*', ['fonts']);
 	//gulp.watch('bower.json', ['wiredep', 'fonts']);
 });

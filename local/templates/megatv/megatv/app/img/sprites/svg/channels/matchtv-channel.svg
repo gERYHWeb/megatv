@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1"
-	 id="svg2" xmlns:cc="http://creativecommons.org/ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-179 112.5 600 337.5"
-	 style="enable-background:new -179 112.5 600 337.5;" xml:space="preserve">
-<desc  id="desc4">Created with graphing.ru and Raphael</desc>
-<g id="g3828" transform="matrix(0.4084862,0,0,0.4084862,54.358791,167.07901)">
-</g>
-<path id="rect3034" d="M82.7,244.1l-21.5,34.7v-34.7H38.2l-15.6,20.7L6.7,244.2v-0.1H6.6h-23v73.3H6.7v-39.1l15.8,20.6l15.6-20.3
-	v38.8h23.6l9.6-15.5h24.4v15.5h23.1v-52.4h12.3v52.4h23.1v-52.4h11.6v30.3v6.7h35.3v15.4h23.1v-73.3h-23.1v37h-12.3v-37H82.7z
-	 M233.6,244.1v44.8l23.1-13.9v-30.9H233.6z M95.7,262.6v18.5H84.3L95.7,262.6z"/>
-<g>
-	<polygon points="247.5,304.2 249,304.2 249.5,303.7 249.5,300.9 247.5,300.9 	"/>
-	<path d="M245,291.8c-7.4,0-13.4,6-13.4,13.4s6,13.4,13.4,13.4c7.4,0,13.4-6,13.4-13.4S252.4,291.8,245,291.8z M244.8,300.9h-2v10.2
-		H241v-10.2h-2v-1.6h5.8V300.9z M251.3,304.1l-1,1l1,1v4.5l-0.5,0.5h-5.1v-11.7h5.1l0.5,0.5V304.1z"/>
-	<polygon points="247.5,305.8 247.5,309.4 249.5,309.4 249.5,306.4 249,305.8 	"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<?xml-stylesheet href="matchtv-channel.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="96.18mm" height="26.075mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 9618 2608"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="g3828">
+  </g>
+  <path id="rect3034" class="fil0" d="M3469 0l-753 1215 0 -1215 -805 0 -546 725 -556 -721 0 -4 -4 0 -805 0 0 2566 809 0 0 -1369 553 721 546 -710 0 1358 826 0 336 -543 854 0 0 543 808 0 0 -1834 431 0 0 1834 808 0 0 -1834 406 0 0 1060 0 235 1236 0 0 539 808 0 0 -2566 -808 0 0 1295 -431 0 0 -1295 -3713 0zm5281 0l0 1568 809 -486 0 -1082 -809 0zm-4826 648l0 647 -399 0 399 -647z"/>
+  <g id="_861269135632">
+   <polygon class="fil0" points="9237,2104 9289,2104 9307,2086 9307,1988 9237,1988 "/>
+   <path class="fil0" d="M9149 1670c-259,0 -469,210 -469,469 0,259 210,469 469,469 259,0 469,-210 469,-469 0,-259 -210,-469 -469,-469zm-7 318l-70 0 0 357 -63 0 0 -357 -70 0 0 -56 203 0 0 56zm228 112l-35 35 35 35 0 158 -18 17 -178 0 0 -409 178 0 18 17 0 147z"/>
+   <polygon class="fil0" points="9237,2160 9237,2286 9307,2286 9307,2181 9289,2160 "/>
+  </g>
+ </g>
 </svg>

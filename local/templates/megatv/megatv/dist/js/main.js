@@ -58,7 +58,7 @@ Box.Application.addService('icon-loader', function () {
 		},
 		renderSprite: function (path) {
 			var file = (path !== '' && typeof path !== 'undefined') ? path : '/img/sprites/svg_sprite.svg';
-			var revision = 1459513283;
+			var revision = 1460392643;
 			if (!document.createElementNS || !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {
 				document.createElement('svg');
 				document.createElement('use');
@@ -1417,6 +1417,10 @@ Box.Application.addModule('city-select', function (context) {
 	return {
 
 		init: function () {
+			// temporarily disable select with sending to server
+			// now only get city by ip with a Yandex API
+			// Hide select with CSS & display only city title
+
 			// services
 			selectService = context.getService('select');
 			popoverService = context.getService('popover');
@@ -1427,11 +1431,12 @@ Box.Application.addModule('city-select', function (context) {
 			popoverContent = '<p>Мы угадали Ваш город?</p><ul><li><a href="#" data-type="select-trigger">Выбрать другой</a></li><li><a href="#" data-type="popover-trigger">Да, угадали</a></li></ul>';
 			// configs
 			remoteURL = context.getConfig('url');
+
 			// ymaps.geolocation.city
 
-			// window.onload = function () {
-			//   	console.log( ymaps.geolocation.city );
-			// }
+			window.onload = function () {
+				$(moduleEl).append( ymaps.geolocation.city )
+			}
 
 			citiesArr = context.getConfig('cities');
 			showCityRequestPopover = context.getConfig('showCityRequestPopover') || false;
@@ -1669,6 +1674,107 @@ Box.Application.addModule('search-form', function (context) {
 	};
 });
 
+
+/* global Box, alert */
+Box.Application.addModule('broadcasts-categories', function (context) {
+	'use strict';
+
+	// --------------------------------------------------------------------------
+	// Private
+	// --------------------------------------------------------------------------
+	var $ = context.getGlobal('jQuery');
+	var moduleEl;
+	var list;
+	var items;
+	var height;
+
+	function toggleCategories() {
+		var heightCategories = list.outerHeight();
+
+		if ( !$(moduleEl).is('.is-not-collapsing') ) {
+			if ( $(moduleEl).is('.is-all-categories') ) {
+				$(moduleEl)
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl)
+					.addClass('is-all-categories')
+					.css('height', heightCategories+'px');
+			}
+		}
+	}
+
+	function filterBroadcasts(category) {
+		var broadcasts = $('.broadcasts-list .item');
+
+		broadcasts.removeClass('is-hidden');
+
+		if (category != 'all') {
+			broadcasts.each(function(index, el) {
+				var el = $(this);
+
+				if ( el.data('category') != category ) {
+					el.addClass('is-hidden');
+				}
+			});
+		}
+	}
+
+	function state() {
+		var heightCategories = list.outerHeight();
+
+		if ( $(moduleEl).is('.is-all-categories') ) {
+			$(moduleEl).css('height', heightCategories+'px');
+
+			if (list.outerHeight() <= height) {
+				$(moduleEl)
+					.addClass('is-not-collapsing')
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl).removeClass('is-not-collapsing');
+			}
+		}
+	}
+
+	$(window).resize(function(event) {
+		state();
+	});
+
+
+	// --------------------------------------------------------------------------
+	// Public
+	// --------------------------------------------------------------------------
+
+	return {
+
+		init: function () {
+			moduleEl = context.getElement();
+			list = $(moduleEl).find('.items');
+			items = $(moduleEl).find('.item');
+			height = 60;
+
+			state();
+		},
+		destroy: function () {
+			moduleEl = null;
+			list = null;
+			items = null;
+		},
+		onclick: function (event, element, elementType) {
+			var $item = $(event.target);
+			var broadcastCategory = $item.data('category');
+
+			if (elementType === 'more') {
+				toggleCategories();
+			} else if (elementType === 'item') {
+				items.removeClass('active');
+				$(element).addClass('active');
+				filterBroadcasts(broadcastCategory);
+			}
+		}
+	};
+});
 
 /* global Box, setTimout */
 Box.Application.addModule('broadcast-results', function (context) {
@@ -1998,85 +2104,91 @@ Box.Application.addModule('broadcast-results', function (context) {
 			$(moduleEl).find('[data-type="broadcast"]').data('status-flag', false).data('play-flag', false);
 			$(moduleEl).data('ajax-flag', true);
 
-			// kinetic
-			kineticCanvas = kineticService.create(catItems, {
-				y: false,
-				cursor: null,
-				triggerHardware: true,
-				movingClass: {},
-				deceleratingClass: {},
-				slowdown: 0,
-				filterTarget: function (target) {
-					if ($(target).closest('.item-status-icon').length) {
-						return false;
-					}
-				},
-				stopped: function () {
-					var canvas = $(this.el);
-					$(window).trigger('scroll');
-					setTimeout(function () {
-						canvas.removeClass('kinetic-moving');
-						checkFridge();
-					}, 100);
-				},
-				moved: function () {
-					$(this.$el).addClass('kinetic-moving');
-				}
-			});
+			// set days only for default timegrid
+			// Timegrid for recommendations remove
 
-			// set dayGrid
-			setDayGrid();
-
-			// scroll to current time position
-			if (kineticTimePointer.length > 0) {
-				kineticCanvas.moveTo(pointerPosition.left, function () {
-					if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
-						pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
-						updateRightDay(0, true);
-						setTimout(function () {
-							$(kineticCanvas.target).removeClass('kinetic-moving');
-						}, 500);
-
+			// if module isn't recommended-broadcasts
+			if ( !$(moduleEl).is('.recommended-broadcasts') ) {
+				// kinetic
+				kineticCanvas = kineticService.create(catItems, {
+					y: false,
+					cursor: null,
+					triggerHardware: true,
+					movingClass: {},
+					deceleratingClass: {},
+					slowdown: 0,
+					filterTarget: function (target) {
+						if ($(target).closest('.item-status-icon').length) {
+							return false;
+						}
+					},
+					stopped: function () {
+						var canvas = $(this.el);
+						$(window).trigger('scroll');
+						setTimeout(function () {
+							canvas.removeClass('kinetic-moving');
+							checkFridge();
+						}, 100);
+					},
+					moved: function () {
+						$(this.$el).addClass('kinetic-moving');
 					}
 				});
-			}
 
-			// clear storage
-			sessionStorage.removeItem(DATA_KEY);
+				// set dayGrid
+				setDayGrid();
 
-			// save first day
-			sessionStorage[DATA_KEY] = JSON.stringify({
-				days: [
-					{
-						html: $(moduleEl).find('.canvas-wrap').clone().find('.left-days-placeholder, .right-days-placeholder').remove().end().html(),
-						mark: daysConfig[0].dayMark
-					}
-				]
-			});
-			daysConfig[0].state = 'loaded';
-			updateDaysPlaceholders(0, 0);
+				// scroll to current time position
+				if (kineticTimePointer.length > 0) {
+					kineticCanvas.moveTo(pointerPosition.left, function () {
+						if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
+							pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
+							updateRightDay(0, true);
+							setTimout(function () {
+								$(kineticCanvas.target).removeClass('kinetic-moving');
+							}, 500);
 
-			// updateRightDay(0);
-
-			// addRightDay();
-
-
-			// update dayGrid
-			$(window).on('resize', function () {
-				if (typeof sizewait !== 'undefined') {
-					clearTimeout(sizewait);
+						}
+					});
 				}
-				sizewait = setTimeout(updateDayGrid, 150);
-			});
-			// .on('scroll', function () { // pages preloading
-			// 	if (typeof scrollwait !== 'undefined') {
-			// 		clearTimeout(scrollwait);
-			// 	}
-			// 	scrollwait = setTimeout(loadMoreChannels, 100);
-			// });
 
-			// stiky wrapper init
-			$(moduleEl).find('.sticky-wrapp').stick_in_parent();
+				// clear storage
+				sessionStorage.removeItem(DATA_KEY);
+
+				// save first day
+				sessionStorage[DATA_KEY] = JSON.stringify({
+					days: [
+						{
+							html: $(moduleEl).find('.canvas-wrap').clone().find('.left-days-placeholder, .right-days-placeholder').remove().end().html(),
+							mark: daysConfig[0].dayMark
+						}
+					]
+				});
+				daysConfig[0].state = 'loaded';
+				updateDaysPlaceholders(0, 0);
+
+				// updateRightDay(0);
+
+				// addRightDay();
+
+
+				// update dayGrid
+				$(window).on('resize', function () {
+					if (typeof sizewait !== 'undefined') {
+						clearTimeout(sizewait);
+					}
+					sizewait = setTimeout(updateDayGrid, 150);
+				});
+				// .on('scroll', function () { // pages preloading
+				// 	if (typeof scrollwait !== 'undefined') {
+				// 		clearTimeout(scrollwait);
+				// 	}
+				// 	scrollwait = setTimeout(loadMoreChannels, 100);
+				// });
+
+				// stiky wrapper init
+				$(moduleEl).find('.sticky-wrapp').stick_in_parent();
+			}
 		},
 		destroy: function () {
 			kineticService = null;

@@ -326,85 +326,91 @@ Box.Application.addModule('broadcast-results', function (context) {
 			$(moduleEl).find('[data-type="broadcast"]').data('status-flag', false).data('play-flag', false);
 			$(moduleEl).data('ajax-flag', true);
 
-			// kinetic
-			kineticCanvas = kineticService.create(catItems, {
-				y: false,
-				cursor: null,
-				triggerHardware: true,
-				movingClass: {},
-				deceleratingClass: {},
-				slowdown: 0,
-				filterTarget: function (target) {
-					if ($(target).closest('.item-status-icon').length) {
-						return false;
-					}
-				},
-				stopped: function () {
-					var canvas = $(this.el);
-					$(window).trigger('scroll');
-					setTimeout(function () {
-						canvas.removeClass('kinetic-moving');
-						checkFridge();
-					}, 100);
-				},
-				moved: function () {
-					$(this.$el).addClass('kinetic-moving');
-				}
-			});
+			// set days only for default timegrid
+			// Timegrid for recommendations remove
 
-			// set dayGrid
-			setDayGrid();
-
-			// scroll to current time position
-			if (kineticTimePointer.length > 0) {
-				kineticCanvas.moveTo(pointerPosition.left, function () {
-					if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
-						pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
-						updateRightDay(0, true);
-						setTimout(function () {
-							$(kineticCanvas.target).removeClass('kinetic-moving');
-						}, 500);
-
+			// if module isn't recommended-broadcasts
+			if ( !$(moduleEl).is('.recommended-broadcasts') ) {
+				// kinetic
+				kineticCanvas = kineticService.create(catItems, {
+					y: false,
+					cursor: null,
+					triggerHardware: true,
+					movingClass: {},
+					deceleratingClass: {},
+					slowdown: 0,
+					filterTarget: function (target) {
+						if ($(target).closest('.item-status-icon').length) {
+							return false;
+						}
+					},
+					stopped: function () {
+						var canvas = $(this.el);
+						$(window).trigger('scroll');
+						setTimeout(function () {
+							canvas.removeClass('kinetic-moving');
+							checkFridge();
+						}, 100);
+					},
+					moved: function () {
+						$(this.$el).addClass('kinetic-moving');
 					}
 				});
-			}
 
-			// clear storage
-			sessionStorage.removeItem(DATA_KEY);
+				// set dayGrid
+				setDayGrid();
 
-			// save first day
-			sessionStorage[DATA_KEY] = JSON.stringify({
-				days: [
-					{
-						html: $(moduleEl).find('.canvas-wrap').clone().find('.left-days-placeholder, .right-days-placeholder').remove().end().html(),
-						mark: daysConfig[0].dayMark
-					}
-				]
-			});
-			daysConfig[0].state = 'loaded';
-			updateDaysPlaceholders(0, 0);
+				// scroll to current time position
+				if (kineticTimePointer.length > 0) {
+					kineticCanvas.moveTo(pointerPosition.left, function () {
+						if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
+							pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
+							updateRightDay(0, true);
+							setTimout(function () {
+								$(kineticCanvas.target).removeClass('kinetic-moving');
+							}, 500);
 
-			// updateRightDay(0);
-
-			// addRightDay();
-
-
-			// update dayGrid
-			$(window).on('resize', function () {
-				if (typeof sizewait !== 'undefined') {
-					clearTimeout(sizewait);
+						}
+					});
 				}
-				sizewait = setTimeout(updateDayGrid, 150);
-			});
-			// .on('scroll', function () { // pages preloading
-			// 	if (typeof scrollwait !== 'undefined') {
-			// 		clearTimeout(scrollwait);
-			// 	}
-			// 	scrollwait = setTimeout(loadMoreChannels, 100);
-			// });
 
-			// stiky wrapper init
-			$(moduleEl).find('.sticky-wrapp').stick_in_parent();
+				// clear storage
+				sessionStorage.removeItem(DATA_KEY);
+
+				// save first day
+				sessionStorage[DATA_KEY] = JSON.stringify({
+					days: [
+						{
+							html: $(moduleEl).find('.canvas-wrap').clone().find('.left-days-placeholder, .right-days-placeholder').remove().end().html(),
+							mark: daysConfig[0].dayMark
+						}
+					]
+				});
+				daysConfig[0].state = 'loaded';
+				updateDaysPlaceholders(0, 0);
+
+				// updateRightDay(0);
+
+				// addRightDay();
+
+
+				// update dayGrid
+				$(window).on('resize', function () {
+					if (typeof sizewait !== 'undefined') {
+						clearTimeout(sizewait);
+					}
+					sizewait = setTimeout(updateDayGrid, 150);
+				});
+				// .on('scroll', function () { // pages preloading
+				// 	if (typeof scrollwait !== 'undefined') {
+				// 		clearTimeout(scrollwait);
+				// 	}
+				// 	scrollwait = setTimeout(loadMoreChannels, 100);
+				// });
+
+				// stiky wrapper init
+				$(moduleEl).find('.sticky-wrapp').stick_in_parent();
+			}
 		},
 		destroy: function () {
 			kineticService = null;
