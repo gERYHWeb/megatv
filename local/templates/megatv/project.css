@@ -52,10 +52,26 @@
     width: auto;
 }
 .player:-webkit-full-screen {
-width: 100%;
-height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .player:-moz-full-screen {
-width: 100%;
-height: 100%;
+    width: 100%;
+    height: 100%;
+}
+.broadcast-results .item.status-recorded.status-social-v
+{
+    background-color: transparent
+}
+.broadcast-results .item.status-recorded.status-social-v .item-image-holder
+{
+    opacity: 1;
+}
+.broadcast-results .item.status-recorded.status-social-v .item-header
+{
+    background-color: rgba(33,110,216,.5);
+}
+.broadcast-player>.block-header
+{
+    max-width: 900px;
 }

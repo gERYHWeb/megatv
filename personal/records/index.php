@@ -7,6 +7,7 @@ CModule::IncludeModule("iblock");
 
 <?$APPLICATION->IncludeComponent("hawkart:user.records", "", Array("WATCHED"=>"N"), false);?>
 
+<?/*
 <div class="fullsize-banner adv-styling-03">
 	<div class="banner-content">
         <?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/records-banner-1.php"), false);?>
@@ -23,54 +24,6 @@ if(count($arRecords)>0)
     }
     $progIds = array_unique($progIds);
 }
-/*
-//активные каналы
-$ids = array();
-$activeChannels = CChannel::getList(array("ACTIVE"=>"Y"), array("ID"));
-foreach($activeChannels as $activeChannel)
-{
-    $ids[] = $activeChannel["ID"];
-}
-
-//Темы программы
-$arProgs = CProg::getList(array("ID"=>$progIds, "PROPERTY_CHANNEL"=>$ids), array("PROPERTY_TOPIC", "PROPERTY_CATEGORY", "PROPERTY_CHANNEL", "NAME"));
-foreach($arProgs as $arProg)
-{
-    $arTopicsExp = explode(",", $arProg["PROPERTY_TOPIC_VALUE"]);
-    foreach($arTopicsExp as $key=>$topic)
-    {
-        if(!empty($topic))
-            $arTopics[] = trim($topic);
-    }
-    
-    $arCatsExp = explode(",", $arProg["PROPERTY_CATEGORY_VALUE"]);
-    foreach($arCatsExp as $key=>$topic)
-    {
-        if(!empty($topic))
-            $arCats[] = trim($topic);
-    }
-}
-CDev::pre($arProgs);
-unset($arProg);
-
-//Выберем все программы с такими же темами
-$progIds = array();
-$arProgs = CProg::getList(
-    array(
-        "?PROPERTY_TOPIC"=>$arTopics, 
-        "?PROPERTY_CATEGORY" => $arCats
-    ), 
-    array("ID", "PROPERTY_CHANNEL", "NAME")
-);
-foreach($arProgs as $arProg)
-{
-    $progIds[] = $arProg["ID"];
-}
-$progIds = array_unique($progIds);
-
-$arRecommendFilter[">=PROPERTY_DATE_START"] = date("Y-m-d H:i:s");
-$arRecommendFilter["PROPERTY_PROG"] = $progIds;
-*/
 
 //Темы программы
 $arProgs = CProg::getList(array(
@@ -182,7 +135,5 @@ $arRecommendFilter["PROPERTY_PROG"] = CIBlockElement::SubQuery(
 );?>
 
 <?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/records-banner-2.php"), false);?>
-
-<?$APPLICATION->IncludeComponent("hawkart:user.records", "", Array("WATCHED"=>"Y"), false);?>
-
+*/?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

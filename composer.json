@@ -2,6 +2,8 @@
     "require": {
         "hybridauth/hybridauth": "^2.6",
         "google/apiclient": "^1.1",
-        "guzzlehttp/guzzle": "^3.8"
+        "guzzlehttp/guzzle": "^3.8",
+        "eventviva/php-image-resize": "1.5.*",
+        "gregwar/image": "2.*"
     }
 }

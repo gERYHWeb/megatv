@@ -9,7 +9,7 @@ class CEpg
     public function __construct($dir = false)
     {
         if(!$dir)
-            $dir = FULL_PATH_DOCUMENT_ROOT."/local/";
+            $dir = FULL_PATH_DOCUMENT_ROOT."/upload/";
             
         $this->dir = $dir;
         $this->file = $this->dir.self::$ftpFile;
@@ -34,7 +34,7 @@ class CEpg
         ftp_close($conn);
     }
     
-    public static function resizeImage(/*$url,*/ $icons, $type)
+    public static function resizeImage($icons, $type)
     {
         switch($type)
         {
@@ -64,16 +64,25 @@ class CEpg
         $url = false;
         if(count($icons)>1)
         {
-            foreach($icons as $icon)
+            while(!$url)
             {
-                //$width_icon = intval($icon["@attributes"]["width"]);
-                //$height_icon = intval($icon["@attributes"]["height"]);
+                $rand_key = array_rand($icons, 1);
+                $icon = $icons[$rand_key];
+                if(intval($icon["@attributes"]["width"])>$width)
+                {
+                    $url = $icon["@attributes"]["src"];
+                }                
+            }
+                    
+            /*foreach($icons as $icon)
+            {
                 if(intval($icon["@attributes"]["width"])>$max)
                 {
                     $max = intval($icon["@attributes"]["width"]);
                     $url = $icon["@attributes"]["src"];
                 }
-            }
+            }*/
+
         }else{
             $url = $icons["@attributes"]["src"];
         }
@@ -171,6 +180,7 @@ class CEpg
         
         foreach($xml->programme as $arProg)
         {
+            $_arProg = $arProg;
             $json = json_encode($arProg);
             $arProg = json_decode($json, TRUE);
             
@@ -192,9 +202,18 @@ class CEpg
                 )
             );
             
+            if(isset($arProg["title"]))
+            {
+                $attr = $_arProg->title->attributes();
+                $arFields["UF_EPG_ID"] = (string)$attr["id"];
+                $epg_id = (string)$attr["id"];
+            }
+            
             if(isset($arProg["sub-title"]))
             {
                 $arFields["PROPS"]["SUB_TITLE"] = trim($arProg["sub-title"]);
+                $attr = $_arProg->{'sub-title'}->attributes();
+                $arFields["PROPS"]["EPG_SUB_ID"] = (int)$attr["id"];
             }
             
             //генерируем идентификатор программы для проверки на существование
@@ -223,13 +242,13 @@ class CEpg
             
             if (!array_key_exists($unique, $arProgs))
             {
-                if(isset($arProg['episode-num']))
+                if(!empty($arProg['episode-number']))
                 {
-                    $arFields["PROPS"]["SERIA"] = intval($arProg['episode-num']);
+                    $arFields["PROPS"]["SERIA"] = intval($arProg['episode-number']);
                 }
-                if(isset($arProg['season-num']))
+                if(!empty($arProg['season']))
                 {
-                    $arFields["PROPS"]["SEASON"] = intval($arProg['season-num']);
+                    $arFields["PROPS"]["SEASON"] = intval($arProg['season']);
                 }
                 
                 if(!is_array($arProg["category"]))
@@ -239,6 +258,10 @@ class CEpg
                 if(!is_array($arProg["topic"]))
                     $arProg["topic"] = array($arProg["topic"]);
                 $arFields["PROPS"]["TOPIC"] = implode(", ", $arProg["topic"]);
+                
+                if(!is_array($arProg["ganre"]))
+                    $arProg["ganre"] = array($arProg["ganre"]);
+                $arFields["PROPS"]["GANRE"] = implode(", ", $arProg["ganre"]);
                 
                 if(!is_array($arProg["country"]))
                     $arProg["country"] = array($arProg["country"]);
@@ -267,12 +290,14 @@ class CEpg
                 }
             }else{
                 $progID = $arProgs[$unique]["ID"];
+                CIBlockElement::SetPropertyValueCode($progID, "EPG_ID", $epg_id);
+                $attr = $_arProg->{'sub-title'}->attributes();
+                CIBlockElement::SetPropertyValueCode($progID, "EPG_SUB_ID", (int)$attr["id"]);
+                
+                CIBlockElement::SetPropertyValueCode($progID, "CATEGORY", $arProg["category"]);
             }
             
-            //echo "<pre>"; print_r($arProg); echo "</pre>";
-            
-            //continue;
-            if(empty($arProgs[$unique]["PREVIEW_PICTURE"]))
+            if(empty($arProgs[$unique]["PREVIEW_PICTURE"]) || !empty($arProgs[$unique]["PREVIEW_PICTURE"]))
             {
                 $icons = array();
                 if(!is_array($arProg["icon"]))
@@ -292,11 +317,6 @@ class CEpg
                         CFile::Delete($arProgs[$unique]["PROPERTY_".$code."_VALUE"]);
                     } 
                 }
-                
-                
-                //die();
-                
-                //CDev::pre($icons);
                 
                 $file = self::resizeImage($icons, "preview");
                 if(!empty($file))
@@ -351,13 +371,7 @@ class CEpg
                     $arFile["del"] = "Y";
                     CIBlockElement::SetPropertyValueCode($progID, "PICTURE_VERTICAL_DOUBLE", $arFile);
                 }
-                
-                //die();
-                
-                //break;
             }
-            
-            //continue;
             
             //Добавление расписания для программы
             $dateStart = $arProg["@attributes"]["start"];
@@ -385,7 +399,8 @@ class CEpg
                         "DATE_END" => $arProg["@attributes"]["stop"],
                         "DATE" =>  date("d.m.Y", strtotime($arProg["date"])),
                         "CHANNEL" => $arChannel["ID"],
-                        "PROG" => $progID
+                        "PROG" => $progID,
+                        "EPG_ID" => (int)$arProg["@attributes"]["id"]
                     )
                 );
                 $progTimeID = CProgTime::add($arFields);
@@ -404,31 +419,13 @@ class CEpg
                 }
             }else{
                 $progTimeID = $arProgTimes[$uniqueTimeID]["ID"];
+                CIBlockElement::SetPropertyValueCode($progTimeID, "EPG_ID", (int)$arProg["@attributes"]["id"]);
             }
             
             $arScheduleIdsNotDelete[] = $progTimeID;
         }
         
-        unset($arProgTimes);
-        
-        die();
-        
-        //Найдем все расписание на ближайшие 10 дней и удалим лишние
-        echo "<h1>delete</h1>";
-        //CDev::pre($arScheduleIdsNotDelete);
-        CProgTime::updateCache();
-        $filterDateStart = CTimeEx::datetimeForFilter(date("Y-m-d 00:00:00"));
-        $arProgTimes = CProgTime::getList(array(
-            ">=PROPERTY_DATE_START" => $filterDateStart,
-        ), array("ID", "PROPERTY_CHANNEL", "PROPERTY_DATE_START"));
-        foreach($arProgTimes as $arProgTime)
-        {
-            if(!in_array($arProgTime["ID"], $arScheduleIdsNotDelete))
-            {
-                echo "delete=".$arProgTime["ID"]."<br />";
-                CIBlockElement::Delete($arProgTime["ID"]);
-            }
-        }
+        CProgTime::deleteNotInFile($arScheduleIdsNotDelete);
         
         unset($arProgTimes);
         unset($arScheduleIdsNotDelete);

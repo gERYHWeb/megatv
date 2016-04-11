@@ -42,6 +42,7 @@ $obSearch->Search($arSearchQuery, $arSearchSort, $arSearchFilter);
 while($arSearch = $obSearch->GetNext()){
     $arSearchResult[] = $arSearch['ITEM_ID'];
 };
+
 $arFilter = array(
     'ID' => $arSearchResult
 );

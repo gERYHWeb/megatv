@@ -42,7 +42,7 @@
     
 		<div class="right-col">
 			<div class="broadcast-status">начало в <?=substr($arResult["DATE_START"], 11, 5)?></div>
-			<h3 class="broadcast-title"><?=$arResult["NAME"]?> <?if($arResult["PROG"]["PROPERTY_SUB_TITLE_VALUE"]):?><small>| <?=$arResult["PROG"]["PROPERTY_SUB_TITLE_VALUE"]?></small><?endif;?></h3>
+			<h3 class="broadcast-title"><?=$arResult["NAME"]?></h3>
 			<div class="info-row">
 				<div class="broadcast-descr-col">
                     <p><?=strip_tags($arResult["PROG"]["DETAIL_TEXT"])?></p>	

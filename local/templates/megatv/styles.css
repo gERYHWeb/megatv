@@ -1,0 +1,5 @@
+.broadcast-results .badge
+{
+    z-index: 900;
+    cursor: pointer;
+}

@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'BaseFacebook' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/thirdparty/Facebook/base_facebook.php',
+    'Eventviva\\ImageResize' => $vendorDir . '/eventviva/php-image-resize/src/ImageResize.php',
     'Facebook' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/thirdparty/Facebook/facebook.php',
     'FacebookApiException' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/thirdparty/Facebook/base_facebook.php',
     'Google_Auth_Abstract' => $vendorDir . '/google/apiclient/src/Google/Auth/Abstract.php',
@@ -3585,11 +3586,15 @@ return array(
     'Hybrid_Providers_Facebook' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Facebook.php',
     'Hybrid_Providers_Foursquare' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Foursquare.php',
     'Hybrid_Providers_Google' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Google.php',
+    'Hybrid_Providers_Instagram' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Instagram.php',
     'Hybrid_Providers_LinkedIn' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/LinkedIn.php',
     'Hybrid_Providers_Live' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Live.php',
+    'Hybrid_Providers_Odnoklassniki' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Odnoklassniki.php',
     'Hybrid_Providers_OpenID' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/OpenID.php',
     'Hybrid_Providers_Twitter' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Twitter.php',
+    'Hybrid_Providers_Vkontakte' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Vkontakte.php',
     'Hybrid_Providers_Yahoo' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Yahoo.php',
+    'Hybrid_Providers_Yandex' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Yandex.php',
     'Hybrid_Storage' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/Storage.php',
     'Hybrid_Storage_Interface' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/StorageInterface.php',
     'Hybrid_User' => $vendorDir . '/hybridauth/hybridauth/hybridauth/Hybrid/User.php',

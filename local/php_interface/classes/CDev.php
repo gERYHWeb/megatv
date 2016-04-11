@@ -282,6 +282,11 @@ class CDev
 			if (strlen($str_new) >= $params["max_len"])
 				break;
 		}
+        
+        if(substr($str_new, -1)=="-")
+        {
+            $str_new = substr($str_new, 0, -1); 
+        }
 
 		return $str_new;
 	}
@@ -476,6 +481,5 @@ class CDev
                 closedir($dh);
             }
         }
-    }
-    
+    }    
 }

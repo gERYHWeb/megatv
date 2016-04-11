@@ -13,6 +13,8 @@ define("PASSPORT_IB", 10);
 define("SOCIAL_CONFIG_IB", 11);
 define("SUBSCRIBE_HL", 4);
 define("RECORD_HL", 5);
+define("CHANNEL_HL", 11);
+define("PROG_HL", 10);
 define("BONUS_FOR_REGISTRATION", 20);   //бонус за регистрацию +20 ГБ пространства
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -22,10 +24,18 @@ use \Bitrix\Main\Entity;
 use \Bitrix\Main\Type\DateTime;
 
 \Bitrix\Main\Loader::includeModule('olegpro.ipgeobase');
-
 CModule::IncludeModule("echogroup.smsru");
+CModule::IncludeModule("hawkart.megatv");
 AddEventHandler("main", "OnBeforeEventSend",array("CEchogroupSmsru","TerminateEvent"));
-
+/*CModule::AddAutoloadClasses(
+	"",
+	array(
+		"\ChannelTable" => "/local/modules/hawkart.megatv/lib/channel.php",
+        "\ImageTable" => "/local/modules/hawkart.megatv/lib/image.php",
+        "\ProgTable" => "/local/modules/hawkart.megatv/lib/prog.php",
+        "\ScheduleTable" => "/local/modules/hawkart.megatv/lib/schedule.php"
+	)
+);*/
 // Классы
 $sClassesPath = '/local/php_interface/classes/';
 CModule::AddAutoloadClasses(
@@ -50,7 +60,10 @@ CModule::AddAutoloadClasses(
         '\CServiceEx' => $sClassesPath.'CServiceEx.php',
         '\CUserEx' => $sClassesPath.'CUserEx.php',
         '\CCommentEx' => $sClassesPath.'CCommentEx.php',
-        '\CStatChannel' => $sClassesPath.'CStatChannel.php'
+        '\CStatChannel' => $sClassesPath.'CStatChannel.php',
+        '\CNotifyEx' => $sClassesPath.'CNotifyEx.php',
+        '\YoutubeClient' => $sClassesPath.'YoutubeClient.php',
+        '\VkClient' => $sClassesPath.'VkClient.php',
 	)
 );
 

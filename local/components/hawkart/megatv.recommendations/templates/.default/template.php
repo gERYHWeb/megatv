@@ -1,44 +1,47 @@
-<section class="broadcast-results" data-module="broadcast-results">
+
+<div class="broadcasts-categories" data-module="broadcasts-categories">
+	<script type="text/x-config">
+		{
+			"url": "/recommendations/"
+		}
+	</script>
+	<div class="items">
+		<a href="#" class="item active" data-type="item" data-category="all">
+			Все
+		</a>
+        <?
+        foreach($arResult["CATEGORIES"] as $category=> $translit)
+        {
+            ?>
+            <a href="#<?=$translit?>" class="item" data-type="item" data-category="<?=$translit?>">
+    			<?=$category?>
+    		</a>
+            <?
+        }
+        ?>
+	</div>
+	<div class="more" data-type="more">
+		<span data-icon="icon-close"></span>
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>
+	</div>
+</div>
+
+<section class="recommended-broadcasts" data-module="broadcast-results">
     <script type="text/x-config">
     {
         "recordingURL": "<?=SITE_TEMPLATE_PATH?>/ajax/to_record.php"
     }
     </script>
-    <div class="categories-logos">
-        <span class="category-logo">
-    		<span data-icon="icon-megatv-recommendations"></span>
-    		<span class="category-title">Мега ТВ рекомендует</span>
-    	</span>
-    </div>
-    <div class="categories-items">
-        <div class="row-wrap">
-            <div class="category-row">
-                <?
-                $notShow = array();
-                foreach($arResult["PROGS"] as $key=>$arProg)
-                {
-                    if(in_array($key, $notShow))
-                        continue;
-                        
-                    if($arProg["CLASS"]=="one" || $arProg["CLASS"]=="double")
-                    {
-                        echo CProgTime::getProgInfoIndex($arProg);
-                    }
-                    
-                    if($arProg["CLASS"]=="half")
-                    {
-                        $arProgNext = $arResult["PROGS"][$key+1];
-                        ?>
-                        <div class="pair-container">
-                            <?=CProgTime::getProgInfoIndex($arProg)?>
-                            <?=CProgTime::getProgInfoIndex($arProgNext)?>
-        				</div>
-                        <?
-                        $notShow[]=$key+1;
-                    }
-                }
-                ?>
-            </div>
-        </div>
+    <div class="broadcasts-list">
+        <?
+        $notShow = array();
+        foreach($arResult["PROGS"] as $key=>$arProg)
+        {
+            $arProg["CAT_CODE"] = $arResult["CATEGORIES"][$arProg["CATEGORY"]];
+            echo CProgTime::getProgInfoRecommend($arProg);
+        }
+        ?>
     </div>
 </section>

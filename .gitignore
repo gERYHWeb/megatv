@@ -116,6 +116,7 @@ web.config
 *.tmp
 *.txt
 *.tar.gz
+/local/*.xml
 __*
 syslog
 

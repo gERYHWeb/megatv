@@ -11,6 +11,7 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+global $USER;
 ?>
 
 <?
@@ -48,9 +49,16 @@ $curPage++;
         	<?
         	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
         	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
-        	?>
+        	
+            if(!in_array($arItem['ID'], $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized()) continue;
+            ?>
     		<a class="category-logo" href="<?=$arItem["DETAIL_PAGE_URL"]?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
     			<span data-icon="<?=$arItem["PROPERTIES"]["ICON"]["VALUE"]?>"></span>
+    		</a>
+        <?endforeach?>
+        <?foreach($arResult["SOCIAL_CHANNELS"] as $arItem):?>
+            <a class="category-logo" href="#">
+    			<span data-icon="<?=$arItem["PROPERTIES"]["ICON"]["VALUE"]?>"><?=$arItem["NAME"]?></span>
     		</a>
         <?endforeach?>
 	</div>
@@ -78,9 +86,10 @@ $curPage++;
                     {
                         $channel = $arChannel["ID"];
                         $arProgs = $arChannels[$channel];
-                    //}
-                    //foreach($arChannels as $channel=>$arProgs)
-                    //{
+                        
+                        if(!in_array($channel, $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized())
+                            continue;
+
                         ?>
                         <div class="category-row">
                             <?
@@ -119,6 +128,30 @@ $curPage++;
                         
                         $next_date = date('d.m.Y', strtotime("+1 day", strtotime($date)));
                     }
+                    
+                    foreach($arResult["SOCIAL_CHANNELS"] as $arChannel)
+                    {
+                        $socialChannel = $arChannel["ID"];
+                        $arProgs = $arChannels[$socialChannel];
+                        ?>
+                        <div class="category-row">
+                            <?
+                            if(!$first)
+                            {
+                                $arParams["NEED_POINTER"] = true;
+                                $first = true;
+                            }
+                            $notShow = array();
+                            foreach($arProgs as $key=>$arProg)
+                            {
+                                echo CProgTime::getSocialProgInfoIndex($arProg, $socialChannel);
+                            }
+                            unset($arParams["NEED_POINTER"]);
+                            ?>
+                        </div>
+                        <?
+                    }
+
                     //if($date_count<count($arResult["DATES"]))
                     //{
                         ?>

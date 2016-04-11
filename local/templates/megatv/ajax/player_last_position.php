@@ -19,11 +19,15 @@ if($_GET["record"]=="false")
     $broadcastID = $arRecord["ID"];
 }
 
-CRecordEx::update($broadcastID, array(
+$arFields = array(
     "UF_PROGRESS_SECS" => intval($_GET["progressInSeconds"]),
-    "UF_PROGRESS_PERS" => intval($_GET["progressPosition"]),
-    "UF_WATCHED" => true
-));
+    "UF_PROGRESS_PERS" => intval($_GET["progressPosition"])
+);
+
+if(intval($_GET["progressPosition"])>3)
+    $arFields["UF_WATCHED"] = "Y";
+
+CRecordEx::update($broadcastID, $arFields);
 
 die();  
 ?>

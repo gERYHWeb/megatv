@@ -7,19 +7,19 @@ $aMenuLinks = Array(
 		Array(), 
 		"" 
 	),
-	/*Array(
-		"Тематики", 
-		"/topics/", 
-		Array(), 
-		Array(), 
-		"" 
-	),*/
 	Array(
 		"Рекомендации", 
 		"/recommendations/", 
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Мои записи", 
+		"/personal/records/", 
+		Array(), 
+		Array(), 
+		"\$USER->IsAuthorized()" 
 	)
 );
 ?>

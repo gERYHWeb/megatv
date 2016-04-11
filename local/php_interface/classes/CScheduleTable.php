@@ -1,6 +1,6 @@
 <?
 class CScheduleTable
-{
+{    
     /**
      * array(
         "CITY" => $arParams["CITY"],

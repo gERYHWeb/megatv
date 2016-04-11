@@ -320,4 +320,46 @@ $(document).on('ready', function(){
     	}
     }
     
+    $(".badge").click(function(e){
+        e.preventDefault();
+        channel_id = $(this).data("channel-id");
+        pageModule = $('[data-module="page"]').get(0);
+        authentication = Box.Application.getModuleConfig(pageModule, 'authentication');
+        
+        if (authentication === true) 
+        {
+            if(channel_id!==undefined)
+            {
+                var modalHTML = $('<div class="modal player-modal fade" id="player-modal"><div class="modal-dialog"><div class="modal-content"></div></div></div>');
+        		if ($('#player-modal').length === 0) {
+        			$('body').prepend(modalHTML);
+        		}
+    
+        		$.ajax({
+        			type: 'GET',
+        			dataType: 'html',
+        			url: "/local/templates/megatv/ajax/modals/player.php",
+        			data: {
+        				broadcastID: 0,
+        				record: false,
+                        channel_id: channel_id
+        			},
+        			success: function (data) {
+        				playerModalContainer = $('.player-modal');
+        				playerModalContainer.find('.modal-content').html(data);
+        				renderIcons();
+        				Box.Application.startAll(playerModalContainer.get(0));
+        				modal = Box.Application.getService('modal').create(playerModalContainer, {
+        					backdropClass: 'modal-backdrop player-backdrop'
+        				});
+        				modal.show();
+        			}
+        		});
+            }
+        }else{
+            $("#mod-signin-overlay-1").addClass("is-visible");
+            return;
+        }
+    });
+    
 });

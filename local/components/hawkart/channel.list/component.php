@@ -97,6 +97,10 @@ $end = $arResult["NAV_RESULT"]->NavPageNomer*intval($arParams["NEWS_COUNT"]);
 // всего страниц - номер последней страницы
 $totalPages = $arResult["NAV_RESULT"]->NavPageCount = ceil(count($arResult["ITEMS"])/$arParams["NEWS_COUNT"]);
 
+$arSubscriptionChannels = $APPLICATION->GetPageProperty("ar_subs_channels");
+$arResult["CHANNELS_SHOW"] = json_decode($arSubscriptionChannels, true);
+
+
 $arChannelIds = array();
 $arResult["CHANNELS"] = array();
 $k = 1; 
@@ -183,11 +187,27 @@ foreach($arResult["DATES"] as $date => $arChannels )
         
         $arResult["DATES"][$date][$channel] = $arProgs;
     }
+    
+    $arResult["DATES"][$date]["YOUTUBE"] = YoutubeClient::dailyShow();
+    $arResult["DATES"][$date]["VK"] = VkClient::dailyShow();
 }
 
 $time_end = microtime(true);
 $time = $time_end - $time_start;
 //echo "end = ".$time_end."<br />";echo "время выполнения = ".$time."<br />";
+
+$arResult["SOCIAL_CHANNELS"] = array(
+    array(
+        "ID" => "YOUTUBE",
+        "NAME" => "Youtube",
+        "PROPERTIES" => array("ICON" => array("VALUE"=>""))
+    ),
+    array(
+        "ID" => "VK",
+        "NAME" => "Vk",
+        "PROPERTIES" => array("ICON" => array("VALUE"=>""))
+    )
+);
 
 $this->IncludeComponentTemplate();
 ?>

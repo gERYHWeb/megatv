@@ -4,11 +4,14 @@ class CProgTime
 {
     public static $cacheDir = "prog_time";
     
-    public static function cutName($title)
+    public static function cutName($title, $len = false)
     {
-        if(strlen($title)>40)
+        if(!$len)
+            $len = 40;
+        
+        if(strlen($title)>$len)
         {
-            $title = substr($title, 0, 40)."...";
+            $title = substr($title, 0, $len)."...";
         }
         
         return $title;
@@ -159,6 +162,28 @@ class CProgTime
 	}
     
     
+    public static function deleteNotInFile($arScheduleIdsNotDelete, $arrFilter = false) 
+    {
+		CModule::IncludeModule("iblock");
+        $arProgTimes = array();
+        $arSelect = Array("ID");
+        $arFilter = array("IBLOCK_ID" => PROG_TIME_IB, "ACTIVE" => "Y", ">=PROPERTY_DATE" => date('Y-m-d')); 
+        
+        if($arrFilter)
+            $arFilter = array_merge($arFilter, $arrFilter);
+        
+        $rsRes = CIBlockElement::GetList( array("SORT" => "ASC"), $arFilter, false, false, $arSelect);
+		while( $arItem = $rsRes->GetNext() )
+        {
+            if(!in_array($arItem["ID"], $arScheduleIdsNotDelete) && !empty($arScheduleIdsNotDelete))
+            {
+                CIBlockElement::Delete($arItem["ID"]);
+            }
+		}
+        
+        self::updateCache();
+	}
+    
     /**
      * "RECORDING"
        "RECORDED"
@@ -273,6 +298,9 @@ class CProgTime
             $time_pointer = true;
         }
         
+        if(!empty($arProg["PROPERTY_SUB_TITLE_VALUE"]))
+            $arProg["NAME"].= " | ".$arProg["PROPERTY_SUB_TITLE_VALUE"];
+        
         ob_start();
         ?>
         <div class="item<?if($status):?> status-<?=$status?><?endif;?><?if($time_pointer && $arParams["NEED_POINTER"]):?> js-time-pointer<?endif;?><?if(empty($arProg["PICTURE"]["SRC"])):?> is-noimage<?endif;?><?if($arProg["CLASS"]=="double"):?> double-item<?endif;?>"
@@ -283,7 +311,7 @@ class CProgTime
 			</div>
             
             <?if($time_pointer):?>
-                <span class="badge">в эфире</span>
+                <span class="badge" data-channel-id="<?=$arProg["CHANNEL_ID"]?>">в эфире</span>
             <?endif;?>
             
             <?=$status_icon?>
@@ -294,6 +322,95 @@ class CProgTime
         		<a href="<?=$arProg["DETAIL_PAGE_URL"]?>">
                     <?=self::cutName($arProg["NAME"])?>
                     <?/*if(!empty($arProg["PROPERTY_SUB_TITLE_VALUE"])):?>.<br><?=$arProg["PROPERTY_SUB_TITLE_VALUE"]?><?endif;*/?> 
+                </a>
+        	</div>
+        </div>
+        <?
+        $content = ob_get_contents();  
+        ob_end_clean();
+        
+        return $content;
+    }
+    
+    public static function getProgInfoRecommend($arProg)
+    {
+        $arProg["PICTURE"] = CDev::resizeImage($arProg["PREVIEW_PICTURE"], 288, 288);
+        $start = $arProg["DATE_START"];
+
+        $arStatus = self::status($arProg);
+        $status = $arStatus["status"];
+        $status_icon = $arStatus["status-icon"];
+        
+        if(!empty($arProg["PROPERTY_SUB_TITLE_VALUE"]))
+            $arProg["NAME"].= " | ".$arProg["PROPERTY_SUB_TITLE_VALUE"];
+        
+        $date = substr($start, 0, 10);
+        $time = substr($start, 11, 5);
+        
+        ob_start();
+        ?>
+        <div class="item<?if($status=="viewed"):?> status-viewed<?elseif($status=="recording"):?> recording-in-progress<?else:?> status-<?=$status?><?endif;?>" 
+            data-broadcast-id="<?=$arProg["SCHEDULE_ID"]?>" data-category="<?=$arProg["CAT_CODE"]?>"
+        >
+            <div class="inner">
+                <?
+                if($status=="viewed")
+                {
+                    $path = $_SERVER["DOCUMENT_ROOT"].$arProg["PICTURE"]["SRC"];
+                    ?>
+                    <div class="item-image-holder" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/ajax/img_grey.php?path=<?=urlencode($path)?>)"></div>
+                    <span class="item-status-icon">
+						<span data-icon="icon-viewed"></span>
+						<span class="status-desc">Просмотрено</span>
+					</span>
+                    <?
+                }else{
+                    $img = $arProg["PICTURE"]["SRC"];
+                    ?><div class="item-image-holder" style="background-image: url(<?=$img?>)"></div><?
+                }
+                ?>
+                
+                <?=$status_icon?>
+                <?=self::driveNotifyMessage()?>
+				
+				<div class="item-header">
+                    <div class="meta">
+						<div class="time"><?=$time?></div>
+						<div class="date"><?=$date?></div>
+						<div class="category"><a href="#" data-type="category"><?=$arProg["CATEGORY"]?></a></div>
+					</div>
+					<div class="title">
+						<a href="<?=$arProg["DETAIL_PAGE_URL"]?>"><?=self::cutName($arProg["NAME"])?></a>
+					</div>
+				</div>
+            </div>
+		</div>
+        <?
+        $content = ob_get_contents();  
+        ob_end_clean();
+        
+        return $content;
+    }
+    
+    public static function getSocialProgInfoIndex($arProg, $socialChannel)
+    {               
+        ob_start();
+        ?>
+        <div class="item status-recorded status-social-v"
+            data-type="broadcast" data-broadcast-id="<?=strtolower($socialChannel)?>|<?=$arProg["ID"]?>"
+        >
+            <div class="item-image-holder">
+				<img data-src="<?=$arProg["IMG"]?>" alt="">
+			</div>
+            
+            <span class="item-status-icon" href="#">
+				<span data-icon="icon-recorded"></span>
+				<span class="status-desc">Смотреть</span>
+			</span>
+            
+        	<div class="item-header">
+        		<a href="#">
+                    <?=self::cutName($arProg["NAME"], 70)?>
                 </a>
         	</div>
         </div>
@@ -322,7 +439,11 @@ class CProgTime
         
         $start = $arProg["DATE_START"];
         $end = $arProg["DATE_END"];
-        $datetime = $arParams["DATETIME"]["SERVER_DATETIME_WITH_OFFSET"];        
+        $datetime = $arParams["DATETIME"]["SERVER_DATETIME_WITH_OFFSET"];
+        
+        if(!empty($arProg["PROPERTY_SUB_TITLE_VALUE"]))
+            $arProg["NAME"].= " | ".$arProg["PROPERTY_SUB_TITLE_VALUE"];
+               
         ob_start();
         ?>
         <div class="item<?if($status):?> status-<?=$status?><?endif;?><?if($arProg["CLASS"]=="half"):?> half-item<?endif;?>"
