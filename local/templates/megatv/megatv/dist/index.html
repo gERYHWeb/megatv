@@ -42,7 +42,7 @@
 									{ "id": 3, "text": "Омск" },
 									{ "id": 4, "text": "Ноябрьск" }
 								],
-								"showCityRequestPopover": true
+								"showCityRequestPopover": false
 							}
 						</script>
 						<form action="/" method="POST" id="city-select-form">
@@ -55,6 +55,11 @@
 					</div>
 
 					<div class="lang-select" data-module="lang-select">
+						<!-- Временно отображаем только русский язык для сервиса -->
+						<div class="lang-select-value">
+							Ru
+						</div>
+						<!--
 						<script type="text/x-config">
 							{
 								"url": "/server/",
@@ -69,6 +74,7 @@
 							<select name="lang-select" id="lang-select">
 							</select>
 						</form>
+						-->
 					</div>
 
 					<div class="calendar-carousel" data-module="calendar-carousel">

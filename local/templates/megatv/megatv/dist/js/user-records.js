@@ -1107,6 +1107,12 @@ Box.Application.addModule('city-select', function (context) {
 			popoverContent = '<p>Мы угадали Ваш город?</p><ul><li><a href="#" data-type="select-trigger">Выбрать другой</a></li><li><a href="#" data-type="popover-trigger">Да, угадали</a></li></ul>';
 			// configs
 			remoteURL = context.getConfig('url');
+			// ymaps.geolocation.city
+
+			// window.onload = function () {
+			//   	console.log( ymaps.geolocation.city );
+			// }
+
 			citiesArr = context.getConfig('cities');
 			showCityRequestPopover = context.getConfig('showCityRequestPopover') || false;
 			writedCookies = cookieService.get(DATA_KEY);

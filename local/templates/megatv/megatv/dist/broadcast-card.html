@@ -43,7 +43,7 @@
 									{ "id": 3, "text": "Омск" },
 									{ "id": 4, "text": "Ноябрьск" }
 								],
-								"showCityRequestPopover": true
+								"showCityRequestPopover": false
 							}
 						</script>
 						<select name="city-select" id="_id-city-select">
@@ -52,6 +52,11 @@
 					</div>
 
 					<div class="lang-select" data-module="lang-select">
+						<!-- Временно отображаем только русский язык для сервиса -->
+						<div class="lang-select-value">
+							Ru
+						</div>
+						<!--
 						<script type="text/x-config">
 							{
 								"url": "/server/",
@@ -66,6 +71,7 @@
 							<select name="lang-select" id="lang-select">
 							</select>
 						</form>
+						-->
 					</div>
 
 					<form action="#" class="search-form is-cabinet-search-form" data-module="search-form">
@@ -113,9 +119,9 @@
 						</nav>
 					</div>
 				</div>
-				<div class="bottom-panel">
+				<!-- <div class="bottom-panel">
 					<a href="#" class="back-link"><span data-icon="icon-backlink-arrow"></span><span>Вернуться к передаче: Как я встретил вашу маму</span></a>
-				</div>
+				</div> -->
 			</header>
 			<main class="site-content">
 				<section class="broadcast-card" data-module="broadcast-card">
@@ -516,5 +522,6 @@
 		<script src="js/plugins.js"></script>
 
 		<script src="js/broadcast-card.js"></script>
+
 	</body>
 </html>
