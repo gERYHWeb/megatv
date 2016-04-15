@@ -945,7 +945,6 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 
 	function updateRemoteBroadcastStatus(broadcast, broadcastID, element) {
 		$(element).data('status-flag', true);
-
 		$.get(recordingURL, {
 			broadcastID: broadcastID
 		}, function (data) {
@@ -954,7 +953,7 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 				broadcast.removeClass('status-recordable').addClass('recording-in-progress status-recording');
 				broadcast.find('.icon-recordit').remove().end().find('.item-status-icon').prepend($('<span data-icon="icon-recording" />'));
 				broadcast.find('.status-desc').text('В записи');
-				Box.Application.renderIcons(context);
+				// Box.Application.renderIcons(context);
 
 				setTimeout(function () {
 					removeRecordingNotify(broadcast);
@@ -1105,6 +1104,9 @@ Box.Application.addBehavior('load-broadcast-player', function (context) {
 			});
 		}
 	}
+	function play() {
+		jwplayer('player').play();
+	}
 
 	// --------------------------------------------------------------------------
 	// Public
@@ -1139,6 +1141,9 @@ Box.Application.addBehavior('load-broadcast-player', function (context) {
 					// add class for body, that remove padding-right for fullscreen player
 					$('body').addClass('player-modal-open');
 				}
+
+				// Autoplay when show modal
+				play();
 			});
 		},
 		destroy: function () {
@@ -1666,6 +1671,107 @@ Box.Application.addModule('search-form', function (context) {
 });
 
 
+/* global Box, alert */
+Box.Application.addModule('broadcasts-categories', function (context) {
+	'use strict';
+
+	// --------------------------------------------------------------------------
+	// Private
+	// --------------------------------------------------------------------------
+	var $ = context.getGlobal('jQuery');
+	var moduleEl;
+	var list;
+	var items;
+	var height;
+
+	function toggleCategories() {
+		var heightCategories = list.outerHeight();
+
+		if ( !$(moduleEl).is('.is-not-collapsing') ) {
+			if ( $(moduleEl).is('.is-all-categories') ) {
+				$(moduleEl)
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl)
+					.addClass('is-all-categories')
+					.css('height', heightCategories+'px');
+			}
+		}
+	}
+
+	function filterBroadcasts(category) {
+		var broadcasts = $('.broadcasts-list .item');
+
+		broadcasts.removeClass('is-hidden');
+
+		if (category != 'all') {
+			broadcasts.each(function(index, el) {
+				var el = $(this);
+
+				if ( el.data('category') != category ) {
+					el.addClass('is-hidden');
+				}
+			});
+		}
+	}
+
+	function state() {
+		var heightCategories = list.outerHeight();
+
+		if ( $(moduleEl).is('.is-all-categories') ) {
+			$(moduleEl).css('height', heightCategories+'px');
+
+			if (list.outerHeight() <= height) {
+				$(moduleEl)
+					.addClass('is-not-collapsing')
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl).removeClass('is-not-collapsing');
+			}
+		}
+	}
+
+	$(window).resize(function(event) {
+		state();
+	});
+
+
+	// --------------------------------------------------------------------------
+	// Public
+	// --------------------------------------------------------------------------
+
+	return {
+
+		init: function () {
+			moduleEl = context.getElement();
+			list = $(moduleEl).find('.items');
+			items = $(moduleEl).find('.item');
+			height = 60;
+
+			state();
+		},
+		destroy: function () {
+			moduleEl = null;
+			list = null;
+			items = null;
+		},
+		onclick: function (event, element, elementType) {
+			var $item = $(event.target);
+			var broadcastCategory = $item.data('category');
+
+			if (elementType === 'more') {
+				toggleCategories();
+			} else if (elementType === 'item') {
+				items.removeClass('active');
+				$(element).addClass('active');
+				filterBroadcasts(broadcastCategory);
+			}
+		}
+	};
+});
+
 /* global Box, setTimout */
 Box.Application.addModule('broadcast-results', function (context) {
 	'use strict';
@@ -1674,6 +1780,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 	// Private
 	// --------------------------------------------------------------------------
 	var $ = context.getGlobal('jQuery');
+	var cookieService;
 	var DATA_KEY = 'broadcast_results_dates';
 	var moduleEl;
 	var catItems;
@@ -1748,6 +1855,11 @@ Box.Application.addModule('broadcast-results', function (context) {
 		setDayGrid();
 	}
 
+	function saveScrollPosition() {
+		// Сохраняем в куки положение горизонтального скролла, через сутки параметр стирается
+		cookieService.set('canvasScrollPos', canvasScrollPos, { expires: 1 });
+	}
+
 	function checkFridge() {
 		// var canvasRightPos = $(kineticCanvas.target).scrollLeft() + $(kineticCanvas.target).width();
 		// var direction = '';
@@ -1801,6 +1913,8 @@ Box.Application.addModule('broadcast-results', function (context) {
 			}
 		}
 		prevScrollPos = canvasScrollPos;
+
+		saveScrollPosition();
 	}
 
 	// function updateArrow(dayIndex, arrowType) {
@@ -1971,6 +2085,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		behaviors: ['category-row', 'recording-broadcast', 'play-recorded-broadcasts'],
 
 		init: function () {
+			cookieService = context.getService('cookies');
 			kineticService = context.getService('kinetic');
 			iconLoaderService = context.getService('icon-loader');
 			moduleEl = context.getElement();
@@ -1990,7 +2105,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 			itemWidth = $(moduleEl).find('.day .item:not(.double-item)').innerWidth();
 
 			pointerPosition = pointerContainer.length > 0 ? pointerContainer.position() : kineticTimePointer.position();
-
 			$(moduleEl).find('[data-type="broadcast"]').data('status-flag', false).data('play-flag', false);
 			$(moduleEl).data('ajax-flag', true);
 
@@ -2029,17 +2143,30 @@ Box.Application.addModule('broadcast-results', function (context) {
 				setDayGrid();
 
 				// scroll to current time position
-				if (kineticTimePointer.length > 0) {
-					kineticCanvas.moveTo(pointerPosition.left, function () {
+				var cookieCanvasScrollPos = Number(cookieService.get('canvasScrollPos'));
+				if ( !isNaN(cookieCanvasScrollPos) ) {
+					kineticCanvas.moveTo(cookieCanvasScrollPos, function () {
 						if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
 							pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
 							updateRightDay(0, true);
 							setTimout(function () {
 								$(kineticCanvas.target).removeClass('kinetic-moving');
 							}, 500);
-
 						}
 					});
+				} else {
+					if (kineticTimePointer.length > 0) {
+						// console.log( pointerPosition );
+						kineticCanvas.moveTo(pointerPosition.left, function () {
+							if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
+								pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
+								updateRightDay(0, true);
+								setTimout(function () {
+									$(kineticCanvas.target).removeClass('kinetic-moving');
+								}, 500);
+							}
+						});
+					}
 				}
 
 				// clear storage

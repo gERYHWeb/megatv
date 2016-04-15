@@ -1094,7 +1094,15 @@
 					animation .3s broadcastNotifyTextWrapHideAnimation cubic-bezier(.63,.15,.45,.9)
 					animation-fill-mode forwards
 
+					.icon {
+						width 70px
+						margin-bottom 0
+						height 70px
+					}
+
 					p {
+						font-weight normal
+						font-size 12px
 						margin-bottom 0
 					}
 				}
@@ -1613,8 +1621,33 @@
 // Player
 
 .broadcast-player {
+	.back-link {
+		color #fff
+		display inline-block
+		text-decoration none
+
+		span:not(.icon):not([data-icon|="icon"]) {
+			display inline-block
+			vertical-align middle
+			line-height 1.6rem
+			border-bottom 1px solid
+		}
+		.icon,
+		[data-icon|="icon"] {
+			fill #fff
+			vertical-align middle
+			margin-right 10px
+		}
+
+		&:hover {
+			span:not(.icon) {
+				border-bottom-color transparent
+			}
+		}
+	}
+
 	> .block-header {
-		padding 16px 0 19px
+		padding 20px 0
 
 		.block-title {
 			font-size 2.4rem

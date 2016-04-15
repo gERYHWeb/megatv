@@ -819,6 +819,9 @@ Box.Application.addBehavior('load-broadcast-player', function (context) {
 			});
 		}
 	}
+	function play() {
+		jwplayer('player').play();
+	}
 
 	// --------------------------------------------------------------------------
 	// Public
@@ -853,6 +856,9 @@ Box.Application.addBehavior('load-broadcast-player', function (context) {
 					// add class for body, that remove padding-right for fullscreen player
 					$('body').addClass('player-modal-open');
 				}
+
+				// Autoplay when show modal
+				play();
 			});
 		},
 		destroy: function () {

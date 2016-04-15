@@ -6,6 +6,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 	// Private
 	// --------------------------------------------------------------------------
 	var $ = context.getGlobal('jQuery');
+	var cookieService;
 	var DATA_KEY = 'broadcast_results_dates';
 	var moduleEl;
 	var catItems;
@@ -80,6 +81,11 @@ Box.Application.addModule('broadcast-results', function (context) {
 		setDayGrid();
 	}
 
+	function saveScrollPosition() {
+		// Сохраняем в куки положение горизонтального скролла, через сутки параметр стирается
+		cookieService.set('canvasScrollPos', canvasScrollPos, { expires: 1 });
+	}
+
 	function checkFridge() {
 		// var canvasRightPos = $(kineticCanvas.target).scrollLeft() + $(kineticCanvas.target).width();
 		// var direction = '';
@@ -133,6 +139,8 @@ Box.Application.addModule('broadcast-results', function (context) {
 			}
 		}
 		prevScrollPos = canvasScrollPos;
+
+		saveScrollPosition();
 	}
 
 	// function updateArrow(dayIndex, arrowType) {
@@ -303,6 +311,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		behaviors: ['category-row', 'recording-broadcast', 'play-recorded-broadcasts'],
 
 		init: function () {
+			cookieService = context.getService('cookies');
 			kineticService = context.getService('kinetic');
 			iconLoaderService = context.getService('icon-loader');
 			moduleEl = context.getElement();
@@ -322,7 +331,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 			itemWidth = $(moduleEl).find('.day .item:not(.double-item)').innerWidth();
 
 			pointerPosition = pointerContainer.length > 0 ? pointerContainer.position() : kineticTimePointer.position();
-
 			$(moduleEl).find('[data-type="broadcast"]').data('status-flag', false).data('play-flag', false);
 			$(moduleEl).data('ajax-flag', true);
 
@@ -361,17 +369,30 @@ Box.Application.addModule('broadcast-results', function (context) {
 				setDayGrid();
 
 				// scroll to current time position
-				if (kineticTimePointer.length > 0) {
-					kineticCanvas.moveTo(pointerPosition.left, function () {
+				var cookieCanvasScrollPos = Number(cookieService.get('canvasScrollPos'));
+				if ( !isNaN(cookieCanvasScrollPos) ) {
+					kineticCanvas.moveTo(cookieCanvasScrollPos, function () {
 						if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
 							pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
 							updateRightDay(0, true);
 							setTimout(function () {
 								$(kineticCanvas.target).removeClass('kinetic-moving');
 							}, 500);
-
 						}
 					});
+				} else {
+					if (kineticTimePointer.length > 0) {
+						// console.log( pointerPosition );
+						kineticCanvas.moveTo(pointerPosition.left, function () {
+							if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
+								pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
+								updateRightDay(0, true);
+								setTimout(function () {
+									$(kineticCanvas.target).removeClass('kinetic-moving');
+								}, 500);
+							}
+						});
+					}
 				}
 
 				// clear storage

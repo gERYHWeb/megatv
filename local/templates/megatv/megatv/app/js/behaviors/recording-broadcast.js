@@ -46,7 +46,6 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 
 	function updateRemoteBroadcastStatus(broadcast, broadcastID, element) {
 		$(element).data('status-flag', true);
-
 		$.get(recordingURL, {
 			broadcastID: broadcastID
 		}, function (data) {
@@ -55,7 +54,7 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 				broadcast.removeClass('status-recordable').addClass('recording-in-progress status-recording');
 				broadcast.find('.icon-recordit').remove().end().find('.item-status-icon').prepend($('<span data-icon="icon-recording" />'));
 				broadcast.find('.status-desc').text('В записи');
-				Box.Application.renderIcons(context);
+				// Box.Application.renderIcons(context);
 
 				setTimeout(function () {
 					removeRecordingNotify(broadcast);
