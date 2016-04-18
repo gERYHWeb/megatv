@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && ($save!="" || $apply!="") && $POST_RI
 			}
 		}
 
-		$MESSAGE = CMain::ProcessLPA($MESSAGE, $MESSAGE_OLD);
+		$MESSAGE = LPA::Process($MESSAGE, $MESSAGE_OLD);
 	}
 
 
@@ -516,18 +516,82 @@ $tabControl->BeginNextTab();
 					<?endif;?>
 				</span>
 				<span>
-					<?if($ID>0 && $POST_RIGHT>="W" && \Bitrix\Sender\MailingChainTable::isReadyToSend($ID)):?>
-						<input style="margin-left: 80px;" type="button"
-							value="<?echo GetMessage("sender_chain_edit_btn_send")?>"
-							onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=send&lang=<?=LANGUAGE_ID?>'"
-							title="<?echo GetMessage("sender_chain_edit_btn_send_desc")?>" />
-					<?endif;?>
-					<?if($ID>0 && $POST_RIGHT>="W" && \Bitrix\Sender\MailingChainTable::isManualSentPartly($ID)):?>
-						<input style="margin-left: 80px;" type="button"
-							value="<?echo GetMessage("sender_chain_edit_btn_send2")?>"
-							onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=send&lang=<?=LANGUAGE_ID?>'"
-							title="<?echo GetMessage("sender_chain_edit_btn_send2_desc")?>" />
-					<?endif;?>
+					<?
+					if($ID>0 && $POST_RIGHT>="W"):
+
+						if(\Bitrix\Sender\MailingChainTable::isReadyToSend($ID))
+						{
+							?>
+							<input style="margin-left: 80px; margin-right: 15px;" type="button"
+								value="<?echo GetMessage("sender_chain_edit_btn_send")?>"
+								onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=send&lang=<?=LANGUAGE_ID?>'"
+								title="<?echo GetMessage("sender_chain_edit_btn_send_desc")?>" />
+							<?
+
+							if($str_STATUS == \Bitrix\Sender\MailingChainTable::STATUS_PAUSE)
+							{
+								?>
+								<?echo GetMessage("sender_chain_edit_btn_send_or")?>
+								<input style="margin-left: 15px;" type="button"
+									value="<?echo GetMessage("sender_chain_edit_btn_stop")?>"
+									onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=stop&lang=<?=LANGUAGE_ID?>'"
+									title="<?echo GetMessage("sender_chain_edit_btn_stop_desc")?>" />
+								<?
+							}
+
+						}
+						elseif(\Bitrix\Sender\MailingChainTable::isManualSentPartly($ID))
+						{
+							?>
+							<input style="margin-left: 80px; margin-right: 15px;" type="button"
+								value="<?echo GetMessage("sender_chain_edit_btn_send2")?>"
+								onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=send&lang=<?=LANGUAGE_ID?>'"
+								title="<?echo GetMessage("sender_chain_edit_btn_send2_desc")?>" />
+							<?echo GetMessage("sender_chain_edit_btn_send_or")?>
+							<input style="margin-left: 15px;" type="button"
+								value="<?echo GetMessage("sender_chain_edit_btn_stop")?>"
+								onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=stop&lang=<?=LANGUAGE_ID?>'"
+								title="<?echo GetMessage("sender_chain_edit_btn_stop_desc")?>" />
+							<?
+						}
+						elseif(in_array($str_STATUS, array(\Bitrix\Sender\MailingChainTable::STATUS_SEND, \Bitrix\Sender\MailingChainTable::STATUS_WAIT)))
+						{
+							?>
+							<input style="margin-left: 80px;" type="button"
+								value="<?echo GetMessage("sender_chain_edit_btn_pause")?>"
+								onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=pause&lang=<?=LANGUAGE_ID?>'"
+								title="<?echo GetMessage("sender_chain_edit_btn_pause_desc")?>" />
+							<?
+						}
+						elseif($str_STATUS == \Bitrix\Sender\MailingChainTable::STATUS_END && \Bitrix\Sender\MailingChainTable::canReSendErrorRecipients($ID))
+						{
+							?>
+							<input style="margin-left: 80px;" type="button"
+								value="<?echo GetMessage("sender_chain_edit_btn_send_err")?>"
+								onclick="window.location='/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&action=send_error&lang=<?=LANGUAGE_ID?>'"
+								title="<?echo GetMessage("sender_chain_edit_btn_send_err_desc")?>" />
+							<?
+						}
+
+					endif;
+
+					if($ID > 0)
+					{
+						if(in_array(
+							$str_STATUS,
+							array(
+								\Bitrix\Sender\MailingChainTable::STATUS_SEND,
+								\Bitrix\Sender\MailingChainTable::STATUS_PAUSE
+							))
+						)
+						{
+							echo '<span class="sender-mailing-status-creator" style="margin-left: 30px;">(' .
+								GetMessage("sender_chain_edit_btn_send_stat_prcnt") . ': ' .
+								\Bitrix\Sender\PostingTable::getSendPercent($str_POSTING_ID) .
+								'%)</span>';
+						}
+					}
+					?>
 				</span>
 			</div>
 		</td>

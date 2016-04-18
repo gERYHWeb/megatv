@@ -3,10 +3,11 @@
 		var groupExists = BX($controlName+'_EXISTS');
 		var groupSelected = BX($controlName);
 		var groupSelectedHidden = BX($controlName+'_HIDDEN');
-		var groupSelectedOptions = BX.findChildren(groupSelected, {"tag" : "option"});;
+		var groupSelectedOptions = BX.findChildren(groupSelected, {"tag" : "option"}, true);
+		
 		if(isAdd)
 		{
-			var groupExistsOptions = BX.findChildren(groupExists, {"tag" : "option"});
+			var groupExistsOptions = BX.findChildren(groupExists, {"tag" : "option"}, true);
 			if(groupExistsOptions && groupExistsOptions.length > 0)
 			{
 				var arSelectedValues = [];
@@ -60,7 +61,7 @@
 		var element;
 		var selectedGroupId = '';
 		var arSelectedGroupId = [];
-		groupSelectedOptions = BX.findChildren(groupSelected, {"tag" : "option"});
+		groupSelectedOptions = BX.findChildren(groupSelected, {"tag" : "option"}, true);
 		for(var i in groupSelectedOptions)
 		{
 			element = groupSelectedOptions[i];

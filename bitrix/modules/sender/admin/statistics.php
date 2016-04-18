@@ -96,7 +96,7 @@ if($ID > 0)
 {
 	$postingDb = \Bitrix\Sender\PostingTable::getList(array(
 		'select' => array(
-			'ID', 'DATE_CREATE', 'DATE_SENT',
+			'ID', 'DATE_CREATE', 'DATE_SENT', 'STATUS',
 			'MAILING_CHAIN_REITERATE' => 'MAILING_CHAIN.REITERATE',
 			'SUBJECT' => 'MAILING_CHAIN.SUBJECT',
 
@@ -175,7 +175,7 @@ if($ID > 0)
 	// get statistic by last posting
 	if(!empty($arPosting))
 	{
-		$statResult['all'] = $arPosting['COUNT_SEND_ALL'];
+		$statResult['all'] = ($arPosting['STATUS'] != \Bitrix\Sender\PostingTable::STATUS_ABORT ? $arPosting['COUNT_SEND_ALL'] : 0);
 		$statResult['delivered'] = $arPosting['COUNT_SEND_SUCCESS'];
 		$statResult['not_send'] = $arPosting['COUNT_SEND_NONE'];
 		$statResult['error'] = $arPosting['COUNT_SEND_ERROR'];

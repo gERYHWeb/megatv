@@ -27,7 +27,6 @@ CREATE TABLE b_sender_contact_list
 CREATE TABLE b_sender_group
 (
   ID		int(11)		NOT NULL auto_increment,
-  SITE_ID		CHAR(2)		NOT NULL,
   NAME		VARCHAR(100)	NULL,
   DESCRIPTION	TEXT		NULL,
   SORT		int(11)		DEFAULT 100 NOT NULL,
@@ -156,6 +155,7 @@ CREATE TABLE b_sender_posting_read
   PRIMARY KEY (ID)
 );
 CREATE INDEX IX_SENDER_POSTING_READ on b_sender_posting_read(POSTING_ID, RECIPIENT_ID);
+CREATE INDEX ix_b_sender_posting_read_recip_id ON b_sender_posting_read (RECIPIENT_ID);
 
 CREATE TABLE b_sender_posting_click
 (

@@ -95,7 +95,7 @@ if($APPLICATION->GetGroupRight("sender")!="D")
 			array(
 				"text" => GetMessage("mnu_sender_contact_admin"),
 				"url" => "sender_contact_admin.php?lang=".LANGUAGE_ID,
-				"more_url" => array("sender_contact_import.php", "sender_list_admin.php"),
+				"more_url" => array("sender_contact_import.php", "sender_list_admin.php", "sender_contact_edit.php"),
 				"title" => GetMessage("mnu_sender_contact_admin_alt")
 			),
 			array(

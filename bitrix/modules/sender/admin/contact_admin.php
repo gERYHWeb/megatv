@@ -148,8 +148,8 @@ if($_REQUEST["action"]=="js_pull" && check_bitrix_sessid() && $POST_RIGHT>="W")
 	require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_admin_js.php");
 }
 
-
-
+$needGroup = false;
+$arFilter = array();
 $oSort = new CAdminSorting($sTableID, "ID", "desc");
 $lAdmin = new CAdminList($sTableID, $oSort);
 
@@ -166,6 +166,7 @@ $FilterArr = Array(
 	"find_email",
 	"find_list",
 	"find_subscribed",
+	"find_unsubscribed",
 );
 
 $lAdmin->InitFilter($FilterArr);
@@ -181,9 +182,37 @@ if (CheckFilter())
 	elseif(!empty($find_list))
 		$arFilter["=CONTACT_LIST.LIST_ID"] = $find_list;
 	if(!empty($find_subscribed))
-		$arFilter["=MAILING_SUBSCRIPTION.MAILING_ID"] = $find_subscribed;
+	{
+		if($find_subscribed == 'ALL')
+		{
+			$arFilter[">MAILING_SUBSCRIPTION.MAILING_ID"] = 0;
+			$needGroup = true;
+		}
+		else
+		{
+			$arFilter["=MAILING_SUBSCRIPTION.MAILING_ID"] = $find_subscribed;
+		}
+	}
+	if(!empty($find_unsubscribed))
+	{
+		if($find_unsubscribed == 'ALL')
+		{
+			$arFilter[">MAILING_UNSUBSCRIPTION.MAILING_ID"] = 0;
+			$needGroup = true;
+		}
+		else
+		{
+			$arFilter["=MAILING_UNSUBSCRIPTION.MAILING_ID"] = $find_unsubscribed;
+		}
+	}
 
-	foreach($arFilter as $k => $v) if($k!=='CONTACT_LIST.LIST_ID' && empty($v)) unset($arFilter[$k]);
+	foreach($arFilter as $k => $v)
+	{
+		if(!in_array($k, array('=CONTACT_LIST.LIST_ID', '>MAILING_UNSUBSCRIPTION.MAILING_ID', '>MAILING_SUBSCRIPTION.MAILING_ID')) && empty($v))
+		{
+			unset($arFilter[$k]);
+		}
+	}
 }
 
 if(isset($order)) $order = ($order=='asc'?'ASC': 'DESC');
@@ -260,12 +289,17 @@ if(($arID = $lAdmin->GroupAction()) && $POST_RIGHT=="W")
 	}
 }
 
-$groupListDb = \Bitrix\Sender\ContactTable::getList(array(
+
+$selectParams = array(
 	'select' => array('ID', 'DATE_INSERT', 'NAME', 'EMAIL'),
 	'filter' => $arFilter,
-	'order' => array($by=>$order)
-));
-
+	'order' => array($by=>$order),
+);
+if($needGroup)
+{
+	$selectParams['group'] = array('ID', 'DATE_INSERT', 'NAME', 'EMAIL');
+}
+$groupListDb = \Bitrix\Sender\ContactTable::getList($selectParams);
 $rsData = new CAdminResult($groupListDb, $sTableID);
 $rsData->NavStart();
 $lAdmin->NavText($rsData->GetNavPrint(GetMessage("contact_nav")));
@@ -314,15 +348,15 @@ while($arRes = $rsData->NavNext(true, "f_")):
 
 	$arActions = Array();
 
+	$arActions[] = array(
+		"ICON"=>"edit",
+		"DEFAULT"=>true,
+		"TEXT"=>GetMessage("MAIN_ADMIN_LIST_EDIT"),
+		"ACTION"=>$lAdmin->ActionRedirect("sender_contact_edit.php?ID=".$f_ID)
+	);
+
 	if ($POST_RIGHT>="W")
 	{
-		$arActions[] = array(
-			"ICON"=>"edit",
-			"DEFAULT"=>true,
-			"TEXT"=>GetMessage("MAIN_ADMIN_LIST_EDIT"),
-			"ACTION"=>$lAdmin->ActionDoGroup($f_ID, "edit")
-		);
-
 		$arActions[] = array(
 			"ICON" => "delete",
 			"TEXT" => GetMessage("MAIN_ADMIN_LIST_DELETE"),
@@ -355,6 +389,10 @@ $aContext = array(
 		"TITLE"=>GetMessage("POST_ADD_TITLE"),
 		"ICON"=>"btn_new",
 		"MENU" => array(
+			array(
+				"TEXT" => GetMessage("SENDER_CONTACT_LIST_BUTTON_ADD_FORM"),
+				"ACTION" => $lAdmin->ActionRedirect("sender_contact_edit.php?lang=".LANGUAGE_ID),
+			),
 			array(
 				"TEXT" => GetMessage("SENDER_CONTACT_LIST_BUTTON_ADD_LIST"),
 				"ACTION" => $lAdmin->ActionRedirect("sender_contact_import.php?lang=".LANGUAGE_ID),
@@ -396,9 +434,46 @@ $oFilter = new CAdminFilter(
 		GetMessage("rub_f_name"),
 		GetMessage("rub_f_email"),
 		GetMessage("rub_f_subscribed"),
+		GetMessage("rub_f_unsubscribed"),
 		GetMessage("rub_f_list"),
 	)
 );
+
+$oFilter->SetDefaultRows(array("find_email", "find_list"));
+
+$oFilter->AddPreset(array(
+	"ID" => "subscribed_list",
+	"NAME" => GetMessage('SENDER_CONTACT_LIST_PRESET_SUB'),
+	"FIELDS" => array(
+		"find_email" => "",
+		"find_subscribed" => "ALL",
+	),
+));
+
+$oFilter->AddPreset(array(
+	"ID" => "unsubscribed_list",
+	"NAME" => GetMessage('SENDER_CONTACT_LIST_PRESET_UN_SUB'),
+	"FIELDS" => array(
+		"find_email" => "",
+		"find_unsubscribed" => "ALL",
+	),
+));
+
+
+$filterMailingSubList = array('reference' => array(GetMessage('rub_f_yes')), 'reference_id' => array('ALL'));
+$filterMailingUnSubList = array('reference' => array(GetMessage('rub_f_yes')), 'reference_id' => array('ALL'));
+$mailingDb = \Bitrix\Sender\MailingTable::getList(array('select'=>array('IS_TRIGGER', 'REFERENCE'=>'NAME','REFERENCE_ID'=>'ID')));
+while($arMailing = $mailingDb->fetch())
+{
+	if($arMailing['IS_TRIGGER'] != 'Y')
+	{
+		$filterMailingSubList['reference'][] = $arMailing['REFERENCE'];
+		$filterMailingSubList['reference_id'][] = $arMailing['REFERENCE_ID'];
+	}
+
+	$filterMailingUnSubList['reference'][] = $arMailing['REFERENCE'];
+	$filterMailingUnSubList['reference_id'][] = $arMailing['REFERENCE_ID'];
+}
 ?>
 <form name="find_form" method="get" action="<?echo $APPLICATION->GetCurPage();?>">
 <?$oFilter->Begin();?>
@@ -417,16 +492,13 @@ $oFilter = new CAdminFilter(
 <tr>
 	<td><?=GetMessage("rub_f_subscribed")?>:</td>
 	<td>
-		<?
-		$arr = array();
-		$mailingDb = \Bitrix\Sender\MailingTable::getList(array('select'=>array('REFERENCE'=>'NAME','REFERENCE_ID'=>'ID')));
-		while($arMailing = $mailingDb->fetch())
-		{
-			$arr['reference'][] = $arMailing['REFERENCE'];
-			$arr['reference_id'][] = $arMailing['REFERENCE_ID'];
-		}
-		echo SelectBoxFromArray("find_subscribed", $arr, $rub_f_subscribed, GetMessage("MAIN_ALL"), "");
-		?>
+		<?echo SelectBoxFromArray("find_subscribed", $filterMailingSubList, $rub_f_subscribed, GetMessage("MAIN_ALL"), "");?>
+	</td>
+</tr>
+<tr>
+	<td><?=GetMessage("rub_f_unsubscribed")?>:</td>
+	<td>
+		<?echo SelectBoxFromArray("find_unsubscribed", $filterMailingUnSubList, $rub_f_unsubscribed, GetMessage("MAIN_ALL"), "");?>
 	</td>
 </tr>
 <tr>

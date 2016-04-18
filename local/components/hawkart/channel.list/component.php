@@ -200,12 +200,12 @@ $arResult["SOCIAL_CHANNELS"] = array(
     array(
         "ID" => "YOUTUBE",
         "NAME" => "Youtube",
-        "PROPERTIES" => array("ICON" => array("VALUE"=>""))
+        "PROPERTIES" => array("ICON" => array("VALUE"=>"icon-youtube-channel"))
     ),
     array(
         "ID" => "VK",
         "NAME" => "Vk",
-        "PROPERTIES" => array("ICON" => array("VALUE"=>""))
+        "PROPERTIES" => array("ICON" => array("VALUE"=>"icon-vk-channel"))
     )
 );
 

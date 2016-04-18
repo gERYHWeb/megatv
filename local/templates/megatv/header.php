@@ -130,7 +130,11 @@ IncludeTemplateLangFile(__FILE__);
                     );?>
                     
                     <div class="lang-select" data-module="lang-select">
-						<script type="text/x-config">
+                        <!-- Временно отображаем только русский язык для сервиса -->
+                        <div class="lang-select-value">
+                        Ru
+                        </div>
+						<?/*<script type="text/x-config">
 							{
 								"url": "<?=$APPLICATION->GetCurDir()?>",
 								"languages": [
@@ -144,7 +148,7 @@ IncludeTemplateLangFile(__FILE__);
 							<select name="lang-select" id="lang-select">
 							</select>
                             <?=bitrix_sessid_post()?>
-						</form>
+						</form>*/?>
 					</div>
                     
                     <?if($APPLICATION->GetCurDir()!="/personal/records/"):?>

@@ -209,7 +209,7 @@
 		}
 
 		.bxButton, .bxBlockContentButtonEdge{
-			background: #1484CE;
+			background-color: #1484CE;
 			border-radius: 3px;
 			text-align: center;
 		}

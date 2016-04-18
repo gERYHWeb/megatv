@@ -19,6 +19,7 @@ class PostingTable extends Entity\DataManager
 	const STATUS_PART = 'P';
 	const STATUS_SENT = 'S';
 	const STATUS_SENT_WITH_ERRORS = 'E';
+	const STATUS_ABORT = 'A';
 
 	/**
 	 * @return string
@@ -425,6 +426,37 @@ class PostingTable extends Entity\DataManager
 			foreach ($ar as $k => $v) $count += $v;
 
 		return $count;
+	}
+
+	/**
+	 * Return send status of posting in percents by posting id.
+	 *
+	 * @param $id
+	 * @return int
+	 */
+	public static function getSendPercent($id)
+	{
+		$ar = static::getRecipientCountByStatus($id);
+		$count = 0;
+		foreach ($ar as $k => $v)
+		{
+			$count += $v;
+		}
+
+		$countNew = 0;
+		if(isset($ar[PostingRecipientTable::SEND_RESULT_NONE]))
+		{
+			$countNew = $ar[PostingRecipientTable::SEND_RESULT_NONE];
+		}
+
+		if($count > 0 && $countNew > 0)
+		{
+			return round(($count - $countNew) / $count, 2) * 100;
+		}
+		else
+		{
+			return 100;
+		}
 	}
 
 	/**

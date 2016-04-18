@@ -10,6 +10,7 @@ namespace Bitrix\Sender;
 use Bitrix\Main\Entity;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Type;
+use Bitrix\Main\DB\SqlExpression;
 
 Loc::loadMessages(__FILE__);
 
@@ -63,11 +64,11 @@ class ContactTable extends Entity\DataManager
 			),
 			'MAILING_SUBSCRIPTION' => array(
 				'data_type' => 'Bitrix\Sender\MailingSubscriptionTable',
-				'reference' => array('=this.ID' => 'ref.CONTACT_ID', 'ref.IS_UNSUB' => 'N'),
+				'reference' => array('=this.ID' => 'ref.CONTACT_ID', 'ref.IS_UNSUB' => new SqlExpression('?', 'N')),
 			),
 			'MAILING_UNSUBSCRIPTION' => array(
 				'data_type' => 'Bitrix\Sender\MailingSubscriptionTable',
-				'reference' => array('=this.ID' => 'ref.CONTACT_ID', 'ref.IS_UNSUB' => 'Y'),
+				'reference' => array('=this.ID' => 'ref.CONTACT_ID', 'ref.IS_UNSUB' =>  new SqlExpression('?', 'Y')),
 			),
 		);
 	}

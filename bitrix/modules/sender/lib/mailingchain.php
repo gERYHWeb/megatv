@@ -334,9 +334,9 @@ class MailingChainTable extends Entity\DataManager
 		$mailingChainDb = static::getList(array(
 			'select' => array('ID'),
 			'filter' => array(
-				'ID' => $id,
-				'MAILING.ACTIVE' => 'Y',
-				'STATUS' => array(static::STATUS_NEW, static::STATUS_PAUSE),
+				'=ID' => $id,
+				'=MAILING.ACTIVE' => 'Y',
+				'=STATUS' => array(static::STATUS_NEW, static::STATUS_PAUSE),
 			),
 		));
 		$mailingChain = $mailingChainDb->fetch();
@@ -354,16 +354,97 @@ class MailingChainTable extends Entity\DataManager
 		$mailingChainDb = static::getList(array(
 			'select' => array('ID'),
 			'filter' => array(
-				'ID' => $id,
-				'MAILING.ACTIVE' => 'Y',
-				'AUTO_SEND_TIME' => null,
+				'=ID' => $id,
+				'=MAILING.ACTIVE' => 'Y',
+				'=AUTO_SEND_TIME' => null,
 				'!REITERATE' => 'Y',
-				'STATUS' => array(static::STATUS_SEND),
+				'=STATUS' => array(static::STATUS_SEND),
 			),
 		));
 		$mailingChain = $mailingChainDb->fetch();
 
 		return !empty($mailingChain);
+	}
+
+	/**
+ * Return true if chain will auto send.
+ *
+ * @param $id
+ * @return bool
+ * @throws \Bitrix\Main\ArgumentException
+ */
+	public static function isAutoSend($id)
+	{
+		$mailingChainDb = static::getList(array(
+			'select' => array('ID'),
+			'filter' => array(
+				'=ID' => $id,
+				'!AUTO_SEND_TIME' => null,
+				'!REITERATE' => 'Y',
+			),
+		));
+		$mailingChain = $mailingChainDb->fetch();
+
+		return !empty($mailingChain);
+	}
+
+	/**
+	 * Return true if chain can resend mails to recipients who have error sending
+	 *
+	 * @param $id
+	 * @return bool
+	 */
+	public static function canReSendErrorRecipients($id)
+	{
+		$mailingChainDb = static::getList(array(
+			'select' => array('POSTING_ID'),
+			'filter' => array(
+				'=ID' => $id,
+				'!REITERATE' => 'Y',
+				'!POSTING_ID' => null,
+				'=STATUS' => static::STATUS_END,
+			),
+		));
+		if($mailingChain = $mailingChainDb->fetch())
+		{
+			$errorRecipientDb = PostingRecipientTable::getList(array(
+				'select' => array('ID'),
+				'filter' => array(
+					'=POSTING_ID' => $mailingChain['POSTING_ID'],
+					'=STATUS' => PostingRecipientTable::SEND_RESULT_ERROR
+				),
+				'limit' => 1
+			));
+			if($errorRecipientDb->fetch())
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Change status of recipients and mailing chain for resending mails to recipients who have error sending
+	 *
+	 * @param $id
+	 * @return void
+	 */
+	public static function prepareReSendErrorRecipients($id)
+	{
+		if(!static::canReSendErrorRecipients($id))
+		{
+			return;
+		}
+
+		$mailingChain = static::getRowById(array('ID' => $id));
+		$updateSql = 'UPDATE ' . PostingRecipientTable::getTableName() .
+			" SET STATUS='" . PostingRecipientTable::SEND_RESULT_NONE . "'" .
+			" WHERE POSTING_ID=" . intval($mailingChain['POSTING_ID']) .
+			" AND STATUS='" . PostingRecipientTable::SEND_RESULT_ERROR . "'";
+		\Bitrix\Main\Application::getConnection()->query($updateSql);
+		PostingTable::update(array('ID' => $mailingChain['POSTING_ID']), array('STATUS' => PostingTable::STATUS_PART));
+		static::update(array('ID' => $id), array('STATUS' => static::STATUS_SEND));
 	}
 
 	/**
@@ -382,6 +463,7 @@ class MailingChainTable extends Entity\DataManager
 		return array(
 			self::STATUS_NEW => Loc::getMessage('SENDER_CHAIN_STATUS_N'),
 			self::STATUS_SEND => Loc::getMessage('SENDER_CHAIN_STATUS_S'),
+			self::STATUS_PAUSE => Loc::getMessage('SENDER_CHAIN_STATUS_P'),
 			self::STATUS_WAIT => Loc::getMessage('SENDER_CHAIN_STATUS_W'),
 			self::STATUS_END => Loc::getMessage('SENDER_CHAIN_STATUS_Y'),
 		);

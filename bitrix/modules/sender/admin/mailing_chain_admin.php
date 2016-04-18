@@ -96,6 +96,38 @@ if($_REQUEST["action"]=="send_to_me" && check_bitrix_sessid() && $POST_RIGHT>="W
 	require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_admin_js.php");
 }
 
+if(check_bitrix_sessid() && $POST_RIGHT>="W" && isset($_REQUEST["action"]) && in_array($_REQUEST["action"], array('js_pause', 'js_stop', 'js_send_error')))
+{
+	require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_admin_js.php");
+	$message = null;
+	$mailingChain = MailingChainTable::getRowById(array('ID' => $ID));
+	if($_REQUEST["action"] == "js_pause" && in_array($mailingChain['STATUS'], array(MailingChainTable::STATUS_SEND, MailingChainTable::STATUS_WAIT)))
+	{
+		MailingChainTable::update(array('ID' => $ID), array('STATUS' => MailingChainTable::STATUS_PAUSE));
+		$message = GetMessage("MAILING_ADM_SENDING_PAUSE");
+	}
+	elseif($_REQUEST["action"] == "js_stop" && $mailingChain['STATUS'] == MailingChainTable::STATUS_PAUSE)
+	{
+		MailingChainTable::update(array('ID' => $ID), array('STATUS' => MailingChainTable::STATUS_END));
+		$message = GetMessage("MAILING_ADM_SENDING_STOP");
+	}
+	elseif($_REQUEST["action"] == "js_send_error" && MailingChainTable::canReSendErrorRecipients($ID))
+	{
+		MailingChainTable::prepareReSendErrorRecipients($ID);
+		$message = GetMessage("MAILING_ADM_SENDING_PLANING");
+	}
+
+	if($message)
+	{
+		$adminMessage = new CAdminMessage(array("MESSAGE"=>$message, "TYPE"=>"OK"));
+		echo $adminMessage->show();
+	}
+	?>
+	<script><?=$sTableID?>.GetAdminList('<?echo $APPLICATION->GetCurPage();?>?MAILING_ID=<?=$MAILING_ID?>&ID=<?=$ID?>&lang=<?=LANGUAGE_ID?>');</script>
+	<?
+
+	require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_admin_js.php");
+}
 
 if($_REQUEST["action"]=="js_send" && check_bitrix_sessid() && $POST_RIGHT>="W")
 {
@@ -126,7 +158,7 @@ if($_REQUEST["action"]=="js_send" && check_bitrix_sessid() && $POST_RIGHT>="W")
 
 		if($arMailingChain["REITERATE"] == 'Y' || !empty($arMailingChain["AUTO_SEND_TIME"]))
 		{
-			if($arMailingChain["STATUS"] == MailingChainTable::STATUS_NEW)
+			if(in_array($arMailingChain["STATUS"], array(MailingChainTable::STATUS_NEW, MailingChainTable::STATUS_PAUSE)))
 			{
 				if($arMailingChain["REITERATE"] == 'Y')
 					$status = MailingChainTable::STATUS_WAIT;
@@ -190,9 +222,7 @@ if($_REQUEST["action"]=="js_send" && check_bitrix_sessid() && $POST_RIGHT>="W")
 					break;
 				case MailingChainTable::STATUS_SEND:
 
-					\Bitrix\Main\Application::getInstance()->getConnection()->startTransaction();
 					\Bitrix\Sender\MailingManager::chainSend($mailingChainId);
-					\Bitrix\Main\Application::getInstance()->getConnection()->commitTransaction();
 					$sendErrors = \Bitrix\Sender\MailingManager::getErrors();
 					if(empty($sendErrors))
 					{
@@ -441,7 +471,17 @@ while($arRes = $rsData->NavNext(true, "f_")):
 	$row->AddViewField("CREATED_BY", '<a href="/bitrix/admin/user_edit.php?lang='.LANGUAGE_ID.'&ID='.$f_CREATED_BY.'">'.htmlspecialcharsbx($arUser['NAME']." ".$arUser['LAST_NAME'])."</a>");
 
 	$arStatus = MailingChainTable::getStatusList();
-	$row->AddViewField("STATUS", $arStatus[$f_STATUS]);
+	$statusPercent = '';
+	if(in_array($f_STATUS, array(MailingChainTable::STATUS_SEND, MailingChainTable::STATUS_PAUSE)))
+	{
+		$statusPercent = '<br>' . '<span style="font-size: 12px; color: #C2C2C2;">' .
+			GetMessage("sender_mailing_chain_adm_action_stat") . ': ' . PostingTable::getSendPercent($f_POSTING_ID) . '%' .
+			'</span>';
+	}
+	$row->AddViewField("STATUS", $arStatus[$f_STATUS] . ' ' . $statusPercent);
+
+
+
 	$row->AddViewField("REITERATE", $f_REITERATE == 'Y' ? GetMessage("MAIN_YES") : GetMessage("MAIN_NO"));
 
 	$arActions = Array();
@@ -473,6 +513,37 @@ while($arRes = $rsData->NavNext(true, "f_")):
 					"ACTION" => $lAdmin->ActionRedirect("/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=".$MAILING_ID."&ID=".$f_ID."&action=send&lang=" . LANGUAGE_ID)
 				);
 			}
+			break;
+		case MailingChainTable::STATUS_WAIT:
+		case MailingChainTable::STATUS_SEND:
+			if ($POST_RIGHT>="W")
+			{
+				$arActions[] = array(
+					"ICON" => "",
+					"DEFAULT" => false,
+					"TEXT" => GetMessage("sender_mailing_chain_adm_action_pause"),
+					"ACTION" => $lAdmin->ActionRedirect("/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=".$MAILING_ID."&ID=".$f_ID."&action=pause&lang=" . LANGUAGE_ID)
+				);
+			}
+			break;
+		case MailingChainTable::STATUS_PAUSE:
+			if ($POST_RIGHT>="W")
+			{
+				$arActions[] = array(
+					"ICON" => "",
+					"DEFAULT" => false,
+					"TEXT" => GetMessage("sender_mailing_chain_adm_action_send"),
+					"ACTION" => $lAdmin->ActionRedirect("/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=".$MAILING_ID."&ID=".$f_ID."&action=send&lang=" . LANGUAGE_ID)
+				);
+
+				$arActions[] = array(
+					"ICON" => "",
+					"DEFAULT" => false,
+					"TEXT" => GetMessage("sender_mailing_chain_adm_action_stop"),
+					"ACTION" => $lAdmin->ActionRedirect("/bitrix/admin/sender_mailing_chain_admin.php?MAILING_ID=".$MAILING_ID."&ID=".$f_ID."&action=stop&lang=" . LANGUAGE_ID)
+				);
+			}
+			break;
 	}
 
 
@@ -553,10 +624,17 @@ $oFilter->End();
 //******************************
 // Send mailing and show progress
 //******************************
-if($_REQUEST['action']=="send"):
-	$canSend = \Bitrix\Sender\MailingChainTable::isReadyToSend($ID);
-	if(!$canSend)
-		$canSend = \Bitrix\Sender\MailingChainTable::isManualSentPartly($ID);
+$jsAction = $_REQUEST['action'];
+if(in_array($jsAction, array('send', 'pause', 'stop', 'send_error'))):
+
+	$canSend = true;
+	if($jsAction == 'send')
+	{
+		$canSend = \Bitrix\Sender\MailingChainTable::isReadyToSend($ID);
+		if(!$canSend)
+			$canSend = \Bitrix\Sender\MailingChainTable::isManualSentPartly($ID);
+	}
+
 
 	if($canSend):
 		?>
@@ -581,7 +659,7 @@ if($_REQUEST['action']=="send"):
 				if(stop)
 					return;
 
-				var url = '/bitrix/admin/sender_mailing_chain_admin.php?lang=<?echo LANGUAGE_ID?>&MAILING_ID=<?echo $MAILING_ID?>&ID=<?echo $ID?>&<?echo bitrix_sessid_get()?>&action=js_send';
+				var url = '/bitrix/admin/sender_mailing_chain_admin.php?lang=<?echo LANGUAGE_ID?>&MAILING_ID=<?echo $MAILING_ID?>&ID=<?echo $ID?>&<?echo bitrix_sessid_get()?>&action=js_<?=htmlspecialcharsbx($jsAction)?>';
 				ShowWaitWindow();
 				BX.ajax.post(
 					url,

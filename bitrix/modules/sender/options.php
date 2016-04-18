@@ -11,6 +11,7 @@ $arAllOptions = array(
 	array("auto_method", GetMessage("opt_method"), array("selectbox", array("agent"=>GetMessage("opt_method_agent"), "cron"=>GetMessage("opt_method_cron")))),
 	array("max_emails_per_hit", GetMessage("opt_max_per_hit"), array("text", 10)),
 	array("auto_agent_interval", GetMessage("opt_auto_agent_interval"), array("text", 10)),
+	array("max_emails_per_cron", GetMessage("opt_max_per_cron"), array("text", 10)),
 	array("reiterate_method", GetMessage("opt_reiterate_method"), array("selectbox", array("agent"=>GetMessage("opt_method_agent"), "cron"=>GetMessage("opt_method_cron")))),
 	array("reiterate_interval", GetMessage("opt_reiterate_interval"), array("text", 10)),
 	array("link_protocol", GetMessage("opt_link_protocol"), array("selectbox", array(""=>"http", "https"=>"https"))),

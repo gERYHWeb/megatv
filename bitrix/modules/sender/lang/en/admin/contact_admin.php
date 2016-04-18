@@ -34,4 +34,9 @@ $MESS["SENDER_CONTACT_LIST_BUTTON_ADD_LIST"] = "Add one address or multiple addr
 $MESS["SENDER_CONTACT_LIST_BUTTON_ADD_FILE"] = "Add a file containing addresses";
 $MESS["SENDER_CONTACT_LIST_BUTTON_ADD_PULL"] = "Import from other sources (users, web forms etc.)";
 $MESS["SENDER_CONTACT_LIST_BUTTON_ADD_PULL1"] = "Import from various sources (users, customers etc.)";
+$MESS["rub_f_yes"] = "(yes)";
+$MESS["rub_f_unsubscribed"] = "Unsubscribed";
+$MESS["SENDER_CONTACT_LIST_PRESET_SUB"] = "Subscribers";
+$MESS["SENDER_CONTACT_LIST_PRESET_UN_SUB"] = "Unsubscribed";
+$MESS["SENDER_CONTACT_LIST_BUTTON_ADD_FORM"] = "Add";
 ?>

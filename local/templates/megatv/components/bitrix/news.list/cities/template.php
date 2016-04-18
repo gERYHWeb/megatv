@@ -21,7 +21,7 @@ $this->setFrameMode(true);
 				    { "id": <?=$arItem["ID"]?>, "text": "<?=$arItem["NAME"]?>" }<?if($key<count($arResult["ITEMS"])-1):?>,<?endif;?>
                 <?endforeach;?>
 			],
-			"showCityRequestPopover": true
+			"showCityRequestPopover": false
 		}
     </script>
     <form action="<?=$arParams["CUR_DIR"]?>" method="POST" id="city-select-form">

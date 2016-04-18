@@ -70,4 +70,12 @@ $MESS["sender_chain_edit_field_priority_1"] = "High";
 $MESS["sender_chain_edit_field_priority_3"] = "Normal";
 $MESS["sender_chain_edit_field_priority_5"] = "Low";
 $MESS["sender_chain_edit_field_linkparams"] = "Add parameters to all links:";
+$MESS["sender_chain_edit_btn_send_stat_prcnt"] = "sent";
+$MESS["sender_chain_edit_btn_send_or"] = "or";
+$MESS["sender_chain_edit_btn_pause"] = "Pause";
+$MESS["sender_chain_edit_btn_pause_desc"] = "Pauses newsletter delivery. You can resume sending at a later time, or stop it altogether.";
+$MESS["sender_chain_edit_btn_stop"] = "Stop";
+$MESS["sender_chain_edit_btn_stop_desc"] = "Abort sending. This action cannot be undone.";
+$MESS["sender_chain_edit_btn_send_err"] = "Resend to faulty addresses";
+$MESS["sender_chain_edit_btn_send_err_desc"] = "Send newsletter e-mail to recipients that have failed on the previous attempt.";
 ?>

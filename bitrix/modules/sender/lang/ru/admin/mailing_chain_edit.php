@@ -77,10 +77,18 @@ $MESS["rub_dom"] = "Дни месяца (например 1,10-20,25):";
 $MESS["rub_dow"] = "Дни недели:";
 $MESS["rub_tod"] = "Время (например 9:00,18:00):";
 
+$MESS["sender_chain_edit_btn_send_stat_prcnt"] = "отправлено";
+$MESS["sender_chain_edit_btn_send_or"] = "или";
 $MESS["sender_chain_edit_btn_send"] = "Отправить";
 $MESS["sender_chain_edit_btn_send_desc"] = "Отправить выпуск";
+$MESS["sender_chain_edit_btn_pause"] = "Пауза";
+$MESS["sender_chain_edit_btn_pause_desc"] = "Поставить на паузу отправку выпуска, можно возобновить или остановить на совсем.";
+$MESS["sender_chain_edit_btn_stop"] = "Остановить";
+$MESS["sender_chain_edit_btn_stop_desc"] = "Остановить выпуск, это необратимо.";
 $MESS["sender_chain_edit_btn_send2"] = "Отправить оставшимся адресатам";
 $MESS["sender_chain_edit_btn_send2_desc"] = "Отправить выпуск оставшимся адресатам";
+$MESS["sender_chain_edit_btn_send_err"] = "Переотправить ошибочным адресатам";
+$MESS["sender_chain_edit_btn_send_err_desc"] = "Отправить повторно тем адресатам, которые в первый раз не удалось отправить(отправлено с ошибкой).";
 $MESS["sender_chain_edit_pers_help"] = "Используйте тэги для персонализации рассылки.<br> При отправке произойдет автозамена тегов на установленные данные.<br> Например, адресат получит именное письмо с датой или названием товара-новинки";
 $MESS["sender_chain_edit_field_attachment"] = "Вложения";
 ?>

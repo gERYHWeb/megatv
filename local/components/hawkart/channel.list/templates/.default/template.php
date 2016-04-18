@@ -52,7 +52,7 @@ $curPage++;
         	
             if(!in_array($arItem['ID'], $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized()) continue;
             ?>
-    		<a class="category-logo" href="<?=$arItem["DETAIL_PAGE_URL"]?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+    		<a class="category-logo" href="#<?//=$arItem["DETAIL_PAGE_URL"]?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
     			<span data-icon="<?=$arItem["PROPERTIES"]["ICON"]["VALUE"]?>"></span>
     		</a>
         <?endforeach?>

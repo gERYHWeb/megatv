@@ -21,10 +21,13 @@ class PostingManager
 	const SEND_RESULT_SENT = true;
 	const SEND_RESULT_CONTINUE = 'CONTINUE';
 
+	protected static $checkStatusStep = 20;
 	protected static $emailSentPerIteration = 0;
 	protected static $currentMailingChainFields = null;
 
 	/**
+	 * Handler of read event
+	 *
 	 * @param array $data
 	 * @return array
 	 */
@@ -38,6 +41,8 @@ class PostingManager
 	}
 
 	/**
+	 * Handler of click event
+	 *
 	 * @param array $data
 	 * @return array
 	 */
@@ -52,7 +57,10 @@ class PostingManager
 	}
 
 	/**
+	 * Do read actions
+	 *
 	 * @param $recipientId
+	 * @return void
 	 */
 	public static function read($recipientId)
 	{
@@ -68,8 +76,11 @@ class PostingManager
 	}
 
 	/**
+	 * Do click actions
+	 *
 	 * @param $recipientId
 	 * @param $url
+	 * @return void
 	 * @throws \Bitrix\Main\ArgumentException
 	 */
 	public static function click($recipientId, $url)
@@ -119,6 +130,8 @@ class PostingManager
 
 
 	/**
+	 * Get chain list for resending
+	 *
 	 * @param $mailingId
 	 * @return array|null
 	 * @throws \Bitrix\Main\ArgumentException
@@ -144,6 +157,7 @@ class PostingManager
 	}
 
 	/**
+	 *
 	 * @param $mailingChainId
 	 * @param array $params
 	 * @return string
@@ -183,7 +197,7 @@ class PostingManager
 		{
 			$mailingChainDb = MailingChainTable::getList(array(
 				'select' => array('*', 'SITE_ID' => 'MAILING.SITE_ID'),
-				'filter' => array('ID' => $mailingChainId)
+				'filter' => array('=ID' => $mailingChainId)
 			));
 			if(!($mailingChain = $mailingChainDb->fetch()))
 			{
@@ -194,7 +208,7 @@ class PostingManager
 			$charset = false;
 			$siteDb = \Bitrix\Main\SiteTable::getList(array(
 				'select'=>array('SERVER_NAME', 'NAME', 'CULTURE_CHARSET'=>'CULTURE.CHARSET'),
-				'filter' => array('LID' => $mailingChain['SITE_ID'])
+				'filter' => array('=LID' => $mailingChain['SITE_ID'])
 			));
 			if($site = $siteDb->fetch())
 			{
@@ -407,6 +421,8 @@ class PostingManager
 	}
 
 	/**
+	 * Send letter by message from posting to address.
+	 *
 	 * @param $mailingChainId
 	 * @param $address
 	 * @return bool
@@ -426,6 +442,7 @@ class PostingManager
 				'NAME' => $recipientName,
 				'EMAIL_TO' => $address,
 				'USER_ID' => $USER->GetID(),
+				'SENDER_CHAIN_ID' => $mailingChain["ID"],
 				'SENDER_CHAIN_CODE' => 'sender_chain_item_' . $mailingChain["ID"],
 				'UNSUBSCRIBE_LINK' => Subscription::getLinkUnsub(array(
 					'MAILING_ID' => !empty($mailingChain) ? $mailingChain['MAILING_ID'] : 0,
@@ -462,6 +479,8 @@ class PostingManager
 	}
 
 	/**
+	 * Send posting.
+	 *
 	 * @param $id
 	 * @param int $timeout
 	 * @param int $maxMailCount
@@ -488,9 +507,9 @@ class PostingManager
 				'MAILING_CHAIN_IS_TRIGGER' => 'MAILING_CHAIN.IS_TRIGGER',
 			),
 			'filter' => array(
-				'ID' => $id,
-				'MAILING.ACTIVE' => 'Y',
-				'MAILING_CHAIN.STATUS' => MailingChainTable::STATUS_SEND,
+				'=ID' => $id,
+				'=MAILING.ACTIVE' => 'Y',
+				'=MAILING_CHAIN.STATUS' => MailingChainTable::STATUS_SEND,
 			)
 		));
 		$postingData = $postingDb->fetch();
@@ -537,17 +556,39 @@ class PostingManager
 		}
 
 
+		$isStopped = false;
+		$checkStatusCounter = 0;
+		static::$checkStatusStep = intval(Option::get('sender', 'send_check_status_step', static::$checkStatusStep));
+
 		// select all recipients of posting, only not processed
 		$recipientDataDb = PostingRecipientTable::getList(array(
 			'filter' => array(
-				'POSTING_ID' => $postingData['ID'],
-				'STATUS' => PostingRecipientTable::SEND_RESULT_NONE
+				'=POSTING_ID' => $postingData['ID'],
+				'=STATUS' => PostingRecipientTable::SEND_RESULT_NONE
 			),
 			'limit' => $maxMailCount
 		));
 
 		while($recipientData = $recipientDataDb->fetch())
 		{
+			// check pause or stop status
+			if(++$checkStatusCounter >= static::$checkStatusStep)
+			{
+				$checkStatusDb = MailingChainTable::getList(array(
+					'select' => array('ID'),
+					'filter' => array(
+						'=ID' => $postingData["MAILING_CHAIN_ID"],
+						'=STATUS' => MailingChainTable::STATUS_SEND
+					)
+				));
+				if(!$checkStatusDb->fetch())
+				{
+					break;
+				}
+
+				$checkStatusCounter = 0;
+			}
+
 			// create name from email
 			$recipientEmail = $recipientData["EMAIL"];
 			if(empty($recipientData["NAME"]))
@@ -567,6 +608,7 @@ class PostingManager
 					'EMAIL_TO' => $recipientEmail,
 					'NAME' => $recipientName,
 					'USER_ID' => $recipientData["USER_ID"],
+					'SENDER_CHAIN_ID' => $postingData["MAILING_CHAIN_ID"],
 					'SENDER_CHAIN_CODE' => 'sender_chain_item_' . $postingData["MAILING_CHAIN_ID"],
 					'UNSUBSCRIBE_LINK' => Subscription::getLinkUnsub(array(
 						'MAILING_ID' => $postingData['MAILING_ID'],
@@ -589,7 +631,16 @@ class PostingManager
 				$sendParams['FIELDS'] = $sendParams['FIELDS'] + $recipientData['FIELDS'];
 
 			// set sending result to recipient
-			$mailSendResult = static::sendInternal($postingData['MAILING_CHAIN_ID'], $sendParams);
+			try
+			{
+				$mailSendResult = static::sendInternal($postingData['MAILING_CHAIN_ID'], $sendParams);
+			}
+			catch(\Bitrix\Main\Mail\StopException $e)
+			{
+				$isStopped = true;
+				break;
+			}
+
 			PostingRecipientTable::update(array('ID' => $recipientData["ID"]), array('STATUS' => $mailSendResult, 'DATE_SENT' => new Type\DateTime()));
 
 			// send event
@@ -612,7 +663,12 @@ class PostingManager
 
 		//set status and delivered and error emails
 		$statusList = PostingTable::getRecipientCountByStatus($id);
-		if(!array_key_exists(PostingRecipientTable::SEND_RESULT_NONE, $statusList))
+		if($isStopped)
+		{
+			$STATUS = PostingTable::STATUS_ABORT;
+			$DATE = new Type\DateTime();
+		}
+		elseif(!array_key_exists(PostingRecipientTable::SEND_RESULT_NONE, $statusList))
 		{
 			if(array_key_exists(PostingRecipientTable::SEND_RESULT_ERROR, $statusList))
 				$STATUS = PostingTable::STATUS_SENT_WITH_ERRORS;
@@ -663,6 +719,8 @@ class PostingManager
 	}
 
 	/**
+	 * Lock posting for preventing double sending
+	 *
 	 * @param $id
 	 * @return bool
 	 * @throws \Bitrix\Main\Db\SqlQueryException
@@ -740,6 +798,8 @@ class PostingManager
 	}
 
 	/**
+	 * UnLock posting that was locking for preventing double sending
+	 *
 	 * @param $id
 	 * @return bool
 	 */

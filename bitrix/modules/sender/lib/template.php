@@ -18,6 +18,10 @@ class TemplateTable extends Entity\DataManager
 	const LOCAL_DIR_IMG = '/images/sender/preset/template/';
 
 	/**
+	 * Handler of event that return array of templates
+	 *
+	 * @param string|null $templateType
+	 * @param string|null $templateId
 	 * @return array
 	 * @throws \Bitrix\Main\ArgumentException
 	 */
@@ -59,6 +63,8 @@ class TemplateTable extends Entity\DataManager
 	}
 
 	/**
+	 * Get table name
+	 *
 	 * @return string
 	 */
 	public static function getTableName()
@@ -67,6 +73,8 @@ class TemplateTable extends Entity\DataManager
 	}
 
 	/**
+	 * Return the map
+	 *
 	 * @return array
 	 */
 	public static function getMap()
@@ -132,6 +140,8 @@ class TemplateTable extends Entity\DataManager
 	}
 
 	/**
+	 * Function return true if html in $content is supported by Block Editor
+	 *
 	 * @param string $content
 	 * @return boolean
 	 */
@@ -141,6 +151,8 @@ class TemplateTable extends Entity\DataManager
 	}
 
 	/**
+	 * Init editor
+	 *
 	 * @param array $params
 	 * @return string
 	 */
@@ -205,7 +217,7 @@ class TemplateTable extends Entity\DataManager
 			$fieldName,
 			$fieldValue,
 			false,
-			"html",
+			"text",
 			array(
 				'height' => $editorHeight,
 				'width' => $editorWidth
