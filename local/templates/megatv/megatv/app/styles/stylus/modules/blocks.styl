@@ -3243,7 +3243,9 @@
 			.item-image-holder {
 				filter grayscale(100%)
 			}
-
+			.view-progress {
+				display none
+			}
 			&:hover {
 				.item-status-icon {
 					opacity 0
@@ -3555,6 +3557,14 @@
 				}
 				&:after {
 					left 75%
+				}
+			}
+			&[data-progress="4"] {
+				&:before {
+					width 100%
+				}
+				&:after {
+					left 100%
 				}
 			}
 			&:before {
