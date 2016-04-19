@@ -1005,7 +1005,7 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
 				if (authentication === true) {
-					if ($(element).data('status-flag') === false) {
+					if ($(element).data('status-flag') === false || typeof $(element).data('status-flag') === 'undefined') {
 						var broadcast = $(moduleEl).find($(event.target).closest('.item'));
 						var broadcastID = broadcast.data('broadcast-id');
 						if (broadcastID !== '' && typeof broadcastID !== 'undefined') {
@@ -2032,6 +2032,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 	}
 
 	function fetchDayData(dayIndex, dayReq, daysData, direction) {
+		// console.log( 'fetchDayData' );
 		daysConfig[dayIndex].state = 'loading';
 
 		$.ajax({

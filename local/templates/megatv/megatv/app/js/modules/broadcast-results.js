@@ -258,6 +258,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 	}
 
 	function fetchDayData(dayIndex, dayReq, daysData, direction) {
+		// console.log( 'fetchDayData' );
 		daysConfig[dayIndex].state = 'loading';
 
 		$.ajax({
