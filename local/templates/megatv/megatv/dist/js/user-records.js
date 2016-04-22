@@ -844,9 +844,6 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 			authentication = null;
 		},
 		onclick: function (event, element, elementType) {
-			console.log( event );
-			console.log( element );
-			console.log( elementType );
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
 				console.log( 'Авторизован: ' );
@@ -1448,6 +1445,9 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	function filterBroadcasts(category) {
 		var broadcasts = $('.broadcasts-list .item');
 
+		items.removeClass('active');
+		$(moduleEl).find('.item[data-category="'+category+'"]').addClass('active');
+
 		broadcasts.removeClass('is-hidden');
 
 		if (category != 'all') {
@@ -1466,15 +1466,15 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 
 		if ( $(moduleEl).is('.is-all-categories') ) {
 			$(moduleEl).css('height', heightCategories+'px');
+		}
 
-			if (list.outerHeight() <= height) {
-				$(moduleEl)
-					.addClass('is-not-collapsing')
-					.removeClass('is-all-categories')
-					.css('height', height+'px');
-			} else {
-				$(moduleEl).removeClass('is-not-collapsing');
-			}
+		if (heightCategories <= height) {
+			$(moduleEl)
+				.addClass('is-not-collapsing')
+				.removeClass('is-all-categories')
+				.css('height', height+'px');
+		} else {
+			$(moduleEl).removeClass('is-not-collapsing');
 		}
 	}
 
@@ -1488,6 +1488,8 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	// --------------------------------------------------------------------------
 
 	return {
+
+		messages: ['categoryChanged'],
 
 		init: function () {
 			moduleEl = context.getElement();
@@ -1504,16 +1506,20 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 		},
 		onclick: function (event, element, elementType) {
 			var $item = $(event.target);
-			var broadcastCategory = $item.data('category');
+			var category = $item.data('category');
 
 			if (elementType === 'more') {
 				toggleCategories();
 			} else if (elementType === 'item') {
-				items.removeClass('active');
-				$(element).addClass('active');
-				filterBroadcasts(broadcastCategory);
+				filterBroadcasts(category);
 			}
-		}
+		},
+
+		onmessage: function(name, data) {
+            if (name === 'categoryChanged') {
+            	filterBroadcasts(data);
+            }
+        }
 	};
 });
 

@@ -104,9 +104,6 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 			authentication = null;
 		},
 		onclick: function (event, element, elementType) {
-			console.log( event );
-			console.log( element );
-			console.log( elementType );
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
 				console.log( 'Авторизован: ' );

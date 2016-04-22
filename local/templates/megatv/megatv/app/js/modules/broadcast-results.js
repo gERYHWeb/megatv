@@ -487,6 +487,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		},
 		onclick: function (event, element, elementType) {
 			if (elementType === 'prev-button') {
+				console.log( $(element) );
 				event.preventDefault();
 				kineticCanvas.move('left', itemWidth * 2.5);
 				setTimeout(checkFridge, 800);
@@ -494,6 +495,9 @@ Box.Application.addModule('broadcast-results', function (context) {
 				event.preventDefault();
 				kineticCanvas.move('right', itemWidth * 2.5);
 				setTimeout(checkFridge, 800);
+			} else if (elementType === 'category') {
+				var category = $(element).closest('.item').data('category');
+				context.broadcast('categoryChanged', category);
 			}
 		}
 
