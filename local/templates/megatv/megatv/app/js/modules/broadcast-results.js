@@ -115,7 +115,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 			// положение полотна может быть на несколько дней впереди
 			// Получаем индекс дня в зависимости от положения полотна
 			// canvasScrollPos / dayWidth
-
 			// getDayData(rightDayIndex, 'right');
 
 			if (typeof dayMap[rightDayIndex] !== 'undefined') {
@@ -417,6 +416,12 @@ Box.Application.addModule('broadcast-results', function (context) {
 								setTimeout(function () {
 									$(kineticCanvas.target).removeClass('kinetic-moving');
 								}, 500);
+							}
+							// console.log( dayMap );
+							// console.log( canvasScrollPos );
+
+							if ( $(kineticCanvas.target).scrollLeft() >= dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
+								updateRightDay(0, true);
 							}
 						});
 					}

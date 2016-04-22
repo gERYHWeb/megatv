@@ -941,7 +941,6 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 	return {
 
 		init: function () {
-			console.log( 'recording-broadcast module init' );
 			moduleEl = context.getElement();
 			recordingURL = context.getConfig('recordingURL');
 			pageModule = $('[data-module="page"]').get(0);
@@ -956,25 +955,25 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 		onclick: function (event, element, elementType) {
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
-				console.log( 'Авторизован: ' );
-				console.log( authentication === true );
+				// console.log( 'Авторизован: ' );
+				// console.log( authentication === true );
 				if (authentication === true) {
-					console.log( 'Статус флаг: ' );
-					console.log( $(element).data('status-flag') === false );
-					console.log( 'Статус не undefined: ' );
-					console.log( $(element).data('status-flag') === 'undefined' );
+					// console.log( 'Статус флаг: ' );
+					// console.log( $(element).data('status-flag') === false );
+					// console.log( 'Статус не undefined: ' );
+					// console.log( $(element).data('status-flag') === 'undefined' );
 					if ($(element).data('status-flag') === false || typeof $(element).data('status-flag') === 'undefined') {
 						var broadcast = $(moduleEl).find($(event.target).closest('.item'));
 						var broadcastID = broadcast.data('broadcast-id');
-						console.log( 'broadcastID не пустой: ' );
-						console.log( broadcastID !== '' );
-						console.log( 'broadcastID не undefined: ' );
-						console.log( typeof broadcastID !== 'undefined' );
+						// console.log( 'broadcastID не пустой: ' );
+						// console.log( broadcastID !== '' );
+						// console.log( 'broadcastID не undefined: ' );
+						// console.log( typeof broadcastID !== 'undefined' );
 						if (broadcastID !== '' && typeof broadcastID !== 'undefined') {
-							console.log( 'Имеет класс status-recordable: ' );
-							console.log( broadcast.hasClass('status-recordable') );
-							console.log( 'Не имеет класса status-recording' );
-							console.log( !broadcast.hasClass('status-recording') );
+							// console.log( 'Имеет класс status-recordable: ' );
+							// console.log( broadcast.hasClass('status-recordable') );
+							// console.log( 'Не имеет класса status-recording' );
+							// console.log( !broadcast.hasClass('status-recording') );
 							if (broadcast.hasClass('status-recordable') && !broadcast.hasClass('status-recording')) {
 								updateRemoteBroadcastStatus(broadcast, broadcastID, element);
 							}
