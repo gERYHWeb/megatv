@@ -1895,6 +1895,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 	// Private
 	// --------------------------------------------------------------------------
 	var $ = context.getGlobal('jQuery');
+	var iconLoaderService;
 	var moduleEl;
 	var form;
 	var formBlock;
@@ -1912,7 +1913,8 @@ Box.Application.addModule('broadcast-comments', function (context) {
 			break;
 			case 'passive':
 				formCollapseTrigger.html('<span data-icon="icon-paper-airplane"></span><span>Оставить отзыв</span>');
-				Box.Application.renderIcons(context);
+				// Box.Application.renderIcons(context);
+				iconLoaderService.renderIcons(context);
 			break;
 		}
 	}
@@ -1958,8 +1960,14 @@ Box.Application.addModule('broadcast-comments', function (context) {
 			},
 			success: function (data) {
 				if (data.status === 'success') {
+
+					// Очищаем поле ввода комментария после отправки комментария
 					form.find('.form-control').val('');
+
+					// Добавляем комментарий
 					addComment(data);
+
+					// Сворачивани
 					if (formCollapseTrigger.hasClass('hidden') === true) {
 						changeCollapseTriggerState('active');
 						showCollapseTrigger();
@@ -1995,6 +2003,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 		init: function () {
 			moduleEl = context.getElement();
+			iconLoaderService = context.getService('icon-loader');
 			formBlock = $(moduleEl).find('.broadcast-user-comments-form');
 			formCollapseTrigger = $(moduleEl).find('.comment-form-trigger-link');
 			form = $(moduleEl).find('form');
@@ -2005,6 +2014,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		},
 		destroy: function () {
 			moduleEl = null;
+			iconLoaderService = null;
 			form = null;
 			formBlock = null;
 			formCollapseTrigger = null;
@@ -2029,7 +2039,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		onsubmit: function (event) {
 			event.preventDefault();
 			var textareaValue = formTextarea.val();
-			if (submitFlag === false && textareaValue.length > 0) {
+			if (submitFlag === false && $.trim(textareaValue).length > 0) {
 				formSubmit.addClass('is-submit-progress');
 				sendComment(form.serialize());
 			}

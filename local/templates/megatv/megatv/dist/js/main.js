@@ -1686,6 +1686,116 @@ Box.Application.addModule('search-form', function (context) {
 });
 
 
+/* global Box, alert */
+Box.Application.addModule('broadcasts-categories', function (context) {
+	'use strict';
+
+	// --------------------------------------------------------------------------
+	// Private
+	// --------------------------------------------------------------------------
+	var $ = context.getGlobal('jQuery');
+	var moduleEl;
+	var list;
+	var items;
+	var height;
+
+	function toggleCategories() {
+		var heightCategories = list.outerHeight();
+
+		if ( !$(moduleEl).is('.is-not-collapsing') ) {
+			if ( $(moduleEl).is('.is-all-categories') ) {
+				$(moduleEl)
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl)
+					.addClass('is-all-categories')
+					.css('height', heightCategories+'px');
+			}
+		}
+	}
+
+	function filterBroadcasts(category) {
+		var broadcasts = $('.broadcasts-list .item');
+
+		items.removeClass('active');
+		$(moduleEl).find('.item[data-category="'+category+'"]').addClass('active');
+
+		broadcasts.removeClass('is-hidden');
+
+		if (category != 'all') {
+			broadcasts.each(function(index, el) {
+				var el = $(this);
+
+				if ( el.data('category') != category ) {
+					el.addClass('is-hidden');
+				}
+			});
+		}
+	}
+
+	function state() {
+		var heightCategories = list.outerHeight();
+
+		if ( $(moduleEl).is('.is-all-categories') ) {
+			$(moduleEl).css('height', heightCategories+'px');
+		}
+
+		if (heightCategories <= height) {
+			$(moduleEl)
+				.addClass('is-not-collapsing')
+				.removeClass('is-all-categories')
+				.css('height', height+'px');
+		} else {
+			$(moduleEl).removeClass('is-not-collapsing');
+		}
+	}
+
+	$(window).resize(function(event) {
+		state();
+	});
+
+
+	// --------------------------------------------------------------------------
+	// Public
+	// --------------------------------------------------------------------------
+
+	return {
+
+		messages: ['categoryChanged'],
+
+		init: function () {
+			moduleEl = context.getElement();
+			list = $(moduleEl).find('.items');
+			items = $(moduleEl).find('.item');
+			height = 60;
+
+			state();
+		},
+		destroy: function () {
+			moduleEl = null;
+			list = null;
+			items = null;
+		},
+		onclick: function (event, element, elementType) {
+			var $item = $(event.target);
+			var category = $item.data('category');
+
+			if (elementType === 'more') {
+				toggleCategories();
+			} else if (elementType === 'item') {
+				filterBroadcasts(category);
+			}
+		},
+
+		onmessage: function(name, data) {
+            if (name === 'categoryChanged') {
+            	filterBroadcasts(data);
+            }
+        }
+	};
+});
+
 /* global Box, setTimout */
 Box.Application.addModule('broadcast-results', function (context) {
 	'use strict';
@@ -2397,6 +2507,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 	// Private
 	// --------------------------------------------------------------------------
 	var $ = context.getGlobal('jQuery');
+	var iconLoaderService;
 	var moduleEl;
 	var form;
 	var formBlock;
@@ -2414,7 +2525,8 @@ Box.Application.addModule('broadcast-comments', function (context) {
 			break;
 			case 'passive':
 				formCollapseTrigger.html('<span data-icon="icon-paper-airplane"></span><span>Оставить отзыв</span>');
-				Box.Application.renderIcons(context);
+				// Box.Application.renderIcons(context);
+				iconLoaderService.renderIcons(context);
 			break;
 		}
 	}
@@ -2460,8 +2572,14 @@ Box.Application.addModule('broadcast-comments', function (context) {
 			},
 			success: function (data) {
 				if (data.status === 'success') {
+
+					// Очищаем поле ввода комментария после отправки комментария
 					form.find('.form-control').val('');
+
+					// Добавляем комментарий
 					addComment(data);
+
+					// Сворачивани
 					if (formCollapseTrigger.hasClass('hidden') === true) {
 						changeCollapseTriggerState('active');
 						showCollapseTrigger();
@@ -2497,6 +2615,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 		init: function () {
 			moduleEl = context.getElement();
+			iconLoaderService = context.getService('icon-loader');
 			formBlock = $(moduleEl).find('.broadcast-user-comments-form');
 			formCollapseTrigger = $(moduleEl).find('.comment-form-trigger-link');
 			form = $(moduleEl).find('form');
@@ -2507,6 +2626,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		},
 		destroy: function () {
 			moduleEl = null;
+			iconLoaderService = null;
 			form = null;
 			formBlock = null;
 			formCollapseTrigger = null;
@@ -2531,7 +2651,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		onsubmit: function (event) {
 			event.preventDefault();
 			var textareaValue = formTextarea.val();
-			if (submitFlag === false && textareaValue.length > 0) {
+			if (submitFlag === false && $.trim(textareaValue).length > 0) {
 				formSubmit.addClass('is-submit-progress');
 				sendComment(form.serialize());
 			}
