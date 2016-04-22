@@ -1953,11 +1953,17 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 	function addComment(data) {
 		var commentHTML = '';
+		// console.log( data.user_avatar );
 		if (typeof data !== 'undefined') {
+			if (data.user_avatar != null) {
+				var avatar =	'<div class="user-avatar">' +
+								'<img src="' + data.user_avatar + '" alt="' + data.username + '">' +
+							'</div>';
+			} else {
+				var avatar =	'<div class="user-avatar is-empty"></div>';
+			}
 			commentHTML += '<li>' +
-							'<div class="user-avatar">' +
-								'<img src="' + data.user_avatar + '" alt="' + data.username + '" width="50" height="50">' +
-							'</div>' +
+							avatar +
 							'<div class="comment-holder">' +
 								'<div class="comment-title">' + data.username + ' | ' + data.publish_date + '</div>' +
 								'<div class="comment-text">' + data.comment_text + '</div>' +
@@ -1974,11 +1980,14 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		$(moduleEl).find('.form-group').removeClass('has-error');
 
 		$.ajax({
-			type: 'POST',
+			type: 'POST', // GET
 			dataType: 'json',
 			url: form.attr('action'),
 			data: dataObj,
-			error: function () {
+			error: function (xhr, ajaxOptions, thrownError) {
+				// console.log( xhr );
+				// console.log( ajaxOptions );
+				// console.log( thrownError );
 				alert('Что-то пошло не так. Повторите попытку позднее!');
 				formSubmit.removeClass('is-submit-progress').trigger('blur');
 			},
