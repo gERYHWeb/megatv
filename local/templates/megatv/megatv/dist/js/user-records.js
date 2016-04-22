@@ -1622,6 +1622,9 @@ Box.Application.addModule('user-recorded-broadcasts', function (context) {
 					broadcastID: broadcastID,
 					record: true
 				});
+			} else if (elementType === 'category') {
+				var category = $(element).closest('.item').data('category');
+				context.broadcast('categoryChanged', category);
 			}
 		},
 		onmessage: function (name, data) {
