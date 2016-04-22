@@ -151,7 +151,7 @@ Box.Application.addModule('calendar-carousel', function (context) {
 					Box.Application.broadcast('datechanged', {
 						newDate: $(event.target).closest('li').data('date') // DD.MM.YYYY
 					});
-					window.location.search = 'cur_date=' + moment($(event.target).closest('li').data('date'), 'DD.MM.YYYY').format('DD-MM-YYYY');
+					window.location.search = 'date=' + moment($(event.target).closest('li').data('date'), 'DD.MM.YYYY').format('DD-MM-YYYY');
 				}
 			}
 		}
