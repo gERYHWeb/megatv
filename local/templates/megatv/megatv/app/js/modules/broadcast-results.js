@@ -37,8 +37,8 @@ Box.Application.addModule('broadcast-results', function (context) {
 
 	function setDayGrid() {
 		var dayWidth = itemWidth * 24; // длина одного дня = длина обычной передачи * 24 часа.
-		var rightAdding = 29;
-		var leftAdding = 31;
+		var leftAdding = 31; // ширина названия дня в начале
+		var rightAdding = 29; // ширина названия дня в конце
 
 		$.each(daysConfig, function (index) {
 			if (index === 0) {
@@ -61,6 +61,9 @@ Box.Application.addModule('broadcast-results', function (context) {
 				canvasWidth += dayWidth + leftAdding + rightAdding;
 			}
 		});
+
+		// console.log( daysConfig );
+		// console.log( dayMap );
 	}
 
 	function getDayData(dayIndex, direction) {
@@ -95,12 +98,14 @@ Box.Application.addModule('broadcast-results', function (context) {
 		canvasScrollPos = $(kineticCanvas.target).scrollLeft() || 0;
 
 		// console.log( dayMap );
-		// console.log( 'день слева: ' + leftDayIndex );
-		// console.log( 'день справа: ' + rightDayIndex );
+		// console.log( 'день слева до действий: ' + leftDayIndex );
+		// console.log( 'день справа до действий: ' + rightDayIndex );
 
 		// Проверяем направление прокрутки полотна и
 		// в зависимости от этого подгружаем слева или справа дни
 		if (canvasScrollPos >= prevScrollPos) { // scroll direction right
+			// console.log( 'направление прокрутки - вправо' );
+
 			// check right arrow fridge
 			// if (canvasScrollPos <= dayMap[rightDayIndex].rightFridge && canvasScrollPos >= dayMap[leftDayIndex].leftFridge) {
 			// 	updateArrow(rightDayIndex, 'left');
@@ -126,19 +131,32 @@ Box.Application.addModule('broadcast-results', function (context) {
 					// console.log( '----------' );
 				// Проверяем положение полотна
 				// Если положение полотна + ширина видимой части полотна >= расстояния до следующего дня (минус ширина 2.5 ширины передачи, чтобы прогрузить следующий день до того, как пользователь увидит этот еще непрогруженный день)
-
+				// console.log( '***' );
+				// console.log( 'right day index: ' + rightDayIndex );
+				// console.log( canvasScrollPos + $(kineticCanvas.target).width() );
+				// console.log( dayMap[rightDayIndex].rightFridge - (itemWidth * 2.5) );
+				// console.log( dayMap[rightDayIndex + 1].leftFridge + (itemWidth * 2.5) );
+				// console.log( '***' );
 				if (canvasScrollPos + $(kineticCanvas.target).width() >= dayMap[rightDayIndex].rightFridge - (itemWidth * 2.5) &&
 					canvasScrollPos + $(kineticCanvas.target).width() <= dayMap[rightDayIndex + 1].leftFridge + (itemWidth * 2.5)) {
+					// console.log( 'день справа уже близок' );
 					updateRightDay(rightDayIndex, true);
 				}
 			}
 			// check left day fridge
-			if (typeof dayMap[leftDayIndex + 1] !== 'undefined') {
-				if (canvasScrollPos >= dayMap[leftDayIndex + 1].leftFridge + (itemWidth * 2.5)) {
-					updateLeftDay(leftDayIndex, true);
-				}
-			}
+			// console.log( 'Проверяем день слева' );
+			// console.log( typeof dayMap[leftDayIndex] !== 'undefined' );
+			// if (typeof dayMap[leftDayIndex - 1] !== 'undefined') {
+
+			// 	if (canvasScrollPos >= dayMap[rightDayIndex].leftFridge + (itemWidth * 2.5)) {
+			// 		console.log( 'день слева уже близок' );
+			// 		updateLeftDay(leftDayIndex, true);
+			// 	}
+			// }
 		} else { // scroll direction left
+
+			// console.log( 'направление прокрутки - влево' );
+
 			// check right day fridge
 			if (typeof dayMap[rightDayIndex - 1] !== 'undefined') {
 				// console.log(canvasScrollPos, rightDayIndex, '< ', dayMap[rightDayIndex].rightFridge, '> ', dayMap[rightDayIndex - 1].rightFridge - (itemWidth * 2.5), '< ', dayMap[rightDayIndex].leftFridge + (itemWidth * 2.5), '>', dayMap[rightDayIndex - 1].leftFridge + (itemWidth * 2.5));
@@ -151,11 +169,11 @@ Box.Application.addModule('broadcast-results', function (context) {
 				}
 			}
 			// check left day fridge
-			if (typeof dayMap[leftDayIndex - 1] !== 'undefined') {
-				if (canvasScrollPos + $(kineticCanvas.target).width() <= dayMap[leftDayIndex - 1].rightFridge - (itemWidth * 2.5)) {
-					updateLeftDay(leftDayIndex, false);
-				}
-			}
+			// if (typeof dayMap[leftDayIndex - 1] !== 'undefined') {
+			// 	if (canvasScrollPos + $(kineticCanvas.target).width() <= dayMap[leftDayIndex - 1].rightFridge - (itemWidth * 2.5)) {
+			// 		updateLeftDay(leftDayIndex-1, false);
+			// 	}
+			// }
 		}
 		prevScrollPos = canvasScrollPos;
 	}
@@ -176,7 +194,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 	// 	// 		}
 	// 	// 		break;
 	// 	// }
-	// 	// console.log('update arrow', dayIndex, arrowType);
+		// console.log('update arrow', dayIndex, arrowType);
 	// }
 
 	function updateRightDay(dayIndex, direction) {
@@ -191,31 +209,34 @@ Box.Application.addModule('broadcast-results', function (context) {
 		// }
 
 		if (direction === true) {
+			// console.log( 'увеличиваем rightDayIndex' );
 			rightDayIndex += 1;
+			// console.log( rightDayIndex );
 
 			if (rightDayIndex > leftDayIndex) {
 				addRightDay();
 				// console.log('add right day');
 			}
-			if (rightDayIndex === leftDayIndex) {
-				removeLeftDay();
-				// console.log('remove left day');
-			}
-			if (rightDayIndex === 0) {
-				removeRightDay();
-				// console.log('remove right day');
-			}
+			// if (rightDayIndex === leftDayIndex) {
+			// 	removeLeftDay();
+			// 	console.log('remove left day');
+			// }
+			// if (rightDayIndex === 0) {
+			// 	removeRightDay();
+			// 	console.log('remove right day');
+			// }
 		} else {
+			// console.log( 'уменьшаем rightDayIndex' );
 			rightDayIndex -= 1;
 
-			if (rightDayIndex < leftDayIndex) {
-				addLeftDay();
-				// console.log('add left day');
-			}
-			if (rightDayIndex === leftDayIndex) {
-				removeRightDay();
-				// console.log('remove right day');
-			}
+			// if (rightDayIndex < leftDayIndex) {
+			// 	addLeftDay();
+			// 	console.log('add left day');
+			// }
+			// if (rightDayIndex === leftDayIndex) {
+			// 	removeRightDay();
+			// 	console.log('remove right day');
+			// }
 		}
 	}
 
@@ -223,6 +244,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		// console.log( 'Обновляем день слева' );
 
 		if (direction === true) {
+			// console.log( 'увеличиваем leftDayIndex' );
 			leftDayIndex += 1;
 
 			if (rightDayIndex === leftDayIndex) {
@@ -230,6 +252,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 				// console.log('remove left day');
 			}
 		} else {
+			// console.log( 'уменьшаем leftDayIndex' );
 			leftDayIndex -= 1;
 
 			if (rightDayIndex === leftDayIndex) {
@@ -243,21 +266,24 @@ Box.Application.addModule('broadcast-results', function (context) {
 	function addRightDay() {
 		// console.log( 'Добавили день справа' );
 		var dayData;
+		// console.log( daysConfig );
 		if (daysConfig[rightDayIndex].state !== 'loading' && typeof daysConfig[rightDayIndex].state !== 'undefined') {
 			// console.log( '1' );
+			// Получаем данные с сервера для следующего дня
 			dayData = getDayData(rightDayIndex, 'right');
 			rightDaysPlaceholder.before(dayData.html);
-			updateDaysPlaceholders(rightDayIndex, leftDayIndex);
+			updateDaysPlaceholders(leftDayIndex, rightDayIndex);
 			$(window).lazyLoadXT();
 			iconLoaderService.renderIcons(context);
 		} else {
+			// console.log( '2' );
 			getDayData(rightDayIndex, 'right');
 		}
 	}
 
 	function removeRightDay() {
 		$(moduleEl).find('.day').last().remove();
-		updateDaysPlaceholders(rightDayIndex, leftDayIndex);
+		updateDaysPlaceholders(leftDayIndex, rightDayIndex);
 	}
 
 	function addLeftDay() {
@@ -399,20 +425,42 @@ Box.Application.addModule('broadcast-results', function (context) {
 
 				// scroll to current time position
 				var cookieCanvasScrollPos = Number(cookieService.get('canvasScrollPosition'));
+				// Если в куках есть значения сохраненного положения пользователя,
+				// то сдвигаем полотно на это значение
+
+				// console.log( dayMap );
+
+				// console.log( cookieCanvasScrollPos );
+				// console.log( dayMap[0].rightFridge - $(kineticCanvas.target).width() );
+				// console.log( cookieCanvasScrollPos > dayMap[0].rightFridge - $(kineticCanvas.target).width() );
+						if (cookieCanvasScrollPos > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
+							// updateRightDay(0, true);
+							checkFridge();
+						}
 
 				// if ( !isNaN(cookieCanvasScrollPos) ) {
 				// 	kineticCanvas.moveTo(cookieCanvasScrollPos, function () {
-				// 		console.log( cookieCanvasScrollPos );
-				// 		console.log( dayMap[0].rightFridge - $(kineticCanvas.target).width() );
-				// 		console.log( dayMap );
+				// 		console.log( 'Установили положение полотна на значении: ' + cookieCanvasScrollPos );
 
+				// 		if (cookieCanvasScrollPos > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
+				// 			updateRightDay(0, true);
+				// 			// checkFridge();
+				// 		}
 				// 	});
 				// } else {
+					// Если пользователь первый раз открывает полотно,
+					// то его перекидывает к положению с тайм-поинтером
 					if (kineticTimePointer.length > 0) {
+						// Сдвигаем полотно до значения тайм-поинтера
 						kineticCanvas.moveTo(pointerPosition.left, function () {
+							// После сдвига проверяем не отображается ли рядом правый день
+							// console.log( 'Положение тайм-поинтера: ' + pointerPosition.left );
+							// console.log( dayMap[0].rightFridge );
+
 							if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
 								pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
-								updateRightDay(0, true);
+								// Обновляем правый день
+								// updateRightDay(0, true);
 								setTimeout(function () {
 									$(kineticCanvas.target).removeClass('kinetic-moving');
 								}, 500);
@@ -477,6 +525,8 @@ Box.Application.addModule('broadcast-results', function (context) {
 
 				// stiky wrapper init
 				$(moduleEl).find('.sticky-wrapp').stick_in_parent();
+
+				// console.log( daysConfig );
 			}
 		},
 		destroy: function () {
@@ -492,7 +542,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		},
 		onclick: function (event, element, elementType) {
 			if (elementType === 'prev-button') {
-				console.log( $(element) );
+				// console.log( $(element) );
 				event.preventDefault();
 				kineticCanvas.move('left', itemWidth * 2.5);
 				setTimeout(checkFridge, 800);
