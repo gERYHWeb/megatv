@@ -1831,6 +1831,8 @@ Box.Application.addModule('broadcast-results', function (context) {
 	var rightDaysPlaceholder;
 	var leftDaysPlaceholder;
 	var prevScrollPos = 0;
+	var canvasScrollPosition = 0;
+	var canvasScrollPositionDay = 0;
 
 	function setDayGrid() {
 		var dayWidth = itemWidth * 24; // длина одного дня = длина обычной передачи * 24 часа.
@@ -1884,9 +1886,10 @@ Box.Application.addModule('broadcast-results', function (context) {
 
 	function saveScrollPosition() {
 		// console.log( 'Сохранили положение полотна на значении ' + canvasScrollPos );
-		$(window).trigger('scroll');
 		// Сохраняем в куки положение горизонтального скролла, через сутки параметр стирается
+		// console.log( daysConfig[0].dayReq );
 		cookieService.set('canvasScrollPosition', canvasScrollPos, { expires: 1 });
+		cookieService.set('canvasScrollPositionDay', daysConfig[0].dayReq, { expires: 1 });
 	}
 
 	function checkFridge() {
@@ -2008,7 +2011,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		if (direction === true) {
 			// console.log( 'увеличиваем rightDayIndex' );
 			rightDayIndex += 1;
-			// console.log( rightDayIndex );
+			// console.log( 'rightDayIndex: ' + rightDayIndex );
 
 			if (rightDayIndex > leftDayIndex) {
 				addRightDay();
@@ -2024,7 +2027,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 			// }
 		} else {
 			// console.log( 'уменьшаем rightDayIndex' );
-			rightDayIndex -= 1;
+			// rightDayIndex -= 1;
 
 			// if (rightDayIndex < leftDayIndex) {
 			// 	addLeftDay();
@@ -2072,6 +2075,11 @@ Box.Application.addModule('broadcast-results', function (context) {
 			updateDaysPlaceholders(leftDayIndex, rightDayIndex);
 			$(window).lazyLoadXT();
 			iconLoaderService.renderIcons(context);
+
+			if ( canvasScrollPosition >= dayMap[rightDayIndex].rightFridge - $(kineticCanvas.target).width()) {
+				// console.log( 'Отображаем еще следующий день' );
+				updateRightDay(rightDayIndex, true);
+			}
 		} else {
 			// console.log( '2' );
 			getDayData(rightDayIndex, 'right');
@@ -2221,30 +2229,41 @@ Box.Application.addModule('broadcast-results', function (context) {
 				setDayGrid();
 
 				// scroll to current time position
-				var cookieCanvasScrollPos = Number(cookieService.get('canvasScrollPosition'));
-				// Если в куках есть значения сохраненного положения пользователя,
-				// то сдвигаем полотно на это значение
+				canvasScrollPosition = Number(cookieService.get('canvasScrollPosition'));
+				canvasScrollPositionDay = cookieService.get('canvasScrollPositionDay');
 
 				// console.log( dayMap );
 
-				// console.log( cookieCanvasScrollPos );
+				// console.log( canvasScrollPosition );
 				// console.log( dayMap[0].rightFridge - $(kineticCanvas.target).width() );
-				// console.log( cookieCanvasScrollPos > dayMap[0].rightFridge - $(kineticCanvas.target).width() );
-						if (cookieCanvasScrollPos > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
-							// updateRightDay(0, true);
-							checkFridge();
-						}
+				// console.log( canvasScrollPosition > dayMap[0].rightFridge - $(kineticCanvas.target).width() );
+				// if (canvasScrollPosition > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
+				// 	updateRightDay(0, true);
+				// }
 
-				// if ( !isNaN(cookieCanvasScrollPos) ) {
-				// 	kineticCanvas.moveTo(cookieCanvasScrollPos, function () {
-				// 		console.log( 'Установили положение полотна на значении: ' + cookieCanvasScrollPos );
+				// Если в куках хранится данное значение
+				if ( !isNaN(canvasScrollPosition) ) {
+					// И если текущий день равен дню, сохраненному в куках, то производим действие,
+					// иначе очищаем значение сохраненного дня
+					// console.log( canvasScrollPositionDay );
+					// console.log( daysConfig[0].dayReq );
+					// console.log( canvasScrollPositionDay === daysConfig[0].dayReq );
+					if (canvasScrollPositionDay === daysConfig[0].dayReq) {
+						// то сдвигаем полотно на это значение
+						kineticCanvas.moveTo(canvasScrollPosition, function () {
+							// console.log( 'Установили положение полотна на значении: ' + canvasScrollPosition );
 
-				// 		if (cookieCanvasScrollPos > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
-				// 			updateRightDay(0, true);
-				// 			// checkFridge();
-				// 		}
-				// 	});
-				// } else {
+							if (canvasScrollPosition > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
+								// console.log( 'Отображаем 2ой день' );
+								updateRightDay(0, true);
+							}
+						});
+					}
+					else {
+						cookieService.remove('canvasScrollPositionDay');
+					}
+
+				} else {
 					// Если пользователь первый раз открывает полотно,
 					// то его перекидывает к положению с тайм-поинтером
 					if (kineticTimePointer.length > 0) {
@@ -2270,7 +2289,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 							}
 						});
 					}
-				// }
+				}
 
 				// clear storage
 				sessionStorage.removeItem(DATA_KEY);
@@ -2286,15 +2305,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 				});
 				daysConfig[0].state = 'loaded';
 
-				// if ( cookieCanvasScrollPos >= dayMap[1].rightFridge - $(kineticCanvas.target).width()) {
-				// 	console.log( 'Отображаем третий день' );
-				// 	updateDaysPlaceholders(2, 2);
-				// } else if ( cookieCanvasScrollPos >= dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
-				// 	console.log( 'Отображаем второй день' );
-				// 	updateDaysPlaceholders(1, 1);
-				// } else {
-				// 	updateDaysPlaceholders(0, 0);
-				// }
+
 
 
 				// checkFridge();
