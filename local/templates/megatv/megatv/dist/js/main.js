@@ -1004,25 +1004,11 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 		onclick: function (event, element, elementType) {
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
-				// console.log( 'Авторизован: ' );
-				// console.log( authentication === true );
 				if (authentication === true) {
-					// console.log( 'Статус флаг: ' );
-					// console.log( $(element).data('status-flag') === false );
-					// console.log( 'Статус не undefined: ' );
-					// console.log( $(element).data('status-flag') === 'undefined' );
-					if ($(element).data('status-flag') === false || typeof $(element).data('status-flag') === 'undefined') {
+					if ($(element).data('status-flag') === false) {
 						var broadcast = $(moduleEl).find($(event.target).closest('.item'));
 						var broadcastID = broadcast.data('broadcast-id');
-						// console.log( 'broadcastID не пустой: ' );
-						// console.log( broadcastID !== '' );
-						// console.log( 'broadcastID не undefined: ' );
-						// console.log( typeof broadcastID !== 'undefined' );
 						if (broadcastID !== '' && typeof broadcastID !== 'undefined') {
-							// console.log( 'Имеет класс status-recordable: ' );
-							// console.log( broadcast.hasClass('status-recordable') );
-							// console.log( 'Не имеет класса status-recording' );
-							// console.log( !broadcast.hasClass('status-recording') );
 							if (broadcast.hasClass('status-recordable') && !broadcast.hasClass('status-recording')) {
 								updateRemoteBroadcastStatus(broadcast, broadcastID, element);
 							}
@@ -1389,7 +1375,7 @@ Box.Application.addModule('calendar-carousel', function (context) {
 					Box.Application.broadcast('datechanged', {
 						newDate: $(event.target).closest('li').data('date') // DD.MM.YYYY
 					});
-					window.location.search = 'date=' + moment($(event.target).closest('li').data('date'), 'DD.MM.YYYY').format('DD-MM-YYYY');
+					window.location.search = 'cur_date=' + moment($(event.target).closest('li').data('date'), 'DD.MM.YYYY').format('DD-MM-YYYY');
 				}
 			}
 		}
@@ -1602,7 +1588,7 @@ Box.Application.addModule('lang-select', function (context) {
 });
 
 /* global Box */
-Box.Application.addModule('search-form', function (context) {
+Box.Application.addModule('search', function (context) {
 	'use strict';
 
 	// --------------------------------------------------------------------------
@@ -1611,9 +1597,11 @@ Box.Application.addModule('search-form', function (context) {
 	var $ = context.getGlobal('jQuery');
 	var Bloodhound = context.getGlobal('Bloodhound');
 	var moduleEl;
+	var searchGroup;
 	var searchField;
 	var bloodhoundObj;
 	var remoteUrl;
+	var body;
 
 	// --------------------------------------------------------------------------
 	// Public
@@ -1624,7 +1612,9 @@ Box.Application.addModule('search-form', function (context) {
 		init: function () {
 			moduleEl = context.getElement();
 			searchField = $(moduleEl).find('[data-type="search-field"]');
+			searchGroup = $(moduleEl).find('[data-type="search-group"]');
 			remoteUrl = context.getConfig('url');
+			body = $('body');
 
 			bloodhoundObj = new Bloodhound({
 				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
@@ -1676,6 +1666,16 @@ Box.Application.addModule('search-form', function (context) {
 			bloodhoundObj = null;
 			remoteUrl = null;
 		},
+		onclick: function (event, element, elementType) {
+			if (elementType === 'open') {
+				body.addClass('search-opened');
+				setTimeout(function() {
+					searchField.focus();
+				}, 500);
+			} else if (elementType === 'close') {
+				body.removeClass('search-opened');
+			}
+		},
 		onkeyup: function () {
 			if (searchField.val().length < 3) {
 				$(moduleEl).removeClass('is-show-results');
@@ -1717,9 +1717,6 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	function filterBroadcasts(category) {
 		var broadcasts = $('.broadcasts-list .item');
 
-		items.removeClass('active');
-		$(moduleEl).find('.item[data-category="'+category+'"]').addClass('active');
-
 		broadcasts.removeClass('is-hidden');
 
 		if (category != 'all') {
@@ -1738,15 +1735,15 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 
 		if ( $(moduleEl).is('.is-all-categories') ) {
 			$(moduleEl).css('height', heightCategories+'px');
-		}
 
-		if (heightCategories <= height) {
-			$(moduleEl)
-				.addClass('is-not-collapsing')
-				.removeClass('is-all-categories')
-				.css('height', height+'px');
-		} else {
-			$(moduleEl).removeClass('is-not-collapsing');
+			if (list.outerHeight() <= height) {
+				$(moduleEl)
+					.addClass('is-not-collapsing')
+					.removeClass('is-all-categories')
+					.css('height', height+'px');
+			} else {
+				$(moduleEl).removeClass('is-not-collapsing');
+			}
 		}
 	}
 
@@ -1760,8 +1757,6 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	// --------------------------------------------------------------------------
 
 	return {
-
-		messages: ['categoryChanged'],
 
 		init: function () {
 			moduleEl = context.getElement();
@@ -1778,20 +1773,16 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 		},
 		onclick: function (event, element, elementType) {
 			var $item = $(event.target);
-			var category = $item.data('category');
+			var broadcastCategory = $item.data('category');
 
 			if (elementType === 'more') {
 				toggleCategories();
 			} else if (elementType === 'item') {
-				filterBroadcasts(category);
+				items.removeClass('active');
+				$(element).addClass('active');
+				filterBroadcasts(broadcastCategory);
 			}
-		},
-
-		onmessage: function(name, data) {
-            if (name === 'categoryChanged') {
-            	filterBroadcasts(data);
-            }
-        }
+		}
 	};
 });
 
@@ -1831,13 +1822,11 @@ Box.Application.addModule('broadcast-results', function (context) {
 	var rightDaysPlaceholder;
 	var leftDaysPlaceholder;
 	var prevScrollPos = 0;
-	var canvasScrollPosition = 0;
-	var canvasScrollPositionDay = 0;
 
 	function setDayGrid() {
-		var dayWidth = itemWidth * 24; // длина одного дня = длина обычной передачи * 24 часа.
-		var leftAdding = 31; // ширина названия дня в начале
-		var rightAdding = 29; // ширина названия дня в конце
+		var dayWidth = itemWidth * 24;
+		var rightAdding = 29;
+		var leftAdding = 31;
 
 		$.each(daysConfig, function (index) {
 			if (index === 0) {
@@ -1860,9 +1849,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 				canvasWidth += dayWidth + leftAdding + rightAdding;
 			}
 		});
-
-		// console.log( daysConfig );
-		// console.log( dayMap );
 	}
 
 	function getDayData(dayIndex, direction) {
@@ -1878,18 +1864,14 @@ Box.Application.addModule('broadcast-results', function (context) {
 		}
 	}
 
-	// Сбрасываем конфиг дней
 	function updateDayGrid() {
 		dayMap = [];
 		setDayGrid();
 	}
 
 	function saveScrollPosition() {
-		// console.log( 'Сохранили положение полотна на значении ' + canvasScrollPos );
 		// Сохраняем в куки положение горизонтального скролла, через сутки параметр стирается
-		// console.log( daysConfig[0].dayReq );
-		cookieService.set('canvasScrollPosition', canvasScrollPos, { expires: 1 });
-		cookieService.set('canvasScrollPositionDay', daysConfig[0].dayReq, { expires: 1 });
+		cookieService.set('canvasScrollPos', canvasScrollPos, { expires: 1 });
 	}
 
 	function checkFridge() {
@@ -1897,15 +1879,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 		// var direction = '';
 		canvasScrollPos = $(kineticCanvas.target).scrollLeft() || 0;
 
-		// console.log( dayMap );
-		// console.log( 'день слева до действий: ' + leftDayIndex );
-		// console.log( 'день справа до действий: ' + rightDayIndex );
-
-		// Проверяем направление прокрутки полотна и
-		// в зависимости от этого подгружаем слева или справа дни
 		if (canvasScrollPos >= prevScrollPos) { // scroll direction right
-			// console.log( 'направление прокрутки - вправо' );
-
 			// check right arrow fridge
 			// if (canvasScrollPos <= dayMap[rightDayIndex].rightFridge && canvasScrollPos >= dayMap[leftDayIndex].leftFridge) {
 			// 	updateArrow(rightDayIndex, 'left');
@@ -1914,50 +1888,24 @@ Box.Application.addModule('broadcast-results', function (context) {
 			// if (canvasScrollPos >= dayMap[leftDayIndex].leftFridge && canvasRightPos >= dayMap[leftDayIndex].leftFridge) {
 			// 	updateArrow(rightDayIndex, 'right');
 			// }
-
 			// check right day fridge
-			// Из-за того, что мы устанавливаем положение полотна, на котором остановился пользователь
-			// положение полотна может быть на несколько дней впереди
-			// Получаем индекс дня в зависимости от положения полотна
-			// canvasScrollPos / dayWidth
-			// getDayData(rightDayIndex, 'right');
-
 			if (typeof dayMap[rightDayIndex] !== 'undefined') {
-					// console.log( '----------' );
-					// console.log( 'Положение полотна: ' + canvasScrollPos );
-					// console.log( 'Ширина видимой части полотна: ' + $(kineticCanvas.target).width() );
-					// console.log( 'Расстояние до следующего дня справа: ' + dayMap[rightDayIndex].rightFridge );
-					// console.log( 'Длина ' + itemWidth * 2.5 );
-					// console.log( '----------' );
-				// Проверяем положение полотна
-				// Если положение полотна + ширина видимой части полотна >= расстояния до следующего дня (минус ширина 2.5 ширины передачи, чтобы прогрузить следующий день до того, как пользователь увидит этот еще непрогруженный день)
-				// console.log( '***' );
-				// console.log( 'right day index: ' + rightDayIndex );
-				// console.log( canvasScrollPos + $(kineticCanvas.target).width() );
-				// console.log( dayMap[rightDayIndex].rightFridge - (itemWidth * 2.5) );
-				// console.log( dayMap[rightDayIndex + 1].leftFridge + (itemWidth * 2.5) );
-				// console.log( '***' );
 				if (canvasScrollPos + $(kineticCanvas.target).width() >= dayMap[rightDayIndex].rightFridge - (itemWidth * 2.5) &&
 					canvasScrollPos + $(kineticCanvas.target).width() <= dayMap[rightDayIndex + 1].leftFridge + (itemWidth * 2.5)) {
-					// console.log( 'день справа уже близок' );
 					updateRightDay(rightDayIndex, true);
+					// console.log('right day');
 				}
 			}
 			// check left day fridge
-			// console.log( 'Проверяем день слева' );
-			// console.log( typeof dayMap[leftDayIndex] !== 'undefined' );
-			// if (typeof dayMap[leftDayIndex - 1] !== 'undefined') {
-
-			// 	if (canvasScrollPos >= dayMap[rightDayIndex].leftFridge + (itemWidth * 2.5)) {
-			// 		console.log( 'день слева уже близок' );
-			// 		updateLeftDay(leftDayIndex, true);
-			// 	}
-			// }
+			if (typeof dayMap[leftDayIndex + 1] !== 'undefined') {
+				if (canvasScrollPos >= dayMap[leftDayIndex + 1].leftFridge + (itemWidth * 2.5)) {
+					updateLeftDay(leftDayIndex, true);
+					// console.log('left day');
+				}
+			}
 		} else { // scroll direction left
-
-			// console.log( 'направление прокрутки - влево' );
-
 			// check right day fridge
+			// console.log(canvasScrollPos + $(kineticCanvas.target).width());
 			if (typeof dayMap[rightDayIndex - 1] !== 'undefined') {
 				// console.log(canvasScrollPos, rightDayIndex, '< ', dayMap[rightDayIndex].rightFridge, '> ', dayMap[rightDayIndex - 1].rightFridge - (itemWidth * 2.5), '< ', dayMap[rightDayIndex].leftFridge + (itemWidth * 2.5), '>', dayMap[rightDayIndex - 1].leftFridge + (itemWidth * 2.5));
 
@@ -1966,16 +1914,21 @@ Box.Application.addModule('broadcast-results', function (context) {
 					canvasScrollPos <= dayMap[rightDayIndex].leftFridge + (itemWidth * 2.5) &&
 					canvasScrollPos >= dayMap[rightDayIndex - 1].leftFridge + (itemWidth * 2.5)) {
 					updateRightDay(rightDayIndex, false);
+					// console.log('right day' + rightDayIndex);
 				}
 			}
 			// check left day fridge
-			// if (typeof dayMap[leftDayIndex - 1] !== 'undefined') {
-			// 	if (canvasScrollPos + $(kineticCanvas.target).width() <= dayMap[leftDayIndex - 1].rightFridge - (itemWidth * 2.5)) {
-			// 		updateLeftDay(leftDayIndex-1, false);
-			// 	}
-			// }
+			if (typeof dayMap[leftDayIndex - 1] !== 'undefined') {
+				// console.log(canvasScrollPos, '<',dayMap[leftDayIndex - 1].rightFridge - (itemWidth * 2.5));
+				if (canvasScrollPos + $(kineticCanvas.target).width() <= dayMap[leftDayIndex - 1].rightFridge - (itemWidth * 2.5)) {
+					updateLeftDay(leftDayIndex, false);
+					// console.log('left day' + leftDayIndex);
+				}
+			}
 		}
 		prevScrollPos = canvasScrollPos;
+
+		saveScrollPosition();
 	}
 
 	// function updateArrow(dayIndex, arrowType) {
@@ -1994,11 +1947,10 @@ Box.Application.addModule('broadcast-results', function (context) {
 	// 	// 		}
 	// 	// 		break;
 	// 	// }
-		// console.log('update arrow', dayIndex, arrowType);
+	// 	// console.log('update arrow', dayIndex, arrowType);
 	// }
 
 	function updateRightDay(dayIndex, direction) {
-		// console.log( 'Обновляем день справа' );
 		// var dayData;
 		// if (typeof daysConfig[dayIndex] === 'object') {
 		// 	if (daysConfig[dayIndex].state !== 'loading' && typeof daysConfig[dayIndex].state !== 'undefined') {
@@ -2007,44 +1959,39 @@ Box.Application.addModule('broadcast-results', function (context) {
 		// 		getDayData(dayIndex, 'right');
 		// 	}
 		// }
-
 		if (direction === true) {
-			// console.log( 'увеличиваем rightDayIndex' );
 			rightDayIndex += 1;
-			// console.log( 'rightDayIndex: ' + rightDayIndex );
 
 			if (rightDayIndex > leftDayIndex) {
 				addRightDay();
 				// console.log('add right day');
 			}
-			// if (rightDayIndex === leftDayIndex) {
-			// 	removeLeftDay();
-			// 	console.log('remove left day');
-			// }
-			// if (rightDayIndex === 0) {
-			// 	removeRightDay();
-			// 	console.log('remove right day');
-			// }
+			if (rightDayIndex === leftDayIndex) {
+				removeLeftDay();
+				// console.log('remove left day');
+			}
+			if (rightDayIndex === 0) {
+				removeRightDay();
+				// console.log('remove right day');
+			}
 		} else {
-			// console.log( 'уменьшаем rightDayIndex' );
-			// rightDayIndex -= 1;
+			rightDayIndex -= 1;
 
-			// if (rightDayIndex < leftDayIndex) {
-			// 	addLeftDay();
-			// 	console.log('add left day');
-			// }
-			// if (rightDayIndex === leftDayIndex) {
-			// 	removeRightDay();
-			// 	console.log('remove right day');
-			// }
+			if (rightDayIndex < leftDayIndex) {
+				addLeftDay();
+				// console.log('add left day');
+			}
+			if (rightDayIndex === leftDayIndex) {
+				removeRightDay();
+				// console.log('remove right day');
+			}
 		}
+
+		// console.log('rightDayIndex: ' + rightDayIndex);
 	}
 
 	function updateLeftDay(dayIndex, direction) {
-		// console.log( 'Обновляем день слева' );
-
 		if (direction === true) {
-			// console.log( 'увеличиваем leftDayIndex' );
 			leftDayIndex += 1;
 
 			if (rightDayIndex === leftDayIndex) {
@@ -2052,7 +1999,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 				// console.log('remove left day');
 			}
 		} else {
-			// console.log( 'уменьшаем leftDayIndex' );
 			leftDayIndex -= 1;
 
 			if (rightDayIndex === leftDayIndex) {
@@ -2064,35 +2010,24 @@ Box.Application.addModule('broadcast-results', function (context) {
 	}
 
 	function addRightDay() {
-		// console.log( 'Добавили день справа' );
 		var dayData;
-		// console.log( daysConfig );
 		if (daysConfig[rightDayIndex].state !== 'loading' && typeof daysConfig[rightDayIndex].state !== 'undefined') {
-			// console.log( '1' );
-			// Получаем данные с сервера для следующего дня
 			dayData = getDayData(rightDayIndex, 'right');
 			rightDaysPlaceholder.before(dayData.html);
-			updateDaysPlaceholders(leftDayIndex, rightDayIndex);
+			updateDaysPlaceholders(rightDayIndex, leftDayIndex);
 			$(window).lazyLoadXT();
 			iconLoaderService.renderIcons(context);
-
-			if ( canvasScrollPosition >= dayMap[rightDayIndex].rightFridge - $(kineticCanvas.target).width()) {
-				// console.log( 'Отображаем еще следующий день' );
-				updateRightDay(rightDayIndex, true);
-			}
 		} else {
-			// console.log( '2' );
 			getDayData(rightDayIndex, 'right');
 		}
 	}
 
 	function removeRightDay() {
 		$(moduleEl).find('.day').last().remove();
-		updateDaysPlaceholders(leftDayIndex, rightDayIndex);
+		updateDaysPlaceholders(rightDayIndex, leftDayIndex);
 	}
 
 	function addLeftDay() {
-		// console.log( 'Добавили день слева' );
 		var dayData;
 		if (daysConfig[leftDayIndex].state !== 'loading' && typeof daysConfig[leftDayIndex].state !== 'undefined') {
 			dayData = getDayData(leftDayIndex, 'right');
@@ -2111,7 +2046,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 	}
 
 	function fetchDayData(dayIndex, dayReq, daysData, direction) {
-		// console.log( 'Подгружаем данные с сервера' );
 		daysConfig[dayIndex].state = 'loading';
 
 		$.ajax({
@@ -2147,14 +2081,10 @@ Box.Application.addModule('broadcast-results', function (context) {
 	}
 
 	function updateDaysPlaceholders(currentDayIndex, nextDayIndex) {
-		// console.log( 'updateDaysPlaceholders currentDayIndex: ' + currentDayIndex );
-		// console.log( 'updateDaysPlaceholders nextDayIndex: ' + nextDayIndex );
 		if (currentDayIndex <= nextDayIndex) { // to the right
-			// console.log( 'Заполняем плейсхолдер справа' );
 			rightDaysPlaceholder.css('width', canvasWidth - dayMap[nextDayIndex].rightFridge);
 			leftDaysPlaceholder.css('width', dayMap[currentDayIndex].leftFridge);
 		} else { // to the left
-			// console.log( 'Заполняем плейсхолдер слева' );
 			rightDaysPlaceholder.css('width', canvasWidth - dayMap[currentDayIndex].rightFridge);
 			leftDaysPlaceholder.css('width', dayMap[nextDayIndex].leftFridge);
 		}
@@ -2195,7 +2125,7 @@ Box.Application.addModule('broadcast-results', function (context) {
 			// set days only for default timegrid
 			// Timegrid for recommendations remove
 
-			// горизонтальное скроллируемое полотно применимо только для главной страницы
+			// if module isn't recommended-broadcasts
 			if ( !$(moduleEl).is('.recommended-broadcasts') ) {
 				// kinetic
 				kineticCanvas = kineticService.create(catItems, {
@@ -2215,10 +2145,8 @@ Box.Application.addModule('broadcast-results', function (context) {
 						$(window).trigger('scroll');
 						setTimeout(function () {
 							canvas.removeClass('kinetic-moving');
-							checkFridge(); // проверяем положение полотна
-							saveScrollPosition(); // сохраняем положение полотна в куки
+							checkFridge();
 						}, 100);
-
 					},
 					moved: function () {
 						$(this.$el).addClass('kinetic-moving');
@@ -2229,63 +2157,27 @@ Box.Application.addModule('broadcast-results', function (context) {
 				setDayGrid();
 
 				// scroll to current time position
-				canvasScrollPosition = Number(cookieService.get('canvasScrollPosition'));
-				canvasScrollPositionDay = cookieService.get('canvasScrollPositionDay');
-
-				// console.log( dayMap );
-
-				// console.log( canvasScrollPosition );
-				// console.log( dayMap[0].rightFridge - $(kineticCanvas.target).width() );
-				// console.log( canvasScrollPosition > dayMap[0].rightFridge - $(kineticCanvas.target).width() );
-				// if (canvasScrollPosition > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
-				// 	updateRightDay(0, true);
-				// }
-
-				// Если в куках хранится данное значение
-				if ( !isNaN(canvasScrollPosition) ) {
-					// И если текущий день равен дню, сохраненному в куках, то производим действие,
-					// иначе очищаем значение сохраненного дня
-					// console.log( canvasScrollPositionDay );
-					// console.log( daysConfig[0].dayReq );
-					// console.log( canvasScrollPositionDay === daysConfig[0].dayReq );
-					if (canvasScrollPositionDay === daysConfig[0].dayReq) {
-						// то сдвигаем полотно на это значение
-						kineticCanvas.moveTo(canvasScrollPosition, function () {
-							// console.log( 'Установили положение полотна на значении: ' + canvasScrollPosition );
-
-							if (canvasScrollPosition > dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
-								// console.log( 'Отображаем 2ой день' );
-								updateRightDay(0, true);
-							}
-						});
-					}
-					else {
-						cookieService.remove('canvasScrollPositionDay');
-					}
-
+				var cookieCanvasScrollPos = Number(cookieService.get('canvasScrollPos'));
+				if ( !isNaN(cookieCanvasScrollPos) ) {
+					kineticCanvas.moveTo(cookieCanvasScrollPos, function () {
+						if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
+							pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
+							updateRightDay(0, true);
+							setTimout(function () {
+								$(kineticCanvas.target).removeClass('kinetic-moving');
+							}, 500);
+						}
+					});
 				} else {
-					// Если пользователь первый раз открывает полотно,
-					// то его перекидывает к положению с тайм-поинтером
 					if (kineticTimePointer.length > 0) {
-						// Сдвигаем полотно до значения тайм-поинтера
+						// console.log( pointerPosition );
 						kineticCanvas.moveTo(pointerPosition.left, function () {
-							// После сдвига проверяем не отображается ли рядом правый день
-							// console.log( 'Положение тайм-поинтера: ' + pointerPosition.left );
-							// console.log( dayMap[0].rightFridge );
-
 							if (pointerPosition.left >= dayMap[0].rightFridge - (itemWidth * 2.5) &&
 								pointerPosition.left <= dayMap[1].leftFridge + (itemWidth * 2.5)) {
-								// Обновляем правый день
-								// updateRightDay(0, true);
-								setTimeout(function () {
+								updateRightDay(0, true);
+								setTimout(function () {
 									$(kineticCanvas.target).removeClass('kinetic-moving');
 								}, 500);
-							}
-							// console.log( dayMap );
-							// console.log( canvasScrollPos );
-
-							if ( $(kineticCanvas.target).scrollLeft() >= dayMap[0].rightFridge - $(kineticCanvas.target).width()) {
-								updateRightDay(0, true);
 							}
 						});
 					}
@@ -2304,17 +2196,11 @@ Box.Application.addModule('broadcast-results', function (context) {
 					]
 				});
 				daysConfig[0].state = 'loaded';
-
-
-
-
-				// checkFridge();
-
-				// addRightDay();
-
 				updateDaysPlaceholders(0, 0);
 
-				// updateRightDay(rightDayIndex, true);
+				// updateRightDay(0);
+
+				// addRightDay();
 
 
 				// update dayGrid
@@ -2333,8 +2219,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 
 				// stiky wrapper init
 				$(moduleEl).find('.sticky-wrapp').stick_in_parent();
-
-				// console.log( daysConfig );
 			}
 		},
 		destroy: function () {
@@ -2350,7 +2234,6 @@ Box.Application.addModule('broadcast-results', function (context) {
 		},
 		onclick: function (event, element, elementType) {
 			if (elementType === 'prev-button') {
-				// console.log( $(element) );
 				event.preventDefault();
 				kineticCanvas.move('left', itemWidth * 2.5);
 				setTimeout(checkFridge, 800);
@@ -2358,14 +2241,12 @@ Box.Application.addModule('broadcast-results', function (context) {
 				event.preventDefault();
 				kineticCanvas.move('right', itemWidth * 2.5);
 				setTimeout(checkFridge, 800);
-			} else if (elementType === 'category') {
-				var category = $(element).closest('.item').data('category');
-				context.broadcast('categoryChanged', category);
 			}
 		}
 
 	};
 });
+
 /* global Box */
 Box.Application.addModule('recomended-broadcasts', function (context) {
 	'use strict';
@@ -2527,8 +2408,10 @@ Box.Application.addModule('broadcast-player', function (context) {
 			player.setup({
 				file: streamURL,
 				image: posterURL,
-				width: 896,
-				height: 504,
+				// width: 896,
+				width: "100%",
+				aspectratio: "16:9",
+				// height: 504,
 				title: videoTitle,
 				displaydescription: false,
 				flashplayer: playerFlashURL,
@@ -2571,7 +2454,6 @@ Box.Application.addModule('broadcast-comments', function (context) {
 	// Private
 	// --------------------------------------------------------------------------
 	var $ = context.getGlobal('jQuery');
-	var iconLoaderService;
 	var moduleEl;
 	var form;
 	var formBlock;
@@ -2589,8 +2471,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 			break;
 			case 'passive':
 				formCollapseTrigger.html('<span data-icon="icon-paper-airplane"></span><span>Оставить отзыв</span>');
-				// Box.Application.renderIcons(context);
-				iconLoaderService.renderIcons(context);
+				Box.Application.renderIcons(context);
 			break;
 		}
 	}
@@ -2605,17 +2486,11 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 	function addComment(data) {
 		var commentHTML = '';
-		// console.log( data.user_avatar );
 		if (typeof data !== 'undefined') {
-			if (data.user_avatar != null) {
-				var avatar =	'<div class="user-avatar">' +
-								'<img src="' + data.user_avatar + '" alt="' + data.username + '">' +
-							'</div>';
-			} else {
-				var avatar =	'<div class="user-avatar is-empty"></div>';
-			}
 			commentHTML += '<li>' +
-							avatar +
+							'<div class="user-avatar">' +
+								'<img src="' + data.user_avatar + '" alt="' + data.username + '" width="50" height="50">' +
+							'</div>' +
 							'<div class="comment-holder">' +
 								'<div class="comment-title">' + data.username + ' | ' + data.publish_date + '</div>' +
 								'<div class="comment-text">' + data.comment_text + '</div>' +
@@ -2632,27 +2507,18 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		$(moduleEl).find('.form-group').removeClass('has-error');
 
 		$.ajax({
-			type: 'POST', // GET
+			type: 'POST',
 			dataType: 'json',
 			url: form.attr('action'),
 			data: dataObj,
-			error: function (xhr, ajaxOptions, thrownError) {
-				// console.log( xhr );
-				// console.log( ajaxOptions );
-				// console.log( thrownError );
+			error: function () {
 				alert('Что-то пошло не так. Повторите попытку позднее!');
 				formSubmit.removeClass('is-submit-progress').trigger('blur');
 			},
 			success: function (data) {
 				if (data.status === 'success') {
-
-					// Очищаем поле ввода комментария после отправки комментария
 					form.find('.form-control').val('');
-
-					// Добавляем комментарий
 					addComment(data);
-
-					// Сворачивани
 					if (formCollapseTrigger.hasClass('hidden') === true) {
 						changeCollapseTriggerState('active');
 						showCollapseTrigger();
@@ -2688,7 +2554,6 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 		init: function () {
 			moduleEl = context.getElement();
-			iconLoaderService = context.getService('icon-loader');
 			formBlock = $(moduleEl).find('.broadcast-user-comments-form');
 			formCollapseTrigger = $(moduleEl).find('.comment-form-trigger-link');
 			form = $(moduleEl).find('form');
@@ -2699,7 +2564,6 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		},
 		destroy: function () {
 			moduleEl = null;
-			iconLoaderService = null;
 			form = null;
 			formBlock = null;
 			formCollapseTrigger = null;
@@ -2724,7 +2588,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		onsubmit: function (event) {
 			event.preventDefault();
 			var textareaValue = formTextarea.val();
-			if (submitFlag === false && $.trim(textareaValue).length > 0) {
+			if (submitFlag === false && textareaValue.length > 0) {
 				formSubmit.addClass('is-submit-progress');
 				sendComment(form.serialize());
 			}

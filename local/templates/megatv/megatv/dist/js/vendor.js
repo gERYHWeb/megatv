@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v2.2.1
+ * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-02-22T19:11Z
+ * Date: 2016-05-20T17:23Z
  */
 
 (function( global, factory ) {
@@ -65,7 +65,7 @@ var support = {};
 
 
 var
-	version = "2.2.1",
+	version = "2.2.4",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -276,6 +276,7 @@ jQuery.extend( {
 	},
 
 	isPlainObject: function( obj ) {
+		var key;
 
 		// Not plain objects:
 		// - Any object or value whose internal [[Class]] property is not "[object Object]"
@@ -285,14 +286,18 @@ jQuery.extend( {
 			return false;
 		}
 
+		// Not own constructor property must be Object
 		if ( obj.constructor &&
-				!hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {
+				!hasOwn.call( obj, "constructor" ) &&
+				!hasOwn.call( obj.constructor.prototype || {}, "isPrototypeOf" ) ) {
 			return false;
 		}
 
-		// If the function hasn't returned already, we're confident that
-		// |obj| is a plain object, created by {} or constructed with new Object
-		return true;
+		// Own properties are enumerated firstly, so to speed up,
+		// if last one is own, then all properties are own
+		for ( key in obj ) {}
+
+		return key === undefined || hasOwn.call( obj, key );
 	},
 
 	isEmptyObject: function( obj ) {
@@ -5001,13 +5006,14 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
+	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.preventDefault();
 		}
 	},
@@ -5016,7 +5022,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopPropagation();
 		}
 	},
@@ -5025,7 +5031,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -5955,19 +5961,6 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
-
-	// Support: IE11 only
-	// In IE 11 fullscreen elements inside of an iframe have
-	// 100x too small dimensions (gh-1764).
-	if ( document.msFullscreenElement && window.top !== window ) {
-
-		// Support: IE11 only
-		// Running getBoundingClientRect on a disconnected node
-		// in IE throws an error.
-		if ( elem.getClientRects().length ) {
-			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
-		}
-	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -7325,6 +7318,12 @@ jQuery.extend( {
 	}
 } );
 
+// Support: IE <=11 only
+// Accessing the selectedIndex property
+// forces the browser to respect setting selected
+// on the option
+// The getter ensures a default option is selected
+// when in an optgroup
 if ( !support.optSelected ) {
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
@@ -7333,6 +7332,16 @@ if ( !support.optSelected ) {
 				parent.parentNode.selectedIndex;
 			}
 			return null;
+		},
+		set: function( elem ) {
+			var parent = elem.parentNode;
+			if ( parent ) {
+				parent.selectedIndex;
+
+				if ( parent.parentNode ) {
+					parent.parentNode.selectedIndex;
+				}
+			}
 		}
 	};
 }
@@ -7527,7 +7536,8 @@ jQuery.fn.extend( {
 
 
 
-var rreturn = /\r/g;
+var rreturn = /\r/g,
+	rspaces = /[\x20\t\r\n\f]+/g;
 
 jQuery.fn.extend( {
 	val: function( value ) {
@@ -7603,9 +7613,15 @@ jQuery.extend( {
 		option: {
 			get: function( elem ) {
 
-				// Support: IE<11
-				// option.value not trimmed (#14858)
-				return jQuery.trim( elem.value );
+				var val = jQuery.find.attr( elem, "value" );
+				return val != null ?
+					val :
+
+					// Support: IE10-11+
+					// option.text throws exceptions (#14686, #14858)
+					// Strip and collapse whitespace
+					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
+					jQuery.trim( jQuery.text( elem ) ).replace( rspaces, " " );
 			}
 		},
 		select: {
@@ -7658,7 +7674,7 @@ jQuery.extend( {
 				while ( i-- ) {
 					option = options[ i ];
 					if ( option.selected =
-							jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+						jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
 					) {
 						optionSet = true;
 					}
@@ -7836,6 +7852,7 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
+	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -7843,27 +7860,10 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
-
-				// Previously, `originalEvent: {}` was set here, so stopPropagation call
-				// would not be triggered on donor event, since in our own
-				// jQuery.event.stopPropagation function we had a check for existence of
-				// originalEvent.stopPropagation method, so, consequently it would be a noop.
-				//
-				// But now, this "simulate" function is used only for events
-				// for which stopPropagation() is noop, so there is no need for that anymore.
-				//
-				// For the 1.x branch though, guard for "click" and "submit"
-				// events is still used, but was moved to jQuery.event.stopPropagation function
-				// because `originalEvent` should point to the original event for the constancy
-				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
-
-		if ( e.isDefaultPrevented() ) {
-			event.preventDefault();
-		}
 	}
 
 } );
@@ -9353,18 +9353,6 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 
 
-// Support: Safari 8+
-// In Safari 8 documents created via document.implementation.createHTMLDocument
-// collapse sibling forms: the second one becomes a child of the first one.
-// Because of that, this security measure has to be disabled in Safari 8.
-// https://bugs.webkit.org/show_bug.cgi?id=137337
-support.createHTMLDocument = ( function() {
-	var body = document.implementation.createHTMLDocument( "" ).body;
-	body.innerHTML = "<form></form><form></form>";
-	return body.childNodes.length === 2;
-} )();
-
-
 // Argument "data" should be string of html
 // context (optional): If specified, the fragment will be created in this context,
 // defaults to document
@@ -9377,12 +9365,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 		keepScripts = context;
 		context = false;
 	}
-
-	// Stop scripts or inline event handlers from being executed immediately
-	// by using document.implementation
-	context = context || ( support.createHTMLDocument ?
-		document.implementation.createHTMLDocument( "" ) :
-		document );
+	context = context || document;
 
 	var parsed = rsingleTag.exec( data ),
 		scripts = !keepScripts && [];
@@ -9464,7 +9447,7 @@ jQuery.fn.load = function( url, params, callback ) {
 		// If it fails, this function gets "jqXHR", "status", "error"
 		} ).always( callback && function( jqXHR, status ) {
 			self.each( function() {
-				callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
+				callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
 			} );
 		} );
 	}
@@ -9830,9 +9813,9 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-/*! t3 v2.1.0 */
+/*! t3 v2.5.0 */
 /*!
-Copyright 2015 Box, Inc. All rights reserved.
+Copyright 2016 Box, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -10056,7 +10039,7 @@ Box.DOMEventDelegate = (function() {
 	'use strict';
 
 	// Supported events for modules. Only events that bubble properly can be used in T3.
-	var EVENT_TYPES = ['click', 'mouseover', 'mouseout', 'mousedown', 'mouseup',
+	var DEFAULT_EVENT_TYPES = ['click', 'mouseover', 'mouseout', 'mousedown', 'mouseup',
 			'mouseenter', 'mouseleave', 'mousemove', 'keydown', 'keyup', 'submit', 'change',
 			'contextmenu', 'dblclick', 'input', 'focusin', 'focusout'];
 
@@ -10089,18 +10072,21 @@ Box.DOMEventDelegate = (function() {
 	 */
 	function getNearestTypeElement(element) {
 		var found = false;
+		var moduleBoundaryReached = false;
 
 		// We need to check for the existence of 'element' since occasionally we call this on a detached element node.
 		// For example:
 		//  1. event handlers like mouseout may sometimes detach nodes from the DOM
 		//  2. event handlers like mouseleave will still fire on the detached node
 		// Checking existence of element.parentNode ensures the element is a valid HTML Element
-		while (!found && element && element.parentNode && !isModuleElement(element)) {
+		while (!found && element && element.parentNode && !moduleBoundaryReached) {
 			found = isTypeElement(element);
+			moduleBoundaryReached = isModuleElement(element);
 
 			if (!found) {
 				element = element.parentNode;
 			}
+
 		}
 
 		return found ? element : null;
@@ -10109,19 +10095,20 @@ Box.DOMEventDelegate = (function() {
 	/**
 	 * Iterates over each supported event type that is also in the handler, applying
 	 * a callback function. This is used to more easily attach/detach all events.
+	 * @param {string[]} eventTypes A list of event types to iterate over
 	 * @param {Object} handler An object with onclick, onmouseover, etc. methods.
 	 * @param {Function} callback The function to call on each event type.
 	 * @param {Object} [thisValue] The value of "this" inside the callback.
 	 * @returns {void}
 	 * @private
 	 */
-	function forEachEventType(handler, callback, thisValue) {
+	function forEachEventType(eventTypes, handler, callback, thisValue) {
 
 		var i,
 			type;
 
-		for (i = 0; i < EVENT_TYPES.length; i++) {
-			type = EVENT_TYPES[i];
+		for (i = 0; i < eventTypes.length; i++) {
+			type = eventTypes[i];
 
 			// only call the callback if the event is on the handler
 			if (handler['on' + type]) {
@@ -10134,9 +10121,10 @@ Box.DOMEventDelegate = (function() {
 	 * An object that manages events within a single DOM element.
 	 * @param {HTMLElement} element The DOM element to handle events for.
 	 * @param {Object} handler An object containing event handlers such as "onclick".
+	 * @param {string[]} [eventTypes] A list of event types to handle (events must bubble). Defaults to a common set of events.
 	 * @constructor
 	 */
-	function DOMEventDelegate(element, handler) {
+	function DOMEventDelegate(element, handler, eventTypes) {
 
 		/**
 		 * The DOM element that this object is handling events for.
@@ -10150,6 +10138,13 @@ Box.DOMEventDelegate = (function() {
 		 * @private
 		 */
 		this._handler = handler;
+
+		/**
+		 * List of event types to handle (make sure these events bubble!)
+		 * @type {string[]}
+		 * @private
+		 */
+		this._eventTypes = eventTypes || DEFAULT_EVENT_TYPES;
 
 		/**
 		 * Tracks event handlers whose this-value is bound to the correct
@@ -10187,7 +10182,7 @@ Box.DOMEventDelegate = (function() {
 		attachEvents: function() {
 			if (!this._attached) {
 
-				forEachEventType(this._handler, function(eventType) {
+				forEachEventType(this._eventTypes, this._handler, function(eventType) {
 					var that = this;
 
 					function handleEvent() {
@@ -10208,7 +10203,7 @@ Box.DOMEventDelegate = (function() {
 		 * @returns {void}
 		 */
 		detachEvents: function() {
-			forEachEventType(this._handler, function(eventType) {
+			forEachEventType(this._eventTypes, this._handler, function(eventType) {
 				Box.DOM.off(this.element, eventType, this._boundHandler[eventType]);
 			}, this);
 		}
@@ -10245,6 +10240,7 @@ Box.Context = (function() {
 	//-------------------------------------------------------------------------
 
 	Context.prototype = {
+		constructor: Context,
 
 		/**
 		 * Passthrough method to application that broadcasts messages.
@@ -10405,20 +10401,6 @@ Box.Application = (function() {
 		}
 
 		return receiver;
-	}
-
-	/**
-	 * Creates a new version of a function whose this-value is bound to a specific
-	 * object.
-	 * @param {Function} method The function to bind.
-	 * @param {Object} thisValue The this-value to set for the function.
-	 * @returns {Function} A bound version of the function.
-	 * @private
-	 */
-	function bind(method, thisValue) {
-		return function() {
-			return method.apply(thisValue, arguments);
-		};
 	}
 
 	/**
@@ -10668,7 +10650,7 @@ Box.Application = (function() {
 	 * @private
 	 */
 	function createAndBindEventDelegate(eventDelegates, element, handler) {
-		var delegate = new Box.DOMEventDelegate(element, handler);
+		var delegate = new Box.DOMEventDelegate(element, handler, globalConfig.eventTypes);
 		eventDelegates.push(delegate);
 		delegate.attachEvents();
 	}
@@ -10717,6 +10699,26 @@ Box.Application = (function() {
 	 */
 	function getInstanceDataByElement(element) {
 		return instances[element.id];
+	}
+
+	/**
+	 * Gets message handlers from the provided module instance
+	 * @param {Box.Application~ModuleInstance|Box.Application~BehaviorInstance} instance Messages handlers will be retrieved from the Instance object
+	 * @param {String} name The name of the message to be handled
+	 * @param {Any} data A playload to be passed to the message handler
+	 * @returns {void}
+	 * @private
+	 */
+	function callMessageHandler(instance, name, data) {
+
+		// If onmessage is an object call message handler with the matching key (if any)
+		if (instance.onmessage !== null && typeof instance.onmessage === 'object' && instance.onmessage.hasOwnProperty(name)) {
+			instance.onmessage[name].call(instance, data);
+
+		// Otherwise if message name exists in messages call onmessage with name, data
+		} else if (indexOf(instance.messages || [], name) !== -1) {
+			instance.onmessage.call(instance, name, data);
+		}
 	}
 
 	//--------------------------------------------------------------------------
@@ -10950,7 +10952,11 @@ Box.Application = (function() {
 
 				// <script> tag supports .text property
 				if (configElement) {
-					moduleConfig = JSON.parse(configElement.text);
+					try {
+						moduleConfig = JSON.parse(configElement.text);
+					} catch (exception) {
+						error(new Error('Module with id ' + element.id + ' has a malformed config.'));
+					}
 				}
 
 				// Cache the configurations for performance, if the module instance has been created
@@ -11053,32 +11059,21 @@ Box.Application = (function() {
 				id,
 				instanceData,
 				behaviorInstance,
-				moduleBehaviors,
-				messageHandlers;
+				moduleBehaviors;
 
 			for (id in instances) {
 
 				if (instances.hasOwnProperty(id)) {
-					messageHandlers = [];
 					instanceData = instances[id];
 
 					// Module message handler is called first
-					if (indexOf(instanceData.instance.messages || [], name) !== -1) {
-						messageHandlers.push(bind(instanceData.instance.onmessage, instanceData.instance));
-					}
+					callMessageHandler(instanceData.instance, name, data);
 
 					// And then any message handlers defined in module's behaviors
 					moduleBehaviors = getBehaviors(instanceData);
 					for (i = 0; i < moduleBehaviors.length; i++) {
 						behaviorInstance = moduleBehaviors[i];
-
-						if (indexOf(behaviorInstance.messages || [], name) !== -1) {
-							messageHandlers.push(bind(behaviorInstance.onmessage, behaviorInstance));
-						}
-					}
-
-					for (i = 0; i < messageHandlers.length; i++) {
-						messageHandlers[i](name, data);
+						callMessageHandler(behaviorInstance, name, data);
 					}
 				}
 
@@ -11151,7 +11146,27 @@ Box.Application = (function() {
 		 * @param {Error} [exception] The exception object to use.
 		 * @returns {void}
 		 */
-		reportError: error
+		reportError: error,
+
+		/**
+		 * Signals that an warning has occurred.
+		 * If in development mode, console.warn is invoked.
+		 * If in production mode, an event is fired.
+		 * @param {*} data A message string or arbitrary data
+		 * @returns {void}
+		 */
+		reportWarning: function(data) {
+			if (globalConfig.debug) {
+				// We grab console via getGlobal() so we can stub it out in tests
+				var globalConsole = this.getGlobal('console');
+				if (globalConsole && globalConsole.warn) {
+					globalConsole.warn(data);
+				}
+			} else {
+				application.fire('warning', data);
+			}
+		}
+
 	});
 
 }());
