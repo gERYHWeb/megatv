@@ -181,7 +181,7 @@ class CUserEx
     //Добавляем подписку на бесплатные каналы по умолчанию
     public function OnAfterUserUpdateHandler(&$arFields)
     {
-        if($arFields["ID"]>0)
+        if(intval($arFields["ID"])>0)
         {
             $result = \Hawkart\Megatv\ChannelTable::getList(array(
                 'filter' => array("UF_ACTIVE" => 1, "!UF_PRICE_H24" => true, "!UF_FORBID_REC"=>1),
@@ -190,7 +190,7 @@ class CUserEx
             while ($arChannel = $result->fetch())
             {
                 $CSubscribe = new \Hawkart\Megatv\CSubscribe("CHANNEL");
-                $CSubscribe->setUserSubscribe($activeFreeChannel["ID"], $arFields["ID"]);
+                $CSubscribe->setUserSubscribe($arChannel["ID"], $arFields["ID"]);
             }
         }
     }

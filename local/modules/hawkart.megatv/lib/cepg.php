@@ -744,7 +744,7 @@ class CEpg
             }else{
                 $prog_id = $arProgs[$prog_epg_id]["ID"];
 
-                /*if(intval($arProgs[$prog_epg_id]["UF_IMG_ID"])==0)
+                if(intval($arProgs[$prog_epg_id]["UF_IMG_ID"])==0)
                 {
                     $arFields = array();
                     $icons = array();
@@ -752,7 +752,7 @@ class CEpg
                         $arProg["icon"] = array($arProg["icon"]);
                     
                     $ar_src = self::addImage($arProg["icon"]);
-                    if(!$ar_src)
+                    if($ar_src)
                     {
                         $result = ImageTable::getList(array(
                             'filter' => array("=UF_EXTERNAL_ID" => md5($ar_src["origin_path"])),
@@ -777,7 +777,7 @@ class CEpg
                     }
 
                     ProgTable::Update($prog_id, $arFields);
-                }*/
+                }
             }
             
             /**

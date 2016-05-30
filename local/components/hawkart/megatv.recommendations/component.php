@@ -31,6 +31,7 @@ if($USER->IsAuthorized())
 $countPerPage = 20;
 $limit = 200;
 $count = 0;
+$prog_ids = array();
 
 $arParams["CURRENT_DATETIME"] = date("d.m.Y H:i:s", strtotime($arTime["SERVER_DATETIME_WITH_OFFSET"]));
 $dateStart = date("Y-m-d H:i:s", strtotime($arParams["CURRENT_DATETIME"]));
@@ -51,6 +52,11 @@ $result = \Hawkart\Megatv\ScheduleTable::getList(array(
 ));
 while ($arSchedule = $result->fetch())
 {   
+    if(in_array($arSchedule["UF_PROG_ID"], $prog_ids))
+        continue;
+        
+    $prog_ids[] = $arSchedule["UF_PROG_ID"];
+    
     if($count<$countPerPage)
     {
         $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = $arSchedule['UF_DATE_START']->toString();

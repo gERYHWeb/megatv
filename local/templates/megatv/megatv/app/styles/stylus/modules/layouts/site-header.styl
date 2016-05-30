@@ -491,6 +491,7 @@
 		background-color #fff
 		height 80px
 		display flex
+		flex-wrap wrap
 		align-items center
 		position relative
 
@@ -498,14 +499,16 @@
 			display block
 			width 100px
 			height 54px
-			margin 0 30px
+			margin-right 20px
+			margin-left 10px
 			background-image url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjQgMTY5Ij4KCTxwYXRoIGQ9Ik03OC40IDc4LjNoLjNjMCAyLjUgMCA1LjgtLjEgMTB2OS45aDEzLjhWNDkuMWgtMS41TDY3LjEgNzMuNyA0My4yIDQ5LjFoLTEuN3Y0OS4xaDEzLjhWNzguM2guMmwxMC43IDExLjFoMS43bDEwLjUtMTEuMXpNMTEzLjcgODcuNHYtOC45aDE3VjY4LjJoLTE3di03LjRoMTkuNlY1MC4xSDk5LjV2NDhoMzQuOVY4Ny4zbC0yMC43LjF6TTE3NC4yIDYwLjlWNTAuMmgtMzQuM3Y0OGgxNC4zVjYwLjloMjB6TTIxMy4zIDk4LjFMMTg5LjkgNDloLTEuN2wtMjQgNDkuMmgxMy43bDIuNC01LjRIMTk3bDIuMyA1LjRoMTR6TTE4OC45IDc0bDQuMSA5LjVoLTguNmw0LjItOS41aC4zeiIgZmlsbD0iIzZGNDFERCIvPgoJPHBhdGggZD0iTTI0NS42IDQ5LjloLTM1Ljl2My44aDE1LjlWOThoNC4zVjUzLjdoMTUuN3YtMy44ek0yODIuNSA4NC4xYzAgMi43LS45IDUuMS0yLjYgNy4xLTEuNyAyLTQuNyAzLjEtOC45IDMuMWgtMTMuOFY3NC4xaDEzYzcuNSAwIDEyLjMgNCAxMi4zIDEwem0tMTItMzAuNGM1LjggMCA5LjMgMy4zIDkuMyA4LjIgMCA3LTYuMyA4LjUtMTAgOC41aC0xMi42VjUzLjdoMTMuM3ptNi45IDE4LjJjNC4yLTIgNi42LTYuMiA2LjYtMTAuMyAwLTcuNy01LjctMTEuNi0xNC4xLTExLjZoLTE3djQ4LjJoMTguOGM0LjQgMCA3LjktMS4yIDEwLjgtMy44IDIuOC0yLjYgNC4yLTUuOSA0LjItMTAuMSAwLTUuNS0yLjktMTAuNS05LjMtMTIuMnYtLjJ6IiBmaWxsPSIjMTk3NEUzIi8+Cgk8bGluZWFyR3JhZGllbnQgaWQ9ImEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iLS4xNTciIHkxPSI4Ni40MTciIHgyPSIzMjQuMTU3IiB5Mj0iODYuNDE3IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDAgMTcwLjkxNykiPgoJCTxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzY3NDFENiIvPgoJCTxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFFNkVERCIvPgoJPC9saW5lYXJHcmFkaWVudD4KCTxwYXRoIGQ9Ik03LjMgNy4xaDMwOS4zdjEzMWwtMTUyLjkgMjMuN0w3LjMgMTM4LjFWNy4xeiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2EpIiBzdHJva2Utd2lkdGg9IjE1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz4KCTxnIG9wYWNpdHk9Ii4yIiBmaWxsPSIjRkZGIj4KCQk8cGF0aCBkPSJNMjcxIDk0LjNjNC4yIDAgNy4yLTEgOC45LTMuMSAxLjctMiAyLjYtNC40IDIuNi03LjEgMC0xLjgtLjQtMy40LTEuMi00LjgtOCAuOC0xNiAxLjYtMjQuMSAyLjJ2MTIuOEgyNzF6Ii8+CgkJPHBhdGggZD0iTTI3MC4yIDc0LjFoLTEzdjcuNGM4LjEtLjYgMTYuMS0xLjQgMjQuMS0yLjItMS45LTMuMi01LjktNS4yLTExLjEtNS4yek0xODguNiA3NGwtNC4yIDkuNmg4LjZsLTQuMS05LjZNMjc5LjcgNjEuOWMwLTQuOS0zLjQtOC4yLTkuMy04LjJoLTEzLjN2MTYuN2gxMi42YzMuNyAwIDEwLTEuNSAxMC04LjV6TTkwLjkgNDkuMUw2Ny4xIDczLjcgNDMuMiA0OS4xaC0xLjdWNzBDNTggNzMuMiA3NSA3NS44IDkyLjQgNzcuOVY0OS4xaC0xLjV6TTEzMC44IDc4LjVWNjguMmgtMTd2LTcuNGgxOS42VjUwLjFIOTkuNnYyOC42YzQuNy41IDkuNSAxIDE0LjMgMS41di0xLjdoMTYuOXpNMTc0LjIgNjAuOVY1MC4yaC0zNC4zdjMyLjFjNC43LjMgOS41LjYgMTQuMy44VjYwLjloMjB6TTE4OC4yIDQ5bC0xNi45IDM0LjdjNy4yLjIgMTQuNC4zIDIxLjcuMyA0LjUgMCA5IDAgMTMuNS0uMUwxODkuOSA0OWgtMS43em0tMy44IDM0LjZsNC4yLTkuNWguM2w0LjEgOS41aC04LjZ6TTI0NS42IDUzLjd2LTMuOGgtMzUuOXYzLjhoMTUuOXYyOS42YzEuNC0uMSAyLjktLjEgNC4zLS4yVjUzLjdoMTUuN3oiLz4KCQk8cGF0aCBkPSJNMjc3LjQgNzIuMXYtLjNjNC4yLTIgNi42LTYuMiA2LjYtMTAuMyAwLTcuNy01LjctMTEuNi0xNC4xLTExLjZoLTE3djMxLjlsNC4yLS4zdi03LjRoMTNjNS4zIDAgOS4yIDEuOSAxMS4xIDUuMiAxLjQtLjIgMi45LS4zIDQuMy0uNS0xLjMtMy4xLTQtNS42LTguMS02Ljd6bS03LjctMS43aC0xMi42VjUzLjdoMTMuM2M1LjggMCA5LjMgMy4zIDkuMyA4LjIgMCA3LTYuMyA4LjUtMTAgOC41eiIvPgoJPC9nPgoJPHBhdGggZD0iTTE0LjYgNjQuMnMtNS45LTEuMy03LjktMS44QzUgNjIgMCA2MC41IDAgNjAuNVYtLjJoMzI0djczLjdzLTUuMiAxLTYuOSAxLjNjLTEuOS4zLTcuNyAxLTcuNyAxVjE0LjRIMTQuNnY0OS44eiIgb3BhY2l0eT0iLjIiIGZpbGw9IiNGRkYiLz4KPC9zdmc+Cg==")
 			background-repeat no-repeat
 			background-position center
-			background-size 100%
+			background-size contain
 		}
 
 		.city-select {
+			margin-right 20px
 			max-width 196px
 
 			select {
@@ -552,7 +555,7 @@
 
 		.lang-select {
 			height 40px
-			margin 0 20px
+			margin-right 20px
 
 			.lang-select-value {
 				text-transform uppercase
@@ -565,9 +568,9 @@
 			}
 		}
 
-		.search-form {
+		.search {
 			margin-left auto
-			margin-right 25px
+			margin-right 20px
 		}
 
 		.sections-menu {
@@ -686,7 +689,9 @@
 		background-color #f4f3f3
 		display flex
 		align-items center
+		overflow hidden
 		padding 0 30px
+		min-height 80px
 		height 100%
 
 		.fill-disk-space {
@@ -728,7 +733,10 @@
 
 			li {
 				float left
-				padding 0 7px
+
+				&:not(:last-child) {
+					margin-right 14px
+				}
 			}
 			a {
 				display inline-block
@@ -766,6 +774,7 @@
 			.user-avatar {
 				width 54px
 				height 54px
+				min-width 54px
 				position absolute
 				top 50%
 				margin-top -27px
@@ -841,26 +850,21 @@
 .page-recommendations .site-header,
 .page-records .site-header {
 
-	@media screen and (max-width: 1100px) and (min-width: 569px) {
-		height 140px
-	}
+	// @media screen and (max-width: 1100px) and (min-width: 569px) {
+	// 	height 140px
+	// }
 
 	// Top panel
 	.top-panel {
-		@media screen and (max-width: 568px) {
-			flex-wrap wrap
+		@media screen and (max-width: 1100px) {
 			height auto
 		}
 
 		.logo {
-			@media screen and (max-width: 768px) {
-				margin-left 10px
-				margin-right 10px
-			}
 
 			@media screen and (max-width: 568px) {
-				margin-top 10px
-				margin-bottom 10px
+				width 100%
+				margin 15px 0
 			}
 		}
 	}
@@ -869,40 +873,49 @@
 		@media screen and (max-width: 568px) {
 			max-width none
 			width 100%
+			margin-bottom 15px
+			margin-right 0
 			display flex
-			justify-content flex-end
+			justify-content center
 		}
 	}
 
 	.lang-select {
-		@media screen and (max-width: 768px) and (min-width 569px) {
-			margin-left 10px
-			margin-right 10px
-		}
+		// @media screen and (max-width: 768px) and (min-width 569px) {
+		// 	margin-left 10px
+		// 	margin-right 10px
+		// }
 
 		@media screen and (max-width: 568px) {
-			display flex
-			justify-content flex-end
-			width 100%
-			margin-left 0
+			position absolute
+			top 0
+			right 10px
 			margin-right 0
 		}
 	}
 
-	.search-form {
+	.search {
 		@media screen and (max-width: 568px) {
-			position absolute
-			right 94px
 			margin-right 0
-			top 18px
+			margin-bottom 15px
+			width 100%
+			justify-content center
+		}
+	}
+	.search-form {
+		@media screen and (max-width: 700px) {
+			padding-right 5%
+			padding-left 5%
 		}
 	}
 
 	.sections-menu {
 		@media screen and (max-width: 1100px) {
+			background-color alpha(brand-primary, 0.1)
 			border-top 1px solid #eee
 			border-bottom 1px solid #eee
 			justify-content space-around
+			order 5
 		}
 
 		@media screen and (max-width: 1100px) and (min-width: 441px) {
@@ -910,10 +923,10 @@
 		}
 
 		@media screen and (max-width: 1100px) and (min-width: 569px) {
-			margin-top -1px
-			position absolute
-			top 100%
-			left 0
+			// margin-top -1px
+			// position absolute
+			// top 100%
+			// left 0
 			width 100%
 		}
 
@@ -930,7 +943,7 @@
 			}
 
 			@media screen and (max-width: 1100px) and (min-width: 441px) {
-				width 33.33%
+				flex 1 0 0
 			}
 
 			@media screen and (max-width: 440px) {
@@ -948,20 +961,23 @@
 	}
 	.header-user {
 		@media screen and (max-width: 768px) {
-			background-color transparent
+			// background-color transparent
+			// padding-left 15px
+			// padding-right 15px
 		}
 
-		@media screen and (max-width: 768px) and (min-width: 569px) {
-			padding-left 10px
-			padding-right 10px
+		@media screen and (max-width: 720px) {
+			margin-left auto
+			width 100%
+			justify-content center
 		}
 
 		@media screen and (max-width: 568px) {
-			position absolute
-			height auto
-			padding 0
-			top 10px
-			right 10px
+			// position absolute
+			// height auto
+			// padding 0
+			// top 10px
+			// right 10px
 		}
 
 		.fill-disk-space {
@@ -971,12 +987,12 @@
 		}
 
 		.user-card {
-			@media screen and (max-width: 1240px) {
+			@media screen and (max-width: 1240px) and (min-width: 1100px) {
 				padding-left 0
 			}
 
 			.user-avatar {
-				@media screen and (max-width: 1240px) {
+				@media screen and (max-width: 1240px) and (min-width: 1100px) {
 					margin-top 0
 					position relative
 					top auto
@@ -984,16 +1000,19 @@
 				}
 			}
 			.info-panel {
-				@media screen and (max-width: 1400px) {
+				@media screen and (max-width: 1400px) and (min-width: 1100px) {
 					display none
 				}
 			}
 			.username {
-				@media(max-width: 1600px) {
+				@media screen and (max-width: 1600px) and (min-width: 1420px) {
 					max-width 180px
 				}
-				@media(max-width: 1420px) {
+				@media screen and (max-width: 1420px) and (min-width: 720px) {
 					max-width 120px
+				}
+				@media screen and (max-width: 720px) {
+					max-width none
 				}
 			}
 		}

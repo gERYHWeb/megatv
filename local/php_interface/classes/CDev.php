@@ -436,7 +436,7 @@ class CDev
                 {
                     if (filetype($dirPath . DIRECTORY_SEPARATOR . $object) == "dir") 
                     {
-                        deleteDirectory($dirPath . DIRECTORY_SEPARATOR . $object);
+                        self::deleteDirectory($dirPath . DIRECTORY_SEPARATOR . $object);
                     } else {
                         unlink($dirPath . DIRECTORY_SEPARATOR . $object);
                     }

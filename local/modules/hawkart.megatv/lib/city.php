@@ -25,6 +25,10 @@ class CityTable extends Entity\DataManager
         //unset($_SESSION["USER_GEO"]);
         //unset($_COOKIE["city_select_data"]);
         
+        //should be deleted after
+        $result = self::getById(self::$defaultCityID);
+        $_SESSION["USER_GEO"] = $result->fetch();
+        
         if(!$_SESSION["USER_GEO"] || empty($_SESSION["USER_GEO"]))
         {
             if($_COOKIE["city_select_data"])

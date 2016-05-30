@@ -15,7 +15,7 @@ class CSocialAuth
             "PROPERTY_SOCIAL_ID" => $userProfile["identifier"]
         );
         $arSelect = array("PROPERTY_USER_ID");
-        $rsRes = CIBlockElement::GetList( $arOrder, $arrFilter, false, false, $arSelect );
+        $rsRes = \CIBlockElement::GetList( $arOrder, $arrFilter, false, false, $arSelect );
 		if( $arItem = $rsRes->GetNext() )
         {
             $userID = intval($arItem["PROPERTY_USER_ID_VALUE"]);
@@ -49,7 +49,7 @@ class CSocialAuth
     public static function connectToUser($userID, $providerName, $userProfile)
     {
         CModule::IncludeModule("iblock");
-        $el = new CIBlockElement;
+        $el = new \CIBlockElement;
         
         $PROP = array();
         $PROP["USER_ID"] = $userID;
@@ -66,7 +66,7 @@ class CSocialAuth
         
         $el->Add($arLoadProductArray);
         
-        CUserEx::capacityAdd($userID, 1);
+        \CUserEx::capacityAdd($userID, 1);
     }
     
     public static function createUser($providerName, $userProfile)
@@ -100,7 +100,7 @@ class CSocialAuth
             $userProfile["firstName"] = $userProfile["displayName"];
         }
         
-        $cUser = new CUser; 
+        $cUser = new \CUser; 
         $arFields = Array(
 			"NAME"              => $userProfile["firstName"],
             "LAST_NAME"         => $userProfile["lastName"],
@@ -145,7 +145,7 @@ class CSocialAuth
                 $file = $userProfile["photoURL"];
             }
             
-            $arImage = CFile::MakeFileArray($file);
+            $arImage = \CFile::MakeFileArray($file);
             $arImage["MODULE_ID"] = "main";
             $arFields["PERSONAL_PHOTO"] = $arImage;
         }
@@ -153,17 +153,17 @@ class CSocialAuth
         $USER_ID = $cUser->Add($arFields);
         if($USER_ID)
         {
-            CUser::SendUserInfo($USER_ID, SITE_ID, "Приветствуем Вас как нового пользователя нашего сайта!");
+            \CUser::SendUserInfo($USER_ID, SITE_ID, "Приветствуем Вас как нового пользователя нашего сайта!");
         
             if(!empty($email))
             {
-                CUserEx::capacityAdd($USER_ID, 1);   // за мэйл +1ГБ
+                \CUserEx::capacityAdd($USER_ID, 1);   // за мэйл +1ГБ
                 
                 $fields = array();
                 $fields["EXTERNAL_AUTH_ID"] = "";
                 $fields["PASSWORD"] = $password;
                 $fields["CONFIRM_PASSWORD"] = $password;
-                $сuser = new CUser;
+                $сuser = new \CUser;
                 $сuser->Update($USER_ID, $fields);
                 
                 $arEventFields = array(
@@ -177,7 +177,7 @@ class CSocialAuth
             }
             
             //Бонус за регистрацию
-            CUserEx::capacityAdd($USER_ID, BONUS_FOR_REGISTRATION);
+            \CUserEx::capacityAdd($USER_ID, BONUS_FOR_REGISTRATION);
             
             self::connectToUser($USER_ID, $providerName, $userProfile);
         }else{

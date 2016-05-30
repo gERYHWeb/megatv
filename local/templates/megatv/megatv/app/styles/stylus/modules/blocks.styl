@@ -1682,14 +1682,24 @@
 		height 41px
 		line-height 4.1rem
 		color #fff
+		flex-wrap wrap
 		display flex
 		flex-direction row
-		flex-wrap nowrap
 		justify-content space-between
 		align-items center
 
+		@media screen and (max-width: 970px) {
+			line-height 1.5
+			height auto
+		}
+
 		.btn {
 			button-size(6px, 18px, 1.4rem, 1.9)
+
+			@media screen and (max-width: 970px) {
+				padding-left 0
+				padding-right 0
+			}
 
 			.icon {
 				vertical-align -4px
@@ -1709,6 +1719,12 @@
 		vertical-align middle
 		margin-bottom 0
 
+		@media screen and (max-width: 970px) {
+			display block
+			margin-bottom 10px
+			width 100%
+		}
+
 		dt {
 			font-weight 300
 			display inline
@@ -1720,6 +1736,12 @@
 	}
 	.social-share {
 		display inline-block
+
+		@media screen and (max-width: 970px) {
+			display block
+			margin-bottom 10px
+			width 100%
+		}
 
 		span {
 			font-weight 300

@@ -59,11 +59,13 @@ if(intval($arResult["ID"])==0)
 
 //get status schedule
 $arResult["STATUS"] = \Hawkart\Megatv\CScheduleTemplate::status(array(
-    "SCHEDULE_ID" => $arResult["ID"],
-    "CHANNEL_ID" => $arResult["UF_CHANNEL_ID"],
+    "ID" => $arResult["ID"],
+    "UF_CHANNEL_ID" => $arResult["UF_CHANNEL_ID"],
     "DATE_START" => $arResult["DATE_START"],
     "DATE_END" => $arResult["DATE_END"]
 ));
+
+//CDev::pre($arResult);
 
 $sec = strtotime($arResult["DATE_END"]) - strtotime($arResult["DATE_START"]);
 $arResult["DURATION"] = \CTimeEx::secToStr($sec);

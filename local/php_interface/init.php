@@ -8,7 +8,7 @@ define("USER_SOCIAL_IB", 9);
 define("PASSPORT_IB", 10);
 define("SOCIAL_CONFIG_IB", 11);
 define("RECORD_HL", 5);
-define("BONUS_FOR_REGISTRATION", 20);   //бонус за регистрацию +20 ГБ пространства
+define("BONUS_FOR_REGISTRATION", 10);   //бонус за регистрацию +20 ГБ пространства
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 

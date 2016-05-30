@@ -287,7 +287,8 @@
 		justify-content flex-start
 	}
 	.modal-content {
-		width 896px
+		max-width 970px
+		padding 0 37px
 		flex-grow 0
 		flex-shrink 0
 	}
@@ -297,6 +298,16 @@
 		flex-wrap nowrap
 		justify-content center
 		padding 56px 0 28px
+
+		@media screen and (max-width 768px) {
+			padding-top 37px
+		}
+
+		img {
+			display block
+			width 100%
+			max-width 100%
+		}
 	}
 	.comments-holder {
 		position relative
@@ -325,6 +336,17 @@
 					border-bottom-color transparent
 				}
 			}
+		}
+	}
+}
+
+// Адаптивность только для двух типовых страниц
+
+.page-recommendations,
+.page-records {
+	.player-modal {
+		@media screen and (max-width: 970px) {
+
 		}
 	}
 }

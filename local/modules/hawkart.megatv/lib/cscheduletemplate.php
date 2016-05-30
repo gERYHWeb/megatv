@@ -57,12 +57,13 @@ class CScheduleTemplate
         
         $schedule = $arProg["ID"];
 
-        $arDatetime = \CTimeEx::getDatetime();
-        $date_now = \CTimeEx::dateOffset($arDatetime["OFFSET"], date("d.m.Y H:i:s")); 
-        $datetime = $arDatetime["SERVER_DATETIME_WITH_OFFSET"];
+        //$arDatetime = \CTimeEx::getDatetime();
+        //$date_now = \CTimeEx::dateOffset($arDatetime["OFFSET"], date("d.m.Y H:i:s")); 
+        //$datetime = $arDatetime["SERVER_DATETIME_WITH_OFFSET"];
+        $date_now = date("d.m.Y H:i:s");
         $start = $arProg["DATE_START"];
         $end = $arProg["DATE_END"];
-
+        
         $status = "";
         if(isset($arRecordsStatuses["VIEWED"][$schedule]))
         {

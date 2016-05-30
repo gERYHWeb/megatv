@@ -150,7 +150,8 @@ elseif($obCache->StartDataCache())
 {
 	$result = \Hawkart\Megatv\ScheduleTable::getList(array(
         'filter' => $arFilter,
-        'select' => $arSelect
+        'select' => $arSelect,
+        'order' => array("UF_DATE_START" => "ASC")
     ));
     while ($arSchedule = $result->fetch())
     {

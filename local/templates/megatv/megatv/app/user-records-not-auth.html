@@ -27,8 +27,7 @@
 			</script>
 			<header class="site-header">
 				<div class="top-panel">
-					<a href="index.html" class="logo"></a>
-
+					<span class="logo"></span>
 					<div class="city-select" data-module="city-select">
 						<script type="text/x-config">
 							{
@@ -43,9 +42,13 @@
 								"showCityRequestPopover": false
 							}
 						</script>
-						<select name="city-select" id="_id-city-select">
-							<option value="1" selected>Санкт-Петербург</option>
-						</select>
+						<form action="/" method="POST" id="city-select-form">
+							<input type="hidden" name="city-id" value="35" id="city-select-value">
+							<input type="hidden" name="sessid" id="sessid_3" value="5a9a39e829853ea760f17dceb5a7e85d">
+							<select name="city-select" id="_id-city-select">
+								<option value="1" selected>Санкт-Петербург</option>
+							</select>
+						</form>
 					</div>
 
 					<div class="lang-select" data-module="lang-select">
@@ -91,41 +94,181 @@
 						</div>
 					</div>
 
-
 					<ul class="sections-menu">
-						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<li class="active"><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
 						<!-- <li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li> -->
 						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
-						<li class="active sections-menu-recordings"><a href="user-records.html"><span data-icon="icon-film-collection"></span> <span>Мои записи<span class="count">2 из 20</span></span></a></li>
 					</ul>
 
 					<div class="header-user">
-						<div class="fill-disk-space" data-type="fill-disk-space">
-							<div class="progress-holder" data-progress="0.7916"></div>
-							<span class="label">Занято <strong>19 ГБ</strong></span>
+						<nav class="header-nav">
+							<ul class="user-actions">
+								<li><a href="#" class="signin-link" data-type="signin-overlay-toggle">Войти</a></li>
+								<li><a href="#" class="signup-link" data-type="signup-overlay-toggle">Зарегистрироваться</a></li>
+							</ul>
+						</nav>
+						<div class="authorize-overlay is-signin-overlay" data-module="signin-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Войти</h4>
+								<ul class="social-authorize-list">
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+								</ul>
+								<span class="divider"><span>или</span></span>
+								<form action="/?login=yes" data-redirect="/">
+									<div class="form-group">
+										<label for="" class="sr-only">Телефон или эл. почта</label>
+										<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+									</div>
+									<div class="form-group has-feedback" data-type="password-field-group">
+										<label for="" class="sr-only">Пароль</label>
+										<input type="password" name="" id="" class="form-control" placeholder="Пароль" data-type="password-field">
+										<input type="text" class="form-control" data-type="password-visualizer" placeholder="Пароль">
+										<span class="form-control-feedback">
+											<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+										</span>
+									</div>
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+											<span class="default-state init-state">Войти</span>
+											<span class="done-state">Авторизую вас...</span>
+											<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+											<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+										</button>
+										<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+									</div>
+								</form>
+							</div>
 						</div>
-
-						<nav class="header-nav" data-module="user-navigation">
-							<div class="user-card">
-								<a href="user-profile.html" class="user-avatar" data-type="avatar-holder">
-									<img src="img/temp/user-avatar-01.jpg" alt="Александр Пушкин" width="50" height="50">
-								</a>
-								<div class="info-panel">
-									<a class="username" href="user-profile.html" title="Константин Цымбалистый-Старший">Константин Цымбалистый-Старший</a>
-									<a href="index.html" class="signout-link">Выйти</a>
+						<div class="authorize-overlay is-signup-overlay" data-module="signup-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Регистрация</h4>
+								<ul class="social-authorize-list">
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+								</ul>
+								<span class="divider"><span>или</span></span>
+								<div class="steps">
+									<div class="step fade in active">
+										<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php">
+											<div class="form-group">
+												<label for="" class="sr-only">Телефон или эл. почта</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+											</div>
+											<div class="checkbox">
+												<label for="_id-singup--chackbox"><input type="checkbox" name="singup--chackbox" id="_id-singup--chackbox"><span>Я принимаю условия <a href="#">договора оферты</a></span></label>
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Зарегистрироваться</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+											</div>
+										</form>
+									</div>
+									<div class="step fade">
+										<p>Зайдите на почту и перейдите по ссылке<br> или введите код активации здесь:</p>
+										<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php" data-type="signup-code-form">
+											<input type="hidden" name="USER_EMAIL" value="" data-type="adaptive-field-hidden" />
+											<div class="form-group">
+												<label for="" class="sr-only">Код активации</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Код активации" data-type="code-field">
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Активировать</span>
+													<span class="done-state">Активирую ваш аккаунт...</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">У меня есть аккаунт</a>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
-							<!-- <ul class="top-menu">
-								<li><a href="#"><span data-icon="icon-film-collection"></span> Мои записи</a></li>
-								<li><a href="#"><span data-icon="icon-recording-small"></span> В записи <span class="badge"  data-type="recording-count">12</span></a></li>
-								<li><a href="#"><span data-icon="icon-recorded-small"></span> Записанных <span class="badge">92</span></a></li>
-								<li><a href="#"><span data-icon="icon-balance" data-size="small"></span> На счету: 1 200 Р</a></li>
-							</ul> -->
-						</nav>
+						</div>
+						<div class="authorize-overlay is-reset-overlay" data-module="reset-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Восстановить пароль</h4>
+								<div class="steps">
+									<div class="step fade in active">
+										<p>Напишите свой телефон или адрес эл. почты, и через 30 сек. мы вышлем код для смены пароля.</p>
+										<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php">
+											<div class="form-group">
+												<label for="" class="sr-only">Телефон или эл. почта</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Выслать пароль</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-code-handler-link">У меня уже есть код</a>
+											</div>
+										</form>
+									</div>
+									<div class="step fade">
+										<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php" data-type="reset-code-form">
+											<div class="form-group">
+												<label for="" class="sr-only">Код для смены пароля</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Код для смены пароля" data-type="code-field">
+											</div>
+											<div class="form-group has-feedback" data-type="password-field-group">
+												<label for="" class="sr-only">Новый пароль</label>
+												<input type="password" name="" id="" class="form-control" placeholder="Новый пароль" data-type="password-field">
+												<input type="text" class="form-control" data-type="password-visualizer" placeholder="Новый пароль">
+												<span class="form-control-feedback">
+													<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+												</span>
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Изменить пароль</span>
+													<span class="done-state">Запрос отправлен</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-handler-link">Запросить код ещё раз</a>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="authorize-overlay is-success-signup-overlay" data-module="success-signup-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Поздравляем вас</h4>
+								<p>Вы успешно зарегистрировались на МЕГАТВ.</p>
+								<a href="/" class="btn btn-primary btn-block">Начать пользоваться сервисом</a>
+							</div>
+						</div>
+						<div class="authorize-overlay is-success-reset-overlay" data-module="success-reset-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Пароль изменён</h4>
+								<p>Вы успешно изменили пароль для входа в свой аккаунт на МЕГАТВ.</p>
+								<a href="#" class="btn btn-primary btn-block" data-type="signin-handler-link">Авторизоваться</a>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!-- <div class="bottom-panel">
-					<a href="#" class="back-link"><span data-icon="icon-backlink-arrow"></span><span>Вернуться к передаче: Как я встретил вашу маму</span></a>
+
 				</div> -->
 			</header>
 			<main class="site-content">
@@ -1188,31 +1331,39 @@
 		<script src="/bower_components/sticky-kit/jquery.sticky-kit.js"></script>
 		<!-- endbuild -->
 
-		<!-- build:js js/user-records.js -->
+		<!-- build:js js/main.js -->
 		<script src="js/services/icon-loader.js"></script>
 		<script src="js/services/kinetic.js"></script>
 		<script src="js/services/select.js"></script>
-		<script src="js/services/popover.js"></script>
-		<script src="js/services/modal.js"></script>
-		<script src="js/services/cookies.js"></script>
-		<script src="js/services/advertizing.js"></script>
 		<script src="js/services/progressbar.js"></script>
+		<script src="js/services/popover.js"></script>
+		<script src="js/services/cookies.js"></script>
+		<script src="js/services/modal.js"></script>
+		<script src="js/services/advertizing.js"></script>
+		<script src="js/services/multistate-button.js"></script>
+		<script src="js/services/tooltip.js"></script>
 
+		<script src="js/behaviors/category-row.js"></script>
 		<script src="js/behaviors/banner-close.js"></script>
 		<script src="js/behaviors/recording-broadcast.js"></script>
 		<script src="js/behaviors/load-broadcast-player.js"></script>
 		<script src="js/behaviors/play-recorded-broadcasts.js"></script>
 
+		<script src="js/modules/calendar-carousel.js"></script>
 		<script src="js/modules/city-select.js"></script>
 		<script src="js/modules/lang-select.js"></script>
 		<script src="js/modules/search.js"></script>
-		<script src="js/modules/recomended-broadcasts.js"></script>
 		<script src="js/modules/broadcasts-categories.js"></script>
-		<script src="js/modules/user-recorded-broadcasts.js"></script>
-		<script src="js/modules/user-viewed-broadcasts.js"></script>
+		<script src="js/modules/broadcast-results.js"></script>
+		<script src="js/modules/recomended-broadcasts.js"></script>
 		<script src="js/modules/user-navigation.js"></script>
 		<script src="js/modules/broadcast-player.js"></script>
 		<script src="js/modules/broadcast-comments.js"></script>
+		<script src="js/modules/signin-overlay.js"></script>
+		<script src="js/modules/signup-overlay.js"></script>
+		<script src="js/modules/reset-overlay.js"></script>
+		<script src="js/modules/success-signup-overlay.js"></script>
+		<script src="js/modules/success-reset-overlay.js"></script>
 		<script src="js/modules/page.js"></script>
 		<script src="js/app.js"></script>
 		<!-- endbuild -->

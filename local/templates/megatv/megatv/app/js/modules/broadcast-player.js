@@ -56,8 +56,10 @@ Box.Application.addModule('broadcast-player', function (context) {
 			player.setup({
 				file: streamURL,
 				image: posterURL,
-				width: 896,
-				height: 504,
+				// width: 896,
+				width: "100%",
+				aspectratio: "16:9",
+				// height: 504,
 				title: videoTitle,
 				displaydescription: false,
 				flashplayer: playerFlashURL,
