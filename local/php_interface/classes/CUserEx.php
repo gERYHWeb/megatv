@@ -182,6 +182,16 @@ class CUserEx
     public function OnAfterUserUpdateHandler(&$arFields)
     {
         if(intval($arFields["ID"])>0)
+            self::subcribeOnFreeChannels($arFields["ID"]);
+    }
+    
+    public function subcribeOnFreeChannels($user_id = false)
+    {
+        global $USER;
+        if(!$user_id && $USER->IsAuthorized())
+            $user_id = $USER->GetID();
+    
+        if(intval($user_id)>0)
         {
             $result = \Hawkart\Megatv\ChannelTable::getList(array(
                 'filter' => array("UF_ACTIVE" => 1, "!UF_PRICE_H24" => true, "!UF_FORBID_REC"=>1),
@@ -190,7 +200,7 @@ class CUserEx
             while ($arChannel = $result->fetch())
             {
                 $CSubscribe = new \Hawkart\Megatv\CSubscribe("CHANNEL");
-                $CSubscribe->setUserSubscribe($arChannel["ID"], $arFields["ID"]);
+                $CSubscribe->setUserSubscribe($arChannel["ID"], $user_id);
             }
         }
     }

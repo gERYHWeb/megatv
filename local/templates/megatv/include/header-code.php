@@ -17,7 +17,7 @@ if($USER->IsAuthorized())
     $arStatusViewed = array();    //просмотренна
     $result = \Hawkart\Megatv\RecordTable::getList(array(
         'filter' => array("=UF_USER_ID" => $USER->GetID()),
-        'select' => array("ID", "UF_URL", "UF_SCHEDULE_ID", "UF_WATCHED"),
+        'select' => array("ID", "UF_URL", "UF_SCHEDULE_ID", "UF_WATCHED", "UF_PROG_ID"),
     ));
     while ($arRecord = $result->fetch())
     {

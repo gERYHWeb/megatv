@@ -1,7 +1,5 @@
 <?
-$_SERVER["DOCUMENT_ROOT"] = "/home/d/daotel/MEGATV/public_html";
-$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
-
+$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__) . '/../');
 define("NO_KEEP_STATISTIC", true);
 define("NOT_CHECK_PERMISSIONS", true);
 set_time_limit(0);

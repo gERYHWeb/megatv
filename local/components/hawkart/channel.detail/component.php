@@ -10,7 +10,7 @@ $arParams = $arParams + array(
 
 //get channel by code
 $result = \Hawkart\Megatv\ChannelTable::getList(array(
-    'filter' => array("=UF_CODE" => $arParams["ELEMENT_CODE"], 'UF_ACTIVE'=> 1),
+    'filter' => array("=UF_CODE" => $arParams["ELEMENT_CODE"], '=UF_ACTIVE'=> 1),
     'select' => array('ID', 'UF_TITLE', 'UF_ICON', 'UF_CODE', "UF_IS_NEWS")
 ));
 if ($arResult = $result->fetch())

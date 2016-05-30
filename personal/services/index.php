@@ -9,7 +9,7 @@ global $USER;
 
 	<section class="user-balance" data-module="user-balance">
         
-        <?if(isset($_GET["pay-status"]) && $_GET["pay-status"]=="success"):?>
+        <?if(isset($_GET["pay-status"]) && htmlspecialchars($_GET["pay-status"])=="success"):?>
             <script type="text/x-config">
             	{
             		"showSuccessModal": true
@@ -20,7 +20,7 @@ global $USER;
             		<div class="modal-content">
             			<a href="#" class="close-link" data-dismiss="modal"><span data-icon="icon-times"></span></a>
             			<span data-icon="icon-round-checkbox-mark" data-size="large"></span>
-            			<h2>Сумма зачислена<strong><?=number_format($_GET["sum"], 0, "", " ")?> <span data-icon="icon-ruble"></span></strong></h2>
+            			<h2>Сумма зачислена<strong><?=number_format(floatval($_GET["sum"]), 0, "", " ")?> <span data-icon="icon-ruble"></span></strong></h2>
             			<a href="/personal/services/" data-dismiss="modal">Вернуться в панель управления</a>
             		</div>
             	</div>

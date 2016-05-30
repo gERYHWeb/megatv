@@ -22,7 +22,7 @@ for($i = 0; $i<\CTimeEx::getCalendarDays()+2; $i++)
 
 //Get channel list
 $arResult["ITEMS"] = array();
-$arFilter = array("UF_ACTIVE" => 1);
+$arFilter = array("=UF_ACTIVE" => 1);
 $arSelect = array('ID', 'UF_TITLE', 'UF_ICON', 'UF_CODE', "UF_IS_NEWS");
 $arSort = array("UF_SORT" => "ASC");
 $obCache = new \CPHPCache;

@@ -22,16 +22,16 @@ if($USER->IsAuthorized())
     // Внесем (снимем) деньги на счет
     if (CSaleUserAccount::UpdateAccount(
             $USER->GetID(),
-            intval($_POST["Sum"]),
+            floatval($_POST["Sum"]),
             "RUB",
             "Внесение средств на счет",
             $orderID))
         {
         ?>
-        <p>На ваш счет внесены средства в размере <?=$_POST["Sum"]?> руб.<br />
+        <p>На ваш счет внесены средства в размере <?=floatval($_POST["Sum"])?> руб.<br />
         <a href="/personal/">Перейти в личный кабинет</a>.</p>
         <?
-        LocalRedirect("/personal/services/?pay-status=success&sum=".intval($_POST["Sum"]));
+        LocalRedirect("/personal/services/?pay-status=success&sum=".floatval($_POST["Sum"]));
     }
 }
 ?>

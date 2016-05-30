@@ -1,7 +1,5 @@
 <?
-$_SERVER["DOCUMENT_ROOT"] = "/home/d/daotel/MEGATV/public_html"; //изменить на сервере
-$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
-
+$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__) . '/../');
 define("NO_KEEP_STATISTIC", true);
 define("NOT_CHECK_PERMISSIONS", true);
 set_time_limit(0);
@@ -22,7 +20,7 @@ $epg = new \Hawkart\Megatv\CEpg();
 $epg->download();
 $epg->import();
 
-\CDev::deleteDirectory($_SERVER['DOCUMENT_ROOT'].'/upload/resize_cache');
+\CDev::deleteDirectory($_SERVER['DOCUMENT_ROOT'].'/bitrix/cache', 0);
 
 echo date("H:i:s")."\r\n";
 

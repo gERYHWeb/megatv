@@ -210,6 +210,35 @@ class ProgTable extends Entity\DataManager
     }
     
     
+    public static function getProgsByRating()
+    {
+        $ids = array();
+        $arProgs = array();
+        $result = \Hawkart\Megatv\ProgTable::getList(array(
+            'filter' => array(
+                "=UF_ACTIVE" => 1,
+            ),
+            'select' => array(
+                "ID", "UF_EPG_ID", "UF_GANRE",
+            ),
+            'order' => array("UF_RATING" => "DESC"),
+        ));
+        while ($arSchedule = $result->fetch())
+        {
+            if(in_array($arSchedule["UF_EPG_ID"], $ids))
+                continue;
+            
+            $ids[] = $arSchedule["UF_EPG_ID"];
+            
+            $arSchedule["UF_GANRE"] = explode(",", $arSchedule["UF_GANRE"]);
+            $arProgs[] = $arSchedule;
+        }
+        
+        unset($ids);
+        
+        return $arProgs;
+    }
+    
     /**
      * Clear table
      */

@@ -2,121 +2,73 @@
 define('STOP_STATISTICS', true);
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
 $GLOBALS['APPLICATION']->RestartBuffer();
-CModule::IncludeModule("iblock");
-CModule::IncludeModule("sale");
-CModule::IncludeModule("catalog");
+global $USER;
 
+$arResult = array();
 $query = htmlspecialcharsbx($_REQUEST["query"]);
 
-$activeChannels = CChannel::getList(array("ACTIVE"=>"Y"), array("ID", "DETAIL_PAGE_URL", "PROPERTY_ICON"));
-$ids = array();
-$arChannels = array();
-foreach($activeChannels as $activeChannel)
-{
-    $ids[] = $activeChannel["ID"];
-    $arChannels[$activeChannel["ID"]] = $activeChannel;
-}
-
-CModule::IncludeModule('search');
-$obSearch = new CSearch;
-$arSearchQuery = array(
-    'QUERY' => trim($query),
-    "SITE_ID" => 's1'
-);
-$arSearchSort = array(
-    'TITLE_RANK' => 'ASC',
-    'DATE_CHANGE' => 'DESC',
-    'CUSTOM_RANK' => 'DESC',
-    'RANK' => 'DESC',
-    //'CUSTOM_RANK' => 'DESC',
-    //'DATE_CHANGE' => 'DESC'
-);
-$arSearchFilter = array(
-    array(
-       '=MODULE_ID' => 'iblock',
-       'PARAM2' => array(PROG_TIME_IB)
-    )
-);
-
-$obSearch->Search($arSearchQuery, $arSearchSort, $arSearchFilter);
-while($arSearch = $obSearch->GetNext()){
-    $arSearchResult[] = $arSearch['ITEM_ID'];
-};
-
 $arFilter = array(
-    'ID' => $arSearchResult
+    "=UF_PROG.UF_ACTIVE" => 1,
+    '%UF_PROG.UF_TITLE' => strtolower($query)
 );
 
-/*$arQuery = array();
-$explode = explode(" ", trim($query));
-foreach($explode as $val)
-{
-    if(!empty($val))
-       $arQuery[] = trim($val); 
-}
-
-if(count($arQuery)==1)
-{
-   $arFilter["?NAME"] = $arQuery;
+//User subscribe channel list
+if($USER->IsAuthorized())
+{ 
+    $selectedChannels = array();
+    $result = \Hawkart\Megatv\SubscribeTable::getList(array(
+        'filter' => array("=UF_ACTIVE" => 1, "=UF_USER_ID" => $USER->GetID(), ">UF_CHANNEL_ID" => 0),
+        'select' => array("UF_CHANNEL_ID")
+    ));
+    while ($arSub = $result->fetch())
+    {
+        $selectedChannels[] = $arSub["UF_CHANNEL_ID"];
+    }
+    
+    $arFilter["=UF_CHANNEL_ID"] = $selectedChannels;
 }else{
-    $arFilter = array(
-        "LOGIC"=>"OR",
-    );
-    foreach($arQuery as $val)
-    {
-        $arFilter[] = array("?NAME"=>$val); 
-    }
-}*/
-
-$arProgs = CProg::getList(false, array("ID", "PREVIEW_PICTURE", "NAME", "PROPERTY_SUB_TITLE", "PROPERTY_CHANNEL")); 
-$arProgsSorted = array();
-foreach($arProgs as $arProg)
-{
-    $arProgsSorted[$arProg["ID"]] = $arProg;
+    $arFilter["=UF_CHANNEL.UF_ACTIVE"] = 1;
 }
-unset($arProgs);
 
-$filterDateStart = CTimeEx::datetimeForFilter(date("Y-m-d H:i:s"));
-$arProgTimes = CProgTime::getList(array(
-    //">=PROPERTY_DATE_START" => $filterDateStart,
-    "PROPERTY_CHANNEL" => $ids,
-    'ID' => $arSearchResult
-), array("ID", "PROPERTY_DATE_START", "PROPERTY_DATE_END", "PROPERTY_PROG", "PROPERTY_CHANNEL", "DETAIL_PAGE_URL"));
+$arExclude = array();
 
-
-$arTime = CTimeEx::getDatetime();
-$arResult = array();
-foreach($arProgTimes as $arSchedule)
+$result = \Hawkart\Megatv\ScheduleTable::getList(array(
+    'filter' => $arFilter,
+    'select' => array(
+        "ID", "UF_CODE", "UF_DATE_START", "UF_TITLE" => "UF_PROG.UF_TITLE",
+        "UF_SUB_TITLE" => "UF_PROG.UF_SUB_TITLE", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
+        "UF_CHANNEL_CODE" => "UF_CHANNEL.UF_CODE", "UF_ID" => "UF_PROG.UF_EPG_ID"
+    ),
+    'order' => array("UF_PROG.UF_RATING" => "DESC"),
+));
+while ($arSchedule = $result->fetch())
 {
-    $progID = $arSchedule["PROPERTY_PROG_VALUE"];
-    if(isset($arProgsSorted[$progID]))
+    if(in_array($arSchedule["UF_ID"], $arExclude))
     {
-        $arProg = $arProgsSorted[$progID];
-        $channel = $arSchedule["PROPERTY_CHANNEL_VALUE"];
-        
-        $arJson = array();
-        $date = CTimeEx::dateOffset($arTime["OFFSET"], $arSchedule["PROPERTY_DATE_START_VALUE"]);
-        $name = $arProg["NAME"];
-        if($arProg["PROPERTY_SUB_TITLE_VALUE"])
-            $name.= ". ".$arProg["PROPERTY_SUB_TITLE_VALUE"];
-        
-        $arJson["date"] = substr($date, 11, 5)." | ".substr($date, 0, 10);
-        $arJson["title"] = $name;
-        if($arProg["PREVIEW_PICTURE"])
-        {
-            $arPic = CDev::resizeImage($arProg["PREVIEW_PICTURE"], 60, 60);
-            $arJson["thumbnail"] = $arPic["SRC"];
-        }
-        else
-        {
-            $arJson["thumbnail"] = "null";
-        }
-            
-        $arJson["tokens"] = array();
-        $arJson["link"] = $arChannels[$channel]["DETAIL_PAGE_URL"].$arSchedule["CODE"]."/";
-        
-        $arResult[] = $arJson;
+        continue;
+    }else{
+        $arExclude[] = $arSchedule["UF_ID"];
     }
+    
+    $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = $arSchedule['UF_DATE_START']->toString();
+    
+    $arJson = array();
+    $arJson["date"] = substr($arSchedule["UF_DATE_START"], 11, 5)." | ".substr($arSchedule["UF_DATE_START"], 0, 10);
+    $arJson["title"] = $arSchedule["UF_TITLE"];
+    if($arSchedule["UF_IMG_PATH"])
+    {
+        $src = \Hawkart\Megatv\CFile::getCropedPath($arSchedule["UF_IMG_PATH"], array(600, 600));
+        //$renderImage = CFile::ResizeImageGet($src, Array("width"=>60, "height"=>60));
+        $arJson["thumbnail"] = $src;
+    }
+    else
+    {
+        $arJson["thumbnail"] = "null";
+    }
+        
+    $arJson["tokens"] = array();
+    $arJson["link"] = "/channels/".$arSchedule["UF_CHANNEL_CODE"]."/".$arSchedule["UF_ID"]."/?event=".$arSchedule["ID"];
+    $arResult[] = $arJson;
 }
 
 exit(json_encode($arResult));

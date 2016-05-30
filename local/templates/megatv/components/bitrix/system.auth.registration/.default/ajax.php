@@ -98,6 +98,8 @@ if(!$USER->IsAuthorized() && count($result['errors'])==0)
         
 		if(intval($USER_ID)>0)
         {
+            CUserEx::subcribeOnFreeChannels($USER_ID);
+            
             $arFields["USER_ID"] = $USER_ID;
             $event = new CEvent;
     		$event->SendImmediate("NEW_USER", SITE_ID, $arFields);
