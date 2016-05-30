@@ -151,14 +151,13 @@
 					background-color #e44424
 				}
 			}
-			&.status-recording {
-				.inner:before,
-				.item-header {
-					background-color rgba(33,110,216,0.84);
-				}
-			}
+			&.status-recording,
 			&.recording-in-progress {
 				background-color #094b99
+
+				.inner:before {
+					display none
+				}
 
 				.item-header {
 					background-color transparent
@@ -295,6 +294,9 @@
 				animation-fill-mode forwards
 
 				p {
+					font-size 13px
+					min-height 34px
+					line-height 17px
 					margin-bottom 0
 					margin-top 10px
 				}
@@ -353,11 +355,10 @@
 		}
 		.item-status-icon {
 			position absolute
-			top 0
-			left 0
-			right 0
-			margin-top 20px
-			bottom 60px
+			top 50%
+			left 50%
+			margin-top -60px
+			margin-left -35px
 			color #fff
 			text-align center
 			display flex
@@ -374,12 +375,10 @@
 				}
 			}
 			.status-desc {
-				font-size 12px
-				text-indent -3px
-				line-height 15px
-				margin-top 5px
-				display block
-				color #fff
+				font-size 13px
+			    line-height 17px;
+			    margin-bottom 0;
+			    margin-top 10px;
 			}
 		}
 		.item-header {

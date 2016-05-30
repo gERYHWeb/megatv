@@ -845,11 +845,25 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 		onclick: function (event, element, elementType) {
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
+				// console.log( 'Авторизован: ' );
+				// console.log( authentication === true );
 				if (authentication === true) {
-					if ($(element).data('status-flag') === false) {
+					// console.log( 'Статус флаг: ' );
+					// console.log( $(element).data('status-flag') === false );
+					// console.log( 'Статус не undefined: ' );
+					// console.log( $(element).data('status-flag') === 'undefined' );
+					if ($(element).data('status-flag') === false || typeof $(element).data('status-flag') === 'undefined') {
 						var broadcast = $(moduleEl).find($(event.target).closest('.item'));
 						var broadcastID = broadcast.data('broadcast-id');
+						// console.log( 'broadcastID не пустой: ' );
+						// console.log( broadcastID !== '' );
+						// console.log( 'broadcastID не undefined: ' );
+						// console.log( typeof broadcastID !== 'undefined' );
 						if (broadcastID !== '' && typeof broadcastID !== 'undefined') {
+							// console.log( 'Имеет класс status-recordable: ' );
+							// console.log( broadcast.hasClass('status-recordable') );
+							// console.log( 'Не имеет класса status-recording' );
+							// console.log( !broadcast.hasClass('status-recording') );
 							if (broadcast.hasClass('status-recordable') && !broadcast.hasClass('status-recording')) {
 								updateRemoteBroadcastStatus(broadcast, broadcastID, element);
 							}
@@ -1444,6 +1458,9 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	function filterBroadcasts(category) {
 		var broadcasts = $('.broadcasts-list .item');
 
+		items.removeClass('active');
+		$(moduleEl).find('.item[data-category="'+category+'"]').addClass('active');
+
 		broadcasts.removeClass('is-hidden');
 
 		if (category != 'all') {
@@ -1462,15 +1479,15 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 
 		if ( $(moduleEl).is('.is-all-categories') ) {
 			$(moduleEl).css('height', heightCategories+'px');
+		}
 
-			if (list.outerHeight() <= height) {
-				$(moduleEl)
-					.addClass('is-not-collapsing')
-					.removeClass('is-all-categories')
-					.css('height', height+'px');
-			} else {
-				$(moduleEl).removeClass('is-not-collapsing');
-			}
+		if (heightCategories <= height) {
+			$(moduleEl)
+				.addClass('is-not-collapsing')
+				.removeClass('is-all-categories')
+				.css('height', height+'px');
+		} else {
+			$(moduleEl).removeClass('is-not-collapsing');
 		}
 	}
 
@@ -1484,6 +1501,8 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 	// --------------------------------------------------------------------------
 
 	return {
+
+		messages: ['categoryChanged'],
 
 		init: function () {
 			moduleEl = context.getElement();
@@ -1500,16 +1519,20 @@ Box.Application.addModule('broadcasts-categories', function (context) {
 		},
 		onclick: function (event, element, elementType) {
 			var $item = $(event.target);
-			var broadcastCategory = $item.data('category');
+			var category = $item.data('category');
 
 			if (elementType === 'more') {
 				toggleCategories();
 			} else if (elementType === 'item') {
-				items.removeClass('active');
-				$(element).addClass('active');
-				filterBroadcasts(broadcastCategory);
+				filterBroadcasts(category);
 			}
-		}
+		},
+
+		onmessage: function(name, data) {
+            if (name === 'categoryChanged') {
+            	filterBroadcasts(data);
+            }
+        }
 	};
 });
 
@@ -1612,6 +1635,9 @@ Box.Application.addModule('user-recorded-broadcasts', function (context) {
 					broadcastID: broadcastID,
 					record: true
 				});
+			} else if (elementType === 'category') {
+				var category = $(element).closest('.item').data('category');
+				context.broadcast('categoryChanged', category);
 			}
 		},
 		onmessage: function (name, data) {
@@ -1884,6 +1910,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 	// Private
 	// --------------------------------------------------------------------------
 	var $ = context.getGlobal('jQuery');
+	var iconLoaderService;
 	var moduleEl;
 	var form;
 	var formBlock;
@@ -1901,7 +1928,8 @@ Box.Application.addModule('broadcast-comments', function (context) {
 			break;
 			case 'passive':
 				formCollapseTrigger.html('<span data-icon="icon-paper-airplane"></span><span>Оставить отзыв</span>');
-				Box.Application.renderIcons(context);
+				// Box.Application.renderIcons(context);
+				iconLoaderService.renderIcons(context);
 			break;
 		}
 	}
@@ -1916,11 +1944,17 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 	function addComment(data) {
 		var commentHTML = '';
+		// console.log( data.user_avatar );
 		if (typeof data !== 'undefined') {
+			if (data.user_avatar != null) {
+				var avatar =	'<div class="user-avatar">' +
+								'<img src="' + data.user_avatar + '" alt="' + data.username + '">' +
+							'</div>';
+			} else {
+				var avatar =	'<div class="user-avatar is-empty"></div>';
+			}
 			commentHTML += '<li>' +
-							'<div class="user-avatar">' +
-								'<img src="' + data.user_avatar + '" alt="' + data.username + '" width="50" height="50">' +
-							'</div>' +
+							avatar +
 							'<div class="comment-holder">' +
 								'<div class="comment-title">' + data.username + ' | ' + data.publish_date + '</div>' +
 								'<div class="comment-text">' + data.comment_text + '</div>' +
@@ -1937,18 +1971,27 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		$(moduleEl).find('.form-group').removeClass('has-error');
 
 		$.ajax({
-			type: 'POST',
+			type: 'POST', // GET
 			dataType: 'json',
 			url: form.attr('action'),
 			data: dataObj,
-			error: function () {
+			error: function (xhr, ajaxOptions, thrownError) {
+				// console.log( xhr );
+				// console.log( ajaxOptions );
+				// console.log( thrownError );
 				alert('Что-то пошло не так. Повторите попытку позднее!');
 				formSubmit.removeClass('is-submit-progress').trigger('blur');
 			},
 			success: function (data) {
 				if (data.status === 'success') {
+
+					// Очищаем поле ввода комментария после отправки комментария
 					form.find('.form-control').val('');
+
+					// Добавляем комментарий
 					addComment(data);
+
+					// Сворачивани
 					if (formCollapseTrigger.hasClass('hidden') === true) {
 						changeCollapseTriggerState('active');
 						showCollapseTrigger();
@@ -1984,6 +2027,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 
 		init: function () {
 			moduleEl = context.getElement();
+			iconLoaderService = context.getService('icon-loader');
 			formBlock = $(moduleEl).find('.broadcast-user-comments-form');
 			formCollapseTrigger = $(moduleEl).find('.comment-form-trigger-link');
 			form = $(moduleEl).find('form');
@@ -1994,6 +2038,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		},
 		destroy: function () {
 			moduleEl = null;
+			iconLoaderService = null;
 			form = null;
 			formBlock = null;
 			formCollapseTrigger = null;
@@ -2018,7 +2063,7 @@ Box.Application.addModule('broadcast-comments', function (context) {
 		onsubmit: function (event) {
 			event.preventDefault();
 			var textareaValue = formTextarea.val();
-			if (submitFlag === false && textareaValue.length > 0) {
+			if (submitFlag === false && $.trim(textareaValue).length > 0) {
 				formSubmit.addClass('is-submit-progress');
 				sendComment(form.serialize());
 			}

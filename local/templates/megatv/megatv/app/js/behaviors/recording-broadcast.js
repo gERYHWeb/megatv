@@ -105,11 +105,25 @@ Box.Application.addBehavior('recording-broadcast', function (context) {
 		onclick: function (event, element, elementType) {
 			if (elementType === 'broadcast' && $(event.target).closest('.icon-recordit').length > 0) {
 				event.preventDefault();
+				// console.log( 'Авторизован: ' );
+				// console.log( authentication === true );
 				if (authentication === true) {
-					if ($(element).data('status-flag') === false) {
+					// console.log( 'Статус флаг: ' );
+					// console.log( $(element).data('status-flag') === false );
+					// console.log( 'Статус не undefined: ' );
+					// console.log( $(element).data('status-flag') === 'undefined' );
+					if ($(element).data('status-flag') === false || typeof $(element).data('status-flag') === 'undefined') {
 						var broadcast = $(moduleEl).find($(event.target).closest('.item'));
 						var broadcastID = broadcast.data('broadcast-id');
+						// console.log( 'broadcastID не пустой: ' );
+						// console.log( broadcastID !== '' );
+						// console.log( 'broadcastID не undefined: ' );
+						// console.log( typeof broadcastID !== 'undefined' );
 						if (broadcastID !== '' && typeof broadcastID !== 'undefined') {
+							// console.log( 'Имеет класс status-recordable: ' );
+							// console.log( broadcast.hasClass('status-recordable') );
+							// console.log( 'Не имеет класса status-recording' );
+							// console.log( !broadcast.hasClass('status-recording') );
 							if (broadcast.hasClass('status-recordable') && !broadcast.hasClass('status-recording')) {
 								updateRemoteBroadcastStatus(broadcast, broadcastID, element);
 							}
