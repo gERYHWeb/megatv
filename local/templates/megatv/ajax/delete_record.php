@@ -38,6 +38,8 @@ if($USER->IsAuthorized() && $record_id>0 && $_REQUEST["delete"])
                 $user = new \CUser;
                 $user->Update($arUser["ID"], array("UF_CAPACITY_BUSY"=>$busy));
                 
+                $Sotal->cancelRecord($arRecord["UF_SOTAL_ID"]);
+                
                 \Hawkart\Megatv\RecordTable::delete($record_id);
                 $is_deleted = true;
                 
@@ -47,9 +49,7 @@ if($USER->IsAuthorized() && $record_id>0 && $_REQUEST["delete"])
         
         if(!$is_deleted)
             \Hawkart\Megatv\RecordTable::delete($record_id);
-        
-        //Возможно нужно сделать апи для отмены в сотале + вернуть пространство свободное
-        
+
         $status = "success";
     }
 }

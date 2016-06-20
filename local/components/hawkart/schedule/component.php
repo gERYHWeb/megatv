@@ -11,11 +11,11 @@ $arParams = $arParams + array(
 
 if(empty($_REQUEST["event"]))
 {
-    $arFilter = array("=UF_PROG.UF_EPG_ID" => $arParams["ELEMENT_CODE"]);
+    $arFilter = array("=UF_PROG.UF_EPG_ID" => trim($arParams["ELEMENT_CODE"]));
 }else{
     $arFilter = array("=ID" => $_REQUEST["event"]);
 }
- 
+
 //get channel by code
 $result = \Hawkart\Megatv\ScheduleTable::getList(array(
     //'filter' => array("=UF_CODE" => $arParams["ELEMENT_CODE"]),
@@ -54,7 +54,12 @@ if(intval($arResult["ID"])==0)
     /*$explode = explode("/", $APPLICATION->GetCurDir());
     unset($explode[count($explode)-2]);
     $backurl = implode("/", $explode);*/
-    LocalRedirect($APPLICATION->GetCurDir());
+    if(!empty($arFilter["=UF_PROG.UF_EPG_ID"]))
+    {
+        LocalRedirect("/");
+    }else{
+        LocalRedirect($APPLICATION->GetCurDir());
+    }
 }
 
 //get status schedule

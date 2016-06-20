@@ -23,7 +23,7 @@ $result = \Hawkart\Megatv\ScheduleTable::getList(array(
 ));
 while ($arSchedule = $result->fetch())
 {   
-    $url = "http://megatv.su/channels/".$arSchedule["UF_CHANNEL_CODE"]."/".$arSchedule["UF_ID"]."/";
+    $url = "http://tvguru.com/channels/".$arSchedule["UF_CHANNEL_CODE"]."/".$arSchedule["UF_ID"]."/";
     $urls[] = $url;
 }
 

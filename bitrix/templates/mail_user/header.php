@@ -20,6 +20,14 @@
 
 		/* End reset */
 	</style>
+<?
+/*
+This is commented to avoid Project Quality Control warning
+$APPLICATION->ShowHead();
+$APPLICATION->ShowTitle();
+$APPLICATION->ShowPanel();
+*/
+?>
 </head>
 <body>
 <? if (\Bitrix\Main\Loader::includeModule('mail')) : ?>
@@ -41,6 +49,7 @@ $serverName = $protocol."://".$arParams["SERVER_NAME"];
 						? COption::getOptionString('bitrix24', 'site_title', '')
 						: COption::getOptionString('main', 'site_name', '')
 				);
+				
 	
 				if (empty($companyName))
 				{

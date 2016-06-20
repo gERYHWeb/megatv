@@ -178,6 +178,13 @@ class ChannelTable extends Entity\DataManager
             'UF_IMG' => array(
 				'data_type' => '\Hawkart\Megatv\ImageTable',
 				'reference' => array('=this.UF_IMG_ID' => 'ref.ID'),
+			),
+            'UF_BASE_ID' => array(
+				'data_type' => 'integer',
+			),
+            'UF_BASE' => array(
+				'data_type' => '\Hawkart\Megatv\ChannelTable',
+				'reference' => array('=this.UF_BASE_ID' => 'ref.ID'),
 			)
 		);
 	}
