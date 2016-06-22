@@ -1,0 +1,15 @@
+//
+//  Responsive utilities
+//
+
+@mixin responsive-visibility() {
+	display: block !important;
+	table &  { display: table; }
+	tr &     { display: table-row !important; }
+	th &,
+	td &     { display: table-cell !important; }
+}
+
+@mixin responsive-invisibility() {
+	display: none !important;
+}

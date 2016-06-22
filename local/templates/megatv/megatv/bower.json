@@ -16,7 +16,8 @@
     "typeahead.js": "~0.11.1",
     "bLazy": "blazy#~1.5.0",
     "lazyloadxt": "~1.0.5",
-    "sticky-kit": "~1.1.2"
+    "sticky-kit": "~1.1.2",
+    "jquery.pep": "^0.6.8"
   },
   "overrides": {
     "bootstrap": {

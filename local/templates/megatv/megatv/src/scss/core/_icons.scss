@@ -1,0 +1,971 @@
+//
+// Icons
+// -------------------------------------------------- //
+
+.icon,
+[data-icon] {
+	position: relative;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	overflow: hidden;
+	fill: currentColor;
+	vertical-align: baseline;
+}
+.icon__cnt {
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	fill: inherit;
+	pointer-events: none;
+	transform: translateX(0);
+	-ms-transform: translate(0.5px, -0.3px);
+	vertical-align: top;
+}
+
+// UI icons
+
+.icon-recording-small,
+[data-icon="icon-recording-small"],
+.icon-recorded-small,
+[data-icon="icon-recorded-small"] {
+	fill: $brand-primary;
+	width: 22px;
+	height: 22px;
+	vertical-align: top;
+	margin-right: 1px;
+}
+
+.icon-balance,
+[data-icon="icon-balance"] {
+	width: 96px;
+	height: 76px;
+
+	&.is-small,
+	&[data-size="small"] {
+		fill: $brand-primary;
+		width: 23px;
+		height: 19px;
+		vertical-align: top;
+		margin-right: 3px;
+	}
+}
+
+.icon-film-collection,
+[data-icon="icon-film-collection"] {
+	fill: $brand-primary;
+	width: 20px;
+	height: 20px;
+	vertical-align: top;
+	margin-right: 5px;
+}
+
+.icon-left-arrow-days,
+.icon-right-arrow-days,
+[data-icon="icon-left-arrow-days"],
+[data-icon="icon-right-arrow-days"] {
+	fill: #bbb;
+	width: 12px;
+	height: 12px;
+	vertical-align: middle;
+}
+
+.icon-channels,
+[data-icon="icon-channels"] {
+	width: 19px;
+	height: 20px;
+	vertical-align: top;
+	margin-right: 7px;
+}
+
+.icon-themes,
+[data-icon="icon-themes"]  {
+	width: 22px;
+	height: 13px;
+	vertical-align: -2px;
+	margin-right: 7px;
+}
+
+.icon-recommendations,
+[data-icon="icon-recommendations"] {
+	width: 20px;
+	height: 20px;
+	vertical-align: top;
+	margin-right: 7px;
+}
+
+.icon-search,
+[data-icon="icon-search"] {
+	vertical-align: -4px;
+	width: 19px;
+	height: 18px;
+}
+
+.icon-calendar,
+[data-icon="icon-calendar"] {
+	width: 22px;
+	height: 22px;
+	vertical-align: -5px;
+}
+
+.icon-trash-action,
+[data-icon="icon-trash-action"] {
+	width: 17px;
+	height: 21px;
+}
+.icon-network-action,
+[data-icon="icon-network-action"] {
+	width: 16px;
+	height: 16px;
+}
+.icon-play-action,
+[data-icon="icon-play-action"] {
+	width: 14px;
+	height: 16px;
+}
+
+.icon-viewed,
+[data-icon="icon-viewed"],
+.icon-recordit,
+[data-icon="icon-recordit"],
+.icon-recorded,
+[data-icon="icon-recorded"],
+.icon-recording,
+[data-icon="icon-recording"] {
+	width: 70px;
+	height: 70px;
+
+	@media (max-width: 1400px) {
+		width: 46px;
+		height: 46px;
+	}
+}
+
+// .icon-datepicker-left-arrow,
+// .icon-datepicker-right-arrow {
+//   width: 7px;
+//   height: 13px;
+// }
+
+.icon-show-more-arrow,
+[data-icon="icon-show-more-arrow"] {
+	width: 17px;
+	height: 10px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.icon-times,
+[data-icon="icon-times"] {
+	width: 13px;
+	height: 13px;
+}
+
+.icon-backlink-arrow,
+[data-icon="icon-backlink-arrow"] {
+	width: 11px;
+	height: 20px;
+}
+
+.icon-yadisk-service,
+[data-icon="icon-yadisk-service"] {
+	width: 74px;
+	height: 46px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 27px;
+		height: 17px;
+		vertical-align: -3px;
+	}
+}
+
+.icon-gdisk-service,
+[data-icon="icon-gdisk-service"] {
+	width: 74px;
+	height: 63px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 19px;
+		height: 16px;
+		vertical-align: -2px;
+	}
+}
+
+.icon-network-social,
+[data-icon="icon-network-social"] {
+	width: 19px;
+	height: 19px;
+}
+
+.icon-paper-airplane,
+[data-icon="icon-paper-airplane"] {
+	width: 18px;
+	height: 16px;
+}
+
+.icon-comments-submit-arrow,
+[data-icon="icon-comments-submit-arrow"] {
+	width: 16px;
+	height: 16px;
+	vertical-align: -2px;
+}
+
+.icon-incoming-arrow,
+[data-icon="icon-incoming-arrow"],
+.icon-outcoming-arrow,
+[data-icon="icon-outcoming-arrow"] {
+	width: 19px;
+	height: 19px;
+	vertical-align: -4px;
+}
+
+.icon-msbutton-checkmark,
+[data-icon="icon-msbutton-checkmark"] {
+	width: 15px;
+	height: 12px;
+	vertical-align: -1px;
+	margin-right: 9px;
+}
+
+.icon-msbutton-cross-circle,
+[data-icon="icon-msbutton-cross-circle"] {
+	width: 15px;
+	height: 15px;
+	vertical-align: -2px;
+	margin-right: 7px;
+}
+
+
+.icon-msbutton-broken-network,
+[data-icon="icon-msbutton-broken-network"] {
+	width: 13px;
+	height: 16px;
+	vertical-align: -1px;
+	margin-right: 9px;
+}
+
+.icon-recording-progress,
+[data-icon="icon-recording-progress"] {
+	width: 41px;
+	height: 41px;
+	margin-bottom: 12px;
+}
+
+.icon-storage,
+[data-icon="icon-storage"] {
+	width: 41px;
+	height: 41px;
+}
+
+.icon-round-checkbox-mark,
+[data-icon="icon-round-checkbox-mark"] {
+	&.is-large,
+	&[data-size="large"] {
+		width: 110px;
+		height: 110px;
+	}
+}
+
+.icon-password-eye,
+[data-icon="icon-password-eye"] {
+	width: 20px;
+	height: 11px;
+}
+
+.icon-kinetic-arrow,
+[data-icon="icon-kinetic-arrow"] {
+	width: 19px;
+	height: 37px;
+}
+
+.icon-close,
+[data-icon="icon-close"] {
+	width: 18px;
+	height: 18px;
+}
+
+// Channel icons
+
+.icon-1st-channel,
+[data-icon="icon-1st-channel"] {
+	width: 117px;
+	height: 151px;
+
+	@media (max-width: 1400px) {
+		width: 93px;
+		height: 120px;
+	}
+}
+
+.icon-russia-1-channel,
+[data-icon="icon-russia-1-channel"],
+.icon-russia-2-channel,
+[data-icon="icon-russia-2-channel"],
+.icon-russia-24-channel,
+[data-icon="icon-russia-24-channel"],
+.icon-sport-1-channel,
+[data-icon="icon-sport-1-channel"] {
+	width: 169px;
+	height: 38px;
+
+	@media (max-width: 1400px) {
+		width: 134px;
+		height: 31px;
+	}
+}
+
+.icon-ntv-channel,
+[data-icon="icon-ntv-channel"] {
+	width: 110px;
+	height: 72px;
+
+	@media (max-width: 1400px) {
+		width: 100px;
+		height: 65px;
+	}
+}
+
+.icon-5th-channel,
+[data-icon="icon-5th-channel"],
+.icon-mirtv-channel,
+[data-icon="icon-mirtv-channel"] {
+	width: 92px;
+	height: 92px;
+
+	@media (max-width: 1400px) {
+		width: 75px;
+		height: 75px;
+	}
+}
+
+.icon-domashnii-channel,
+[data-icon="icon-domashnii-channel"] {
+	width: 83px;
+	height: 82px;
+
+	@media (max-width: 1400px) {
+		width: 65px;
+		height: 64px;
+	}
+}
+
+.icon-zvezda-channel,
+[data-icon="icon-zvezda-channel"] {
+	width: 199px;
+	height: 56px;
+
+	@media (max-width: 1400px) {
+		width: 155px;
+		height: 43px;
+	}
+}
+
+.icon-karusel-channel,
+[data-icon="icon-karusel-channel"] {
+	width: 180px;
+	height: 68px;
+
+	@media (max-width: 1400px) {
+		width: 140px;
+		height: 53px;
+	}
+}
+
+.icon-muz-channel,
+[data-icon="icon-muz-channel"] {
+	width: 64px;
+	height: 80px;
+
+	@media (max-width: 1400px) {
+		width: 50px;
+		height: 62px;
+	}
+}
+
+.icon-otr-channel,
+[data-icon="icon-otr-channel"] {
+	width: 208px;
+	height: 50px;
+
+	@media (max-width: 1400px) {
+		width: 162px;
+		height: 39px;
+	}
+}
+
+.icon-ren-channel,
+[data-icon="icon-ren-channel"] {
+	width: 121px;
+	height: 57px;
+
+	@media (max-width: 1400px) {
+		width: 94px;
+		height: 44px;
+	}
+}
+
+.icon-rtr-kultura-eng-channel,
+[data-icon="icon-rtr-kultura-eng-channel"] {
+	width: 165px;
+	height: 38px;
+
+	@media (max-width: 1400px) {
+		width: 129px;
+		height: 30px;
+	}
+}
+
+.icon-spas-channel,
+[data-icon="icon-spas-channel"] {
+	width: 92px;
+	height: 99px;
+
+	@media (max-width: 1400px) {
+		width: 72px;
+		height: 77px;
+	}
+}
+
+.icon-ntv-plus-sportplus-channel,
+[data-icon="icon-ntv-plus-sportplus-channel"] {
+	width: 172px;
+	height: 29px;
+
+	@media (max-width: 1400px) {
+		width: 134px;
+		height: 23px;
+	}
+}
+
+.icon-ctc-channel,
+[data-icon="icon-ctc-channel"] {
+	width: 114px;
+	height: 43px;
+
+	@media (max-width: 1400px) {
+		width: 89px;
+		height: 33px;
+	}
+}
+
+.icon-tvc-channel,
+[data-icon="icon-tvc-channel"] {
+	width: 160px;
+	height: 56px;
+
+	@media (max-width: 1400px) {
+		width: 124px;
+		height: 44px;
+	}
+}
+
+.icon-discovery-channel,
+[data-icon="icon-discovery-channel"] {
+	width: 171px;
+	height: 36px;
+
+	@media (max-width: 1400px) {
+		width: 133px;
+		height: 28px;
+	}
+}
+
+.icon-discovery-animalplanet-channel,
+[data-icon="icon-discovery-animalplanet-channel"] {
+	width: 140px;
+	height: 68px;
+
+	@media (max-width: 1400px) {
+		width: 109px;
+		height: 53px;
+	}
+}
+
+.icon-mtv-channel,
+[data-icon="icon-mtv-channel"] {
+	width: 117px;
+	height: 63px;
+
+	@media (max-width: 1400px) {
+		width: 91px;
+		height: 49px;
+	}
+}
+
+.icon-peretz-channel,
+[data-icon="icon-peretz-channel"] {
+	width: 151px;
+	height: 70px;
+
+	@media (max-width: 1400px) {
+		width: 118px;
+		height: 55px;
+	}
+}
+
+.icon-tnt-channel,
+[data-icon="icon-tnt-channel"] {
+	width: 161px;
+	height: 67px;
+
+	@media (max-width: 1400px) {
+		width: 126px;
+		height: 52px;
+	}
+}
+
+.icon-lifenews-channel,
+[data-icon="icon-lifenews-channel"] {
+	width: 195px;
+	height: 37px;
+
+	@media (max-width: 1400px) {
+		width: 152px;
+		height: 29px;
+	}
+}
+
+.icon-euronews-russia-channel,
+[data-icon="icon-euronews-russia-channel"] {
+	width: 156px;
+	height: 156px;
+
+	@media (max-width: 1400px) {
+		width: 122px;
+		height: 122px;
+	}
+}
+
+.icon-history-channel,
+[data-icon="icon-history-channel"],
+.icon-rtr-moyaplaneta-channel,
+[data-icon="icon-rtr-moyaplaneta-channel"] {
+	width: 102px;
+	height: 102px;
+
+	@media (max-width: 1400px) {
+		width: 75px;
+		height: 75px;
+	}
+}
+
+.icon-music-1st-channel,
+[data-icon="icon-music-1st-channel"] {
+	width: 178px;
+	height: 24px;
+
+	@media (max-width: 1400px) {
+		width: 141px;
+		height: 19px;
+	}
+}
+
+.icon-nash-football-channel,
+[data-icon="icon-nash-football-channel"] {
+	width: 226px;
+	height: 40px;
+
+	@media (max-width: 1400px) {
+		width: 179px;
+		height: 32px;
+	}
+}
+
+.icon-nst-channel,
+[data-icon="icon-nst-channel"] {
+	width: 102px;
+	height: 102px;
+
+	@media (max-width: 1400px) {
+		width: 82px;
+		height: 82px;
+	}
+}
+
+.icon-ort-domkino-channel,
+[data-icon="icon-ort-domkino-channel"] {
+	width: 214px;
+	height: 28px;
+
+	@media (max-width: 1400px) {
+		width: 170px;
+		height: 23px;
+	}
+}
+
+.icon-strana-channel,
+[data-icon="icon-strana-channel"] {
+	width: 114px;
+	height: 132px;
+
+	@media (max-width: 1400px) {
+		width: 90px;
+		height: 105px;
+	}
+}
+
+.icon-tv3-channel,
+[data-icon="icon-tv3-channel"] {
+	width: 137px;
+	height: 88px;
+
+	@media (max-width: 1400px) {
+		width: 109px;
+		height: 70px;
+	}
+}
+
+.icon-matchtv-channel,
+[data-icon="matchtv-channel"] {
+	width: 137px;
+	height: 88px;
+
+	@media (max-width: 1400px) {
+		width: 109px;
+		height: 70px;
+	}
+}
+
+.icon-friday-channel,
+[data-icon="icon-friday-channel"] {
+	width: 137px;
+	height: 88px;
+
+	@media (max-width: 1400px) {
+		width: 109px;
+		height: 70px;
+	}
+}
+
+.icon-youtube-channel,
+[data-icon="icon-youtube-channel"] {
+	width: 137px;
+	height: 88px;
+
+	@media (max-width: 1400px) {
+		width: 109px;
+		height: 70px;
+	}
+}
+
+.icon-vk-channel,
+[data-icon="icon-vk-channel"] {
+	width: 90px;
+	height: 50px;
+
+	@media (max-width: 1400px) {
+		width: 80px;
+		height: 45px;
+	}
+}
+
+// Themes icons
+
+.icon-documental-theme,
+[data-icon="icon-documental-theme"] {
+	width: 74px;
+	height: 36px;
+}
+
+.icon-films-theme,
+[data-icon="icon-films-theme"] {
+	width: 47px;
+	height: 49px;
+}
+
+.icon-sport-theme,
+[data-icon="icon-sport-theme"] {
+	width: 58px;
+	height: 58px;
+}
+
+.icon-cartoons-theme,
+[data-icon="icon-cartoons-theme"] {
+	width: 56px;
+	height: 48px;
+}
+
+.icon-news-theme,
+[data-icon="icon-news-theme"] {
+	width: 57px;
+	height: 58px;
+}
+
+.icon-travel-and-hobby-theme,
+[data-icon="icon-travel-and-hobby-theme"] {
+	width: 50px;
+	height: 50px;
+}
+
+.icon-art-and-education-theme,
+[data-icon="icon-art-and-education-theme"] {
+	width: 56px;
+	height: 54px;
+}
+
+.icon-beauty-and-health-theme,
+[data-icon="icon-beauty-and-health-theme"] {
+	width: 56px;
+	height: 54px;
+}
+
+.icon-childrens-theme,
+[data-icon="icon-childrens-theme"] {
+	width: 38px;
+	height: 53px;
+}
+
+.icon-history-theme,
+[data-icon="icon-history-theme"] {
+	width: 57px;
+	height: 50px;
+}
+
+.icon-sci-nature-theme,
+[data-icon="icon-sci-nature-theme"] {
+	width: 52px;
+	height: 58px;
+}
+
+.icon-serials-theme,
+[data-icon="icon-serials-theme"] {
+	width: 58px;
+	height: 56px;
+}
+
+.icon-talk-show-theme,
+[data-icon="icon-talk-show-theme"] {
+	width: 48px;
+	height: 54px;
+}
+
+.icon-football-theme,
+[data-icon="icon-football-theme"] {
+	width: 74px;
+	height: 38px;
+}
+
+// Recommendations icons
+
+.icon-megatv-recommendations,
+[data-icon="icon-megatv-recommendations"] {
+	width: 48px;
+	height: 46px;
+}
+
+.icon-popular-among-users-recommendations,
+[data-icon="icon-popular-among-users-recommendations"] {
+	width: 59px;
+	height: 57px;
+}
+
+.icon-best-sport-recommendations,
+[data-icon="icon-best-sport-recommendations"] {
+	width: 74px;
+	height: 38px;
+}
+
+.icon-best-cartoons-recommendations,
+[data-icon="icon-best-cartoons-recommendations"] {
+	width: 56px;
+	height: 48px;
+}
+
+.icon-premieres-recommendations,
+[data-icon="icon-premieres-recommendations"] {
+	width: 46px;
+	height: 60px;
+}
+
+
+// Age rating icons
+
+.icon-zero-age-rating,
+.icon-six-age-rating,
+.icon-twelve-age-rating,
+.icon-sixteen-age-rating,
+.icon-eighteen-age-rating {
+	width: 38px;
+	height: 38px;
+	fill: #fff;
+}
+
+// Social icons
+
+.icon-ya-social,
+[data-icon="icon-ya-social"] {
+	width: 24px;
+	height: 50px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 10px;
+		height: 23px;
+	}
+}
+
+.icon-ok-social,
+[data-icon="icon-ok-social"] {
+	width: 27px;
+	height: 46px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 12px;
+		height: 21px;
+	}
+}
+
+.icon-gp-social,
+[data-icon="icon-gp-social"] {
+	width: 45px;
+	height: 47px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 23px;
+		height: 23px;
+	}
+}
+
+.icon-in-social,
+[data-icon="icon-in-social"] {
+	width: 48px;
+	height: 48px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 22px;
+		height: 22px;
+	}
+}
+
+.icon-gp-social,
+[data-icon="icon-gp-social"] {
+	width: 45px;
+	height: 47px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 23px;
+		height: 23px;
+	}
+}
+
+.icon-vk-social,
+[data-icon="icon-vk-social"] {
+	width: 31px;
+	height: 40px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 15px;
+		height: 18px;
+	}
+}
+
+.icon-tw-social,
+[data-icon="icon-tw-social"] {
+	width: 44px;
+	height: 38px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 20px;
+		height: 17px;
+	}
+}
+
+.icon-im-social,
+[data-icon="icon-im-social"] {
+	width: 48px;
+	height: 48px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 22px;
+		height: 22px;
+	}
+}
+
+.icon-fb-social,
+[data-icon="icon-fb-social"] {
+	width: 24px;
+	height: 48px;
+
+	&.is-small,
+	&[data-size="small"] {
+		width: 12px;
+		height: 23px;
+	}
+}
+
+// Pay methods
+
+.icon-cards-paymethod,
+[data-icon="icon-cards-paymethod"] {
+	width: 57px;
+	height: 53px;
+}
+
+.icon-megafon-paymethod,
+[data-icon="icon-megafon-paymethod"] {
+	width: 99px;
+	height: 19px;
+}
+
+.icon-mts-paymethod,
+[data-icon="icon-mts-paymethod"] {
+	width: 58px;
+	height: 21px;
+}
+
+.icon-beeline-paymethod,
+[data-icon="icon-beeline-paymethod"] {
+	width: 82px;
+	height: 26px;
+}
+
+.icon-yandexmoney-paymethod,
+[data-icon="icon-yandexmoney-paymethod"] {
+	width: 105px;
+	height: 27px;
+}
+
+.icon-webmoney-paymethod,
+[data-icon="icon-webmoney-paymethod"] {
+	width: 113px;
+	height: 28px;
+}
+
+.icon-sberbankonline-paymethod,
+[data-icon="icon-sberbankonline-paymethod"] {
+	width: 49px;
+	height: 49px;
+}
+
+.icon-alfaclick-paymethod,
+[data-icon="icon-alfaclick-paymethod"] {
+	width: 34px;
+	height: 52px;
+}
+
+.icon-masterpass-paymethod,
+[data-icon="icon-masterpass-paymethod"] {
+	width: 96px;
+	height: 14px;
+}
+
+.icon-masterpass-paymethod,
+[data-icon="icon-masterpass-paymethod"] {
+	width: 96px;
+	height: 14px;
+}
+
+.icon-promsvasbank-paymethod,
+[data-icon="icon-promsvasbank-paymethod"] {
+	width: 109px;
+	height: 18px;
+}

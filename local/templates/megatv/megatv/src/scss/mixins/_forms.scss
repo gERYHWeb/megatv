@@ -1,0 +1,41 @@
+@mixin form-control-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
+	// Color the label and help text
+	.help-block,
+	.control-label,
+	.radio,
+	.checkbox,
+	.radio-inline,
+	.checkbox-inline,
+	&.radio label,
+	&.checkbox label,
+	&.radio-inline label,
+	&.checkbox-inline label  {
+		color: $text-color;
+	}
+	// Set the border and box shadow on specific inputs to match
+	&.form-group .form-control {
+		background-color: $background-color;
+		border-color: $border-color !important;
+		color: $text-color;
+
+		@include placeholder($state-danger-text);
+
+		&:focus {
+			border-color: darken($border-color, 10%);
+		}
+	}
+	// Set validation states also for addons
+	// .input-group-addon {
+	//   color text-color
+	//   border-color border-color
+	//   background-color background-color
+	// }
+	// Optional feedback icon
+	&.form-group .form-control-feedback {
+		color: $text-color;
+
+		[class~="icon"] {
+			fill: $text-color;
+		}
+	}
+}

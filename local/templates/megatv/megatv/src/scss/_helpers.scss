@@ -1,0 +1,38 @@
+//
+// Helpers
+//
+
+
+// Floats
+
+.clearfix {
+	@include clearfix();
+}
+.pull-right {
+	float: right !important;
+}
+.pull-left {
+	float: left !important;
+}
+
+
+
+// Toggling content
+
+.hidden {
+	display: none !important;
+}
+.show {
+	display: block !important;
+}
+.invisible {
+	visibility: hidden;
+}
+
+
+
+// For Affix plugin
+
+.affix {
+	position: fixed;
+}

@@ -1,0 +1,4948 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="icon" href="favicon.png">
+		<title>МЕГА ТВ</title>
+
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="site-wrapper" data-module="page">
+			<script type="text/x-config">
+				{
+					"bannersHideTime": 1,
+					"pathToSVGSprite": "",
+					"playerLastPositionURL": "/server/",
+					"playerURL": "modals/player.html",
+					"shareURL": "/server/",
+					"authentication": true
+				}
+			</script>
+			<header class="site-header">
+				<div class="top-panel">
+					<span class="logo"></span>
+					<div class="city-select" data-module="city-select">
+						<script type="text/x-config">
+							{
+								"url": "/server/",
+								"cities": [
+									{ "id": 0, "text": "Москва" },
+									{ "id": 1, "text": "Санкт-Петербург" },
+									{ "id": 2, "text": "Томск"} ,
+									{ "id": 3, "text": "Омск" },
+									{ "id": 4, "text": "Ноябрьск" }
+								],
+								"showCityRequestPopover": false
+							}
+						</script>
+						<form action="/" method="POST" id="city-select-form">
+							<input type="hidden" name="city-id" value="35" id="city-select-value">
+							<input type="hidden" name="sessid" id="sessid_3" value="5a9a39e829853ea760f17dceb5a7e85d">
+							<select name="city-select" id="_id-city-select">
+								<option value="1" selected>Санкт-Петербург</option>
+							</select>
+						</form>
+					</div>
+
+					<div class="lang-select" data-module="lang-select">
+						<!-- Временно отображаем только русский язык для сервиса -->
+						<div class="lang-select-value">
+							Ru
+						</div>
+						<!--
+						<script type="text/x-config">
+							{
+								"url": "/server/",
+								"languages": [
+									{ "id": 0, "text": "Ru" },
+									{ "id": 1, "text": "En" }
+								]
+							}
+						</script>
+						<form action="" id="lang-select-form">
+							<input type="hidden" name="lang-id" value="" id="lang-select-value">
+							<select name="lang-select" id="lang-select">
+							</select>
+						</form>
+						-->
+					</div>
+
+					<div class="calendar-carousel" data-module="calendar-carousel">
+						<script type="text/x-config">
+							{
+								"currentDate": "15.04.2016",
+								"minDate": 1,
+								"maxDate": 8
+							}
+						</script>
+						<a href="#" class="prev-trigger disabled" data-type="prev-trigger"><span data-icon="icon-left-arrow-days"></span></a>
+						<div class="dates-holder" data-type="dates-carousel"></div>
+						<a href="#" class="next-trigger" data-type="next-trigger"><span data-icon="icon-right-arrow-days"></span></a>
+					</div>
+
+					<div class="search" data-module="search">
+						<script type="text/x-config">
+							{
+								"url": "../data/films/queries/%QUERY.json"
+							}
+						</script>
+						<form action="#" class="search-form">
+							<div class="form-group has-feedback" data-type="search-group">
+								<label for="" class="sr-only">Название программы или сериала</label>
+								<input type="text" data-type="search-field" name="" id="" class="form-control" placeholder="Название программы или сериала">
+								<span data-icon="icon-search"></span>
+							</div>
+							<div class="search-close" data-type="close">
+							</div>
+						</form>
+						<div class="search-trigger" data-type="open">
+							<span data-icon="icon-search"></span>
+						</div>
+					</div>
+
+					<ul class="sections-menu">
+						<li class="active"><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<!-- <li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li> -->
+						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
+					</ul>
+
+					<div class="header-user">
+						<nav class="header-nav">
+							<ul class="user-actions">
+								<li><a href="#" class="signin-link" data-type="signin-overlay-toggle">Войти</a></li>
+								<li><a href="#" class="signup-link" data-type="signup-overlay-toggle">Зарегистрироваться</a></li>
+							</ul>
+						</nav>
+						<div class="authorize-overlay is-signin-overlay" data-module="signin-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Войти</h4>
+								<ul class="social-authorize-list">
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+								</ul>
+								<span class="divider"><span>или</span></span>
+								<form action="/?login=yes" data-redirect="/">
+									<div class="form-group">
+										<label for="" class="sr-only">Телефон или эл. почта</label>
+										<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+									</div>
+									<div class="form-group has-feedback" data-type="password-field-group">
+										<label for="" class="sr-only">Пароль</label>
+										<input type="password" name="" id="" class="form-control" placeholder="Пароль" data-type="password-field">
+										<input type="text" class="form-control" data-type="password-visualizer" placeholder="Пароль">
+										<span class="form-control-feedback">
+											<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+										</span>
+									</div>
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+											<span class="default-state init-state">Войти</span>
+											<span class="done-state">Авторизую вас...</span>
+											<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+											<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+										</button>
+										<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="authorize-overlay is-signup-overlay" data-module="signup-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Регистрация</h4>
+								<ul class="social-authorize-list">
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ya-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-ok-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-gp-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-in-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-vk-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-tw-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-im-social" data-size="small"></span></a></li>
+									<li><a href="#" data-type="social-signin-link"><span data-icon="icon-fb-social" data-size="small"></span></a></li>
+								</ul>
+								<span class="divider"><span>или</span></span>
+								<div class="steps">
+									<div class="step fade in active">
+										<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php">
+											<div class="form-group">
+												<label for="" class="sr-only">Телефон или эл. почта</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+											</div>
+											<div class="checkbox">
+												<label for="_id-singup--chackbox"><input type="checkbox" name="singup--chackbox" id="_id-singup--chackbox"><span>Я принимаю условия <a href="#">договора оферты</a></span></label>
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Зарегистрироваться</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="reset-handler-link">Восстановить пароль</a>
+											</div>
+										</form>
+									</div>
+									<div class="step fade">
+										<p>Зайдите на почту и перейдите по ссылке<br> или введите код активации здесь:</p>
+										<form action="/local/templates/megatv/components/bitrix/system.auth.registration/.default/ajax.php" data-type="signup-code-form">
+											<input type="hidden" name="USER_EMAIL" value="" data-type="adaptive-field-hidden" />
+											<div class="form-group">
+												<label for="" class="sr-only">Код активации</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Код активации" data-type="code-field">
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Активировать</span>
+													<span class="done-state">Активирую ваш аккаунт...</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">У меня есть аккаунт</a>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="authorize-overlay is-reset-overlay" data-module="reset-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Восстановить пароль</h4>
+								<div class="steps">
+									<div class="step fade in active">
+										<p>Напишите свой телефон или адрес эл. почты, и через 30 сек. мы вышлем код для смены пароля.</p>
+										<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php">
+											<div class="form-group">
+												<label for="" class="sr-only">Телефон или эл. почта</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Телефон или эл. почта" data-type="adaptive-field">
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Выслать пароль</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-code-handler-link">У меня уже есть код</a>
+											</div>
+										</form>
+									</div>
+									<div class="step fade">
+										<form action="/local/templates/megatv/components/bitrix/system.auth.forgotpasswd/.default/ajax.php" data-type="reset-code-form">
+											<div class="form-group">
+												<label for="" class="sr-only">Код для смены пароля</label>
+												<input type="text" name="" id="" class="form-control" placeholder="Код для смены пароля" data-type="code-field">
+											</div>
+											<div class="form-group has-feedback" data-type="password-field-group">
+												<label for="" class="sr-only">Новый пароль</label>
+												<input type="password" name="" id="" class="form-control" placeholder="Новый пароль" data-type="password-field">
+												<input type="text" class="form-control" data-type="password-visualizer" placeholder="Новый пароль">
+												<span class="form-control-feedback">
+													<a href="#" data-type="password-visibility-toggle"><span data-icon="icon-password-eye"></span></a>
+												</span>
+											</div>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary btn-block btn-multistate" data-type="multistate-button">
+													<span class="default-state init-state">Изменить пароль</span>
+													<span class="done-state">Запрос отправлен</span>
+													<span class="fail-data-state"><span data-icon="icon-msbutton-cross-circle"></span>Проверьте введённые данные</span>
+													<span class="fail-network-state"><span data-icon="icon-msbutton-broken-network"></span>Ошибка соединения с сервером</span>
+												</button>
+												<a href="#" class="form-subaction-link" data-type="signin-handler-link">Я вспомнил пароль</a><span class="inline-divider">|</span><a href="#" class="form-subaction-link" data-type="reset-handler-link">Запросить код ещё раз</a>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="authorize-overlay is-success-signup-overlay" data-module="success-signup-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Поздравляем вас</h4>
+								<p>Вы успешно зарегистрировались на МЕГАТВ.</p>
+								<a href="/" class="btn btn-primary btn-block">Начать пользоваться сервисом</a>
+							</div>
+						</div>
+						<div class="authorize-overlay is-success-reset-overlay" data-module="success-reset-overlay">
+							<div class="overlay-content">
+								<h4 class="overlay-title">Пароль изменён</h4>
+								<p>Вы успешно изменили пароль для входа в свой аккаунт на МЕГАТВ.</p>
+								<a href="#" class="btn btn-primary btn-block" data-type="signin-handler-link">Авторизоваться</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="bottom-panel">
+
+				</div> -->
+			</header>
+			<main class="site-content">
+				<section class="broadcast-results" data-module="broadcast-results">
+					<script type="text/x-config">
+						{
+							"recordingURL": "/local/templates/megatv/ajax/to_record.php",
+							"fetchResultsURL" : "/",
+							"page": "2",
+							"ajaxType": "CHANNELS",
+							"dates": [
+								{
+									"dayReq": "15.04.2016",
+									"dayMark": "Воскресенье. 15 апреля"
+								},
+								{
+									"dayReq": "16.04.2016",
+									"dayMark": "Понедельник. 16 апреля"
+								},
+								{
+									"dayReq": "17.04.2016",
+									"dayMark": "Вторник. 17 апреля"
+								},
+								{
+									"dayReq": "18.04.2016",
+									"dayMark": "Среда. 18 апреля"
+								},
+								{
+									"dayReq": "19.04.2016",
+									"dayMark": "Четверг. 19 апреля"
+								},
+								{
+									"dayReq": "20.04.2016",
+									"dayMark": "Пятница. 20 апреля"
+								},
+								{
+									"dayReq": "21.04.2016",
+									"dayMark": "Суббота. 21 апреля"
+								},
+								{
+									"dayReq": "22.04.2016",
+									"dayMark": "Воскресенье. 22 апреля"
+								},
+								{
+									"dayReq": "23.04.2016",
+									"dayMark": "Понедельник. 23 апреля"
+								}
+							]
+						}
+					</script>
+
+					<div class="categories-logos">
+					    <a class="category-logo channel-online" href="#" data-channel-id="69">
+					        <span data-icon="icon-domashnii-channel"></span>
+					    </a>
+					    <a class="category-logo channel-online" href="#" data-channel-id="61">
+					        <span data-icon="icon-zvezda-channel"></span>
+					    </a>
+					    <a class="category-logo channel-online" href="#" data-channel-id="52">
+					        <span data-icon="icon-karusel-channel"></span>
+					    </a>
+					</div>
+
+					<a href="#" class="prev-button" data-type="prev-button">
+						<span class="sticky-wrapp">
+							<span class="prev-date">Среда. 21 октября</span>
+							<span data-icon="icon-kinetic-arrow"></span>
+						</span>
+					</a>
+
+					<div class="categories-items">
+						<div class="canvas-wrap">
+							<div class="left-days-placeholder"></div>
+							<div class="day">
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="32167">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/87981_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:30</time>
+											<a href="broadcast-card.html">Полный вперёд</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33858">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/441597_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>02:25</time>
+											<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33859">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/441597_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>03:15</time>
+											<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33860">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/443175_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:10</time>
+											<a href="broadcast-card.html">Рублёвка на выезде</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32170">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/196069_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:10</time>
+											<a href="broadcast-card.html">6 кадров</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32171">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/370681_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:15</time>
+											<a href="broadcast-card.html">Тайны еды</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33861">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/373646_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:30</time>
+											<a href="broadcast-card.html">Джейми Оливер у себя дома</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33862">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>06:00</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33863">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>06:30</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33864">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:00</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item status-recordable js-time-pointer" data-type="broadcast" data-broadcast-id="33055">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/192442_288_288.jpg" alt="">
+										</div>
+
+										<span class="badge" data-channel-id="69">в эфире</span>
+
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="broadcast-card.html">По делам несовершеннолетних</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33865">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/77095_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:10</time>
+											<a href="broadcast-card.html">Давай разведёмся!</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33866">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/114765_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>12:10</time>
+											<a href="broadcast-card.html">Курортный роман</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33867">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/114765_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>12:40</time>
+											<a href="broadcast-card.html">Курортный роман</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33868">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/366662_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>13:10</time>
+											<a href="broadcast-card.html">Окна | Первая любовь</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33869">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>14:10</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33870">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>15:07</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33871">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>16:05</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33872">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>17:02</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33873">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/196069_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>18:00</time>
+											<a href="broadcast-card.html">6 кадров</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33874">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/307571_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>18:05</time>
+											<a href="broadcast-card.html">Она написала убийство | Убийство в стиле...</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33875">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/66664_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:00</time>
+												<a href="broadcast-card.html">Женский доктор</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33876">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/66664_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:00</time>
+												<a href="broadcast-card.html">Женский доктор</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33877">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/441597_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:50</time>
+												<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33878">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/441597_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:50</time>
+												<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33879">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/435879_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:40</time>
+												<a href="broadcast-card.html">Доктор Хаус</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33880">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/199025_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:35</time>
+												<a href="broadcast-card.html">Меня предали</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="32077">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>01:29</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32078">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>02:51</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32079">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:22</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32080">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189674_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:00</time>
+												<a href="broadcast-card.html">Гимн Российской Федерации</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32081">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/297139_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:03</time>
+												<a href="broadcast-card.html">Русский характер | Железные мальчики</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32082">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/297138_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:37</time>
+												<a href="broadcast-card.html">Русский характер | Сильнее духом</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32083">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/250493_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>07:07</time>
+												<a href="broadcast-card.html">Жаворонок</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32084">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>08:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32085">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/250493_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>08:04</time>
+												<a href="broadcast-card.html">Жаворонок</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32086">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>09:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32087">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442824_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>09:14</time>
+												<a href="broadcast-card.html">Нюрнберг: его урок сегодня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32088">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189653_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>10:00</time>
+												<a href="broadcast-card.html">Военные новости</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32089">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442824_288_144.jpg" alt="">
+											</div>
+
+											<span class="badge" data-channel-id="61">в эфире</span>
+
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:04</time>
+												<a href="broadcast-card.html">Нюрнберг: его урок сегодня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32090">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442842_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:36</time>
+												<a href="broadcast-card.html">Стихи военных лет | Плетнёв</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32091">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/289262_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:39</time>
+												<a href="broadcast-card.html">Я помню</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32092">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442842_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:50</time>
+												<a href="broadcast-card.html">Стихи военных лет | Деревянко</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32093">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>11:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32094">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>11:25</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32095">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32096">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:04</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32097">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32098">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:16</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32099">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189653_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:00</time>
+												<a href="broadcast-card.html">Военные новости</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32100">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:04</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32101">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32102">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:05</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32103">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442841_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:23</time>
+												<a href="broadcast-card.html">Стихи военных лет | Черневич</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32104">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/131298_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:26</time>
+												<a href="broadcast-card.html">Иди и смотри</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32105">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32106">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/273799_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:05</time>
+												<a href="broadcast-card.html">Аллегро с огнём</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32107">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32108">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/131298_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:04</time>
+												<a href="broadcast-card.html">Иди и смотри</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32109">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442841_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:56</time>
+												<a href="broadcast-card.html">Стихи военных лет | Чонишвили</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32110">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32111">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442771_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:30</time>
+												<a href="broadcast-card.html">1941. О чем не знал Берлин...</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32112">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442835_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:20</time>
+												<a href="broadcast-card.html">Ощущение войны</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32113">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/354653_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:45</time>
+												<a href="broadcast-card.html">Реклама</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32114">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189805_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:49</time>
+												<a href="broadcast-card.html">Оружие Победы | Истребитель И-16</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32115">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:04</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32116">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:57</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32117">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:49</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32118">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32119">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:20</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32120">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:01</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32121">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/78631_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:56</time>
+												<a href="broadcast-card.html">Васёк Трубачёв и его товарищи</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="31649">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/201336_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:10</time>
+											<a href="broadcast-card.html">Миллион в мешке</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32043">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/73718_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:30</time>
+											<a href="broadcast-card.html">Корпорация забавных монстров</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32044">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/326019_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>01:50</time>
+											<a href="broadcast-card.html">Ералаш</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32045">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/350328_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:20</time>
+											<a href="broadcast-card.html">Смешарики. Пин-код</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32046">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/350287_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:00</time>
+											<a href="broadcast-card.html">Ранние пташки</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32047">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/310150_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:20</time>
+											<a href="broadcast-card.html">Пляс-класс</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32048">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/417431_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:25</time>
+											<a href="broadcast-card.html">Дуда и Дада</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32049">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/128786_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>08:05</time>
+											<a href="broadcast-card.html">Лентяево</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32050">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/153249_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>08:30</time>
+											<a href="broadcast-card.html">Приключения Тайо</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32051">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/143613_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>09:10</time>
+											<a href="broadcast-card.html">Лунтик и его друзья</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32052">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/58868_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>09:45</time>
+											<a href="broadcast-card.html">Бериляка учится читать</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32053">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/192986_288_288.jpg" alt="">
+										</div>
+
+										<span class="badge" data-channel-id="52">в эфире</span>
+
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:00</time>
+											<a href="broadcast-card.html">Самый маленький гном</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32054">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/193148_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:35</time>
+											<a href="broadcast-card.html">Пожарный Сэм</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32055">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/286156_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="broadcast-card.html">Соник Бум</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32056">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/431545_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:15</time>
+												<a href="broadcast-card.html">Ниндзяго</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32057">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/340856_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:00</time>
+												<a href="broadcast-card.html">Маша и Медведь</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32058">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/287421_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:55</time>
+												<a href="broadcast-card.html">180</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32059">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/326019_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:00</time>
+												<a href="broadcast-card.html">Ералаш</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32060">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/354904_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:00</time>
+												<a href="broadcast-card.html">Зиг и Шарко</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32061">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/163063_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:05</time>
+												<a href="broadcast-card.html">Свинка Пеппа</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32062">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/194197_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:50</time>
+												<a href="broadcast-card.html">Бумажки</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32063">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/310128_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:20</time>
+												<a href="broadcast-card.html">Даша и друзья: приключения в городе</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32064">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/134974_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:50</time>
+												<a href="broadcast-card.html">Ми-Ми-Мишки</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32065">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/292701_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:25</time>
+												<a href="broadcast-card.html">Катя и Мим-Мим</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33324">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/444484_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:10</time>
+												<a href="broadcast-card.html">Вики: маленький викинг</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32067">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/192999_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:50</time>
+												<a href="broadcast-card.html">Рыцарь Майк</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32068">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/184094_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:30</time>
+												<a href="broadcast-card.html">Спокойной ночи, малыши!</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32069">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/279703_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:40</time>
+												<a href="broadcast-card.html">Маленькое королевство Бена и Холли</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32070">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/287421_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:35</time>
+												<a href="broadcast-card.html">180</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32071">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/148712_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:40</time>
+												<a href="broadcast-card.html">Фиксики</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32072">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/444470_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:20</time>
+												<a href="broadcast-card.html">Время Йо-Кай</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32073">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/145746_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:05</time>
+												<a href="broadcast-card.html">Форт Боярд</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32074">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/105051_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:30</time>
+												<a href="broadcast-card.html">Мальчик из Неаполя</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32075">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/138923_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:50</time>
+												<a href="broadcast-card.html">Приключения Мурзилки</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="day-mark">
+									<span><span class="current-day">Понедельник. 20 июня</span>
+									<span class="next-day">Вторник. 21 июня</span></span>
+								</div>
+							</div>
+							<div class="day">
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="32167">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/87981_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:30</time>
+											<a href="broadcast-card.html">Полный вперёд</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33858">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/441597_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>02:25</time>
+											<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33859">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/441597_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>03:15</time>
+											<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33860">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/443175_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:10</time>
+											<a href="broadcast-card.html">Рублёвка на выезде</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32170">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/196069_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:10</time>
+											<a href="broadcast-card.html">6 кадров</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32171">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/370681_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:15</time>
+											<a href="broadcast-card.html">Тайны еды</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33861">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/373646_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:30</time>
+											<a href="broadcast-card.html">Джейми Оливер у себя дома</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33862">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>06:00</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33863">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>06:30</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33864">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:00</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item status-recordable js-time-pointer" data-type="broadcast" data-broadcast-id="33055">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/192442_288_288.jpg" alt="">
+										</div>
+
+										<span class="badge" data-channel-id="69">в эфире</span>
+
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="broadcast-card.html">По делам несовершеннолетних</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33865">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/77095_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:10</time>
+											<a href="broadcast-card.html">Давай разведёмся!</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33866">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/114765_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>12:10</time>
+											<a href="broadcast-card.html">Курортный роман</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33867">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/114765_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>12:40</time>
+											<a href="broadcast-card.html">Курортный роман</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33868">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/366662_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>13:10</time>
+											<a href="broadcast-card.html">Окна | Первая любовь</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33869">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>14:10</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33870">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>15:07</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33871">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>16:05</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33872">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>17:02</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33873">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/196069_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>18:00</time>
+											<a href="broadcast-card.html">6 кадров</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33874">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/307571_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>18:05</time>
+											<a href="broadcast-card.html">Она написала убийство | Убийство в стиле...</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33875">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/66664_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:00</time>
+												<a href="broadcast-card.html">Женский доктор</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33876">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/66664_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:00</time>
+												<a href="broadcast-card.html">Женский доктор</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33877">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/441597_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:50</time>
+												<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33878">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/441597_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:50</time>
+												<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33879">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/435879_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:40</time>
+												<a href="broadcast-card.html">Доктор Хаус</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33880">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/199025_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:35</time>
+												<a href="broadcast-card.html">Меня предали</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="32077">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>01:29</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32078">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>02:51</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32079">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:22</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32080">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189674_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:00</time>
+												<a href="broadcast-card.html">Гимн Российской Федерации</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32081">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/297139_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:03</time>
+												<a href="broadcast-card.html">Русский характер | Железные мальчики</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32082">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/297138_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:37</time>
+												<a href="broadcast-card.html">Русский характер | Сильнее духом</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32083">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/250493_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>07:07</time>
+												<a href="broadcast-card.html">Жаворонок</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32084">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>08:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32085">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/250493_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>08:04</time>
+												<a href="broadcast-card.html">Жаворонок</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32086">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>09:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32087">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442824_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>09:14</time>
+												<a href="broadcast-card.html">Нюрнберг: его урок сегодня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32088">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189653_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>10:00</time>
+												<a href="broadcast-card.html">Военные новости</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32089">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442824_288_144.jpg" alt="">
+											</div>
+
+											<span class="badge" data-channel-id="61">в эфире</span>
+
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:04</time>
+												<a href="broadcast-card.html">Нюрнберг: его урок сегодня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32090">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442842_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:36</time>
+												<a href="broadcast-card.html">Стихи военных лет | Плетнёв</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32091">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/289262_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:39</time>
+												<a href="broadcast-card.html">Я помню</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32092">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442842_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:50</time>
+												<a href="broadcast-card.html">Стихи военных лет | Деревянко</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32093">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>11:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32094">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>11:25</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32095">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32096">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:04</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32097">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32098">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:16</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32099">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189653_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:00</time>
+												<a href="broadcast-card.html">Военные новости</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32100">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:04</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32101">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32102">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:05</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32103">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442841_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:23</time>
+												<a href="broadcast-card.html">Стихи военных лет | Черневич</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32104">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/131298_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:26</time>
+												<a href="broadcast-card.html">Иди и смотри</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32105">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32106">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/273799_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:05</time>
+												<a href="broadcast-card.html">Аллегро с огнём</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32107">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32108">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/131298_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:04</time>
+												<a href="broadcast-card.html">Иди и смотри</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32109">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442841_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:56</time>
+												<a href="broadcast-card.html">Стихи военных лет | Чонишвили</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32110">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32111">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442771_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:30</time>
+												<a href="broadcast-card.html">1941. О чем не знал Берлин...</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32112">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442835_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:20</time>
+												<a href="broadcast-card.html">Ощущение войны</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32113">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/354653_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:45</time>
+												<a href="broadcast-card.html">Реклама</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32114">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189805_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:49</time>
+												<a href="broadcast-card.html">Оружие Победы | Истребитель И-16</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32115">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:04</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32116">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:57</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32117">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:49</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32118">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32119">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:20</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32120">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:01</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32121">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/78631_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:56</time>
+												<a href="broadcast-card.html">Васёк Трубачёв и его товарищи</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="31649">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/201336_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:10</time>
+											<a href="broadcast-card.html">Миллион в мешке</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32043">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/73718_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:30</time>
+											<a href="broadcast-card.html">Корпорация забавных монстров</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32044">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/326019_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>01:50</time>
+											<a href="broadcast-card.html">Ералаш</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32045">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/350328_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:20</time>
+											<a href="broadcast-card.html">Смешарики. Пин-код</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32046">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/350287_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:00</time>
+											<a href="broadcast-card.html">Ранние пташки</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32047">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/310150_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:20</time>
+											<a href="broadcast-card.html">Пляс-класс</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32048">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/417431_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:25</time>
+											<a href="broadcast-card.html">Дуда и Дада</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32049">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/128786_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>08:05</time>
+											<a href="broadcast-card.html">Лентяево</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32050">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/153249_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>08:30</time>
+											<a href="broadcast-card.html">Приключения Тайо</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32051">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/143613_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>09:10</time>
+											<a href="broadcast-card.html">Лунтик и его друзья</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32052">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/58868_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>09:45</time>
+											<a href="broadcast-card.html">Бериляка учится читать</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32053">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/192986_288_288.jpg" alt="">
+										</div>
+
+										<span class="badge" data-channel-id="52">в эфире</span>
+
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:00</time>
+											<a href="broadcast-card.html">Самый маленький гном</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32054">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/193148_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:35</time>
+											<a href="broadcast-card.html">Пожарный Сэм</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32055">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/286156_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="broadcast-card.html">Соник Бум</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32056">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/431545_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:15</time>
+												<a href="broadcast-card.html">Ниндзяго</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32057">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/340856_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:00</time>
+												<a href="broadcast-card.html">Маша и Медведь</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32058">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/287421_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:55</time>
+												<a href="broadcast-card.html">180</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32059">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/326019_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:00</time>
+												<a href="broadcast-card.html">Ералаш</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32060">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/354904_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:00</time>
+												<a href="broadcast-card.html">Зиг и Шарко</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32061">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/163063_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:05</time>
+												<a href="broadcast-card.html">Свинка Пеппа</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32062">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/194197_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:50</time>
+												<a href="broadcast-card.html">Бумажки</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32063">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/310128_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:20</time>
+												<a href="broadcast-card.html">Даша и друзья: приключения в городе</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32064">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/134974_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:50</time>
+												<a href="broadcast-card.html">Ми-Ми-Мишки</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32065">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/292701_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:25</time>
+												<a href="broadcast-card.html">Катя и Мим-Мим</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33324">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/444484_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:10</time>
+												<a href="broadcast-card.html">Вики: маленький викинг</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32067">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/192999_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:50</time>
+												<a href="broadcast-card.html">Рыцарь Майк</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32068">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/184094_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:30</time>
+												<a href="broadcast-card.html">Спокойной ночи, малыши!</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32069">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/279703_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:40</time>
+												<a href="broadcast-card.html">Маленькое королевство Бена и Холли</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32070">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/287421_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:35</time>
+												<a href="broadcast-card.html">180</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32071">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/148712_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:40</time>
+												<a href="broadcast-card.html">Фиксики</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32072">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/444470_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:20</time>
+												<a href="broadcast-card.html">Время Йо-Кай</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32073">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/145746_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:05</time>
+												<a href="broadcast-card.html">Форт Боярд</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32074">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/105051_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:30</time>
+												<a href="broadcast-card.html">Мальчик из Неаполя</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32075">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/138923_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:50</time>
+												<a href="broadcast-card.html">Приключения Мурзилки</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="day-mark">
+									<span><span class="current-day">Вторник. 21 июня</span><span class="next-day">Среда. 22 июня</span></span>
+								</div>
+							</div>
+							<div class="day">
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="32167">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/87981_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:30</time>
+											<a href="broadcast-card.html">Полный вперёд</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33858">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/441597_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>02:25</time>
+											<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33859">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/441597_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>03:15</time>
+											<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33860">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/443175_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:10</time>
+											<a href="broadcast-card.html">Рублёвка на выезде</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32170">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/196069_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:10</time>
+											<a href="broadcast-card.html">6 кадров</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32171">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/370681_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:15</time>
+											<a href="broadcast-card.html">Тайны еды</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33861">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/373646_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:30</time>
+											<a href="broadcast-card.html">Джейми Оливер у себя дома</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33862">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>06:00</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33863">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>06:30</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="33864">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/359911_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:00</time>
+											<a href="broadcast-card.html">Джейми Оливер: Супер еда</a>
+										</div>
+									</div>
+									<div class="item status-recordable js-time-pointer" data-type="broadcast" data-broadcast-id="33055">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/192442_288_288.jpg" alt="">
+										</div>
+
+										<span class="badge" data-channel-id="69">в эфире</span>
+
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>07:30</time>
+											<a href="broadcast-card.html">По делам несовершеннолетних</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33865">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/77095_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:10</time>
+											<a href="broadcast-card.html">Давай разведёмся!</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33866">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/114765_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>12:10</time>
+											<a href="broadcast-card.html">Курортный роман</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33867">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/114765_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>12:40</time>
+											<a href="broadcast-card.html">Курортный роман</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33868">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/366662_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>13:10</time>
+											<a href="broadcast-card.html">Окна | Первая любовь</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33869">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>14:10</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33870">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>15:07</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33871">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>16:05</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33872">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/96100_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>17:02</time>
+											<a href="broadcast-card.html">Бальзаковский возраст, или Все мужики-св...</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33873">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/196069_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>18:00</time>
+											<a href="broadcast-card.html">6 кадров</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33874">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/307571_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>18:05</time>
+											<a href="broadcast-card.html">Она написала убийство | Убийство в стиле...</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33875">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/66664_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:00</time>
+												<a href="broadcast-card.html">Женский доктор</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33876">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/66664_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:00</time>
+												<a href="broadcast-card.html">Женский доктор</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33877">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/441597_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:50</time>
+												<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33878">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/441597_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:50</time>
+												<a href="broadcast-card.html">Я тебя никогда не забуду</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33879">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/435879_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:40</time>
+												<a href="broadcast-card.html">Доктор Хаус</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33880">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/199025_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:35</time>
+												<a href="broadcast-card.html">Меня предали</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="32077">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>01:29</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32078">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>02:51</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32079">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/31218_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:22</time>
+											<a href="broadcast-card.html">Майор «Вихрь»</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32080">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189674_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:00</time>
+												<a href="broadcast-card.html">Гимн Российской Федерации</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32081">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/297139_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:03</time>
+												<a href="broadcast-card.html">Русский характер | Железные мальчики</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32082">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/297138_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>06:37</time>
+												<a href="broadcast-card.html">Русский характер | Сильнее духом</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32083">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/250493_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>07:07</time>
+												<a href="broadcast-card.html">Жаворонок</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32084">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>08:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32085">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/250493_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>08:04</time>
+												<a href="broadcast-card.html">Жаворонок</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32086">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>09:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item" data-type="broadcast" data-broadcast-id="32087">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442824_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>09:14</time>
+												<a href="broadcast-card.html">Нюрнберг: его урок сегодня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item" data-type="broadcast" data-broadcast-id="32088">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189653_288_144.jpg" alt="">
+											</div>
+
+
+
+
+											<div class="item-header">
+												<time>10:00</time>
+												<a href="broadcast-card.html">Военные новости</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32089">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442824_288_144.jpg" alt="">
+											</div>
+
+											<span class="badge" data-channel-id="61">в эфире</span>
+
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:04</time>
+												<a href="broadcast-card.html">Нюрнберг: его урок сегодня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32090">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442842_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:36</time>
+												<a href="broadcast-card.html">Стихи военных лет | Плетнёв</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32091">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/289262_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:39</time>
+												<a href="broadcast-card.html">Я помню</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32092">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442842_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>10:50</time>
+												<a href="broadcast-card.html">Стихи военных лет | Деревянко</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32093">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>11:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32094">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>11:25</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32095">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32096">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:04</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32097">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32098">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:16</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32099">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189653_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:00</time>
+												<a href="broadcast-card.html">Военные новости</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32100">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:04</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32101">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32102">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/267462_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:05</time>
+												<a href="broadcast-card.html">Живые и мёртвые</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32103">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442841_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:23</time>
+												<a href="broadcast-card.html">Стихи военных лет | Черневич</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32104">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/131298_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:26</time>
+												<a href="broadcast-card.html">Иди и смотри</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32105">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32106">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/273799_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:05</time>
+												<a href="broadcast-card.html">Аллегро с огнём</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32107">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32108">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/131298_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:04</time>
+												<a href="broadcast-card.html">Иди и смотри</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32109">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442841_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:56</time>
+												<a href="broadcast-card.html">Стихи военных лет | Чонишвили</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32110">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32111">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442771_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:30</time>
+												<a href="broadcast-card.html">1941. О чем не знал Берлин...</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32112">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/442835_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:20</time>
+												<a href="broadcast-card.html">Ощущение войны</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32113">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/354653_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:45</time>
+												<a href="broadcast-card.html">Реклама</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32114">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189805_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:49</time>
+												<a href="broadcast-card.html">Оружие Победы | Истребитель И-16</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32115">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:04</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32116">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:57</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32117">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:49</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32118">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/189787_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:00</time>
+												<a href="broadcast-card.html">Новости дня</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32119">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:20</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32120">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/104614_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:01</time>
+												<a href="broadcast-card.html">Застава Жилина</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32121">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/78631_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:56</time>
+												<a href="broadcast-card.html">Васёк Трубачёв и его товарищи</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="category-row">
+									<div class="item" data-type="broadcast" data-broadcast-id="31649">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/201336_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:10</time>
+											<a href="broadcast-card.html">Миллион в мешке</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32043">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/73718_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>00:30</time>
+											<a href="broadcast-card.html">Корпорация забавных монстров</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32044">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/326019_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>01:50</time>
+											<a href="broadcast-card.html">Ералаш</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32045">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/350328_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>04:20</time>
+											<a href="broadcast-card.html">Смешарики. Пин-код</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32046">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/350287_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>05:00</time>
+											<a href="broadcast-card.html">Ранние пташки</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32047">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/310150_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:20</time>
+											<a href="broadcast-card.html">Пляс-класс</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32048">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/417431_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>07:25</time>
+											<a href="broadcast-card.html">Дуда и Дада</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32049">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/128786_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>08:05</time>
+											<a href="broadcast-card.html">Лентяево</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32050">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/153249_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>08:30</time>
+											<a href="broadcast-card.html">Приключения Тайо</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32051">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/143613_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>09:10</time>
+											<a href="broadcast-card.html">Лунтик и его друзья</a>
+										</div>
+									</div>
+									<div class="item" data-type="broadcast" data-broadcast-id="32052">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/58868_288_288.jpg" alt="">
+										</div>
+										<div class="item-header">
+											<time>09:45</time>
+											<a href="broadcast-card.html">Бериляка учится читать</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32053">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/192986_288_288.jpg" alt="">
+										</div>
+
+										<span class="badge" data-channel-id="52">в эфире</span>
+
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:00</time>
+											<a href="broadcast-card.html">Самый маленький гном</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32054">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/193148_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>10:35</time>
+											<a href="broadcast-card.html">Пожарный Сэм</a>
+										</div>
+									</div>
+									<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32055">
+										<div class="item-image-holder">
+											<img data-src="img/temp2/286156_288_288.jpg" alt="">
+										</div>
+
+										<span class="item-status-icon">
+											<span data-icon="icon-recordit"></span>
+											<span class="status-desc">Записать</span>
+										</span>
+
+										<div class="item-header">
+											<time>11:40</time>
+											<a href="broadcast-card.html">Соник Бум</a>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32056">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/431545_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>12:15</time>
+												<a href="broadcast-card.html">Ниндзяго</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32057">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/340856_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:00</time>
+												<a href="broadcast-card.html">Маша и Медведь</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32058">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/287421_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>13:55</time>
+												<a href="broadcast-card.html">180</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32059">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/326019_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>14:00</time>
+												<a href="broadcast-card.html">Ералаш</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32060">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/354904_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>15:00</time>
+												<a href="broadcast-card.html">Зиг и Шарко</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32061">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/163063_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:05</time>
+												<a href="broadcast-card.html">Свинка Пеппа</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32062">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/194197_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>16:50</time>
+												<a href="broadcast-card.html">Бумажки</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32063">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/310128_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:20</time>
+												<a href="broadcast-card.html">Даша и друзья: приключения в городе</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32064">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/134974_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>17:50</time>
+												<a href="broadcast-card.html">Ми-Ми-Мишки</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32065">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/292701_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>18:25</time>
+												<a href="broadcast-card.html">Катя и Мим-Мим</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="33324">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/444484_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:10</time>
+												<a href="broadcast-card.html">Вики: маленький викинг</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32067">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/192999_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>19:50</time>
+												<a href="broadcast-card.html">Рыцарь Майк</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32068">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/184094_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:30</time>
+												<a href="broadcast-card.html">Спокойной ночи, малыши!</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32069">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/279703_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>20:40</time>
+												<a href="broadcast-card.html">Маленькое королевство Бена и Холли</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32070">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/287421_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:35</time>
+												<a href="broadcast-card.html">180</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32071">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/148712_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>21:40</time>
+												<a href="broadcast-card.html">Фиксики</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32072">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/444470_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>22:20</time>
+												<a href="broadcast-card.html">Время Йо-Кай</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32073">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/145746_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:05</time>
+												<a href="broadcast-card.html">Форт Боярд</a>
+											</div>
+										</div>
+									</div>
+									<div class="pair-container">
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32074">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/105051_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:30</time>
+												<a href="broadcast-card.html">Мальчик из Неаполя</a>
+											</div>
+										</div>
+										<div class="item status-recordable" data-type="broadcast" data-broadcast-id="32075">
+											<div class="item-image-holder">
+												<img data-src="img/temp2/138923_288_144.jpg" alt="">
+											</div>
+
+											<span class="item-status-icon">
+												<span data-icon="icon-recordit"></span>
+												<span class="status-desc">Записать</span>
+											</span>
+
+											<div class="item-header">
+												<time>23:50</time>
+												<a href="broadcast-card.html">Приключения Мурзилки</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="day-mark">
+									<span><span class="current-day">Среда. 22 июня</span>
+								</div>
+							</div>
+							<div class="right-days-placeholder"></div>
+						</div><!-- /.canvas-wrap -->
+					</div><!-- /.categories-items -->
+					<a href="#" class="next-button" data-type="next-button">
+						<span class="sticky-wrapp">
+							<span class="next-date">Четрверг. 22 октября</span>
+							<span data-icon="icon-kinetic-arrow"></span>
+						</span>
+					</a>
+					<!-- <a href="#" class="more-link fade in" data-page="1" data-ajax-type="CHANNELS" data-type="fetch-results-link">Показать еще каналы <span data-icon="icon-show-more-arrow"></span></a> -->
+				</section><!-- /.broadcast-results -->
+			</main>
+			<footer class="site-footer">
+				<div class="footer-content">
+					<div class="footer-col">
+						Служба технической поддержки <br>
+						<a href="mailto:support@megatv.su">support@megatv.su</a> | <span class="phone">+7 (383) 209-51-52</span>
+					</div>
+					<div class="footer-col footer-col--large">
+						Услуги связи оказываются ООО «МЕГАТВ» на основании Лицензии № 133953 от 21/07/15, выданной Федеральной <br>
+						Службой по надзору в сфере связи, информационных технологий и массовых коммуникаций.
+					</div>
+					<div class="copyrights">
+						<a href="#">Условия использования сервиса</a> © 2014—2016
+					</div>
+				</div>
+			</footer>
+		</div><!-- /.site-wrapper -->
+
+		<script src="js/vendor.js"></script>
+
+		<script src="js/plugins.js"></script>
+
+		<script src="js/main.js"></script>
+	</body>
+</html>

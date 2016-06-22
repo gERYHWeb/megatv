@@ -552,10 +552,10 @@ class CEpg
         $arProgCropIds = array();   //prog id list to crop image
         $arScheduleIdsNotDelete = array();
         $arProgTimeDelete = array();            //Расписание, которое нужно удалить
-        $arCategories = self::importCategory();
-        $arGanres = self::importGanre();
-        $arTopics = self::importTopic();
-        $arCountries = self::importCountry();
+        //$arCategories = self::importCategory();
+        //$arGanres = self::importGanre();
+        //$arTopics = self::importTopic();
+        //$arCountries = self::importCountry();
         //$arProductions = self::importProduction();
         //$arRoles = self::importRole();
         //$arPeople = self::importPeople($arRoles);
@@ -592,6 +592,8 @@ class CEpg
         {
             $arSchedules[$row["UF_EPG_ID"]] = $row["ID"];
         }
+		
+		//die("aaaaaaaaaaaaaaaaa");
         
         /**
          * Update Progs

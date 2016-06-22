@@ -1,8 +1,14 @@
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var browserSync = require('browser-sync');
+var gulp 		= require('gulp'),
+	$           = require('gulp-load-plugins')(),
+	del         = require('del'),
+	browserSync = require('browser-sync'),
+    minifyCSS   = require('gulp-minify-css'),
+	prefix      = require('gulp-autoprefixer'),
+	sass        = require('gulp-sass'),
+	sourcemaps  = require('gulp-sourcemaps');
+
 var reload = browserSync.reload;
-var del = require('del');
+
 
 //var wiredep = require('wiredep').stream;
 
@@ -13,25 +19,57 @@ var del = require('del');
 //  sshConfig: deployConfig
 //});
 
-gulp.task('styles', function () {
-	return gulp.src('app/styles/stylus/main.styl')
-		.pipe($.sourcemaps.init())
-		.pipe($.stylus())
-		.pipe($.postcss([
-			require('postcss-font-family'),
-			require('postcss-merge-rules'),
-			require('postcss-minify-font-weight'),
-			require('postcss-normalize-url'),
-			require('postcss-discard-empty'),
-			require('postcss-will-change'),
-			require('autoprefixer')({browsers: ['IE >= 10', 'last 2 versions']}),
-			require('css-mqpacker'),
-			require('postcss-reporter')
-		]))
-		.pipe($.sourcemaps.write())
-		.pipe(gulp.dest('.tmp/css'))
+
+
+// Helpers
+function handleError(err) {
+    console.log(err.toString());
+    this.emit('end');
+}
+
+
+
+// Styles Task
+// Создаем sourcemaps
+// Отлавливаем ошибки
+// Добавляем префиксы
+gulp.task('styles', function() {
+	gulp.src('src/scss/main.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass().on('error', sass.logError))
+		.on('error', handleError)
+		.pipe(prefix({
+			browsers: ['IE >= 10', 'last 2 versions']
+		}))
+		.pipe(sourcemaps.write())
+		// .pipe(gulp.dest(_public + _css))
+		.pipe(gulp.dest('.tmp/css/'))
+		.on('error', handleError)
 		.pipe(reload({stream: true}));
 });
+
+
+// Old
+
+// gulp.task('styles', function () {
+// 	return gulp.src('app/styles/stylus/main.styl')
+// 		.pipe($.sourcemaps.init())
+// 		.pipe($.stylus())
+// 		.pipe($.postcss([
+// 			require('postcss-font-family'),
+// 			require('postcss-merge-rules'),
+// 			require('postcss-minify-font-weight'),
+// 			require('postcss-normalize-url'),
+// 			require('postcss-discard-empty'),
+// 			require('postcss-will-change'),
+// 			require('autoprefixer')({browsers: ['IE >= 10', 'last 2 versions']}),
+// 			require('css-mqpacker'),
+// 			require('postcss-reporter')
+// 		]))
+// 		.pipe($.sourcemaps.write())
+// 		.pipe(gulp.dest('.tmp/css'))
+// 		.pipe(reload({stream: true}));
+// });
 
 gulp.task('jscodestyle', function () {
   //return gulp.src(['app/js/**/*.js', '!app/js/vendors/**/*.js'])
@@ -45,21 +83,27 @@ gulp.task('jscodestyle', function () {
 	//.pipe($.if(!browserSync.active, $.jshint.reporter('fail')))
 });
 
+// Html Task
+// Ищем правила useref в .tmp и src
+// Если есть CSS, то проходимся csscomb и сжимаем
 gulp.task('html', ['styles'], function () {
 	// var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-	return gulp.src('app/**/*.html')
-		.pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+	return gulp.src('src/**/*.html')
+		.pipe($.useref({searchPath: ['.tmp', 'src', '.']}))
 		// .pipe(assets)
 		//.pipe($.if('*.js', $.cache($.uglify())))
 		.pipe($.if('*.css', $.csscomb()))
 		.pipe($.if('*.css', $.csso()))
 		// .pipe(assets.restore())
-		.pipe(gulp.dest('dist'));
+		.pipe(gulp.dest('public/'));
 });
 
+
+// Images Task
+// Оптимизируем изображения
 gulp.task('images', function () {
-	return gulp.src(['app/img/**/*.{jpg,jpeg,gif,svg,png}', '!app/img/sprites'])
+	return gulp.src(['src/img/**/*.{jpg,jpeg,gif,svg,png}', '!src/img/sprites/'])
 		.pipe($.imagemin({
 			optimizationLevel: 5,
 			progressive: true,
@@ -68,82 +112,100 @@ gulp.task('images', function () {
 			// as hooks for embedding and styling
 			svgoPlugins: [{cleanupIDs: false, mergePaths: false}]
 		}))
-		.pipe(gulp.dest('dist/img'));
+		.pipe(gulp.dest('public/img/'));
 });
 
+
+// Svg-sprite Task
 gulp.task('make-svg-sprite', ['update-svg-revision'], function () {
-	return gulp.src('app/img/sprites/svg/**/*.svg')
+	return gulp.src(_src + _images + 'sprites/svg/**/*.svg')
 		.pipe($.rename({ prefix: 'icon-' }))
 		.pipe($.svgmin({ mergePaths: false }))
 		.pipe($.svgstore({ inlineSvg: true }))
 		.pipe($.rename({ basename: 'svg_sprite' }))
 		.pipe($.size({title: 'make-svg-sprite'}))
-		.pipe(gulp.dest('app/img/sprites'));
+		.pipe(gulp.dest('public/img/sprites/'));
 });
 
+
+// Update SVG revision
 gulp.task('update-svg-revision', function () {
-	return gulp.src('app/js/services/icon-loader.js')
+	return gulp.src('src/js/services/icon-loader.js')
 		.pipe($.replace(/var revision = [0-9]{10}/g, 'var revision = ' + Math.floor(Date.now() / 1000)))
-		.pipe(gulp.dest('app/js/services'));
+		.pipe(gulp.dest('public/js/services/'));
 });
 
+
+// Fonts Task
 gulp.task('fonts', function () {
-	return gulp.src('app/fonts/**/*.{eot,svg,ttf,woff,woff2}')
-		.pipe(gulp.dest('.tmp/fonts'))
-		.pipe(gulp.dest('dist/fonts'));
+	return gulp.src('src/fonts/**/*.{eot,svg,ttf,woff,woff2}')
+		.pipe(gulp.dest('.tmp/fonts/'))
+		.pipe(gulp.dest('public/fonts/'));
 });
 
+
+// Flash Task
 gulp.task('flash', function () {
-	return gulp.src('app/js/vendors/**/*.swf')
-		.pipe(gulp.dest('dist/js'));
+	return gulp.src('src/js/vendors/**/*.swf')
+		.pipe(gulp.dest('public/js/'));
 });
 
+
+// Other Task
+// копируем остальные файлы, кроме html-шаблонов в корневой директории
 gulp.task('extras', function () {
 	return gulp.src([
-		'app/*.*',
-		'!app/*.html'
+		'src/*.*',
+		'!src/*.html'
 	], {
 		dot: true
-	}).pipe(gulp.dest('dist'));
+	}).pipe(gulp.dest('public/'));
 });
 
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
+// Clean Task
+gulp.task('clean', del.bind(null, ['.tmp/', 'public/']));
+
+
+// Serve Task
+// Запуск локального сервера с вотчерами.
+// До запуска компилируем стили и шрифты
 gulp.task('serve', ['styles', 'fonts'], function () {
-	browserSync({
-		notify: false,
-		port: 9000,
-		server: {
-			baseDir: ['.tmp', 'app'],
-			routes: {
-				'/bower_components': 'bower_components',
+	browserSync.init({
+        // browser  : 'chrome',
+        notify   : false,
+        port: 9090,
+        server: {
+            baseDir: ['.tmp/', 'src/'],
+            routes: {
+                '/bower_components': 'bower_components',
 				'/node_modules': 'node_modules'
-			}
-		}
-	});
+            }
+        }
+    });
 
 	gulp.watch([
-		'app/*.html',
-		'app/js/**/*.js',
-		'app/img/**/*',
+		'src/*.html', // html-шаблоны
+		'src/js/**/*.js',
+		'src/img/**/*',
 		'.tmp/fonts/**/*'
 	]).on('change', reload);
 
-	gulp.watch('app/styles/**/*.styl', ['styles']);
-	gulp.watch('app/img/sprites/svg/**/*.svg', ['make-svg-sprite']);
-	gulp.watch('app/fonts/**/*', ['fonts']);
+	gulp.watch('src/scss/**/*.scss', ['styles']);
+	gulp.watch('src/img/sprites/svg/**/*.svg', ['make-svg-sprite']);
+	gulp.watch('src/fonts/**/*', ['fonts']);
 	//gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
-gulp.task('serve:dist', function () {
-	browserSync({
-		notify: false,
-		port: 9000,
-		server: {
-			baseDir: ['dist']
-		}
-	});
-});
+// gulp.task('serve:dist', function () {
+// 	browserSync({
+// 		notify: false,
+// 		port: 9000,
+// 		server: {
+// 			baseDir: ['dist']
+// 		}
+// 	});
+// });
 
 // gulp.task('serve:test', function () {
 // 	browserSync({
@@ -173,7 +235,7 @@ gulp.task('serve:dist', function () {
 // });
 
 gulp.task('build', ['jscodestyle', 'html', 'images', 'fonts', 'flash', 'extras'], function () {
-	return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: false}));
+	return gulp.src('public/**/*').pipe($.size({title: 'build', gzip: false}));
 });
 
 // gulp.task('deploy', $.shell.task([

@@ -1,0 +1,53 @@
+//
+// Normalize, Variables and Mixins
+//
+@import "normalize";
+@import "variables";
+@import "mixins";
+
+
+//
+// Helpers
+//
+@import "helpers";
+
+
+//
+// Core CSS
+//
+@import "core/icons";
+@import "core/scaffolding";
+@import "core/type";
+@import "core/buttons";
+@import "core/forms";
+
+
+//
+// Layout
+//
+@import "layout/header";
+@import "layout/footer";
+
+
+//
+// Components
+//
+@import "components/component-animations";
+@import "components/flickity";
+@import "components/tabs";
+@import "components/modals";
+@import "components/select2";
+@import "components/popovers";
+
+
+//
+// Blocks
+//
+@import "blocks/blocks"; // TODO: Разобрать
+@import "blocks/authorize-overlay"; // Auth
+@import "blocks/search"; // Search
+@import "blocks/banners"; // Banners
+// @import "blocks/adaptive"; // not used
+@import "blocks/broadcast-results"; // Каналы на главной
+@import "blocks/recommended-broadcasts"; // Рекомендуемые каналы
+@import "blocks/calendar-carousel"; // Calendar

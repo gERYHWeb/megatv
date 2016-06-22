@@ -1,0 +1,12 @@
+//
+// Paddings
+//
+
+@mixin padding-vertical($top, $bottom: $top) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+@mixin padding-horizontal($left, $right: $left)  {
+  padding-left: $left;
+  padding-right: $right;
+}

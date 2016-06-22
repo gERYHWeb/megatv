@@ -1,0 +1,122 @@
+//
+// Layouts / Site Footer
+// -------------------------------------------------- //
+
+.site-footer {
+	flex-shrink: 0;
+
+	.footer-content {
+		display: flex;
+		color: #fff;
+		line-height: 1.4;
+		align-items: center;
+		font-size: 1.2rem;
+		padding: 30px;
+		background-color: #000;
+		@include clearfix();
+
+		.footer-col {
+			width: 300px;
+			padding-right: 30px;
+
+			@media screen and (max-width: 1400px) {
+				padding-right: 10px;
+			}
+
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			.phone {
+				white-space: nowrap;
+			}
+		}
+		.footer-col--large {
+			width: 750px;
+			padding-right: 30px;
+		}
+
+		.footer-logo {
+			display: block;
+			width: 57px;
+			height: 28px;
+			background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAzMjQgMTYzLjEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyNCAxNjMuMTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjtzdHJva2U6I0ZGRkZGRjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiIGQ9Ik03OC41LDc0LjZoMC4zYzAsMi40LDAsNS41LTAuMSw5LjZ2OS41aDEzLjhWNDYuNmgtMS41DQoJTDY3LjIsNzAuMkw0My4zLDQ2LjZoLTEuN3Y0Ni45aDEzLjh2LTE5aDAuMmwxMC43LDEwLjZINjhMNzguNSw3NC42eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjtzdHJva2U6I0ZGRkZGRjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiIGQ9Ik0xMTMuOCw4My4zdi04LjVoMTd2LTkuOGgtMTd2LTcuMWgxOS42VjQ3LjZIOTkuNXY0NS45aDM0LjgNCglWODMuMkwxMTMuOCw4My4zTDExMy44LDgzLjN6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRkZGRkZGO3N0cm9rZTojRkZGRkZGO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIgZD0iTTE3NC4yLDU3LjlWNDcuN2gtMzQuMnY0NS45aDE0LjNWNTcuOUgxNzQuMnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7c3Ryb2tlOiNGRkZGRkY7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBkPSJNMjEzLjIsOTMuNmwtMjMuNC00N2gtMS43bC0yNCw0N2gxMy43bDIuNC01LjJoMTYuN2wyLjMsNS4yDQoJSDIxMy4yeiBNMTg4LjgsNzAuNWw0LjEsOS4xaC04LjZsNC4yLTkuMUgxODguOHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7c3Ryb2tlOiNGRkZGRkY7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBkPSJNMjQ1LjUsNDcuNGgtMzUuOFY1MWgxNS45djQyLjRoNC4zVjUxaDE1LjdWNDcuNHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7c3Ryb2tlOiNGRkZGRkY7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBkPSJNMjgyLjQsODAuMWMwLDIuNi0wLjksNC45LTIuNiw2LjhzLTQuNywzLTguOSwzaC0xMy44VjcwLjZoMTMNCglDMjc3LjYsNzAuNiwyODIuNCw3NC40LDI4Mi40LDgwLjF6IE0yNzAuNCw1MWM1LjgsMCw5LjMsMy4yLDkuMyw3LjhjMCw2LjctNi4zLDguMS0xMCw4LjFoLTEyLjZWNTFIMjcwLjR6IE0yNzcuMyw2OC40DQoJYzQuMi0xLjksNi42LTUuOSw2LjYtOS44YzAtNy40LTUuNy0xMS4xLTE0LjEtMTEuMWgtMTd2NDYuMWgxOC44YzQuNCwwLDcuOS0xLjEsMTAuOC0zLjZjMi44LTIuNSw0LjItNS42LDQuMi05LjcNCgljMC01LjMtMi45LTEwLTkuMy0xMS43VjY4LjR6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojRkZGRkZGO3N0cm9rZS13aWR0aDoxNTtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiIGQ9Ik03LjUsNy41aDMwOXYxMjUuM2wtMTUyLjcsMjIuN0w3LjUsMTMyLjhWNy41eiIvPg0KPC9zdmc+DQo=");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 100%;
+		}
+		.copyrights {
+			border-left: 1px solid #333;
+			padding: 15px 0 15px 30px;
+			margin-left: auto;
+			white-space: nowrap;
+			-webkit-font-smoothing: subpixel-antialiased;
+			-moz-osx-font-smoothing: auto;
+
+			a {
+				display: inline-block;
+				text-decoration: none;
+				border-bottom: 1px dotted;
+				line-height: 1.2;
+
+				&:hover {
+					border-bottom-color: transparent;
+				}
+			}
+		}
+	}
+}
+
+
+.page-recommendations .site-footer,
+.page-records .site-footer {
+	.footer-content {
+
+		@media screen and (max-width: 1024px) {
+			display: block;
+			padding: 20px;
+		}
+
+		.footer-col {
+			@media screen and (max-width: 1400px) {
+				padding-right: 10px;
+			}
+
+			@media screen and (max-width: 1280px) {
+				br {
+					display: none;
+				}
+			}
+
+			@media screen and (max-width: 1280px) and (min-width: 1024px) {
+				padding-right: 30px;
+			}
+
+			@media screen and (max-width: 1024px) {
+				width: auto;
+				margin-bottom: 1.5rem;
+				padding-right: 0;
+			}
+		}
+
+
+		@media screen and (max-width: 440px) {
+			height: auto;
+			text-align: center;
+		}
+
+		.footer-logo {
+			@media screen and (max-width: 440px) {
+				margin: 0 auto;
+				float: none;
+			}
+		}
+		.copyrights {
+			@media screen and (max-width: 1024px) {
+				padding: 0;
+				border-left: none;
+			}
+		}
+	}
+}
