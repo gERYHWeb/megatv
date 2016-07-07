@@ -47,9 +47,9 @@ $curPage++;
 	<div class="categories-logos">
         <?foreach($arResult["CHANNELS"] as $arItem):?>
         	<?
-            if(!in_array($arItem['ID'], $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized()) continue;
+            if(!in_array($arItem['UF_CHANNEL_BASE_ID'], $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized()) continue;
             ?>
-    		<a class="category-logo channel-online" href="#" data-channel-id="<?=$arItem['ID']?>">
+    		<a class="category-logo<?/* channel-online*/?>" href="<?=$arItem["DETAIL_PAGE_URL"]?>" data-channel-id="<?=$arItem['ID']?>">
     			<span data-icon="<?=$arItem["UF_ICON"]?>"></span>
     		</a>
         <?endforeach?>
@@ -84,7 +84,7 @@ $curPage++;
                         $channel = $arChannel["ID"];
                         $arProgs = $arChannels[$channel];
                         
-                        if(!in_array($channel, $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized())
+                        if(!in_array($arChannel["UF_CHANNEL_BASE_ID"], $arResult["CHANNELS_SHOW"]) && $USER->IsAuthorized())
                             continue;
 
                         ?>

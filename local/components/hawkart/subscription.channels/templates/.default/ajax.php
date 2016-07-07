@@ -23,8 +23,8 @@ while ($arSub = $result->fetch())
 }
 
 //check disable sub
-$result = \Hawkart\Megatv\ChannelTable::getList(array(
-    'filter' => array("UF_FORBID_REC" => 1, "=ID" => $channelID),
+$result = \Hawkart\Megatv\ChannelBaseTable::getList(array(
+    'filter' => array("=UF_FORBID_REC" => 1, "=ID" => $channelID),
     'select' => array("ID")
 ));
 if ($arChannel = $result->fetch())

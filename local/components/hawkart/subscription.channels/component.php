@@ -16,7 +16,7 @@ while ($arSub = $result->fetch())
     $selectedChannels[] = $arSub["UF_CHANNEL_ID"];
 }
 
-$result = \Hawkart\Megatv\ChannelTable::getList(array(
+$result = \Hawkart\Megatv\ChannelBaseTable::getList(array(
     'filter' => array("UF_ACTIVE" => 1),
     'select' => array("ID", "UF_TITLE", "UF_ICON", "UF_PRICE_H24")
 ));

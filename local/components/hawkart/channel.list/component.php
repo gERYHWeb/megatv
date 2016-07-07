@@ -21,29 +21,16 @@ for($i = 0; $i<\CTimeEx::getCalendarDays()+2; $i++)
 }
 
 //Get channel list
-$arResult["ITEMS"] = array();
-$arFilter = array("=UF_ACTIVE" => 1);
-$arSelect = array('ID', 'UF_TITLE', 'UF_ICON', 'UF_CODE', "UF_IS_NEWS");
-$arSort = array("UF_SORT" => "ASC");
-$obCache = new \CPHPCache;
-if( $obCache->InitCache(86400, serialize($arFilter).serialize($arSelect).serialize($arSort), "/channels/"))
+$arResult["ITEMS"] = \Hawkart\Megatv\ChannelTable::getActiveByCity();
+
+$arChannels = array();
+foreach($arResult["ITEMS"] as $arChannel)
 {
-	$arResult["ITEMS"] = $obCache->GetVars();
+    $arChannels[$arChannel["UF_CHANNEL_BASE_ID"]] = $arChannel;
+    
 }
-elseif($obCache->StartDataCache())
-{
-	$result = \Hawkart\Megatv\ChannelTable::getList(array(
-        'filter' => $arFilter,
-        'select' => $arSelect,
-        'order' => $arSort
-    ));
-    while ($row = $result->fetch())
-    {
-        $row["DETAIL_PAGE_URL"] = "/channels/".$row['UF_CODE']."/";
-        $arResult["ITEMS"][$row["ID"]] = $row;
-    }
-	$obCache->EndDataCache($arResult["ITEMS"]); 
-}
+
+$arResult["ITEMS"] = $arChannels;
 
 /**
  * sort channels for user according statistics
@@ -60,8 +47,11 @@ if($USER->IsAuthorized())
 
     foreach($arStatistic["CHANNELS"] as $channel_id => $rating)
     {
-        $arItems[] = $arResult["ITEMS"][$channel_id];
-        unset($arResult["ITEMS"][$channel_id]);
+        if(!empty($arResult["ITEMS"][$channel_id]))
+        {
+            $arItems[] = $arResult["ITEMS"][$channel_id];
+            unset($arResult["ITEMS"][$channel_id]);
+        }
     }
     
     if(count($arResult["ITEMS"])>0)
@@ -70,6 +60,7 @@ if($USER->IsAuthorized())
     $arResult["ITEMS"] = $arItems;
     unset($arItems);
 }
+
 
 /**
  * pagenavigation
@@ -88,7 +79,6 @@ $totalPages = $arResult["NAV_RESULT"]->NavPageCount = ceil(count($arResult["ITEM
 //get subscription list
 $arSubscriptionChannels = $APPLICATION->GetPageProperty("ar_subs_channels");
 $arResult["CHANNELS_SHOW"] = json_decode($arSubscriptionChannels, true);
-
 
 /**
  * filter channels by navigation
@@ -119,16 +109,13 @@ $arResult["DATES"] = array();
 if(!isset($_REQUEST["date"]))
 {
     $arParams["CURRENT_DATE"] = date("d.m.Y");
-    //$arParams["CURRENT_DATETIME"] = date("d.m.Y H:i:s", strtotime($arParams["DATETIME"]["SERVER_DATETIME_WITH_OFFSET"]));
 }else{
     $arParams["CURRENT_DATE"] = $_REQUEST["date"];
-    //$arParams["CURRENT_DATETIME"] = \CTimeEx::dateOffset($arParams["DATETIME"]["OFFSET"], $arParams["CURRENT_DATE"].date(" H:i:s")); 
 }
 
-//print_r($arParams["CURRENT_DATE"]);
-
-$dateStart = date("Y-m-d H:i:s", strtotime($arParams["CURRENT_DATE"]));
-$dateEnd = date("Y-m-d H:i:s", strtotime("+1 day", strtotime($dateStart)));
+$arDate = \CTimeEx::getDateFilter($arParams["CURRENT_DATE"]);
+$dateStart = date("Y-m-d H:i:s", strtotime($arDate["DATE_FROM"]));
+$dateEnd = date("Y-m-d H:i:s", strtotime($arDate["DATE_TO"]));
 
 $arFilter = array(
     "=UF_CHANNEL_ID" => $arChannelIds,
@@ -140,7 +127,6 @@ $arSelect = array(
     "UF_TITLE" => "UF_PROG.UF_TITLE", "UF_SUB_TITLE" => "UF_PROG.UF_SUB_TITLE", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
     "UF_RATING" => "UF_PROG.UF_RATING", "UF_ID" => "UF_PROG.UF_EPG_ID"
 );
-
 $obCache = new \CPHPCache;
 if( $obCache->InitCache(86400, serialize($arFilter).serialize($arSelect), "/index-schedules/"))
 {
@@ -156,18 +142,18 @@ elseif($obCache->StartDataCache())
     while ($arSchedule = $result->fetch())
     {
         $channel = $arSchedule["UF_CHANNEL_ID"];
-        $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = $arSchedule['UF_DATE_START']->toString();
-        $arSchedule["UF_DATE_END"] = $arSchedule["DATE_END"] = $arSchedule['UF_DATE_END']->toString();
-        $arSchedule["UF_DATE"] = $arSchedule["DATE"] = $arSchedule['UF_DATE']->toString();
-
+        $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = \CTimeEx::dateOffset($arSchedule['UF_DATE_START']->toString());
+        $arSchedule["UF_DATE_END"] = $arSchedule["DATE_END"] = \CTimeEx::dateOffset($arSchedule['UF_DATE_END']->toString());
+        $arSchedule["UF_DATE"] = $arSchedule["DATE"] = substr($arSchedule["DATE_START"], 0, 10);
+        
         $arSchedule["PROG_ID"] = $arSchedule["UF_PROG_ID"];
         $arSchedule["DETAIL_PAGE_URL"] = $arResult["CHANNELS"][$channel]["DETAIL_PAGE_URL"].$arSchedule["UF_ID"]."/?event=".$arSchedule["ID"];
         $arResult["DATES"][$arSchedule["UF_DATE"]][$channel][] = $arSchedule;
     }
 	$obCache->EndDataCache($arResult["DATES"]); 
 }
-
 unset($arChannelIds);
+
 
 /**
  * Create view through template
@@ -189,14 +175,14 @@ foreach($arResult["DATES"] as $date => $arChannels )
     }
     
     //add social schedule
-    $arResult["DATES"][$date]["YOUTUBE"] = \YoutubeClient::dailyShow();
-    $arResult["DATES"][$date]["VK"] = \VkClient::dailyShow();
+    //$arResult["DATES"][$date]["YOUTUBE"] = \YoutubeClient::dailyShow();
+    //$arResult["DATES"][$date]["VK"] = \VkClient::dailyShow();
 }
 
 /**
  * Add social channels
  */
-$arResult["SOCIAL_CHANNELS"] = array(
+/*$arResult["SOCIAL_CHANNELS"] = array(
     array(
         "ID" => "YOUTUBE",
         "NAME" => "Youtube",
@@ -207,7 +193,7 @@ $arResult["SOCIAL_CHANNELS"] = array(
         "NAME" => "Vk",
         "UF_ICON" => "icon-vk-channel"
     )
-);
+);*/
 
 $this->IncludeComponentTemplate();
 ?>

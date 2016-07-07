@@ -15,19 +15,9 @@ $arFilter = array(
 //User subscribe channel list
 if($USER->IsAuthorized())
 { 
-    $selectedChannels = array();
-    $result = \Hawkart\Megatv\SubscribeTable::getList(array(
-        'filter' => array("=UF_ACTIVE" => 1, "=UF_USER_ID" => $USER->GetID(), ">UF_CHANNEL_ID" => 0),
-        'select' => array("UF_CHANNEL_ID")
-    ));
-    while ($arSub = $result->fetch())
-    {
-        $selectedChannels[] = $arSub["UF_CHANNEL_ID"];
-    }
-    
-    $arFilter["=UF_CHANNEL_ID"] = $selectedChannels;
+    $arFilter["=UF_CHANNEL_ID"] = \Hawkart\Megatv\ChannelTable::getActiveIdByCityByUser();
 }else{
-    $arFilter["=UF_CHANNEL.UF_ACTIVE"] = 1;
+    $arFilter["=UF_CHANNEL_ID"] = \Hawkart\Megatv\ChannelTable::getActiveIdByCity();
 }
 
 $arExclude = array();
@@ -37,7 +27,7 @@ $result = \Hawkart\Megatv\ScheduleTable::getList(array(
     'select' => array(
         "ID", "UF_CODE", "UF_DATE_START", "UF_TITLE" => "UF_PROG.UF_TITLE",
         "UF_SUB_TITLE" => "UF_PROG.UF_SUB_TITLE", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
-        "UF_CHANNEL_CODE" => "UF_CHANNEL.UF_CODE", "UF_ID" => "UF_PROG.UF_EPG_ID"
+        "UF_CHANNEL_CODE" => "UF_CHANNEL.UF_BASE.UF_CODE", "UF_ID" => "UF_PROG.UF_EPG_ID"
     ),
     'order' => array("UF_PROG.UF_RATING" => "DESC"),
 ));

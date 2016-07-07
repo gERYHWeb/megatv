@@ -97,7 +97,7 @@ class CStat
             $arStatistic = self::getByUser();
             
             $arSelect = array(
-                "UF_CHANNEL_ID", "UF_CATEGORY" => "UF_PROG.UF_CATEGORY", 
+                "UF_CHANNEL_BASE_ID" => "UF_CHANNEL.UF_BASE_ID", "UF_CATEGORY" => "UF_PROG.UF_CATEGORY", 
                 "UF_SERIAL" => "UF_PROG.UF_EPG_ID", "UF_GANRE" => "UF_PROG.UF_GANRE"
             );
             $result = \Hawkart\Megatv\RecordTable::getList(array(
@@ -109,8 +109,8 @@ class CStat
             
             $arCount = self::countRate($action);
             
-            if(!empty($arSchedule["UF_CHANNEL_ID"]))
-                $arStatistic["CHANNELS"][$arSchedule["UF_CHANNEL_ID"]] += floatval($arCount["CHANNELS"]);
+            if(!empty($arSchedule["UF_CHANNEL_BASE_ID"]))
+                $arStatistic["CHANNELS"][$arSchedule["UF_CHANNEL_BASE_ID"]] += floatval($arCount["CHANNELS"]);
             
             if(!empty($arSchedule["UF_CATEGORY"]))
                 $arStatistic["CATS"][$arSchedule["UF_CATEGORY"]] += floatval($arCount["CATS"]);
@@ -139,7 +139,7 @@ class CStat
             $arStatistic = self::getByUser();
             
             $arSelect = array(
-                "UF_CHANNEL_ID", "UF_CATEGORY" => "UF_PROG.UF_CATEGORY", 
+                "UF_CHANNEL_BASE_ID" => "UF_CHANNEL.UF_BASE_ID", "UF_CATEGORY" => "UF_PROG.UF_CATEGORY", 
                 "UF_SERIAL" => "UF_PROG.UF_EPG_ID", "UF_GANRE" => "UF_PROG.UF_GANRE"
             );
             $result = \Hawkart\Megatv\ScheduleTable::getList(array(
@@ -151,8 +151,8 @@ class CStat
             
             $arCount = self::countRate($action);
             
-            if(!empty($arSchedule["UF_CHANNEL_ID"]))
-                $arStatistic["CHANNELS"][$arSchedule["UF_CHANNEL_ID"]] += floatval($arCount["CHANNELS"]);
+            if(!empty($arSchedule["UF_CHANNEL_BASE_ID"]))
+                $arStatistic["CHANNELS"][$arSchedule["UF_CHANNEL_BASE_ID"]] += floatval($arCount["CHANNELS"]);
             
             if(!empty($arSchedule["UF_CATEGORY"]))
                 $arStatistic["CATS"][$arSchedule["UF_CATEGORY"]] += floatval($arCount["CATS"]);

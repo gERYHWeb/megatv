@@ -52,15 +52,15 @@ class CScheduleTemplate
         $arRecordsStatuses = $APPLICATION->GetPageProperty("ar_record_status");
         $arRecordsStatuses = json_decode($arRecordsStatuses, true);
         
-        $arSubscriptionChannels = $APPLICATION->GetPageProperty("ar_subs_channels");
-        $arSubscriptionChannels = json_decode($arSubscriptionChannels, true);
+        //$arSubscriptionChannels = $APPLICATION->GetPageProperty("ar_subs_channels");
+        //$arSubscriptionChannels = json_decode($arSubscriptionChannels, true);
+        $arSubscriptionChannels = ChannelTable::getActiveIdByCityByUser();
         
         $schedule = $arProg["ID"];
 
-        //$arDatetime = \CTimeEx::getDatetime();
-        //$date_now = \CTimeEx::dateOffset($arDatetime["OFFSET"], date("d.m.Y H:i:s")); 
-        //$datetime = $arDatetime["SERVER_DATETIME_WITH_OFFSET"];
-        $date_now = date("d.m.Y H:i:s");
+        $arDatetime = \CTimeEx::getDatetime();
+        $date_now = $arDatetime["SERVER_DATETIME_WITH_OFFSET"];
+        
         $start = $arProg["DATE_START"];
         $end = $arProg["DATE_END"];
         
@@ -167,7 +167,7 @@ class CScheduleTemplate
         $status_icon = $arStatus["status-icon"];
         
         $datetime = $arParams["DATETIME"]["SERVER_DATETIME_WITH_OFFSET"];
-        
+    
         $time_pointer = false;
         if(\CTimeEx::dateDiff($start, $datetime) && \CTimeEx::dateDiff($datetime, $end))
         {
@@ -294,6 +294,41 @@ class CScheduleTemplate
                 </a>
         	</div>
         </div>
+        <?
+        $content = ob_get_contents();  
+        ob_end_clean();
+        
+        return $content;
+    }
+    
+    public static function getSocialProgInfoChannel($arProg, $socialChannel)
+    {               
+        ob_start();
+        ?>
+        <div class="item status-recorded status-social-v"
+            data-type="broadcast" data-broadcast-id="<?=strtolower($socialChannel)?>|<?=$arProg["ID"]?>"
+        >
+            <div class="inner">
+                <div class="item-image-holder" style="background-image: url(<?=$arProg["IMG"]?>)"></div>
+                
+                <span class="item-status-icon" href="#">
+    				<span data-icon="icon-recorded"></span>
+    				<span class="status-desc">Смотреть</span>
+    			</span>
+                
+            	<div class="item-header">
+                    <div class="meta">
+						
+					</div>
+                    <div class="title">
+                		<a href="#">
+                            <?=self::cutName($arProg["NAME"], 70)?>
+                        </a>
+                    </div>
+            	</div>
+            </div>
+        </div>
+
         <?
         $content = ob_get_contents();  
         ob_end_clean();

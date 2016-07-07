@@ -6,38 +6,6 @@
     width: 169px;
     height: 38px;
 }
-/*.broadcast-results .categories-items
-{
-    bottom: 0px;
-}
-
-.user-subscription-channels .channels-list .item.status-active .subscription-logo .icon,
-.subscription-services .available-subscriptions .item.status-active .subscription-logo .icon 
-{
-    width: auto;
-    height: auto;
-}
-    
-.broadcast-results .categories-items .category-row .item .badge {
-    position: absolute;
-    top: 14px;
-    right: 15px;
-    z-index: 2;
-    display: inline-block;
-    height: 14px;
-    padding: 0 4px;
-    font-size: .9rem;
-    line-height: 1.4rem;
-    color: #fff;
-    text-transform: uppercase;
-    background-color: #1e6edc;
-    -webkit-font-smoothing: subpixel-antialiased;
-}
-.channel-card .channel-info .channel-broadcast-shots img
-{
-    border: 2px solid #fff;
-}
-*/
 .modal-backdrop
 {
     z-index: 980 !important;
@@ -74,4 +42,29 @@
 .broadcast-player>.block-header
 {
     max-width: 900px;
+}
+.recommended-broadcasts .broadcasts-list .item.status-recorded.status-social-v
+{
+    background-color: transparent
+}
+.recommended-broadcasts .broadcasts-list .item.status-recorded.status-social-v .item-image-holder
+{
+    opacity: 1;
+}
+.recommended-broadcasts .broadcasts-list .item.status-recorded.status-social-v .item-header
+{
+    background-color: rgba(33,110,216,.5);
+}
+.channel-desc{
+    padding: 20px;
+    background-color: #f4f3f3;
+    font-size: 1.4rem;
+}
+.section-h1{
+    background-color: #f4f3f3;
+    padding: 15px 25px;
+}
+.section-h1 h1{
+    margin: 0;
+    font-size: 2.2rem;
 }

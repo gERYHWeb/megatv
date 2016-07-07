@@ -7,7 +7,10 @@ set_time_limit(0);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
 $youtube = new \YoutubeClient();
-$youtube->import();
+/*$youtube->deletePics();
+$arVideos = $youtube->getArVideosByUrl();
+$youtube->save($arVideos);*/
+$youtube->importForChannels();
 
 $vk = new \VkClient();
 $vk->import();

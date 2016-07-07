@@ -11,24 +11,54 @@ class CTimeEx
         $arResult = array();
         $arResult["SERVER_DATETIME"] = date("d.m.Y H:i:s");     //серверная дата 
         $arResult["TIMEZONE"] = $curTimezone;
-        $offset = (intval($curTimezone) - intval(self::$defaultTimezone))/100;        
+        $offset = intval($curTimezone) - intval(self::$defaultTimezone)/100;        
         $arResult["OFFSET"] = $offset;  //сдвиг относительно Москвы (берется из города)
-        $arResult["SERVER_DATETIME_WITH_OFFSET"] = self::dateOffset($offset, $arResult["SERVER_DATETIME"]);
+        $arResult["SERVER_DATETIME_WITH_OFFSET"] = self::dateOffset($arResult["SERVER_DATETIME"], $offset);
         $arResult["SELECTED_DATE"] = $_SESSION["DATE_CURRENT_SHOW"];
         $arResult["SELECTED_DATETIME"] = $_SESSION["DATE_CURRENT_SHOW"].date(" H:i:s");
-        $arResult["SELECTED_DATETIME_WITH_OFFSET"] = self::dateOffset($offset, $arResult["SELECTED_DATETIME"]);
+        $arResult["SELECTED_DATETIME_WITH_OFFSET"] = self::dateOffset($arResult["SELECTED_DATETIME"], $offset);
         return $arResult;
     }
     
-    public static function datetimeForFilter($datetime, $add = false)
+    public static function getDateFilter($date, $offset = 0)
     {
-        if($add)
+        if(!$offset)
         {
-            return date("Y-m-d H:i:s", strtotime($add, strtotime($datetime)));
-        }else{
-            return date("Y-m-d H:i:s", strtotime($datetime));
+            $arCity = \Hawkart\Megatv\CityTable::getGeoCity();
+            $offset = intval($arCity["UF_TIMEZONE"]) - intval(self::$defaultTimezone)/100;
         }
-        //return date("Y-m-d H:i:s", strtotime("-3 hour ".$add, strtotime($datetime))); 
+        
+        $date = date('d.m.Y 00:00:00', strtotime($date));
+        $date = substr($date, 0, 10).date(" 00:00:00");  
+        $next_date = date('d.m.Y 00:00:00', strtotime("+1 day", strtotime($date)));
+        
+        $arDate = array(
+            "DATE_FROM" => self::dateOffset($date, (-1)*$offset),
+            "DATE_TO" => self::dateOffset($next_date, (-1)*$offset),
+            "OFFSET" => $offset,    //сдвиг
+        );
+        
+        return $arDate;
+    }
+    
+    public static function getDateTimeFilter($datetime, $offset = 0)
+    {
+        if(!$offset)
+        {
+            $arCity = \Hawkart\Megatv\CityTable::getGeoCity();
+            $offset = intval($arCity["UF_TIMEZONE"]) - intval(self::$defaultTimezone)/100;
+        }
+        
+        $datetime = date('d.m.Y H:i:s', strtotime($datetime));
+        $next_datetime = date('d.m.Y H:i:s', strtotime("+1 day", strtotime($datetime)));
+        
+        $arDate = array(
+            "DATE_FROM" => self::dateOffset($datetime, (-1)*$offset),
+            "DATE_TO" => self::dateOffset($next_datetime, (-1)*$offset),
+            "OFFSET" => $offset,    //сдвиг
+        );
+        
+        return $arDate;
     }
     
     public static function getCalendarDays()
@@ -86,43 +116,44 @@ class CTimeEx
         return $date;
     }
     
-    public static function dateOffset($offset, $datetime)
+    public static function dateOffset($datetime, $offset=false)
     {
-        return date('d.m.Y H:i:s', strtotime($offset." hour", strtotime($datetime)));
-    }
-    
-    public static function dateOffsetByTimezone($offset, $datetime)
-    {
-        $arCity = \Hawkart\Megatv\CityTable::getGeoCity();
-        $offset = (intval($arCity["UF_TIMEZONE"]) - intval(self::$defaultTimezone))/100;
-
+        if(!$offset)
+        {
+            $arCity = \Hawkart\Megatv\CityTable::getGeoCity();
+            $offset = intval($arCity["UF_TIMEZONE"]) - intval(self::$defaultTimezone)/100;
+        } 
         return date('d.m.Y H:i:s', strtotime($offset." hour", strtotime($datetime)));
     }
     
     //Высчитываем с учетом города сдвиг по времени относительно дня
-    public static function getDateTimeOffset($offset = 0)
+    public static function getArDateTimeOffset($date = false, $offset = 0)
     {       
         if(!$offset)
         {
             $arCity = \Hawkart\Megatv\CityTable::getGeoCity();
-            $offset = (intval($arCity["UF_TIMEZONE"]) - intval(self::$defaultTimezone))/100;
+            $offset = intval($arCity["UF_TIMEZONE"]) - intval(self::$defaultTimezone)/100;
         }
         
-        $date = self::getCurDate();
+        if(!$date)
+        {
+            $date = self::getCurDate();
+        }
+        
         $date = substr($date, 0, 10).date(" 00:00:00");
             
         $next_date = date('d.m.Y 00:00:00', strtotime("+1 day", strtotime($date)));
            
         $arDate = array(
-            "DATE_FROM" => self::dateOffset($offset, $date),    //дата со смещением
-            "DATE_TO" => self::dateOffset($offset, $next_date), //дата со смещением +1 день
+            "DATE_FROM" => self::dateOffset($date, $offset),    //дата со смещением
+            "DATE_TO" => self::dateOffset($next_date, $offset), //дата со смещением +1 день
             "OFFSET" => $offset,    //сдвиг
-            "DATETIME_REAL" => date("d.m.Y H:i:s"), //дата настоящая без сдвигов и выборов
-            "DATETIME_CURRENT" => substr($date, 0, 10).date(" H:i:s"),  //дата выбранная без сдвига
+            //"DATETIME_REAL" => date("d.m.Y H:i:s"), //дата настоящая без сдвигов и выборов
+            //"DATETIME_CURRENT" => substr($date, 0, 10).date(" H:i:s"),  //дата выбранная без сдвига
         );
         
         return $arDate;
-    }
+    }    
     
     public static function dateToStr($date = false)
     {

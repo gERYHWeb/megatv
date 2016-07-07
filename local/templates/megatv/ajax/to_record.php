@@ -31,14 +31,15 @@ if($USER->IsAuthorized() && $prog_time>0)
     $result = \Hawkart\Megatv\ScheduleTable::getList(array(
         'filter' => array("=ID" => $prog_time),
         'select' => array(
-            "ID", "UF_DATE_START", "UF_DATE_END", "UF_DATE", "UF_CHANNEL_ID", "UF_PROG_ID",
-            "UF_CHANNEL_EPG_ID" => "UF_CHANNEL.UF_EPG_ID", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
+            "ID", "UF_DATE_START", "UF_DATE_END", "UF_DATE", "UF_CHANNEL_BASE_ID" => "UF_CHANNEL.UF_BASE_ID", "UF_PROG_ID",
+            "UF_CHANNEL_EPG_ID" => "UF_CHANNEL.UF_BASE.UF_EPG_ID", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
             "UF_PROG_EPG_ID" => "UF_PROG.UF_EPG_ID"
         ),
         'limit' => 1
     ));
     if ($arSchedule = $result->fetch())
     {
+        $arSchedule['UF_CHANNEL_ID'] = $arSchedule["UF_CHANNEL_BASE_ID"];
         $arSchedule["UF_DATE_START"] = $arSchedule['UF_DATE_START']->toString();
         $arSchedule["UF_DATE_END"] = $arSchedule['UF_DATE_END']->toString();
     }
@@ -97,25 +98,6 @@ if($USER->IsAuthorized() && $prog_time>0)
                 /**
                  * Данные в статистику
                  */                
-                /*$result = \Hawkart\Megatv\StatChannelTable::getList(array(
-                    'filter' => array(
-                        "=UF_USER_ID" => (int) $USER_ID, 
-                        "UF_CHANNEL_ID"=> $arSchedule["UF_CHANNEL_ID"]
-                    ),
-                    'select' => array("ID", "UF_RATING")
-                ));
-                if ($arStat = $result->fetch())
-                {
-                    $rating = $arStat["UF_RATING"]+1;
-                    \Hawkart\Megatv\StatChannelTable::update($arStat["ID"], array("UF_RATING"=>$rating));
-                }else{
-                    
-                    \Hawkart\Megatv\StatChannelTable::add(array(
-                        "UF_USER_ID" => $USER_ID,
-                        "UF_CHANNEL_ID" => $arResult["ID"],
-                        "UF_RATING" => $arSchedule["UF_CHANNEL_ID"]
-                    ));
-                }*/
                 \Hawkart\Megatv\CStat::addByShedule($arSchedule["ID"], "record");
                 
                 //--------------------------------------------------                

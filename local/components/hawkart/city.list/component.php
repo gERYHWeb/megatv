@@ -22,7 +22,8 @@ elseif($obCache->StartDataCache())
 {
     $result = \Hawkart\Megatv\CityTable::getList(array(
         'filter' => $arFilter,
-        'select' => $arSelect
+        'select' => $arSelect,
+        'order' => array("UF_TITLE" => "ASC")
     ));
     while ($arCity = $result->fetch())
     {

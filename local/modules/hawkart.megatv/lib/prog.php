@@ -169,6 +169,18 @@ class ProgTable extends Entity\DataManager
             'UF_IMG' => array(
 				'data_type' => '\Hawkart\Megatv\ImageTable',
 				'reference' => array('=this.UF_IMG_ID' => 'ref.ID'),
+			),
+            'UF_SOCIAL_VIDEO' => array(
+                'data_type' => 'string',
+            ),
+            'UF_EXTERNAL_ID' =>array(
+				'data_type' => 'string',
+			),
+            'UF_EXTERNAL_URL' =>array(
+				'data_type' => 'string',
+			),
+            'UF_EXTERNAL_RESOURCE' =>array(
+				'data_type' => 'string',
 			)
 		);
 	}

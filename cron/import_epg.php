@@ -17,7 +17,8 @@ $path = $_SERVER['DOCUMENT_ROOT'].'/logs/sotal/';
 
 //Загружаем и импортируем данные из EPG
 $epg = new \Hawkart\Megatv\CEpg();
-$epg->download();
+$epg->importChannels(); //!!!
+$epg->importChannelCity();
 $epg->import();
 
 \CDev::deleteDirectory($_SERVER['DOCUMENT_ROOT'].'/bitrix/cache', 0);

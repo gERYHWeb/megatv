@@ -4,41 +4,33 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 ini_set('max_execution_time', 10);
 
 global $USER;
+$arTime =  \CTimeEx::getDatetime();
+
 $arResult["PROGS"] = array();
 $countPerPage = 12;
 $count = 0;
 $prog_ids = array();
+$arDate = \CTimeEx::getDateFilter($arTime["SERVER_DATETIME"]);
 $dateStart = date("Y-m-d H:i:s");
-$dateEnd = date("Y-m-d 00:00:00");
+$dateEnd = date("Y-m-d H:i:s", strtotime($arDate["DATE_TO"]));
 
 $arFilter = array(
-    //"=UF_PROG.UF_ACTIVE" => 1,
+    "=UF_PROG.UF_ACTIVE" => 1,
     ">=UF_DATE_START" => new \Bitrix\Main\Type\DateTime($dateStart, 'Y-m-d H:i:s'),
-    "=UF_DATE" => new \Bitrix\Main\Type\DateTime($dateEnd, 'Y-m-d H:i:s')
+    "<UF_DATE_START" => new \Bitrix\Main\Type\DateTime($dateEnd, 'Y-m-d H:i:s'),
 );
 
 $arSelect = array(
     "ID", "UF_CODE", "UF_DATE_START", "UF_DATE_END", "UF_DATE", "UF_CHANNEL_ID", "UF_PROG_ID",
     "UF_TITLE" => "UF_PROG.UF_TITLE", "UF_SUB_TITLE" => "UF_PROG.UF_SUB_TITLE", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
-    "UF_CHANNEL_CODE" => "UF_CHANNEL.UF_CODE", "UF_CATEGORY" => "UF_PROG.UF_CATEGORY",
+    "UF_CHANNEL_CODE" => "UF_CHANNEL.UF_BASE.UF_CODE", "UF_CATEGORY" => "UF_PROG.UF_CATEGORY",
     "UF_ID" => "UF_PROG.UF_EPG_ID"
 );
 
 if($USER->IsAuthorized())
 {
-    $selectedChannels = array();
     $arProgByUsers = array();
 
-    //get subsribed channels
-    $result = \Hawkart\Megatv\SubscribeTable::getList(array(
-        'filter' => array("=UF_ACTIVE" => 1, "=UF_USER_ID" => $USER->GetID(), ">UF_CHANNEL_ID" => 0),
-        'select' => array("UF_CHANNEL_ID")
-    ));
-    while ($arSub = $result->fetch())
-    {
-        $selectedChannels[] = $arSub["UF_CHANNEL_ID"];
-    } 
-    
     $arRecords = $APPLICATION->GetPageProperty("ar_record_status");
     $arRecordsStatuses = json_decode($arRecords, true);
     
@@ -48,7 +40,8 @@ if($USER->IsAuthorized())
         $recording_ids[] = $schedule_id;
     }
     
-    $arFilter["=UF_CHANNEL_ID"] = $selectedChannels;  
+    $arFilter["=UF_CHANNEL_ID"] = \Hawkart\Megatv\ChannelTable::getActiveIdByCityByUser();
+    
     if(count($recording_ids)>0)
         $arFilter["!=ID"] = $recording_ids;
     
@@ -74,9 +67,10 @@ if($USER->IsAuthorized())
             ));
             while ($arSchedule = $result->fetch())
             {
-                $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = $arSchedule['UF_DATE_START']->toString();
-                $arSchedule["UF_DATE_END"] = $arSchedule["DATE_END"] = $arSchedule['UF_DATE_END']->toString();
-                $arSchedule["UF_DATE"] = $arSchedule["DATE"] = $arSchedule['UF_DATE']->toString();
+                $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = \CTimeEx::dateOffset($arSchedule['UF_DATE_START']->toString());
+                $arSchedule["UF_DATE_END"] = $arSchedule["DATE_END"] = \CTimeEx::dateOffset($arSchedule['UF_DATE_END']->toString());
+                $arSchedule["UF_DATE"] = $arSchedule["DATE"] = substr($arSchedule["DATE_START"], 0, 10);
+    
                 $arSchedule["DETAIL_PAGE_URL"] = "/channels/".$arSchedule["UF_CHANNEL_CODE"]."/".$arSchedule["UF_ID"]."/?event=".$arSchedule["ID"];
                 $arProgs[$arSchedule["UF_ID"]] = $arSchedule;
             }
@@ -154,7 +148,7 @@ if($USER->IsAuthorized())
         
 }else{
     
-    $arFilter["=UF_CHANNEL.UF_ACTIVE"] = 1;
+    $arFilter["=UF_CHANNEL_ID"] = \Hawkart\Megatv\ChannelTable::getActiveIdByCity();
     
     $result = \Hawkart\Megatv\ScheduleTable::getList(array(
         'filter' => $arFilter,
@@ -171,9 +165,10 @@ if($USER->IsAuthorized())
         
         if($count<$countPerPage)
         {
-            $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = $arSchedule['UF_DATE_START']->toString();
-            $arSchedule["UF_DATE_END"] = $arSchedule["DATE_END"] = $arSchedule['UF_DATE_END']->toString();
-            $arSchedule["UF_DATE"] = $arSchedule["DATE"] = $arSchedule['UF_DATE']->toString();
+            $arSchedule["UF_DATE_START"] = $arSchedule["DATE_START"] = \CTimeEx::dateOffset($arSchedule['UF_DATE_START']->toString());
+            $arSchedule["UF_DATE_END"] = $arSchedule["DATE_END"] = \CTimeEx::dateOffset($arSchedule['UF_DATE_END']->toString());
+            $arSchedule["UF_DATE"] = $arSchedule["DATE"] = substr($arSchedule["DATE_START"], 0, 10);
+    
             $arSchedule["DETAIL_PAGE_URL"] = "/channels/".$arSchedule["UF_CHANNEL_CODE"]."/".$arSchedule["UF_ID"]."/?event=".$arSchedule["ID"];
         
             if(!empty($arSchedule["UF_CATEGORY"]))

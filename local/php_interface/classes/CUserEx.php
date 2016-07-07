@@ -193,7 +193,7 @@ class CUserEx
     
         if(intval($user_id)>0)
         {
-            $result = \Hawkart\Megatv\ChannelTable::getList(array(
+            $result = \Hawkart\Megatv\ChannelBaseTable::getList(array(
                 'filter' => array("UF_ACTIVE" => 1, "!UF_PRICE_H24" => true, "!UF_FORBID_REC"=>1),
                 'select' => array("ID")
             ));

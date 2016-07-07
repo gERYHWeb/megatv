@@ -24,9 +24,60 @@ class YoutubeClient
 		}
     }
     
-    public static function parseTrend()
+    /**
+     * Get videos from youtube for each tv channel
+     */
+    public function importForChannels()
     {
-        $url = "https://www.youtube.com/feed/trending";
+        self::deletePics();
+        
+        $arBaseChannels = array();
+        $result = \Hawkart\Megatv\ChannelBaseTable::getList(array(
+            'filter' => array("UF_ACTIVE" => 1),
+            'select' => array("ID", "UF_YOUTUBE"),
+            'order' => array("ID" => "ASC")
+        ));
+        while ($row = $result->fetch())
+        {
+            $arUrls = array();
+            $ar = explode(";", $row["UF_YOUTUBE"]);
+            foreach($ar as $url)
+            {
+                $url = trim($url);
+                if(!empty($url))
+                {
+                    $arUrls[] = $url;
+                }
+            }
+            
+            if(count($arUrls)>0)
+                $arBaseChannels[$row["ID"]] = $arUrls;
+        }
+        
+        foreach($arBaseChannels as $channel_id => $arUrls)
+        {
+            $file = self::getFilePathByChannel($channel_id);
+            
+            $arVideos = array();
+            foreach($arUrls as $url)
+            {
+                $arVideos =  array_merge($arVideos, $this->getArVideosByUrl($url));
+            }
+            
+            self::save($arVideos, $file);
+        }
+    }
+  
+    /**
+     * Parse video urls from web page
+     * 
+     * @return array
+     */
+    public static function parseUrl($url = false)
+    {
+        if(!$url)
+            $url = "https://www.youtube.com/feed/trending";
+        
         $ch = curl_init();
         $timeout = 5;
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -56,9 +107,8 @@ class YoutubeClient
         return $videos;
     }
     
-    public function import()
-    {
-        $file = $_SERVER["DOCUMENT_ROOT"]."/upload/youtube.json";
+    public function getArVideosByUrl($url = false)
+    { 
         $arVideos = array();
         $perPage = 50;
         $videoCount = 1000;
@@ -71,10 +121,7 @@ class YoutubeClient
         $youtube = new Google_Service_YouTube($client);
         $ids = array();
         
-        \CDev::deleteOldFiles($_SERVER["DOCUMENT_ROOT"].self::$img_dir, 0);
-
-        $videoResults = self::parseTrend();
-        //\CDev::pre($videoResults);
+        $videoResults = self::parseUrl($url);
         $videoIds = implode(',', $videoResults);
 
         $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails', array(
@@ -109,8 +156,20 @@ class YoutubeClient
             $arVideos[] = $arVideo;
         }
         
-        //echo count($arVideos)."\r\n";
-        file_put_contents($file, json_encode($arVideos));
+        return $arVideos;
+    }
+    
+    public static function save($array, $file = false)
+    {
+        if(!$file)
+            $file = $_SERVER["DOCUMENT_ROOT"]."/upload/youtube.json";
+            
+        file_put_contents($file, json_encode($array));
+    }
+    
+    public static function deletePics()
+    {
+        \CDev::deleteOldFiles($_SERVER["DOCUMENT_ROOT"].self::$img_dir, 0);
     }
     
     public static function resizePic($id, $url)
@@ -124,11 +183,6 @@ class YoutubeClient
         
         if(!file_exists($_SERVER["DOCUMENT_ROOT"].$file_path_crop))
         {
-            /*$image = new \Eventviva\ImageResize($_SERVER["DOCUMENT_ROOT"].$file_path);
-            $image->resizeToHeight(288);
-            $image->crop(288, 288);
-            $image->save($_SERVER["DOCUMENT_ROOT"].$file_path_crop);*/
-            
             $resizeRez = CFile::ResizeImageFile( // уменьшение картинки для превью
                 $_SERVER["DOCUMENT_ROOT"].$file_path,
                 $dest = $_SERVER["DOCUMENT_ROOT"].$file_path_crop,
@@ -146,25 +200,33 @@ class YoutubeClient
         return $file_path_crop;
     }
     
-    public static function getList()
+    public static function getFilePathByChannel($channel_id)
     {
-        $file = $_SERVER["DOCUMENT_ROOT"]."/upload/youtube.json";
+        return $_SERVER["DOCUMENT_ROOT"]."/upload/youtube_".$channel_id.".json";
+    }
+    
+    public static function getList($file = false)
+    {
+        if(!$file)
+            $file = $_SERVER["DOCUMENT_ROOT"]."/upload/youtube.json";
+            
         $txt = file_get_contents($file);
         $json = json_decode($txt, true);
         
         return $json;
     }
     
-    public static function dailyShow()
+    public static function dailyShow($file)
     {
         $arVideos = array();
-        $videos = self::getList();
+        $videos = self::getList($file);     
         $rand_keys = array_rand($videos, 24);
         foreach($rand_keys as $key)
         {
             $videos[$key]["CLASS"]="one";
             $arVideos[] = $videos[$key];
         }
+        
         return $arVideos;
     }
 }

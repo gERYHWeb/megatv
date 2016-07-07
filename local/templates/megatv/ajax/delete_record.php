@@ -49,7 +49,9 @@ if($USER->IsAuthorized() && $record_id>0 && $_REQUEST["delete"])
         
         if(!$is_deleted)
             \Hawkart\Megatv\RecordTable::delete($record_id);
-
+        
+        //Возможно нужно сделать апи для отмены в сотале + вернуть пространство свободное
+        
         $status = "success";
     }
 }

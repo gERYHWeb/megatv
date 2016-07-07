@@ -1,20 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Каналы");
-global $USER;
-//$USER->Authorize(1);
-$arChannels = array();
-$result = \Hawkart\Megatv\ChannelTable::getList(array(
-	'filter' => array("!UF_EPG_ID" => false),
-	'select' => array("UF_EPG_ID", "ID", "UF_ACTIVE")
-));
-while ($row = $result->fetch())
-{
-	$arChannels[$row["UF_EPG_ID"]] = $row;
-}
-print_r($arChannels);
+$APPLICATION->SetTitle("Программа телепередач на сегодня - ТВ программа в Москве на МегаТВ, записи телепередач онлайн");
+$APPLICATION->SetDirProperty("h1", "Программа телепередач на сегодня");
+$APPLICATION->SetDirProperty("h1-hide", "");
 ?>
-
 <?$APPLICATION->IncludeComponent("hawkart:channel.list", "", 
     Array(
 		"NEWS_COUNT" => "45",

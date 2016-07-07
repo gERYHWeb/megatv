@@ -11,6 +11,97 @@ class CityTable extends Entity\DataManager
 {
     public static $cacheDir = "city";
     public static $defaultCityID = 2;
+        
+    public static function getTimezoneByCity()
+    {
+        $arItems = array();
+        $arFilter = array(
+            "UF_COUNTRY.UF_TITLE" => "Россия", 
+            "UF_ACTIVE" => 1
+        );
+        $arSelect = array("ID", "UF_TITLE");
+        $result = CityTable::getList(array(
+            'filter' => $arFilter,
+            'select' => $arSelect,
+            'order' => array("UF_TITLE" => "ASC")
+        ));
+        while ($arCity = $result->fetch())
+        {
+            $arItems[$arCity["UF_TITLE"]] = $arCity["ID"];
+        }
+        
+        $arIps = GeoCity::getInstance()->getIpByCities($arItems);
+        
+        foreach($arIps as $city_id => $range_ip)
+        {
+            $ips = explode("-", $range_ip);
+            $ip = trim($ips[0]);
+            
+            $json = file_get_contents("http://api.sypexgeo.net/json/".$ip);
+            $json = json_decode($json, true);
+            
+            $utc = $json["region"]["utc"];
+            
+            $arFields = array(
+                "UF_TIMEZONE" => $utc
+            );
+            CityTable::update($city_id, $arFields);
+        }
+    }
+    
+    /**
+     * import russian capital cities
+     */
+    public static function importCapitalCity()
+    {
+        $arItems = array();
+        
+        $arFilter = array(
+            "UF_COUNTRY.UF_TITLE" => "Россия", 
+            "UF_ACTIVE" => 1
+        );
+        $arSelect = array("ID", "UF_TITLE");
+        $result = CityTable::getList(array(
+            'filter' => $arFilter,
+            'select' => $arSelect
+        ));
+        while ($arCity = $result->fetch())
+        {
+            $arItems[$arCity["UF_TITLE"]] = $arCity["ID"];
+        }
+        
+        $file = $_SERVER["DOCUMENT_ROOT"]."/local/modules/hawkart.megatv/data/capital_cities.txt";
+        $lines = file($file);
+        foreach ($lines as $line_num => $line) 
+        {
+            $pos = strripos($line, ".svg ");
+            if ($pos === false) $pos = strripos($line, ".png ");  
+            if ($pos === false) $pos = strripos($line, ".jpg "); 
+            
+            $city = substr($line, $pos+5);
+            $city = trim($city);
+            
+            $pos = strripos($line, "Flag");
+            $region = substr($line, 0, $pos);
+            $region = trim($region);
+            
+            if(intval($arItems[$city]["ID"])==0)
+            {
+                $arFields = array(
+                    "UF_TITLE" => $city,
+                    "UF_REGION" => $region,
+                    "UF_ACTIVE" => 1,
+                    "UF_COUNTRY_ID" => 15
+                );
+                $result = CityTable::add($arFields);
+                if ($result->isSuccess())
+                {
+                    $id = $result->getId();
+                    $arItems[$city] = $id;
+                }
+            }
+        }
+    }
     
     /**
      * Get city by Geo
@@ -20,14 +111,14 @@ class CityTable extends Entity\DataManager
     public static function getGeoCity()
     {
         global $currentGeo;
-        $arSelect = array("ID", "UF_TITLE", "UF_TIMEZONE", "UF_EPG_FILE_ID");
+        $arSelect = array("ID", "UF_TITLE", "UF_TIMEZONE");
         
         //unset($_SESSION["USER_GEO"]);
         //unset($_COOKIE["city_select_data"]);
         
         //should be deleted after
-        $result = self::getById(self::$defaultCityID);
-        $_SESSION["USER_GEO"] = $result->fetch();
+        //$result = self::getById(self::$defaultCityID);
+        //$_SESSION["USER_GEO"] = $result->fetch();
         
         if(!$_SESSION["USER_GEO"] || empty($_SESSION["USER_GEO"]))
         {
@@ -42,7 +133,7 @@ class CityTable extends Entity\DataManager
                 ));
                 $_SESSION["USER_GEO"] = $result->fetch();
             }else{
-                $arGeo = \Olegpro\IpGeoBase\IpGeoBase::getInstance()->getRecord();
+                $arGeo = GeoCity::getInstance()->getRecord();
                 
                 if(!empty($arGeo))
                 {
@@ -136,17 +227,8 @@ class CityTable extends Entity\DataManager
 				'data_type' => '\Hawkart\Megatv\CountryTable',
 				'reference' => array('=this.UF_COUNTRY_ID' => 'ref.ID'),
 			),
-            'UF_EPG_FILE_ID' => array(
-				'data_type' => 'integer',
-                'required'  => true
-			),
-            'UF_EPG_FILE' => array(
-				'data_type' => '\Hawkart\Megatv\EpgTable',
-				'reference' => array('=this.UF_EPG_FILE_ID' => 'ref.ID'),
-			),
             'UF_TIMEZONE' => array(
 				'data_type' => 'string',
-                'required'  => true
 			),
 		);
 	}

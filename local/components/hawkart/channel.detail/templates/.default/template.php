@@ -12,35 +12,31 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-<section class="channel-card" data-module="channel-card">
+<section class="recommended-broadcasts" data-module="broadcast-results">
     <script type="text/x-config">
     {
         "recordingURL": "<?=SITE_TEMPLATE_PATH?>/ajax/to_record.php"
     }
     </script>
-    <div class="channel-info">
-		<div class="channel-logo">
-			<span data-icon="<?=$arResult["UF_ICON"]?>"></span>
-		</div>
-		<div class="channel-broadcast-shots">
-			<?
-            if($arResult["UF_FRAME_URL"])
-            {
-                ?>
-                <img src="<?=$arResult["UF_FRAME_URL"]?>" />
-                <?
-            }
-            ?>
-		</div>
-	</div>
-	<div class="channel-broadcasts">
-		<div class="broadcasts-list">
-            <?
-            foreach($arResult["PROGS"] as $arProg)
-            {
-                echo \Hawkart\Megatv\CScheduleTemplate::getProgInfoChannel($arProg, $arParams);
-            }
-            ?>
-		</div>
-	</div>
+    <div class="broadcasts-list">
+        <?
+        $notShow = array();
+        foreach($arResult["PROGS"] as $key=>$arProg)
+        {
+            $arProg["CAT_CODE"] = $arResult["CATEGORIES"][$arProg["UF_CATEGORY"]];
+            echo \Hawkart\Megatv\CScheduleTemplate::getSocialProgInfoChannel($arProg, "YOUTUBE|".$arResult['UF_CHANNEL_BASE_ID']);
+            //echo \Hawkart\Megatv\CScheduleTemplate::getProgInfoRecommend($arProg);
+        }
+        ?>
+    </div>
 </section>
+
+<div class="fullsize-banner adv-styling-02">
+	<div class="banner-content">
+		<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/channel-banner.php"), false);?>
+	</div>
+</div>
+
+<div class="channel-desc">
+    <?=htmlspecialchars_decode($arResult["UF_DESC"]);?>
+</div>

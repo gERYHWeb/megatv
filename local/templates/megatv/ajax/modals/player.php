@@ -17,7 +17,10 @@ if(isset($_REQUEST["channel_id"]))
 {
     $result = \Hawkart\Megatv\ChannelTable::getList(array(
         'filter' => array("=ID" => intval($_REQUEST["channel_id"])),
-        'select' => array("ID", "UF_TITLE", "UF_IMG_PATH" => "UF_IMG.UF_PATH", "UF_STREAM_URL"),
+        'select' => array(
+            'ID', 'UF_TITLE' => 'UF_BASE.UF_TITLE', 
+            'UF_STREAM_URL' => 'UF_BASE.UF_STREAM_URL'
+        ),
         'limit' => 1
     ));
     $arChannel = $result->fetch();
@@ -53,22 +56,27 @@ if(isset($_REQUEST["channel_id"]))
     <?
 }else{
     
-    if(strpos($_GET["broadcastID"], "youtube")!==false || strpos($_GET["broadcastID"], "vk")!==false)
+    if(!preg_match("/^[\d\+]+$/", $_GET["broadcastID"]))
     {
-        $id = str_replace(array("youtube|", "vk|"), "", $_GET["broadcastID"]);
-        
-        if(strpos($_GET["broadcastID"], "youtube")!==false)
+        $result = \Hawkart\Megatv\ProgExternalTable::getList(array(
+            'filter' => array("=UF_EXTERNAL_ID" => $_GET["broadcastID"]),
+            'select' => array("ID", "UF_TITLE", "UF_EXTERNAL_ID", "UF_THUMBNAIL_URL", "UF_VIDEO_URL", "UF_JSON")
+        ));
+        if ($row = $result->fetch())
         {
-            $videos = \YoutubeClient::getList();
-        }else{
-            $videos = \VkClient::getList();
+            $arVideo["VIDEO_URL"] = $row["UF_VIDEO_URL"];
+            
+            if(strpos($arVideo["VIDEO_URL"], "rutube")!==false && !empty($arVideo["VIDEO_URL"]))
+            {
+                $arVideo["VIDEO_URL"] = str_replace("play", "video", $arVideo["VIDEO_URL"])."?sTitle=false&sAuthor=false";
+            }else{
+                $doc = new DOMDocument();
+                $doc->loadHTML($row["UF_JSON"]["html"]);
+                $arVideo["VIDEO_URL"] = $doc->getElementsByTagName('iframe')->item(0)->getAttribute('src');
+            }
+            $arVideo["NAME"] = $row["UF_TITLE"];
         }
-        foreach($videos as $arVideo)
-        {
-            if($arVideo["ID"]==$id)
-                break;
-        }
-        
+
         ?>
         <div class="advert-holder">
             <?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/player-banner.php"), false);?>
@@ -98,7 +106,7 @@ if(isset($_REQUEST["channel_id"]))
                         <div id="player"></div>
                     <?else:?>
                         <iframe src="<?=$arVideo["VIDEO_URL"]?>" width="896" height="504" frameborder="0" id="vk-player" class="flash"></iframe>
-                        <div  style="display: none !important"><div id="player"></div></div>
+                        <div style="display: none !important"><div id="player"></div></div>
                         <script>
                             $(function(){
                                 $(".close-link").click(function(){
@@ -108,6 +116,9 @@ if(isset($_REQUEST["channel_id"]))
                         </script> 
                     <?endif;?>
         		</div>
+                <div>
+                    <p style="color: #fff;"><?=$row["UF_JSON"]["description"]?></p>
+                </div>
         	</div>
         </div>
         <?
@@ -129,7 +140,8 @@ if(isset($_REQUEST["channel_id"]))
             'filter' => $arFilter,
             'select' => array(
                 "ID", "UF_PROG_ID", "UF_URL", "UF_PROGRESS_SECS",
-                "UF_TITLE" => "UF_PROG.UF_TITLE", "UF_SUB_TITLE" => "UF_PROG.UF_SUB_TITLE", "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
+                "UF_TITLE" => "UF_PROG.UF_TITLE", "UF_SUB_TITLE" => "UF_PROG.UF_SUB_TITLE",
+                "UF_IMG_PATH" => "UF_PROG.UF_IMG.UF_PATH",
             ),
             'limit' => 1
         ));

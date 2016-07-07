@@ -10,13 +10,121 @@ Localization\Loc::loadMessages(__FILE__);
 class ChannelTable extends Entity\DataManager
 {
     /**
+     * Get active channels by city
+     * 
+     * @return array
+     */
+    public static function getActiveByCity()
+    {
+        $arChannels = array();
+        $arFilter = array(
+            "=UF_CHANNEL.UF_BASE.UF_ACTIVE" => 1,
+            "=UF_CITY_ID" => $_SESSION["USER_GEO"]["ID"]
+        );
+        $arSelect = array(
+            'ID', 'UF_CHANNEL_ID', 'UF_CHANNEL_BASE_ID' => 'UF_CHANNEL.UF_BASE.ID', 
+            'UF_TITLE' => 'UF_CHANNEL.UF_BASE.UF_TITLE', 'UF_ICON' => 'UF_CHANNEL.UF_BASE.UF_ICON',
+            'UF_CODE' => 'UF_CHANNEL.UF_BASE.UF_CODE', "UF_IS_NEWS" => 'UF_CHANNEL.UF_BASE.UF_IS_NEWS'
+        );
+        $arSort = array("UF_CHANNEL.UF_BASE.UF_SORT" => "ASC");
+        $obCache = new \CPHPCache;
+        if( $obCache->InitCache(86400, serialize($arFilter).serialize($arSelect).serialize($arSort), "/channels_active/"))
+        {
+        	$arChannels = $obCache->GetVars();
+        }
+        elseif($obCache->StartDataCache())
+        {
+        	$result = \Hawkart\Megatv\ChannelCityTable::getList(array(
+                'filter' => $arFilter,
+                'select' => $arSelect,
+                'order' => $arSort
+            ));
+            while ($row = $result->fetch())
+            {
+                $row["ID"] = $row["UF_CHANNEL_ID"];
+                $row["DETAIL_PAGE_URL"] = "/channels/".$row['UF_CODE']."/";
+                $arChannels[] = $row;
+            }
+        	$obCache->EndDataCache($arChannels); 
+        }
+        
+        return $arChannels;
+    }
+    
+    /**
+     * Get active channels ids by city id
+     *
+     * @return array  
+     */
+    public static function getActiveIdByCity()
+    {
+        $arChannels = self::getActiveByCity();
+        
+        $ids = array();
+        foreach($arChannels as $key=>$arChannel)
+        {
+            $ids[] = $arChannel["ID"];
+        }
+        
+        unset($arChannels);
+        
+        return $ids;
+    }
+    
+    /**
+     * Get subscribe active channels ids by city for authorized user
+     *
+     * @return array  
+     */
+    public static function getActiveIdByCityByUser()
+    {
+        global $USER;
+        if($USER->IsAuthorized())
+        {
+            $arChannels = self::getActiveByCity();
+        
+            $selectedChannels = array();
+            $arFilter = array(
+                "=UF_ACTIVE" => 1, 
+                "=UF_USER_ID" => $USER->GetID(), 
+                ">UF_CHANNEL_ID" => 0
+            );
+            $arSelect = array("UF_CHANNEL_ID");
+            $result = SubscribeTable::getList(array(
+                'filter' => $arFilter,
+                'select' => $arSelect
+            ));
+            while ($arSub = $result->fetch())
+            {
+                $selectedChannels[] = $arSub["UF_CHANNEL_ID"];
+            }
+            
+            $ids = array();
+            foreach($arChannels as $key=>$arChannel)
+            {
+                if(in_array($arChannel["UF_CHANNEL_BASE_ID"], $selectedChannels))
+                {
+                    $ids[] = $arChannel["ID"];
+                }
+            }
+            
+            unset($selectedChannels);
+            unset($arChannels);
+            
+            return $ids;
+        }else{
+            return self::getActiveIdByCity();
+        }
+    }
+    
+    /**
 	 * Set primary key from 1
 	 *
 	 * @return string
 	 */
     public static function updatePrimary()
     {
-        return "ALTER TABLE hw_channel AUTO_INCREMENT=1";
+        return "ALTER TABLE ".self::getTableName()." AUTO_INCREMENT=1";
     }
 
 	/**
@@ -27,75 +135,7 @@ class ChannelTable extends Entity\DataManager
 	public static function getTableName()
 	{
 		return 'hw_channel';
-	}
-    
-    /**
-     * Change data before adding
-     * 
-     * @return object 
-     */
-    public static function onBeforeAdd(Entity\Event $event)
-    {
-        $result = new Entity\EventResult;
-        $data = $event->getParameter("fields");
-
-        if (isset($data['UF_TITLE']))
-        {
-            $arParams = array("replace_space"=>"-", "replace_other"=>"-");
-            $code = \CDev::translit(trim($data["UF_TITLE"]), "ru", $arParams);
-            $result->modifyFields(array('UF_CODE' => $code));
-        }
-
-        return $result;
-    }
-    
-    /**
-     * Если включили бесплатный канал, активируем для всех пользователей подписку.
-     * 
-     * @return object 
-     */
-    public static function OnBeforeUpdate(Entity\Event $event)
-    {
-        $result = new Entity\EventResult;
-        $primary = $event->getParameter("id");
-        $data = $event->getParameter("fields");
-
-        $res = self::getById($primary);
-        $arChannel = $res->fetch();
-        $price = floatval($arChannel["UF_PRICE_H24"]);
-
-        if($data["UF_ACTIVE"] && !$arChannel["UF_ACTIVE"] && $price==0)
-        {
-            //Найдем пользователей, для кого эта подписка была включена
-            $userIds = array();
-            
-            $result = SubscribeTable::getList(array(
-                'filter' => array("=UF_CHANNEL_ID" => $data["ID"]),
-                'select' => array("ID", "UF_USER_ID")
-            ));
-            while ($arSub = $result->fetch())
-            {
-                $userIds[$arSub["UF_USER_ID"]] = $arSub["ID"];
-            }
-
-            $CSubscribe = new CSubscribe("CHANNEL");
-            $dbUsers = \CUser::GetList(($by="EMAIL"), ($order="desc"), Array("ACTIVE" =>"Y"));
-            while($arUser = $dbUsers->Fetch())
-            {
-                if(!array_key_exists($arUser["ID"], $userIds))
-                {
-                    $CSubscribe->setUserSubscribe($data["ID"], $arUser["ID"]);
-                }else{
-                    $sub_id = $userIds[$arUser["ID"]];
-                    $CSubscribe->updateUserSubscribe($sub_id, array("UF_ACTIVE"=>1));
-                }
-            }
-        }
-
-        return $result;
-    }
-    
-    
+	} 
     
 	/**
 	 * Returns entity map definition
@@ -110,81 +150,16 @@ class ChannelTable extends Entity\DataManager
 				'primary' => true,
 				'autocomplete' => true
 			),
-            'UF_SORT' => array(
+            'UF_BASE_ID' => array(
 				'data_type' => 'integer',
-			),
-			'UF_ACTIVE' => array(
-				'data_type' => 'boolean',
-				'title'     => Localization\Loc::getMessage('channel_entity_active_field'),
-				'values'    => array(0, 1),
 				'required'  => true
 			),
-			'UF_TITLE' => array(
-				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_title_field'),
-                'required'  => true
-			),
-			'UF_DESC' => array(
-				'data_type' => 'text',
-				'title'     => Localization\Loc::getMessage('channel_entity_desc_field'),
+            'UF_BASE' => array(
+				'data_type' => '\Hawkart\Megatv\ChannelBaseTable',
+				'reference' => array('=this.UF_BASE_ID' => 'ref.ID'),
 			),
             'UF_EPG_ID' => array(
 				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_epg_id_field'),
-                'required'  => true
-			),
-            'UF_ICON' => array(
-				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_icon_field'),
-			),
-            'UF_SITE_URL' => array(
-				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_site_url_field'),
-			),
-            'UF_IS_NEWS' => array(
-				'data_type' => 'boolean',
-				'title'     => Localization\Loc::getMessage('channel_entity_is_news_field'),
-				'values'    => array(0, 1),
-			),
-			'UF_PRICE_H24' => array(
-				'data_type' => 'float',
-				'title'     => Localization\Loc::getMessage('channel_entity_price_h24_field')
-			),
-            'UF_PRICE_M' => array(
-				'data_type' => 'float',
-			),
-            'UF_FORBID_REC' => array(
-				'data_type' => 'boolean',
-				'title'     => Localization\Loc::getMessage('channel_entity_forbid_rec_field'),
-				'values'    => array(0, 1),
-			),
-            'UF_FRAME_URL' => array(
-				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_frame_url_field'),
-			),
-            'UF_STREAM_URL' => array(
-				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_stream_url_field'),
-			),
-            'UF_CODE' => array(
-				'data_type' => 'string',
-				'title'     => Localization\Loc::getMessage('channel_entity_code_field'),
-                'required'  => true
-			),
-            'UF_IMG_ID' => array(
-				'data_type' => 'integer',
-				'title'     => Localization\Loc::getMessage('channel_entity_img_id_field')
-			),
-            'UF_IMG' => array(
-				'data_type' => '\Hawkart\Megatv\ImageTable',
-				'reference' => array('=this.UF_IMG_ID' => 'ref.ID'),
-			),
-            'UF_BASE_ID' => array(
-				'data_type' => 'integer',
-			),
-            'UF_BASE' => array(
-				'data_type' => '\Hawkart\Megatv\ChannelTable',
-				'reference' => array('=this.UF_BASE_ID' => 'ref.ID'),
 			)
 		);
 	}

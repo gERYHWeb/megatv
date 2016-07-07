@@ -165,69 +165,6 @@ class VkClient{
         file_put_contents($file, json_encode($arVideos));        
     }
     
-    public static function getRightUrl($url)
-    {
-        $url = "https://vk.com/video_ext.php?oid=-54609771&id=168124524&hash=c68c413d03435bbf&__ref=vk.api&api_hash=14596143834255fb5305019bd384_GE4TEOBSGU4Q";
-        $cookie_file = $_SERVER["DOCUMENT_ROOT"]."/cron/cookie.txt";
-        
-        $ch = curl_init();
-        $user_agent = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1535.3 Safari/537.36';
-        curl_setopt($ch, CURLOPT_URL, $url);
-        //curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
-        curl_setopt($ch, CURLOPT_HEADER,false);
-        curl_setopt($ch, CURLOPT_REFERER, "http://megatv.su");
-        //curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
-        //curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-        curl_setopt($ch, CURLOPT_VERBOSE, 1);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        
-        $vk = curl_exec($ch);
-        curl_close($ch);
-                
-        //echo $vk;
-        
-        preg_match('|host=(.*)&|Uis', $vk, $host);
-        preg_match('|uid=(.*)&|Uis', $vk, $uid);
-        preg_match('|vtag=(.*)&|Uis', $vk, $vtag);
-        preg_match('|vkid=(.*)&|Uis', $vk, $vkid);
-        preg_match('|no_flv=(.*)&|Uis', $vk, $no_flv);
-        preg_match('|thumb=(.*)&|Uis', $vk, $thumb);
-        preg_match('|md_title=(.*)&|Uis', $vk, $title);
-        
-        preg_match('|url240=(.*)&|Uis', $vk, $url240);
-        
-        //print_r($url240);
-        
-        $title = urldecode($title['1']);
-
-        if($host){
-            $oldVideo = false;
-            if($uid['1'] == '0')
-            {
-                $oldVideo = true;
-            }
-            if($oldVideo){
-                $link = 'http://'.$host['1'].'/assets/videos/'.$vtag['1'].$vkid['1'].'.vk.flv';
-            }else{
-                if($no_flv['1'] == '1')
-                {
-                    $link = $host['1'].'u'.$uid['1'].'/video/'.$vtag['1'].'.360.mp4';
-                    if(strpos($vk, $link)===false)
-                    {
-                        $link = $host['1'].'u'.$uid['1'].'/video/'.$vtag['1'].'.240.mp4';
-                    }
-                    
-                }else{
-                    $link = $host['1'].'u'.$uid['1'].'/video/'.$vtag['1'].'.flv';
-                }
-            }
-        }
-        
-        return $link;
-    }
-    
     public static function resizePic($id, $url)
     {
         $socialChannel = "vk";

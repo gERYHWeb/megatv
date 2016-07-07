@@ -45,7 +45,7 @@ class SubscribeTable extends Entity\DataManager
 				'data_type' => 'integer',
 			),
             'UF_CHANNEL' => array(
-				'data_type' => '\Hawkart\Megatv\ChannelTable',
+				'data_type' => '\Hawkart\Megatv\ChannelBaseTable',
 				'reference' => array('=this.UF_CHANNEL_ID' => 'ref.ID'),
 			),
             'UF_DATE_FROM' => array(

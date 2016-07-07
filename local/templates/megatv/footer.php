@@ -19,20 +19,21 @@
         //$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/plugins.js');
         //$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/main.js');
         ?>
-        <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/vendor.js"></script>
-		<script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/plugins.js"></script>
+        <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/vendor.js"></script>
+		<script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/plugins.js"></script>
         <?if(strpos($APPLICATION->GetCurDir(), "/channels/")!==false && isset($_REQUEST["SCHEDULE_CODE"])):?>
-            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/broadcast-card.js"></script>
+            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/broadcast-card.js"></script>
         <?elseif(strpos($APPLICATION->GetCurDir(), "/channels/")!==false && isset($_REQUEST["CHANNEL_CODE"])):?>
-            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/channel-card.js"></script>
+            <?/*<script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/channel-card.js"></script>*/?>
+            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/main.js"></script>
         <?elseif($APPLICATION->GetCurDir() == "/personal/"):?>
-            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/user-profile.js"></script>
+            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/user-profile.js"></script>
         <?elseif($APPLICATION->GetCurDir() == "/personal/services/"):?>
-            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/user-services.js"></script>
+            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/user-services.js"></script>
         <?elseif($APPLICATION->GetCurDir() == "/personal/records/"):?>
-            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/user-records.js"></script>
+            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/user-records.js"></script>
         <?else:?> 
-            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/dist/js/main.js"></script>
+            <script src="<?=SITE_TEMPLATE_PATH?>/megatv/public/js/main.js"></script>
         <?endif;?>
         <script src="<?=SITE_TEMPLATE_PATH?>/project.js"></script>
         
@@ -79,9 +80,9 @@
         <script>
           window.fbAsyncInit = function() {
             FB.init({
-              appId      : '135610936850061',
+              appId      : '1710346209200604',
               xfbml      : true,
-              version    : 'v2.6'
+              version    : 'v2.5'
             });
           };
         
