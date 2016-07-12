@@ -22,10 +22,10 @@
 					"authentication": true
 				}
 			</script>
+
 			<header class="site-header">
 				<div class="top-panel">
 					<a href="index.html" class="logo"></a>
-
 					<div class="city-select" data-module="city-select">
 						<script type="text/x-config">
 							{
@@ -40,9 +40,13 @@
 								"showCityRequestPopover": false
 							}
 						</script>
-						<select name="city-select" id="_id-city-select">
-							<option value="1" selected>Санкт-Петербург</option>
-						</select>
+						<form action="/" method="POST" id="city-select-form">
+							<input type="hidden" name="city-id" value="35" id="city-select-value">
+							<input type="hidden" name="sessid" id="sessid_3" value="5a9a39e829853ea760f17dceb5a7e85d">
+							<select name="city-select" id="_id-city-select">
+								<option value="1" selected>Санкт-Петербург</option>
+							</select>
+						</form>
 					</div>
 
 					<div class="lang-select" data-module="lang-select">
@@ -68,24 +72,43 @@
 						-->
 					</div>
 
-					<form action="#" class="search-form is-cabinet-search-form" data-module="search-form">
+					<div class="calendar-carousel" data-module="calendar-carousel">
+						<script type="text/x-config">
+							{
+								"currentDate": "15.04.2016",
+								"minDate": 1,
+								"maxDate": 8
+							}
+						</script>
+						<a href="#" class="prev-trigger disabled" data-type="prev-trigger"><span data-icon="icon-left-arrow-days"></span></a>
+						<div class="dates-holder" data-type="dates-carousel"></div>
+						<a href="#" class="next-trigger" data-type="next-trigger"><span data-icon="icon-right-arrow-days"></span></a>
+					</div>
+
+					<div class="search" data-module="search">
 						<script type="text/x-config">
 							{
 								"url": "../data/films/queries/%QUERY.json"
 							}
 						</script>
-						<div class="form-group has-feedback">
-							<label for="" class="sr-only">Название программы или сериала</label>
-							<input type="text" data-type="search-field" name="" id="" class="form-control" placeholder="Название программы или сериала">
-							<span class="form-control-feedback"><span data-icon="icon-search"></span></span>
+						<form action="#" class="search-form">
+							<div class="form-group has-feedback" data-type="search-group">
+								<label for="" class="sr-only">Название программы или сериала</label>
+								<input type="text" data-type="search-field" name="" id="" class="form-control" placeholder="Название программы или сериала">
+								<span data-icon="icon-search"></span>
+							</div>
+							<div class="search-close" data-type="close">
+							</div>
+						</form>
+						<div class="search-trigger" data-type="open">
+							<span data-icon="icon-search"></span>
 						</div>
-					</form>
+					</div>
 
 					<ul class="sections-menu">
-						<li><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
+						<li class="active"><a href="index.html"><span data-icon="icon-channels"></span><span>Каналы</span></a></li>
 						<!-- <li><a href="themes.html"><span data-icon="icon-themes"></span><span>Тематики</span></a></li> -->
 						<li><a href="recommendations.html"><span data-icon="icon-recommendations"></span><span>Рекомендации</span></a></li>
-						<li class="sections-menu-recordings"><a href="user-records.html"><span data-icon="icon-film-collection"></span> <span>Мои записи<span class="count">2 из 20</span></span></a></li>
 					</ul>
 
 					<div class="header-user">
@@ -113,10 +136,8 @@
 						</nav>
 					</div>
 				</div>
-				<!-- <div class="bottom-panel">
-					<a href="#" class="back-link"><span data-icon="icon-backlink-arrow"></span><span>Вернуться к передаче: Как я встретил вашу маму</span></a>
-				</div> -->
 			</header>
+
 			<main class="site-content">
 				<section class="broadcast-card" data-module="broadcast-card">
 					<script type="text/x-config">

@@ -7,9 +7,9 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: zindex-popover;
+	z-index: $zindex-popover;
 	display: none;
-	max-width: popover-max-width;
+	max-width: $popover-max-width;
 	padding: 1px;
 	// Our parent element can be arbitrary since popovers are by default inserted as a sibling of their target element.
 	// So reset our font and text properties to avoid inheriting weird values.
@@ -78,6 +78,7 @@
 		border-bottom-width: 0;
 		border-top-color: $popover-arrow-outer-color;
 		bottom: -($popover-arrow-outer-width);
+
 		&:after {
 			content: '';
 			bottom: 1px;
@@ -92,6 +93,7 @@
 		margin-top: -($popover-arrow-outer-width);
 		border-left-width: 0;
 		border-right-color: $popover-arrow-outer-color;
+
 		&:after {
 			content: '';
 			left: 1px;
@@ -106,6 +108,7 @@
 		border-top-width: 0;
 		border-bottom-color: $popover-arrow-outer-color;
 		top: -($popover-arrow-outer-width);
+
 		&:after {
 			content: '';
 			top: 1px;
@@ -121,6 +124,7 @@
 		margin-top: -($popover-arrow-outer-width);
 		border-right-width: 0;
 		border-left-color: $popover-arrow-outer-color;
+
 		&:after {
 			content: '';
 			right: 1px;
